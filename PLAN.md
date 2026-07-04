@@ -118,7 +118,7 @@ Rendered *content* becomes AI art. Tiny procedural **effects stay in code** (ste
 |---|---|---|---|
 | **Beepo** | normal, blink, yum, yuck, wow, eat-open, eat-closed, wave, sleepy | ~9 frames | One character sheet, same seed+reference. Frames swap like the current `.fx` groups. |
 | **Ingredients** | the **9** selected (see `DISHES.md`) | 9 | Each a plump smiling character. Optional "squished" variant later. |
-| **Dishes** | one per combo (see `DISHES.md`) | **129** | 1–3 distinct ingredients per dish. Names + verdicts already written; batch-render from the per-dish `image_prompt` in `dishes.json` (§3.4). |
+| **Dishes** | one per combo (see `DISHES.md`) | **129** | 1–3 distinct ingredients per dish. Names + verdicts already written; batch-render from the per-dish `image_prompt` in `dishes.json` (§3.4). **TODO: eating states** (full → half-eaten → nearly gone, §4 B#12) — either ×3 renders or a generic bite mask; decide at the pilot. |
 | **Big UI** | pot, stove/counter (keep it *muted* — pot is the hero, see §0), cloche, plate, serving-dome shine, pot spoon, guide hand | ~7 | Illustrated to match. Pot interior must still allow the soup-color tint + floating items on top. No stir button exists anymore (B#3). |
 | **Backgrounds** | cozy kitchen scene, title-screen art | 2 | Warm wood, sunny window, hanging utensils, soft depth. |
 | **Audio (optional stretch)** | gentle music loop | 1 | See Workstream B. |
@@ -202,7 +202,8 @@ Each item lists **behavior · animation · sound · code hook**. Art needed: **n
 
 9. **More lines & variety.** Expand `ADD_LINES`, the stinky lines, reveal words, and eating lines; add **dish-specific one-liners** keyed to the dish name; randomize so repeat plays stay fresh. *Pure data.*
 10. **Global juice pass.** Squash/stretch on every pop, soft bounce easing throughout, a touch of screen-shake on big reveals, richer confetti, and `navigator.vibrate()` haptic taps where supported (toddler tablets often are). *CSS/JS only.*
-11. **Emoji → inline SVG.** Replace every UI emoji (🍳 title, 👆 hands, 💚 stink hearts, 🤢/🙊/🤩/😋 reaction faces, 🥄, 👩‍🍳) with small inline-SVG equivalents drawn in the house style. Emoji render differently on every platform and instantly read as "web page," not "app." No art pipeline needed — code-drawn like the existing effects.
+11. **Emoji → inline SVG.** Replace every UI emoji (🍳 title, 👆 hands, 💚 stink hearts, 🤢/🙊/🤩/😋 reaction faces, 🥄, 👩‍🍳) with small inline-SVG equivalents drawn in the house style. Emoji render differently on every platform and instantly read as "web page," not "app." No art pipeline needed — code-drawn like the existing effects. *(Built 2026-07-04.)*
+12. **Animated dish states (TODO, added 2026-07-04).** Dishes shouldn't just shrink while eaten: three visual states — **presented (full) → halfway eaten (bites missing) → nearly gone (last morsel + crumbs)** — swapped at bite thresholds in `bite()` (e.g. after 40% and 80% of `BITES`), with the existing shrink/crumbs juice kept on top. Art options, decide at the art pilot: (a) per-dish AI renders ×3 states (129 → 387 images — render time is fine on the 5090, but ×3 curation), (b) one generic bite-mask/crumb overlay applied in code to every dish (cheap, less charming), or (c) hybrid — bespoke states for the ~24 hero dishes with bespoke looks, generic mask for the rest (recommended). *Hook:* `bite()` / `dishBig`.
 
 **Per-ingredient sound motifs (built; the 9 selected only):** apple = bright two-note ding ↑; banana = playful downward slide; strawberry = light triple sparkle; egg = hollow pop; chocolate = warm mellow tone; cookie = crumbly double-tap; ice cream = cool glissando ↑; worm = wobble bend; rainbow = happy arpeggio (`sSparkle`).
 
