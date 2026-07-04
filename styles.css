@@ -9,13 +9,13 @@
 
   /* ---------- top bar ---------- */
   #topbar { display:flex; justify-content:flex-end; align-items:center; padding:10px 14px 0; }
-  #muteBtn, #musicBtn { font-size:22px; background:#fff8; border:none; border-radius:14px; width:44px; height:44px; box-shadow:0 3px 0 #d9a94e; }
+  #muteBtn, #musicBtn { font-size:22px; background:#fff8; border:none; border-radius:14px; width:40px; height:40px; box-shadow:0 3px 0 #d9a94e; opacity:.85; }
   #muteBtn:active, #musicBtn:active { transform:translateY(2px); box-shadow:0 1px 0 #d9a94e; }
 
   /* ---------- stage ---------- */
   #stage { position:relative; height:32%; min-height:200px; display:flex; align-items:flex-end; justify-content:center; }
   #floor { position:absolute; bottom:0; left:0; right:0; height:34px;
-    background: repeating-conic-gradient(#F7B34A 0% 25%, #FFDE9C 0% 50%) 0 0/34px 34px; opacity:.8; }
+    background: repeating-conic-gradient(#F7B34A 0% 25%, #FFDE9C 0% 50%) 0 0/34px 34px; opacity:.45; }
 
   /* Beepo */
   #beepo { position:absolute; left:2%; bottom:56px; width:112px; z-index:5; }
@@ -38,7 +38,7 @@
     box-shadow:0 5px 0 #9C6B35; position:relative; }
   #stove::before { content:''; position:absolute; top:8px; left:16px; width:19px; height:19px; border-radius:50%;
     background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 150px 0 0 0 #B98A4E; }
-  #potWrap { position:absolute; bottom:38px; left:50%; transform:translateX(-50%); width:190px; height:127px; }
+  #potWrap { position:absolute; bottom:38px; left:50%; transform:translateX(-50%); width:204px; height:136px; }
   #potWrap > svg { animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
   /* stir-ready: the pot glows like a button until the third stir */
   #potWrap.ready > svg { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
@@ -49,7 +49,7 @@
   #potWrap.wobble { animation:wob .5s ease; }
   @keyframes wob { 25%{transform:translateX(-54%);} 50%{transform:translateX(-46%);} 75%{transform:translateX(-52%);} }
   #soupEllipse { fill:#F2B04A; transition: fill 1s; }
-  #soupItems { position:absolute; left:23px; top:9px; width:144px; height:49px; }
+  #soupItems { position:absolute; left:25px; top:10px; width:155px; height:53px; }
   #soupItems.swirl .floatItem { animation:spin1 1s ease; }
   @keyframes spin1 { 50%{ transform:translateX(26px) rotate(180deg) scale(.85);} 100%{transform:rotate(360deg);} }
   .floatItem { position:absolute; animation:floaty 3s ease-in-out infinite; cursor:pointer; }
@@ -71,16 +71,14 @@
   #shelfWrap { flex:1; background:linear-gradient(#D89A5F,#C9884E); border-top:8px solid #B06F35;
     border-radius:26px 26px 0 0; padding:10px 10px 14px; overflow-y:auto; box-shadow:0 -6px 14px #0002; }
   #shelf { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:480px; margin:0 auto; }
-  .ing { background:linear-gradient(#FFF8E8,#FFEECB); border:none; border-radius:18px; padding:7px 4px 5px;
+  .ing { background:linear-gradient(#FFF8E8,#FFEECB); border:none; border-radius:18px; padding:10px 4px;
     box-shadow:0 4px 0 #A9743B; font-family:inherit; transition:opacity .3s;
-    display:flex; flex-direction:column; align-items:center; gap:3px; }
-  .ing svg { width:56px; height:56px; }
-  .ing small { display:block; font-size:13px; font-weight:800; color:#8A5A22; }
+    display:flex; align-items:center; justify-content:center; }
+  .ing svg { width:80px; height:80px; }
   .ing:active { transform:translateY(3px) scale(.96); box-shadow:0 1px 0 #A9743B; }
   @media (max-height:730px) {
     #stage { min-height:182px; }
-    .ing svg { width:46px; height:46px; }
-    .ing small { font-size:12px; }
+    .ing svg { width:62px; height:62px; }
     #shelf { gap:8px; }
   }
 
@@ -172,10 +170,11 @@
   #dishIngs svg { width:34px; height:34px; }
   .stinkLine { position:absolute; font-size:36px; animation:stinkUp 2.4s ease-in-out infinite; opacity:.8; }
   @keyframes stinkUp { 0%{ transform:translateY(10px);} 100%{ transform:translateY(-46px); opacity:0;} }
-  #againBtn { margin-top:28px; font-family:inherit; font-size:26px; font-weight:800; color:#8A4B12;
-    background:linear-gradient(#FFE18A,#FFC94D); border:none; border-radius:26px; padding:18px 40px;
+  #againBtn { margin-top:26px; width:96px; height:96px; border:none; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #FFE18A, #FFC94D);
     box-shadow:0 6px 0 #C77E12; opacity:0; transform:scale(0); pointer-events:none; }
-  #againBtn.shown { opacity:1; transform:none; pointer-events:auto; animation:popIn .55s cubic-bezier(.3,1.6,.4,1); }
+  #againBtn.shown { opacity:1; transform:none; pointer-events:auto;
+    animation:popIn .55s cubic-bezier(.3,1.6,.4,1), pulse 1.8s ease-in-out .6s infinite; }
   #againBtn:active { transform:translateY(4px); box-shadow:0 2px 0 #C77E12; }
 
   .confetti { position:fixed; top:-20px; width:13px; height:13px; z-index:120; pointer-events:none;
@@ -204,7 +203,7 @@
 
   /* ---- tap-the-pot stirring (B#3, revised after playtest) ---- */
   #potWrap { cursor:pointer; }
-  #potSpoon { position:absolute; right:-20px; top:-52px; width:92px; height:92px; z-index:6;
+  #potSpoon { position:absolute; right:-22px; top:-56px; width:100px; height:100px; z-index:6;
     opacity:0; transform:scale(0) rotate(22deg); pointer-events:none; transform-origin:65% 85%;
     transition:opacity .3s, transform .45s cubic-bezier(.3,1.6,.4,1); }
   #potSpoon.shown { opacity:1; transform:scale(1) rotate(22deg); }
@@ -270,7 +269,7 @@
   body { padding-top:env(safe-area-inset-top); padding-left:env(safe-area-inset-left);
     padding-right:env(safe-area-inset-right); padding-bottom:env(safe-area-inset-bottom); }
   #startTitle { display:flex; align-items:center; gap:8px; }
-  #againBtn { display:flex; align-items:center; gap:10px; }
+  #againBtn { display:flex; align-items:center; justify-content:center; }
   #reaction { display:flex; align-items:center; gap:8px; }
   #feedHand { margin-left:-27px; }
   #overlay.shake { animation:bigShake .4s ease; }

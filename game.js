@@ -187,7 +187,8 @@ function iconSVG(id, size, color){
 INGREDIENTS.forEach(item=>{
   const b=document.createElement('button');
   b.className='ing';
-  b.innerHTML=iconSVG(item.svg,74)+'<small>'+item.n+'</small>';
+  b.innerHTML=iconSVG(item.svg,80);           /* icon-only: the food IS the label */
+  b.setAttribute('aria-label', item.n);
   /* pointerdown, not click: fires instantly for EVERY finger — iOS suppresses
      synthesized clicks during multi-touch, which killed overlapping flyers */
   b.addEventListener('pointerdown',()=>addIngredient(item,b));
@@ -363,7 +364,7 @@ function bounceOff(item, to){
 }
 
 let uidCounter = 0;
-const SLOT_X = [0, 46, 92], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 52;  /* tuned to the 190px pot */
+const SLOT_X = [0, 49, 99], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 56;  /* tuned to the 204px pot */
 function landInPot(item){
   const used = new Set(potItems.map(e=>e.slot));
   const free = [0,1,2].filter(s=>!used.has(s));

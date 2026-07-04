@@ -411,17 +411,29 @@
     <ellipse cx="56" cy="30" rx="19" ry="24" fill="#D8DEF0" stroke="#4A3B47" stroke-width="4" transform="rotate(20 56 30)"/>
     <ellipse cx="50" cy="22" rx="5" ry="8" fill="#fff" opacity=".7" transform="rotate(20 50 22)"/>
   </symbol>
+  <symbol id="ui-again" viewBox="0 0 100 100">
+    <path d="M50 16 A34 34 0 1 1 22 32" fill="none" stroke="#8A4B12" stroke-width="11" stroke-linecap="round"/>
+    <path d="M10 36 L34 36 L22 12 Z" fill="#8A4B12" stroke="#8A4B12" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
   <symbol id="ui-star" viewBox="0 0 100 100">
     <path d="M50 8 L61 36 L92 38 L68 58 L76 89 L50 71 L24 89 L32 58 L8 38 L39 36 Z"
       fill="currentColor" stroke="#4A3B47" stroke-width="5" stroke-linejoin="round"/>
   </symbol>
   <!-- ============ Batch 4: UI icons (emoji replacements, house style) ============ -->
   <symbol id="ui-hand" viewBox="0 0 100 100">
-    <rect x="41" y="6" width="18" height="44" rx="9" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4.5"/>
-    <path d="M30 44 H70 C79 44 83 52 81 60 C85 78 68 93 50 93 C32 93 15 78 19 60 C17 52 21 44 30 44 Z"
+    <!-- index finger offset LEFT (a centered finger reads as a rude gesture) -->
+    <rect x="24" y="4" width="17" height="46" rx="8.5" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4.5"/>
+    <!-- folded-finger knuckles peeking over the fist -->
+    <circle cx="53" cy="46" r="8" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4"/>
+    <circle cx="66" cy="48" r="8" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4"/>
+    <circle cx="77" cy="52" r="7" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4"/>
+    <!-- fist -->
+    <path d="M24 50 C20 52 18 58 19 64 C17 80 31 93 50 93 C68 93 81 82 80 66 L80 56 C80 52 74 50 70 52 L44 52 Z"
       fill="#FFE3B8" stroke="#4A3B47" stroke-width="4.5" stroke-linejoin="round"/>
-    <path d="M37 60 v9 M50 62 v11 M63 60 v9" stroke="#E0B583" stroke-width="4" stroke-linecap="round" fill="none"/>
-    <rect x="28" y="86" width="44" height="12" rx="6" fill="#5FD6CD" stroke="#4A3B47" stroke-width="4"/>
+    <!-- thumb -->
+    <ellipse cx="27" cy="66" rx="8" ry="13" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4" transform="rotate(16 27 66)"/>
+    <!-- cuff -->
+    <rect x="30" y="85" width="40" height="12" rx="6" fill="#5FD6CD" stroke="#4A3B47" stroke-width="4"/>
   </symbol>
   <symbol id="ui-fly" viewBox="0 0 100 100">
     <ellipse cx="52" cy="62" rx="17" ry="13" fill="#4A3B47"/>
@@ -586,7 +598,7 @@
     <div id="potWrap">
       <div class="steam" style="left:24px"></div>
       <div class="steam" style="left:100px; animation-delay:1.6s"></div>
-      <svg viewBox="0 0 240 160" width="190" height="127">
+      <svg viewBox="0 0 240 160" width="204" height="136">
         <defs>
           <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#5A6B8C"/><stop offset="1" stop-color="#414E68"/>
@@ -653,7 +665,7 @@
       </svg>
     </div>
   </div>
-  <button id="againBtn"><svg class="icon" viewBox="0 0 100 100" width="30" height="30"><use href="#ui-pan"/></svg><span>Cook again!</span></button>
+  <button id="againBtn" aria-label="Cook again"><svg class="icon" viewBox="0 0 100 100" width="54" height="54"><use href="#ui-again"/></svg></button>
 </div>
 
 <script src="dishes.js"></script>
