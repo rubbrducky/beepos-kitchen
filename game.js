@@ -23,7 +23,7 @@ const INGREDIENTS = [
 ];
 const ING_BY_ID = Object.fromEntries(INGREDIENTS.map(i=>[i.id,i]));
 
-const MAX_ITEMS = 3, STIRS_NEEDED = 3, BITES = 5;
+const MAX_ITEMS = 3, BITES = 5;
 
 /* Bespoke SVG looks for combos that have them (key = sorted ids joined by +).
    Every other combo gets a generated bowl tinted from its ingredients.
@@ -170,14 +170,13 @@ function stopMusic(){ clearInterval(musicTimer); musicTimer=null; }
 document.addEventListener('visibilitychange', ()=>{ document.hidden ? stopMusic() : startMusic(); });
 
 /* ================= state & elements ================= */
-let potItems = [], stirs = 0, cooking = false;
+let potItems = [], cooking = false;
 const $ = id => document.getElementById(id);
 const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
-      potWrap=$('potWrap'), potSpoon=$('potSpoon'),
-      beepo=$('beepo'), bubbleTalk=$('bubbleTalk'), stirStars=$('stirStars'),
+      potWrap=$('potWrap'), potSpoon=$('potSpoon'), cookFlame=$('cookFlame'),
+      beepo=$('beepo'), bubbleTalk=$('bubbleTalk'),
       overlay=$('overlay'), dishName=$('dishName'), reaction=$('reaction'),
-      dishBig=$('dishBig'), dishIngs=$('dishIngs'), plateWrap=$('plateWrap'),
-      feedHand=$('feedHand');
+      dishBig=$('dishBig'), dishIngs=$('dishIngs'), plateWrap=$('plateWrap');
 
 function iconSVG(id, size, color){
   return `<svg class="icon" viewBox="0 0 100 100" width="${size}" height="${size}"${color?` style="color:${color}"`:''}><use href="#${id}"/></svg>`;
@@ -235,12 +234,12 @@ function currentTarget(){
   if(!$('startOverlay').classList.contains('gone')) return [$('startBtn'),0,14];
   if(overlay.classList.contains('show')){
     if(!lifted) return [cloche,0,40];
-    if(feeding) return null;                               /* feedHand owns this beat */
+    if(feeding) return null;                               /* eating runs itself */
     if(overlay.classList.contains('revealed')) return [$('againBtn'),0,10];
     return null;
   }
   if(cooking) return null;
-  if(potItems.length && stirs<STIRS_NEEDED) return [potWrap,0,-4];
+  if(potItems.length) return [potWrap,0,-4];
   const kids=shelf.children;
   return kids.length ? [kids[Math.floor(Math.random()*kids.length)],0,12] : null;
 }
@@ -252,7 +251,7 @@ function attract(){
   if($('startOverlay').classList.contains('gone') && !overlay.classList.contains('show') && !cooking){
     beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
     if(!potItems.length) say(pick(['Feed the pot!','Pick a goodie!','Yummy time!']));
-    else if(stirs<STIRS_NEEDED) say('Stir stir!');
+    else say('Cook it!');
     setExp(beepo, attractN%2 ? 'yum' : 'wow', 1400);
   }
   armIdle(8000);
@@ -391,7 +390,7 @@ function landInPot(item){
     say(Math.random()<0.4 ? item.n+'!' : pick(ADD_LINES));
     setExp(beepo,'yum',1300);
   }
-  stirStars.classList.add('shown');  /* three empty star sockets = "3 stirs to go" */
+  cookFlame.classList.add('lit');    /* flame under the pot = "cook me!" */
   potSpoon.classList.add('shown');   /* wiggling spoon in the pot = "stir me" */
   potWrap.classList.add('ready');    /* pot glows like a button while stirrable */
   armStirNudge(1600);                /* guide hand jumps to the pot if no stir soon */
@@ -402,23 +401,19 @@ let stirNudgeTimer;
 function armStirNudge(ms){
   clearTimeout(stirNudgeTimer);
   stirNudgeTimer=setTimeout(()=>{
-    if(!cooking && potItems.length && stirs<STIRS_NEEDED) pointAt(potWrap, 0, 2);
+    if(!cooking && potItems.length) pointAt(potWrap, 0, 2);
   }, ms);
 }
 
 function resetStir(){
-  stirs=0;
   clearTimeout(stirNudgeTimer);
   potWrap.classList.remove('ready');
   potSpoon.classList.remove('shown','swirl');
-  stirStars.classList.remove('shown');
-  stirStars.querySelectorAll('.sstar').forEach(s=>s.classList.remove('filled'));
+  cookFlame.classList.remove('lit','flare');
 }
 
-/* ================= counting stir (B#3) ================= */
-const COUNT_WORDS = ['One!','Two!','Three!'];
-const COUNT_TONES = [523, 659, 784];
-/* the pot IS the stir control: tap it anywhere once ingredients are in */
+/* ================= one-tap cooking (B#3, playtest v3) ================= */
+/* the pot IS the cook control: tap it anywhere once ingredients are in */
 potWrap.addEventListener('pointerdown', ()=>{
   if(cooking) return;
   if(!potItems.length){                 /* empty pot: a friendly wobble, never a "no" */
@@ -428,46 +423,21 @@ potWrap.addEventListener('pointerdown', ()=>{
     say(pick(['Feed the pot!','Pick a goodie!']));
     return;
   }
-  doStir();
+  cookNow();
 });
 
-function doStir(){
-  stirs=Math.min(stirs+1, STIRS_NEEDED);
-  if(!playVoice('count-'+stirs)){
-    const f=COUNT_TONES[stirs-1];
-    beep(a=>tone(a,'triangle',f,f,0,.28,.17));
-  }
-  sWhoosh(); buzz(15);
-  say(COUNT_WORDS[stirs-1], 900);
-  /* a star socket SLAMS full + a giant numeral erupts from the soup */
-  const star=stirStars.children[stirs-1];
-  if(star){ star.classList.remove('filled'); void star.getBoundingClientRect(); star.classList.add('filled'); }
-  countPopFx(stirs);
-  /* physical build-up a toddler can read: spoon swirl, sparkles, growing steam */
+function cookNow(){
+  sWhoosh(); buzz(20);
+  say(pick(['Cook cook!','Here we go!','Stir-a-whirl!']), 1000);
   potSpoon.classList.remove('swirl'); void potSpoon.offsetWidth;
   potSpoon.classList.add('swirl');
   setTimeout(()=>potSpoon.classList.remove('swirl'), 650);
-  sparkleAt(potWrap, 1+stirs);
-  puffSteam(stirs);
+  sparkleAt(potWrap, 3);
   potWrap.classList.remove('stirring'); void potWrap.offsetWidth;
   potWrap.classList.add('stirring');
   soupItems.classList.remove('swirl'); void soupItems.offsetWidth;
   soupItems.classList.add('swirl');
-  if(stirs>=STIRS_NEEDED) cook();
-  else armStirNudge(2600);   /* stalled mid-count? hand comes right back */
-}
-
-function countPopFx(n){
-  const c=document.createElement('div');
-  c.className='countPop';
-  c.textContent=n;
-  c.style.color=['#F25C54','#FFD93C','#59B356'][n-1];
-  potWrap.appendChild(c);
-  c.animate([
-    {transform:'translateY(10px) scale(.4)', opacity:0},
-    {transform:'translateY(-30px) scale(1.3)', opacity:1, offset:.35},
-    {transform:'translateY(-74px) scale(1)', opacity:0}
-  ],{duration:1050, easing:'ease-out'}).onfinish=()=>c.remove();
+  cook();
 }
 
 function puffSteam(n){
@@ -505,6 +475,7 @@ function cook(){
   clearTimeout(stirNudgeTimer);
   hideHand();
   potWrap.classList.remove('ready');
+  cookFlame.classList.add('flare');   /* the flame does the cooking */
   sparkleAt(potWrap, 6);
   puffSteam(3);
   potSpoon.classList.remove('shown');
@@ -667,18 +638,16 @@ function beginFeeding(tier){
   revealBeepo.classList.add('feeding');
   if(tier==='vor') revealBeepo.classList.add('fast');
   sayR(tier==='vor' ? pick(VOR_START) : pick(EAT_START));
-  feedHand.classList.add('show');
-  armIdleBite();
+  armAutoBite(900);
 }
-/* never stalls: an idle toddler still sees Beepo eat, one bite at a time */
-function armIdleBite(){
+/* eating runs by itself on a tasty rhythm; taps just add bonus bites */
+function armAutoBite(ms){
   clearTimeout(idleFeedTimer);
-  idleFeedTimer=setTimeout(bite, 2600);
+  idleFeedTimer=setTimeout(bite, ms);
 }
 function bite(){
   if(!feeding) return;
   bitesDone++;
-  feedHand.classList.remove('show');
   sChomp(); buzz(10);
   revealBeepo.classList.remove('bite'); void revealBeepo.offsetWidth;
   revealBeepo.classList.add('bite');
@@ -686,7 +655,7 @@ function bite(){
     `translate(-50%,-50%) scale(${Math.max(1-bitesDone*0.19,0.05)}) rotate(${bitesDone%2?-5:5}deg)`;
   crumbs(revealBeepo.classList.contains('fast')?4:2);
   if(bitesDone>=BITES) finishFeeding();
-  else armIdleBite();
+  else armAutoBite(revealBeepo.classList.contains('fast') ? 480 : 1050);
 }
 function finishFeeding(){
   feeding=false;
@@ -736,7 +705,6 @@ $('againBtn').addEventListener('click',()=>{
   revealBeepo.classList.remove('feeding','fast','bite','lean','faint');
   setExp(revealBeepo, null);
   rBubble.classList.remove('show');
-  feedHand.classList.remove('show');
   plateWrap.classList.remove('pushed');
   plateWrap.querySelectorAll('.crumb, .fly').forEach(x=>x.remove());
   dishBig.style.transform=''; dishBig.style.opacity='';

@@ -219,10 +219,6 @@
     45%{ transform:translateX(-50%) rotate(5deg) scale(1.05);} 70%{ transform:translateX(-50%) rotate(-2deg) scale(1.02);} }
 
   /* ---- tap-to-feed (B#1) ---- */
-  #feedHand { position:absolute; left:50%; top:56%; margin-left:-22px; font-size:56px; z-index:12; opacity:0;
-    pointer-events:none; transition:opacity .3s; animation:handBounce 1s ease-in-out infinite;
-    filter:drop-shadow(0 3px 4px #0006); }
-  #feedHand.show { opacity:1; }
   @keyframes handBounce { 50%{ transform:translateY(-18px) scale(1.12);} }
   #revealBeepo.feeding .f-normal { opacity:0; }
   #revealBeepo.feeding .f-eat { opacity:1; }
@@ -271,7 +267,6 @@
   #startTitle { display:flex; align-items:center; gap:8px; }
   #againBtn { display:flex; align-items:center; justify-content:center; }
   #reaction { display:flex; align-items:center; gap:8px; }
-  #feedHand { margin-left:-27px; }
   #overlay.shake { animation:bigShake .4s ease; }
   @keyframes bigShake { 20%{ transform:translate(-5px,3px);} 40%{ transform:translate(4px,-3px);}
     60%{ transform:translate(-3px,2px);} 80%{ transform:translate(2px,2px);} }
@@ -279,17 +274,14 @@
   @keyframes landSquash { 30%{ transform:scale(1.25,.7);} 65%{ transform:scale(.9,1.1);} }
 
 
-  /* ---- stir progress: three star sockets that FILL, above the pot ---- */
-  #stirStars { position:absolute; left:44%; top:-44px; margin-left:-56px; display:flex; gap:10px; z-index:7;
-    opacity:0; transform:scale(.4); transform-origin:50% 100%; pointer-events:none;
-    transition:opacity .35s, transform .45s cubic-bezier(.3,1.6,.4,1); }
-  #stirStars.shown { opacity:1; transform:scale(1); }
-  .sstar { width:34px; height:34px; color:#FFFFFF88; filter:drop-shadow(0 2px 2px #0003); transition:color .2s; }
-  .sstar.filled { color:#FFD93C; animation:starSlam .55s cubic-bezier(.3,1.8,.4,1); }
-  @keyframes starSlam { 40%{ transform:scale(1.7) rotate(18deg);} }
-  .countPop { position:absolute; left:50%; top:0; margin-left:-20px; font-size:58px; font-weight:800;
-    z-index:9; pointer-events:none; font-family:inherit;
-    -webkit-text-stroke:3px #4A3B47; text-shadow:0 3px 0 #0003; }
+  /* ---- one-tap cook: flame badge under the pot ---- */
+  #cookFlame { position:absolute; left:50%; bottom:-30px; width:64px; height:64px; margin-left:-32px;
+    opacity:0; transform:scale(0); transform-origin:50% 100%; pointer-events:none;
+    transition:opacity .3s, transform .4s cubic-bezier(.3,1.6,.4,1); }
+  #cookFlame.lit { opacity:1; transform:scale(1); }
+  #cookFlame svg { width:100%; height:100%; animation:flick .5s ease-in-out infinite alternate; transform-origin:50% 100%; }
+  @keyframes flick { from{ transform:scale(1) rotate(-2deg);} to{ transform:scaleY(1.14) scaleX(.94) rotate(2deg);} }
+  #cookFlame.flare { transform:scale(1.5); }
 
   @media (prefers-reduced-motion: reduce) {
     *,*::before,*::after { animation-duration:.01s !important; animation-iteration-count:1 !important; transition-duration:.01s !important; }
