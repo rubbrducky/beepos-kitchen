@@ -34,17 +34,20 @@
 
   /* stove + pot */
   #stoveWrap { position:relative; bottom:12px; width:204px; z-index:4; }
-  #stove { width:204px; height:56px; background:linear-gradient(#EE7F6C,#E2604C); border-radius:14px 14px 8px 8px;
-    box-shadow:0 5px 0 #b64432; position:relative; }
-  #stove::before { content:''; position:absolute; top:9px; left:16px; width:19px; height:19px; border-radius:50%;
-    background:#C94B37; box-shadow:0 0 0 4px #b64432 inset, 150px 0 0 0 #C94B37; }
-  #potWrap { position:absolute; bottom:44px; left:50%; transform:translateX(-50%); width:172px; height:115px; }
+  /* stove demoted to quiet counter-wood: the POT is the hero of the stage */
+  #stove { width:204px; height:48px; background:linear-gradient(#DCA55F,#C68544); border-radius:14px 14px 8px 8px;
+    box-shadow:0 5px 0 #9C6B35; position:relative; }
+  #stove::before { content:''; position:absolute; top:8px; left:16px; width:19px; height:19px; border-radius:50%;
+    background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 150px 0 0 0 #B98A4E; }
+  #potWrap { position:absolute; bottom:38px; left:50%; transform:translateX(-50%); width:190px; height:127px; }
+  #potWrap > svg { animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
+  @keyframes potBreathe { 50%{ transform:scale(1.02) translateY(-1px);} }
   #potWrap.stirring { animation:rock .8s ease; }
   @keyframes rock { 25%{transform:translateX(-50%) rotate(-4deg);} 75%{transform:translateX(-50%) rotate(4deg);} }
   #potWrap.wobble { animation:wob .5s ease; }
   @keyframes wob { 25%{transform:translateX(-54%);} 50%{transform:translateX(-46%);} 75%{transform:translateX(-52%);} }
   #soupEllipse { fill:#F2B04A; transition: fill 1s; }
-  #soupItems { position:absolute; left:21px; top:8px; width:130px; height:44px; }
+  #soupItems { position:absolute; left:23px; top:9px; width:144px; height:49px; }
   #soupItems.swirl .floatItem { animation:spin1 1s ease; }
   @keyframes spin1 { 50%{ transform:translateX(26px) rotate(180deg) scale(.85);} 100%{transform:rotate(360deg);} }
   .floatItem { position:absolute; animation:floaty 3s ease-in-out infinite; cursor:pointer; }

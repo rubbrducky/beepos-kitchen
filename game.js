@@ -358,7 +358,7 @@ function bounceOff(item, to){
 }
 
 let uidCounter = 0;
-const SLOT_X = [-3, 39, 81], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 52;
+const SLOT_X = [0, 46, 92], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 52;  /* tuned to the 190px pot */
 function landInPot(item){
   const used = new Set(potItems.map(e=>e.slot));
   const free = [0,1,2].filter(s=>!used.has(s));
