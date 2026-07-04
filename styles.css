@@ -10,8 +10,8 @@
   /* ---------- top bar ---------- */
   #topbar { display:flex; justify-content:space-between; align-items:center; padding:10px 14px 0; }
   #title { font-size:22px; font-weight:800; color:#8A4B12; letter-spacing:.5px; text-shadow:0 2px 0 #fff5; }
-  #muteBtn { font-size:22px; background:#fff8; border:none; border-radius:14px; width:44px; height:44px; box-shadow:0 3px 0 #d9a94e; }
-  #muteBtn:active { transform:translateY(2px); box-shadow:0 1px 0 #d9a94e; }
+  #muteBtn, #musicBtn { font-size:22px; background:#fff8; border:none; border-radius:14px; width:44px; height:44px; box-shadow:0 3px 0 #d9a94e; }
+  #muteBtn:active, #musicBtn:active { transform:translateY(2px); box-shadow:0 1px 0 #d9a94e; }
 
   /* ---------- stage ---------- */
   #stage { position:relative; height:32%; min-height:200px; display:flex; align-items:flex-end; justify-content:center; }
@@ -263,6 +263,11 @@
     animation:flyOrbit 2.2s linear infinite; }
   @keyframes flyOrbit { 0%{ transform:rotate(0deg) translateX(48px) rotate(0deg);}
     100%{ transform:rotate(360deg) translateX(48px) rotate(-360deg);} }
+
+
+  /* ============ Batch 3: music ============ */
+  #topBtns { display:flex; gap:8px; }
+  #musicBtn.off { opacity:.45; }
 
   @media (prefers-reduced-motion: reduce) {
     *,*::before,*::after { animation-duration:.01s !important; animation-iteration-count:1 !important; transition-duration:.01s !important; }

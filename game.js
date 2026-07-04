@@ -118,6 +118,52 @@ function playMotif(id){
   beep(a=>MOTIFS[id] && MOTIFS[id](a));
 }
 
+/* ================= procedural music loop (B#7) =================
+   No audio files: a gentle ~92bpm pentatonic wander over soft triangle bass.
+   Slightly randomized each bar so it never turns into an earworm. */
+let musicOn = true, musicTimer = null, musicGain = null, musicBar = 0;
+try{ musicOn = localStorage.getItem('bk-music')!=='0'; }catch(e){}
+
+const M_SCALE = [262, 294, 330, 392, 440, 523, 587, 659]; /* C-pentatonic-ish */
+const M_BASS  = [131, 98, 110, 147];                      /* C2 G1 A1 D2-ish walk */
+const M_BEAT  = 60/92;
+
+function mNote(f, t0, dur, type='sine', vol=.05){
+  const o=actx.createOscillator(), g=actx.createGain();
+  o.type=type; o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001, actx.currentTime+t0);
+  g.gain.linearRampToValueAtTime(vol, actx.currentTime+t0+.04);
+  g.gain.exponentialRampToValueAtTime(.001, actx.currentTime+t0+dur);
+  o.connect(g); g.connect(musicGain);
+  o.start(actx.currentTime+t0); o.stop(actx.currentTime+t0+dur+.05);
+}
+function playBar(){
+  if(muted || !musicOn) return;
+  const bass=M_BASS[musicBar%4];
+  mNote(bass, 0, M_BEAT*3.6, 'triangle', .045);
+  mNote(bass*1.5, M_BEAT*2, M_BEAT*1.7, 'triangle', .028);
+  for(let i=0;i<4;i++){
+    if(Math.random()<.75)
+      mNote(pick(M_SCALE), i*M_BEAT + (Math.random()<.3 ? M_BEAT/2 : 0), M_BEAT*.9, 'sine', .05);
+  }
+  if(musicBar%2===1) mNote(pick(M_SCALE)*2, M_BEAT*3, M_BEAT*.8, 'sine', .022);
+  musicBar++;
+}
+function startMusic(){
+  if(musicTimer || !musicOn || muted) return;
+  unlockAudio();
+  if(!actx) return;
+  if(actx.state!=='running'){                 /* resume is async: retry once ready */
+    try{ actx.resume().then(()=>setTimeout(startMusic,60)); }catch(e){}
+    return;
+  }
+  if(!musicGain){ musicGain=actx.createGain(); musicGain.gain.value=.55; musicGain.connect(actx.destination); }
+  playBar();
+  musicTimer=setInterval(playBar, M_BEAT*4*1000);
+}
+function stopMusic(){ clearInterval(musicTimer); musicTimer=null; }
+document.addEventListener('visibilitychange', ()=>{ document.hidden ? stopMusic() : startMusic(); });
+
 /* ================= state & elements ================= */
 let potItems = [], stirs = 0, cooking = false;
 const $ = id => document.getElementById(id);
@@ -150,6 +196,16 @@ $('muteBtn').textContent = muted?'🔇':'🔊';
 $('muteBtn').addEventListener('click',()=>{
   muted=!muted; $('muteBtn').textContent = muted?'🔇':'🔊';
   try{ localStorage.setItem('bk-muted', muted?'1':'0'); }catch(e){}
+  if(muted) stopMusic(); else startMusic();
+});
+
+/* music toggle (persisted) */
+$('musicBtn').classList.toggle('off', !musicOn);
+$('musicBtn').addEventListener('click',()=>{
+  musicOn=!musicOn;
+  $('musicBtn').classList.toggle('off', !musicOn);
+  try{ localStorage.setItem('bk-music', musicOn?'1':'0'); }catch(e){}
+  if(musicOn) startMusic(); else stopMusic();
 });
 
 /* ================= guide hand + idle attract (B#5, C#1-2, C#6) =================
@@ -227,6 +283,7 @@ $('startBeepo').appendChild(document.querySelector('#beepo svg').cloneNode(true)
 $('startOverlay').addEventListener('click',()=>{
   unlockAudio();           /* the one guaranteed user gesture — iOS audio unlock */
   sChime();
+  setTimeout(startMusic, 900);   /* music fades in after the chime */
   $('startOverlay').classList.add('gone');
   beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
   setTimeout(()=>say('Feed the pot! 🍎'), 700);
