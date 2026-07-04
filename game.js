@@ -171,14 +171,11 @@ document.addEventListener('visibilitychange', ()=>{ document.hidden ? stopMusic(
 let potItems = [], stirs = 0, cooking = false;
 const $ = id => document.getElementById(id);
 const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
-      potWrap=$('potWrap'), stirBtn=$('stirBtn'),
+      potWrap=$('potWrap'), potSpoon=$('potSpoon'),
       beepo=$('beepo'), bubbleTalk=$('bubbleTalk'), counter=$('counter'),
       overlay=$('overlay'), dishName=$('dishName'), reaction=$('reaction'),
       dishBig=$('dishBig'), dishIngs=$('dishIngs'), plateWrap=$('plateWrap'),
       feedHand=$('feedHand');
-const stirSegs = Array.from(document.querySelectorAll('#stirRing .seg'));
-const spoon = document.querySelector('#stirBtn .spoon');
-const SEG_COLORS = ['#F25C54','#FFD93C','#59B356']; /* red → yellow → green, one per stir */
 
 function iconSVG(id, size, color){
   return `<svg class="icon" viewBox="0 0 100 100" width="${size}" height="${size}"${color?` style="color:${color}"`:''}><use href="#${id}"/></svg>`;
@@ -240,7 +237,7 @@ function currentTarget(){
     return null;
   }
   if(cooking) return null;
-  if(potItems.length && stirs<STIRS_NEEDED) return [stirBtn,0,16];
+  if(potItems.length && stirs<STIRS_NEEDED) return [potWrap,0,-4];
   const kids=shelf.children;
   return kids.length ? [kids[Math.floor(Math.random()*kids.length)],0,12] : null;
 }
@@ -345,7 +342,8 @@ function bounceOff(item, to){
   potWrap.classList.remove('happy'); void potWrap.offsetWidth;
   potWrap.classList.add('happy');
   say(pick(FULL_LINES), 1400);
-  stirBtn.classList.add('nudge');
+  pointAt(potWrap, 0, -4);            /* the pot itself is the next tap */
+  setTimeout(hideHand, 1600);
   const b=document.createElement('div');
   b.className='flyer'; b.innerHTML=iconSVG(item.svg,52);
   b.style.left=(to.left+to.width/2-26)+'px';
@@ -374,7 +372,6 @@ function landInPot(item){
   f.style.top=(SLOT_Y[slot] + (Math.random()*4-2))+'px';
   f.style.animationDelay=(Math.random()*2)+'s';
   f.dataset.uid = entry.uid;
-  f.addEventListener('pointerdown', ()=>removeFromPot(entry.uid, f));
   soupItems.appendChild(f);
   f.classList.add('land'); buzz(12);
   soupEl.style.fill = blendColors(potItems.map(i=>i.c));
@@ -389,33 +386,7 @@ function landInPot(item){
     setExp(beepo,'yum',1300);
   }
   updateCounter();
-  showStirBtn();
-}
-
-/* the stir button announces itself: bouncy pop-in, self-stirring spoon */
-function showStirBtn(){
-  if(stirBtn.style.display==='block') return;
-  stirBtn.style.display='block';
-  stirBtn.classList.remove('shown'); void stirBtn.offsetWidth;
-  stirBtn.classList.add('shown');
-}
-
-function removeFromPot(uid, el){
-  if(cooking) return;
-  const idx = potItems.findIndex(e=>e.uid===uid);
-  if(idx<0) return;
-  potItems.splice(idx,1);
-  sPluck();
-  say('Out you go!');
-  el.style.pointerEvents='none';
-  el.animate([
-    {transform:'translateY(0) scale(1)', opacity:1},
-    {transform:'translateY(-58px) scale(1.25) rotate(-16deg)', opacity:1, offset:.55},
-    {transform:'translateY(-30px) scale(.3) rotate(-40deg)', opacity:0}
-  ],{duration:520, easing:'cubic-bezier(.3,1.2,.5,1)'}).onfinish=()=>el.remove();
-  soupEl.style.fill = potItems.length ? blendColors(potItems.map(i=>i.c)) : '#F2B04A';
-  updateCounter();
-  if(!potItems.length) resetStir();
+  potSpoon.classList.add('shown');   /* wiggling spoon in the pot = "stir me" */
 }
 
 function updateCounter(){
@@ -429,38 +400,57 @@ function updateCounter(){
 
 function resetStir(){
   stirs=0;
-  stirSegs.forEach(s=>{ s.style.stroke=''; s.classList.remove('pop'); });
-  stirBtn.style.display='none';
-  stirBtn.classList.remove('nudge','shown');
+  potSpoon.classList.remove('shown','swirl');
 }
 
 /* ================= counting stir (B#3) ================= */
 const COUNT_WORDS = ['One!','Two!','Three!'];
 const COUNT_TONES = [523, 659, 784];
-stirBtn.addEventListener('pointerdown',()=>{
-  if(cooking||!potItems.length) return;
+/* the pot IS the stir control: tap it anywhere once ingredients are in */
+potWrap.addEventListener('pointerdown', ()=>{
+  if(cooking) return;
+  if(!potItems.length){                 /* empty pot: a friendly wobble, never a "no" */
+    potWrap.classList.remove('wobble'); void potWrap.offsetWidth;
+    potWrap.classList.add('wobble');
+    sPluck();
+    say(pick(['Feed the pot!','Pick a goodie!']));
+    return;
+  }
+  doStir();
+});
+
+function doStir(){
   stirs=Math.min(stirs+1, STIRS_NEEDED);
-  stirBtn.classList.remove('nudge');
   if(!playVoice('count-'+stirs)){
     const f=COUNT_TONES[stirs-1];
     beep(a=>tone(a,'triangle',f,f,0,.28,.17));
   }
-  sWhoosh();
+  sWhoosh(); buzz(15);
   say(COUNT_WORDS[stirs-1], 900);
-  /* one fat arc segment lights up per stir — counting a toddler can see */
-  const seg=stirSegs[stirs-1];
-  if(seg){
-    seg.style.stroke=SEG_COLORS[stirs-1];
-    seg.classList.remove('pop'); void seg.getBoundingClientRect(); seg.classList.add('pop');
-  }
-  spoon.classList.remove('spin'); void spoon.getBoundingClientRect(); spoon.classList.add('spin');
-  sparkleAt(stirBtn, 3); buzz(15);
+  /* physical build-up a toddler can read: spoon swirl, sparkles, growing steam */
+  potSpoon.classList.remove('swirl'); void potSpoon.offsetWidth;
+  potSpoon.classList.add('swirl');
+  setTimeout(()=>potSpoon.classList.remove('swirl'), 650);
+  sparkleAt(potWrap, 1+stirs);
+  puffSteam(stirs);
   potWrap.classList.remove('stirring'); void potWrap.offsetWidth;
   potWrap.classList.add('stirring');
   soupItems.classList.remove('swirl'); void soupItems.offsetWidth;
   soupItems.classList.add('swirl');
   if(stirs>=STIRS_NEEDED) cook();
-});
+}
+
+function puffSteam(n){
+  for(let i=0;i<n;i++){
+    const st=document.createElement('div');
+    st.className='steam';
+    st.style.left=(16+Math.random()*110)+'px';
+    st.style.animationDuration=(1.8+Math.random()*.8)+'s';
+    st.style.animationDelay=(i*.2)+'s';
+    potWrap.appendChild(st);
+    setTimeout(()=>st.remove(), 3200);
+  }
+}
 
 /* magic-happens-here burst */
 function sparkleAt(el, n=3){
@@ -482,8 +472,9 @@ function sparkleAt(el, n=3){
 
 function cook(){
   cooking=true;
-  sparkleAt(stirBtn, 6);
-  stirBtn.style.display='none';
+  sparkleAt(potWrap, 6);
+  puffSteam(3);
+  potSpoon.classList.remove('shown');
   sSizzle(); say('It’s cooking!!',1800);
   setTimeout(()=>{ sDing(); reveal(); }, 2000);
 }
