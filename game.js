@@ -91,6 +91,9 @@ const sNuhuh  = ()=>beep(a=>{tone(a,'triangle',330,320,0,.15,.15); tone(a,'trian
 const sPluck  = ()=>beep(a=>tone(a,'sine',250,720,0,.18,.18));
 const sBoing  = ()=>beep(a=>{tone(a,'sine',180,420,0,.14,.16); tone(a,'sine',420,240,.14,.16,.14);});
 
+/* haptic taps where supported (B#10) — no-op on iOS Safari, works wrapped/Android */
+function buzz(p){ try{ navigator.vibrate && navigator.vibrate(p); }catch(e){} }
+
 /* Per-ingredient motifs (B#4) — PLAN.md §4 table */
 const MOTIFS = {
   apple:    a=>{tone(a,'sine',660,660,0,.12,.16); tone(a,'sine',880,880,.13,.2,.16);},
@@ -192,9 +195,10 @@ INGREDIENTS.forEach(item=>{
 
 /* mute persists across reloads (C#7) */
 try{ muted = localStorage.getItem('bk-muted')==='1'; }catch(e){}
-$('muteBtn').textContent = muted?'🔇':'🔊';
+const sndIcon = ()=>{ $('muteBtn').innerHTML = iconSVG(muted?'ui-snd-off':'ui-snd',24); };
+sndIcon();
 $('muteBtn').addEventListener('click',()=>{
-  muted=!muted; $('muteBtn').textContent = muted?'🔇':'🔊';
+  muted=!muted; sndIcon();
   try{ localStorage.setItem('bk-muted', muted?'1':'0'); }catch(e){}
   if(muted) stopMusic(); else startMusic();
 });
@@ -212,7 +216,7 @@ $('musicBtn').addEventListener('click',()=>{
    One reusable pointing hand. Every ~8s of no input it points at whatever the
    next tap should be; any interaction hides it and restarts the clock. */
 const guideHand = document.createElement('div');
-guideHand.id='guideHand'; guideHand.textContent='👆';
+guideHand.id='guideHand'; guideHand.innerHTML=iconSVG('ui-hand',52);
 document.body.appendChild(guideHand);
 function pointAt(el, dx=0, dy=0){
   const r=el.getBoundingClientRect();
@@ -254,6 +258,10 @@ function attract(){
 document.addEventListener('pointerdown', ()=>{ hideHand(); armIdle(); }, {capture:true});
 armIdle();
 
+/* toddler-proofing: no pinch zoom, no long-press menus (iOS Safari) */
+document.addEventListener('gesturestart', e=>e.preventDefault());
+document.addEventListener('contextmenu', e=>e.preventDefault());
+
 /* ================= Beepo expressions ================= */
 const revealBeepo = $('revealBeepo');
 revealBeepo.appendChild(document.querySelector('#beepo svg').cloneNode(true));
@@ -274,9 +282,21 @@ function say(txt, ms=2200){
   clearTimeout(talkTimer);
   talkTimer=setTimeout(()=>bubbleTalk.classList.remove('show'), ms);
 }
-const ADD_LINES=['Ooooh!','Yum yum!','Into the pot!','More more!','Bloop!','Tasty!'];
-const YUCKY_LINES=['Pee-yew!!','Wiggly!!','Eww hehe!','It tickles!'];
-const FULL_LINES=['Full pot!','Time to stir!','Stir it!'];
+const ADD_LINES=['Ooooh!','Yum yum!','Into the pot!','More more!','Bloop!','Tasty!','Plip plop!','Good pick!','Hehe!','So fresh!'];
+const YUCKY_LINES=['Pee-yew!!','Wiggly!!','Eww hehe!','It tickles!','Squirmy!!','My nose!!'];
+const FULL_LINES=['Full pot!','Time to stir!','Stir it!','Ready ready!'];
+const EAT_START=['Nom nom nom…','Feed me!','Bite time!','Open wide!'];
+const VOR_START=['CHOMP CHOMP!!','GIMME GIMME!!','SO HUNGRY!!'];
+const EAT_END=['All gone!','So yummy!','More please?','Happy tummy!'];
+const VOR_END=['BUUURP!','WOWIE!','YUM-TASTIC!'];
+/* dish-specific one-liners, first keyword hit wins (B#9) */
+const DISH_LINES=[
+  ['Rainbow','So sparkly!'],['Worm','It wiggles!!'],['Cake','Party time!'],
+  ['Smoothie','Slurrrp!'],['Sundae','Cherry on top!'],['Pancake','Flippy floppy!'],
+  ['Cookie','Crunch crunch!'],['Choco','Mmm chocolate!'],['Jam','Sticky sweet!'],
+  ['Soup','Slurpy soup!'],['Taco','Crunchy crunch!'],['Pie','Sweetie pie!'],
+  ['Egg','Wibbly wobbly!'],['Banana','Go bananas!'],['Berry','Berry nice!'],
+];
 
 /* ================= start / title overlay (B#2) ================= */
 $('startBeepo').appendChild(document.querySelector('#beepo svg').cloneNode(true));
@@ -286,7 +306,7 @@ $('startOverlay').addEventListener('click',()=>{
   setTimeout(startMusic, 900);   /* music fades in after the chime */
   $('startOverlay').classList.add('gone');
   beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
-  setTimeout(()=>say('Feed the pot! 🍎'), 700);
+  setTimeout(()=>say('Feed the pot!'), 700);
   armIdle(1800);   /* first-run onboarding: hand points at the shelf right away */
 },{once:true});
 
@@ -295,7 +315,7 @@ function addIngredient(item, btn){
   if(cooking) return;
   /* every tap responds instantly: boing + motif, no shelf lockout */
   btn.classList.remove('boing'); void btn.offsetWidth; btn.classList.add('boing');
-  playMotif(item.id);
+  playMotif(item.id); buzz(8);
   const from=btn.getBoundingClientRect(), to=potWrap.getBoundingClientRect();
   const fl=document.createElement('div');
   fl.className='flyer'; fl.innerHTML=iconSVG(item.svg,64);
@@ -319,7 +339,7 @@ function addIngredient(item, btn){
 /* pot-full is an invitation, never a "no" (C#4): the extra item bounces off
    the rim, the pot wiggles happily, the stir button asks for attention */
 function bounceOff(item, to){
-  sBoing();
+  sBoing(); buzz([20,40,20]);
   potWrap.classList.remove('happy'); void potWrap.offsetWidth;
   potWrap.classList.add('happy');
   say(pick(FULL_LINES), 1400);
@@ -354,12 +374,13 @@ function landInPot(item){
   f.dataset.uid = entry.uid;
   f.addEventListener('click', ()=>removeFromPot(entry.uid, f));
   soupItems.appendChild(f);
+  f.classList.add('land'); buzz(12);
   soupEl.style.fill = blendColors(potItems.map(i=>i.c));
   potWrap.classList.remove('stirring'); void potWrap.offsetWidth;
   potWrap.classList.add('stirring');
   beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
   if(item.tag==='yucky'){ say(pick(YUCKY_LINES)); sPeeyew(); setExp(beepo,'yuck',1700); }
-  else if(item.tag==='magic'){ say('✨ Oooh magic! ✨'); sSparkle(); setExp(beepo,'wow',1700); }
+  else if(item.tag==='magic'){ say('Oooh magic!'); sSparkle(); setExp(beepo,'wow',1700); }
   else {
     /* early word learning: sometimes name the ingredient (B#4) */
     say(Math.random()<0.4 ? item.n+'!' : pick(ADD_LINES));
@@ -431,7 +452,7 @@ stirBtn.addEventListener('click',()=>{
     seg.classList.remove('pop'); void seg.getBoundingClientRect(); seg.classList.add('pop');
   }
   spoon.classList.remove('spin'); void spoon.getBoundingClientRect(); spoon.classList.add('spin');
-  sparkleAt(stirBtn, 3);
+  sparkleAt(stirBtn, 3); buzz(15);
   potWrap.classList.remove('stirring'); void potWrap.offsetWidth;
   potWrap.classList.add('stirring');
   soupItems.classList.remove('swirl'); void soupItems.offsetWidth;
@@ -489,7 +510,7 @@ function reveal(){
   const dish = findDish();
   const tier = dish.verdict==='yucky' ? 'refuse'
              : (dish.verdict==='magical' || dish.size>=2) ? 'vor' : 'ok';
-  pendingResult = {verdict:dish.verdict, tier};
+  pendingResult = {verdict:dish.verdict, tier, name:dish.name};
 
   dishName.textContent = dish.name;
   dishBig.innerHTML = '<svg viewBox="0 0 100 100">'+
@@ -498,10 +519,10 @@ function reveal(){
   dishIngs.innerHTML = potItems.map(i=>iconSVG(i.svg,34)).join('');
 
   let face, word, color;
-  if(dish.verdict==='yucky'){ face='🤢'; word='PEE-YEW!! WIGGLY!'; color='#C6F08C'; }
-  else if(dish.verdict==='magical'){ face='🤩'; word='MAGICAL! WOW!'; color='#E7D6FF'; }
-  else { face='😋'; word='YUMMY IN MY TUMMY!'; color='#FFE9A8'; }
-  reaction.textContent = face+' '+word;
+  if(dish.verdict==='yucky'){ face='ui-face-yuck'; word='PEE-YEW!! WIGGLY!'; color='#C6F08C'; }
+  else if(dish.verdict==='magical'){ face='ui-face-wow'; word='MAGICAL! WOW!'; color='#E7D6FF'; }
+  else { face='ui-face-yum'; word='YUMMY IN MY TUMMY!'; color='#FFE9A8'; }
+  reaction.innerHTML = iconSVG(face,30)+'<span>'+word+'</span>';
   reaction.style.background = color;
 
   /* reset to covered state */
@@ -533,7 +554,7 @@ function liftCover(){
   rBubble.classList.remove('show');
   hideHand();
   hint.classList.add('gone');
-  sLift();
+  sLift(); buzz(20);
   overlay.classList.add('revealing');
   cloche.classList.add('lift');
   setTimeout(finishReveal, 2100);
@@ -541,14 +562,18 @@ function liftCover(){
 cloche.addEventListener('click', liftCover);
 
 function finishReveal(){
-  const {verdict, tier} = pendingResult || {verdict:'yummy', tier:'ok'};
+  const {verdict, tier, name} = pendingResult || {verdict:'yummy', tier:'ok', name:''};
   overlay.classList.add('revealed');
+  /* dish-specific one-liner (B#9) */
+  const dl = DISH_LINES.find(d=>name && name.includes(d[0]));
+  if(dl) sayR(dl[1]);
   if(verdict==='yucky'){
     setExp(revealBeepo,'yuck');
     sPeeyew();
     [20,70,120,170,215].forEach((x,i)=>{
       const s=document.createElement('div');
-      s.className='stinkLine'; s.textContent='💚';
+      s.className='stinkLine';
+      s.innerHTML='<svg width="30" height="42" viewBox="-9 -33 22 38"><use href="#g-stink"/></svg>';
       s.style.left=x+'px'; s.style.top='20px'; s.style.animationDelay=(i*.6)+'s';
       plateWrap.appendChild(s);
     });
@@ -558,11 +583,13 @@ function finishReveal(){
   if(verdict==='magical'){
     setExp(revealBeepo,'wow');
     sSparkle(); setTimeout(sTada,500);
-    confettiBurst(32);
+    confettiBurst(40); buzz([30,50,30]);
+    overlay.classList.remove('shake'); void overlay.offsetWidth;
+    overlay.classList.add('shake');
   } else {
     setExp(revealBeepo,'yum');
     sTada();
-    confettiBurst(18);
+    confettiBurst(20); buzz(25);
   }
   schedule(()=>beginFeeding(tier), 1300);
 }
@@ -577,9 +604,9 @@ function sayR(txt){ rBubble.textContent=txt; rBubble.classList.add('show'); }
 /* gross-out comedy (B#6): refuse → dramatic faint → giggly recovery.
    Zero fail — it's the best silly outcome. */
 function refuseDish(){
-  sayR('NO WAY!! 🙅');
+  sayR('NO WAY!!');
   setExp(revealBeepo,'refuse');
-  sNuhuh();
+  sNuhuh(); buzz([40,60,40]);
   plateWrap.classList.add('pushed');
   spawnFlies(3);
   schedule(sNuhuh, 900);
@@ -598,7 +625,7 @@ function refuseDish(){
 function spawnFlies(n){
   for(let i=0;i<n;i++){
     const f=document.createElement('div');
-    f.className='fly'; f.textContent='🪰';
+    f.className='fly'; f.innerHTML=iconSVG('ui-fly',26);
     f.style.left=(112+i*14)+'px';
     f.style.top=(92+i*16)+'px';
     f.style.animationDelay=(i*-0.7)+'s';
@@ -612,7 +639,7 @@ function beginFeeding(tier){
   overlay.classList.add('eating');
   revealBeepo.classList.add('feeding');
   if(tier==='vor') revealBeepo.classList.add('fast');
-  sayR(tier==='vor' ? 'CHOMP CHOMP!!' : 'Feed me!');
+  sayR(tier==='vor' ? pick(VOR_START) : pick(EAT_START));
   feedHand.classList.add('show');
   armIdleBite();
 }
@@ -625,7 +652,7 @@ function bite(){
   if(!feeding) return;
   bitesDone++;
   feedHand.classList.remove('show');
-  sChomp();
+  sChomp(); buzz(10);
   revealBeepo.classList.remove('bite'); void revealBeepo.offsetWidth;
   revealBeepo.classList.add('bite');
   dishBig.style.transform =
@@ -644,7 +671,7 @@ function finishFeeding(){
     const fast = revealBeepo.classList.contains('fast');
     revealBeepo.classList.remove('feeding','fast','bite');
     setExp(revealBeepo,'yum');
-    sayR(fast ? 'BUUURP! 😋' : 'All gone! 😋');
+    sayR(fast ? pick(VOR_END) : pick(EAT_END));
     if(fast){ sBurp(); confettiBurst(12); } else sDing();
   }, 600);
 }
@@ -670,7 +697,7 @@ function crumbs(n){
 
 /* ================= reset ================= */
 $('againBtn').addEventListener('click',()=>{
-  sPop();
+  sPop(); buzz(8);
   clearTimeout(autoLift);
   clearEating();
   feeding=false; bitesDone=0;
@@ -689,7 +716,7 @@ $('againBtn').addEventListener('click',()=>{
   soupEl.style.fill='#F2B04A';
   resetStir();
   updateCounter();
-  say('What’s next, chef? 👩‍🍳');
+  say('What’s next, chef?');
 });
 
 /* ================= helpers ================= */
@@ -702,12 +729,18 @@ function blendColors(hexes){
 }
 function confettiBurst(n){
   const colors=['#FF6B6B','#FFD93C','#6BCB77','#4D96FF','#E96BC0','#FF9F45'];
+  const star='polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
   for(let i=0;i<n;i++){
     const c=document.createElement('div');
     c.className='confetti';
+    const size=9+Math.random()*8;
+    c.style.width=size+'px'; c.style.height=size+'px';
     c.style.left=Math.random()*100+'vw';
     c.style.background=pick(colors);
-    c.style.borderRadius=Math.random()>.5?'50%':'3px';
+    const shape=Math.random();
+    if(shape<.33) c.style.clipPath=star;
+    else c.style.borderRadius = shape<.66 ? '50%' : '3px';
+    c.style.setProperty('--dx', (Math.random()*160-80)+'px');
     c.style.animationDuration=(2.2+Math.random()*1.8)+'s';
     c.style.animationDelay=(Math.random()*.6)+'s';
     document.body.appendChild(c);
