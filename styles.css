@@ -1,0 +1,235 @@
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; }
+  html,body { height:100%; overflow:hidden; font-family:'Baloo 2','Comic Sans MS',ui-rounded,system-ui,sans-serif; }
+  body {
+    background: linear-gradient(#FFE9A8 0%, #FFD97A 55%, #FFC85C 100%);
+    display:flex; flex-direction:column;
+    touch-action:manipulation;
+  }
+  svg.icon { display:block; overflow:visible; }
+
+  /* ---------- top bar ---------- */
+  #topbar { display:flex; justify-content:space-between; align-items:center; padding:10px 14px 0; }
+  #title { font-size:22px; font-weight:800; color:#8A4B12; letter-spacing:.5px; text-shadow:0 2px 0 #fff5; }
+  #muteBtn { font-size:22px; background:#fff8; border:none; border-radius:14px; width:44px; height:44px; box-shadow:0 3px 0 #d9a94e; }
+  #muteBtn:active { transform:translateY(2px); box-shadow:0 1px 0 #d9a94e; }
+
+  /* ---------- stage ---------- */
+  #stage { position:relative; height:32%; min-height:200px; display:flex; align-items:flex-end; justify-content:center; }
+  #floor { position:absolute; bottom:0; left:0; right:0; height:34px;
+    background: repeating-conic-gradient(#F7B34A 0% 25%, #FFDE9C 0% 50%) 0 0/34px 34px; opacity:.8; }
+
+  /* Beepo */
+  #beepo { position:absolute; left:2%; bottom:56px; width:112px; z-index:5; }
+  #beepo.hop { animation:hop .7s ease; }
+  @keyframes hop { 30%{transform:translateY(-16px) rotate(-4deg);} 60%{transform:translateY(0);} 80%{transform:translateY(-6px);} }
+  .beye { transform-box:fill-box; transform-origin:center; animation:blink 4.6s infinite; }
+  @keyframes blink { 0%,94%,100%{transform:scaleY(1);} 97%{transform:scaleY(.08);} }
+  .antBall { transform-box:fill-box; transform-origin:center; animation:bob 2.2s ease-in-out infinite; }
+  @keyframes bob { 50%{transform:translateY(-4px);} }
+  #bubbleTalk { position:absolute; top:-14px; left:82px; background:#fff; border-radius:16px; padding:8px 13px;
+    font-weight:800; font-size:16px; color:#8A4B12; opacity:0; transform:scale(.5); transition:all .35s; white-space:nowrap;
+    box-shadow:0 3px 0 #d9a94e77; z-index:9;}
+  #bubbleTalk.show { opacity:1; transform:scale(1); }
+  #bubbleTalk::after { content:''; position:absolute; bottom:-7px; left:14px; border:8px solid transparent; border-top-color:#fff; border-bottom:0; }
+
+  /* stove + pot */
+  #stoveWrap { position:relative; bottom:12px; width:204px; z-index:4; }
+  #stove { width:204px; height:56px; background:linear-gradient(#EE7F6C,#E2604C); border-radius:14px 14px 8px 8px;
+    box-shadow:0 5px 0 #b64432; position:relative; }
+  #stove::before { content:''; position:absolute; top:9px; left:16px; width:19px; height:19px; border-radius:50%;
+    background:#C94B37; box-shadow:0 0 0 4px #b64432 inset, 150px 0 0 0 #C94B37; }
+  #potWrap { position:absolute; bottom:44px; left:50%; transform:translateX(-50%); width:172px; height:115px; }
+  #potWrap.stirring { animation:rock .8s ease; }
+  @keyframes rock { 25%{transform:translateX(-50%) rotate(-4deg);} 75%{transform:translateX(-50%) rotate(4deg);} }
+  #potWrap.wobble { animation:wob .5s ease; }
+  @keyframes wob { 25%{transform:translateX(-54%);} 50%{transform:translateX(-46%);} 75%{transform:translateX(-52%);} }
+  #soupEllipse { fill:#F2B04A; transition: fill 1s; }
+  #soupItems { position:absolute; left:21px; top:8px; width:130px; height:44px; }
+  #soupItems.swirl .floatItem { animation:spin1 1s ease; }
+  @keyframes spin1 { 50%{ transform:translateX(26px) rotate(180deg) scale(.85);} 100%{transform:rotate(360deg);} }
+  .floatItem { position:absolute; animation:floaty 3s ease-in-out infinite; cursor:pointer; }
+  .floatItem:active { transform:scale(1.15); }
+  @keyframes floaty { 50%{ transform:translateY(-4px) rotate(10deg);} }
+  .bubble { position:absolute; bottom:8px; width:9px; height:9px; background:#ffffff77; border-radius:50%;
+    animation:rise 2.6s linear infinite; }
+  @keyframes rise { 0%{transform:translateY(0) scale(.5); opacity:0;} 30%{opacity:1;} 100%{transform:translateY(-26px) scale(1.2); opacity:0;} }
+  .steam { position:absolute; top:-32px; width:30px; height:19px; background:#fff; border-radius:50%;
+    box-shadow:-10px 6px 0 -5px #fff, 10px 6px 0 -5px #fff;
+    animation:steamUp 3.4s ease-in-out infinite; }
+  @keyframes steamUp { 0%{transform:translateY(10px) scale(.7); opacity:0;} 40%{opacity:.65;} 100%{transform:translateY(-28px) scale(1.25); opacity:0;} }
+
+  /* stir button */
+  #stirBtn { position:absolute; right:3%; bottom:78px; width:92px; height:92px; border:none; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #FFD36B, #F5A623); z-index:8;
+    box-shadow:0 6px 0 #C77E12; display:none; animation:pulse 1.8s ease-in-out infinite; font-family:inherit; padding:14px; }
+  #stirBtn:active { transform:translateY(4px); box-shadow:0 2px 0 #C77E12; }
+  @keyframes pulse { 50%{ transform:scale(1.07);} }
+
+  #counter { position:absolute; left:50%; transform:translateX(-50%); top:6px; z-index:6; display:flex; gap:8px; }
+  .dot { width:16px; height:16px; border-radius:50%; border:3px solid #8A4B12aa; background:transparent; }
+  .dot.full { background:#8A4B12; }
+
+  /* ---------- shelf ---------- */
+  #shelfWrap { flex:1; background:linear-gradient(#D89A5F,#C9884E); border-top:8px solid #B06F35;
+    border-radius:26px 26px 0 0; padding:10px 10px 14px; overflow-y:auto; box-shadow:0 -6px 14px #0002; }
+  #shelfTitle { text-align:center; color:#6B3E10; font-weight:800; font-size:14px; margin-bottom:8px; opacity:.85;}
+  #shelf { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:480px; margin:0 auto; }
+  .ing { background:linear-gradient(#FFF8E8,#FFEECB); border:none; border-radius:18px; padding:7px 4px 5px;
+    box-shadow:0 4px 0 #A9743B; font-family:inherit; transition:opacity .3s;
+    display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .ing svg { width:56px; height:56px; }
+  .ing small { display:block; font-size:13px; font-weight:800; color:#8A5A22; }
+  .ing:active { transform:translateY(3px) scale(.96); box-shadow:0 1px 0 #A9743B; }
+  @media (max-height:730px) {
+    #stage { min-height:182px; }
+    .ing svg { width:46px; height:46px; }
+    .ing small { font-size:12px; }
+    #shelf { gap:8px; }
+  }
+
+  .flyer { position:fixed; z-index:50; pointer-events:none; width:64px; height:64px; }
+  .flyer svg { width:100%; height:100%; }
+
+  /* ---------- reveal overlay ---------- */
+  #overlay { position:fixed; inset:0; background:#5B3E8Cf2; z-index:100; display:none;
+    flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
+  #overlay.show { display:flex; animation:fadeIn .5s ease; }
+  @keyframes fadeIn { from{opacity:0;} }
+  #dishName { color:#fff; font-size:32px; font-weight:800; line-height:1.15; margin-bottom:8px; text-shadow:0 3px 0 #0004;
+    max-width:440px; opacity:0; transform:scale(.5); transition:all .8s cubic-bezier(.2,1.5,.4,1); }
+  #reaction { font-size:25px; font-weight:800; margin-bottom:16px; padding:9px 20px; border-radius:20px; background:#fff;
+    opacity:0; transform:scale(.5); transition:all .8s .35s cubic-bezier(.2,1.5,.4,1); }
+  #overlay.revealed #dishName, #overlay.revealed #reaction { opacity:1; transform:scale(1); }
+  @keyframes popIn { from{ transform:scale(0);} }
+
+  /* ---- serving cover (cloche) ---- */
+  #cloche { position:absolute; left:50%; top:14px; width:264px; margin-left:-132px; z-index:7; cursor:pointer;
+    transition:transform 2.1s cubic-bezier(.5,.05,.3,1), opacity .5s 1.7s; }
+  #cloche svg { display:block; animation:clocheBob 2.4s ease-in-out infinite; }
+  @keyframes clocheBob { 50%{ transform:translateY(-8px) rotate(1.2deg);} }
+  #cloche.lift { transform:translateY(-380px) rotate(-11deg); opacity:0; pointer-events:none; }
+  #cloche.lift svg { animation:none; }
+  #hint { position:absolute; left:50%; transform:translateX(-50%); top:-46px; z-index:8; white-space:nowrap;
+    background:#fff; color:#8A4B12; font-weight:800; font-size:19px; padding:9px 18px; border-radius:18px;
+    box-shadow:0 4px 0 #0003; animation:hintPulse 1.4s ease-in-out infinite; transition:opacity .4s; }
+  @keyframes hintPulse { 50%{ transform:translateX(-50%) scale(1.09);} }
+  #hint.gone { opacity:0; pointer-events:none; }
+  #dishBig { opacity:0; transition:opacity .4s .5s; }
+  #overlay.revealing #dishBig { opacity:1; }
+  #dishIngs { opacity:0; transition:opacity .6s 1.4s; }
+  #overlay.revealed #dishIngs { opacity:1; }
+  .psteam { display:none; }
+  #overlay.revealed .psteam { display:block; position:absolute; top:30px; width:30px; height:19px; background:#fff;
+    border-radius:50%; box-shadow:-10px 6px 0 -5px #fff, 10px 6px 0 -5px #fff; animation:steamUp 3.2s ease-in-out infinite; }
+
+  /* ---- Beepo on the reveal screen ---- */
+  #revealBeepo { position:absolute; left:-62px; bottom:-6px; width:112px; z-index:5; }
+  #revealBeepo svg { width:100%; height:auto; }
+  #revealBeepo.exp-yum  { animation:joyBounce 1.6s ease .15s 3; }
+  #revealBeepo.exp-yuck { animation:shakeNo 1.3s ease .15s 3; }
+  #revealBeepo.exp-wow  { animation:wowJump 1.5s cubic-bezier(.3,1.3,.4,1) .15s 3; }
+  @keyframes joyBounce { 30%{ transform:translateY(-16px) rotate(-6deg);} 60%{ transform:translateY(0);} 80%{ transform:translateY(-7px);} }
+  @keyframes shakeNo { 20%{ transform:translateX(-10px) rotate(-5deg);} 50%{ transform:translateX(9px) rotate(5deg);} 80%{ transform:translateX(-5px);} }
+  @keyframes wowJump { 35%{ transform:translateY(-30px) scale(1.07);} 68%{ transform:translateY(0);} }
+
+  /* ---- Beepo facial expressions ---- */
+  .fx { opacity:0; transition:opacity .4s; transform-box:fill-box; transform-origin:center; }
+  .f-normal { opacity:1; }
+  .exp-yum .f-normal, .exp-yuck .f-normal, .exp-wow .f-normal,
+  .exp-eat .f-normal, .exp-refuse .f-normal { opacity:0; }
+  .exp-yum .f-yum, .exp-yuck .f-yuck, .exp-wow .f-wow,
+  .exp-eat .f-eat, .exp-refuse .f-yuck { opacity:1; animation:facePop .8s cubic-bezier(.2,1.6,.4,1); }
+  @keyframes facePop { 0%{ transform:scale(.3);} 55%{ transform:scale(1.16);} 100%{ transform:scale(1);} }
+
+  /* ---- eating & refusing ---- */
+  .chompM { transform-box:fill-box; transform-origin:center; }
+  .exp-eat .chompM { animation:chomp .68s ease-in-out infinite; }
+  .exp-eat.fast .chompM { animation-duration:.3s; }
+  @keyframes chomp { 50%{ transform:scaleY(.12);} }
+  #revealBeepo.exp-eat { animation:lunge .72s ease-in-out infinite; }
+  #revealBeepo.exp-eat.fast { animation-duration:.34s; }
+  @keyframes lunge { 40%{ transform:translate(18px,-4px) rotate(6deg);} }
+  #revealBeepo.exp-refuse { animation:refuseTurn 1.7s ease forwards; }
+  @keyframes refuseTurn {
+    18%{ transform:translateX(-10px) rotate(-7deg);}
+    40%{ transform:translateX(8px) rotate(6deg);}
+    62%{ transform:translateX(-6px) rotate(-4deg);}
+    100%{ transform:scaleX(-1) translateX(-12px);} }
+  #plateWrap.pushed { transform:translateX(34px) rotate(4deg); transition:transform .8s cubic-bezier(.3,1.4,.4,1); }
+  #overlay.eating #dishBig { animation:none; transition:opacity .4s .5s, transform .3s cubic-bezier(.4,1.4,.5,1); }
+  .crumb { position:absolute; width:9px; height:9px; border-radius:50%; z-index:8; pointer-events:none; }
+  #rBubble { position:absolute; left:-56px; bottom:134px; background:#fff; border-radius:15px; padding:8px 13px;
+    font-weight:800; font-size:16px; color:#8A4B12; opacity:0; transform:scale(.4); white-space:nowrap;
+    transition:all .45s cubic-bezier(.2,1.5,.4,1); z-index:9; box-shadow:0 3px 0 #0003; }
+  #rBubble.show { opacity:1; transform:scale(1); }
+  #rBubble::after { content:''; position:absolute; bottom:-7px; left:22px; border:8px solid transparent; border-top-color:#fff; border-bottom:0; }
+  #plateWrap { position:relative; width:262px; height:262px; animation:plateUp .9s cubic-bezier(.2,1.3,.4,1); }
+  @keyframes plateUp { from{ transform:translateY(320px) rotate(16deg);} }
+  #plate { position:absolute; inset:0; background:radial-gradient(circle at 50% 40%, #ffffff, #E8E8F0 70%, #C9C9D8);
+    border-radius:50%; box-shadow:0 10px 24px #0005, inset 0 0 0 14px #DCDCEA; }
+  #dishBig { position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); width:172px; height:172px;
+    animation:foodWig 2.6s ease-in-out infinite; }
+  #dishBig svg { width:100%; height:100%; }
+  @keyframes foodWig { 50%{ transform:translate(-50%,-52%) rotate(4deg);} }
+  #dishIngs { position:absolute; bottom:26px; left:0; right:0; display:flex; justify-content:center; gap:8px; }
+  #dishIngs svg { width:34px; height:34px; }
+  .stinkLine { position:absolute; font-size:36px; animation:stinkUp 2.4s ease-in-out infinite; opacity:.8; }
+  @keyframes stinkUp { 0%{ transform:translateY(10px);} 100%{ transform:translateY(-46px); opacity:0;} }
+  #againBtn { margin-top:28px; font-family:inherit; font-size:26px; font-weight:800; color:#8A4B12;
+    background:linear-gradient(#FFE18A,#FFC94D); border:none; border-radius:26px; padding:18px 40px;
+    box-shadow:0 6px 0 #C77E12; animation:popIn .7s .45s backwards; }
+  #againBtn:active { transform:translateY(4px); box-shadow:0 2px 0 #C77E12; }
+
+  .confetti { position:fixed; top:-20px; width:13px; height:13px; z-index:120; pointer-events:none;
+    animation:fall linear forwards; }
+  @keyframes fall { to{ transform:translateY(110vh) rotate(720deg);} }
+
+
+  /* ============ Milestone 1 additions (Batch 1) ============ */
+
+  /* ---- start / title overlay (B#2) ---- */
+  #startOverlay { position:fixed; inset:0; z-index:200; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; gap:8px; background:linear-gradient(#FFE9A8 0%, #FFD97A 55%, #FFC85C 100%); transition:opacity .55s; }
+  #startOverlay.gone { opacity:0; pointer-events:none; }
+  #startTitle { font-size:42px; font-weight:800; color:#8A4B12; letter-spacing:.5px; text-shadow:0 3px 0 #fff7; }
+  #startBeepo { width:190px; }
+  #startBeepo svg { width:100%; height:auto; animation:bob 2.2s ease-in-out infinite; }
+  #startBtn { margin-top:18px; width:112px; height:112px; border:none; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #FFD36B, #F5A623); box-shadow:0 7px 0 #C77E12;
+    animation:pulse 1.6s ease-in-out infinite; display:flex; align-items:center; justify-content:center; }
+  #startBtn:active { transform:translateY(4px); box-shadow:0 2px 0 #C77E12; }
+  #startBtn svg { width:54px; height:54px; margin-left:6px; }
+
+  /* ---- ingredient boing (B#4) ---- */
+  .ing.boing { animation:boing .45s cubic-bezier(.3,1.8,.4,1); }
+  @keyframes boing { 30%{ transform:scale(1.16,.84);} 60%{ transform:scale(.92,1.08);} }
+
+  /* ---- counting stir ring (B#3) ---- */
+  #stirRing { position:absolute; inset:3px; transform:rotate(-90deg); pointer-events:none; overflow:visible; }
+  #stirRing circle { fill:none; stroke-width:7; }
+  #stirRing .ringBg { stroke:#ffffff55; }
+  #ringFill { stroke:#8A4B12; stroke-dasharray:289 289; stroke-dashoffset:289; stroke-linecap:round;
+    transition:stroke-dashoffset .35s ease; }
+  #stirBtn.nudge { animation:pulse .75s ease-in-out infinite; box-shadow:0 6px 0 #C77E12, 0 0 0 9px #FFD36B66; }
+
+  /* ---- forgiving pot-full bounce (B#0 / C#4) ---- */
+  #potWrap.happy { animation:happyWiggle .7s ease; }
+  @keyframes happyWiggle { 20%{ transform:translateX(-50%) rotate(-5deg) scale(1.04);}
+    45%{ transform:translateX(-50%) rotate(5deg) scale(1.05);} 70%{ transform:translateX(-50%) rotate(-2deg) scale(1.02);} }
+
+  /* ---- tap-to-feed (B#1) ---- */
+  #feedHand { position:absolute; left:50%; top:56%; margin-left:-22px; font-size:56px; z-index:12; opacity:0;
+    pointer-events:none; transition:opacity .3s; animation:handBounce 1s ease-in-out infinite;
+    filter:drop-shadow(0 3px 4px #0006); }
+  #feedHand.show { opacity:1; }
+  @keyframes handBounce { 50%{ transform:translateY(-18px) scale(1.12);} }
+  #revealBeepo.feeding .f-normal { opacity:0; }
+  #revealBeepo.feeding .f-eat { opacity:1; }
+  #revealBeepo.feeding .chompM { animation:chomp .6s ease-in-out infinite; }
+  #revealBeepo.feeding.fast .chompM { animation-duration:.3s; }
+  #revealBeepo.bite { animation:lunge .45s ease; }
+  #plateWrap { cursor:pointer; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,*::before,*::after { animation-duration:.01s !important; animation-iteration-count:1 !important; transition-duration:.01s !important; }
+  }

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Beepo's Kitchen</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ SVG ART LIBRARY ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <!-- reusable cute face: centered on origin -->
+  <g id="g-face">
+    <circle cx="-9" cy="0" r="3.4" fill="#4A3B47"/>
+    <circle cx="9" cy="0" r="3.4" fill="#4A3B47"/>
+    <path d="M-6 7 Q0 13 6 7" fill="none" stroke="#4A3B47" stroke-width="3.4" stroke-linecap="round"/>
+  </g>
+  <g id="g-stink">
+    <path d="M0 0 q5 -8 0 -16 q-4 -6 1 -12" fill="none" stroke="#79A05B" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+  </g>
+
+  <!-- ============ INGREDIENTS ============ -->
+  <symbol id="ing-apple" viewBox="0 0 100 100">
+    <path d="M50 32 C34 18 14 30 15 54 C16 78 34 91 50 88 C66 91 84 78 85 54 C86 30 66 18 50 32 Z"
+      fill="#F25C54" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 30 C49 22 51 15 56 10" fill="none" stroke="#8A5A3B" stroke-width="5" stroke-linecap="round"/>
+    <path d="M56 17 C64 9 76 12 78 19 C71 26 59 25 56 17 Z" fill="#59B356" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <ellipse cx="31" cy="46" rx="6" ry="9" fill="#fff" opacity=".35"/>
+    <use href="#g-face" x="50" y="58"/>
+  </symbol>
+
+  <symbol id="ing-banana" viewBox="0 0 100 100">
+    <path d="M28 14 C12 44 30 84 72 92 C84 94 90 83 81 77 C55 68 44 46 43 20 C42 8 32 6 28 14 Z"
+      fill="#FFD94A" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="33" cy="11" r="4.5" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="83" cy="82" r="4.5" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3"/>
+    <path d="M22 38 C26 62 44 80 64 86" fill="none" stroke="#E8B84A" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <g transform="rotate(-38 44 58)"><use href="#g-face" x="44" y="58"/></g>
+  </symbol>
+
+  <symbol id="ing-berry" viewBox="0 0 100 100">
+    <path d="M50 28 C68 24 84 36 82 54 C80 74 62 89 50 91 C38 89 20 74 18 54 C16 36 32 24 50 28 Z"
+      fill="#F2545B" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 27 L40 14 L48 22 L50 9 L52 22 L60 14 Z" fill="#59B356" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <g fill="#FFE08A">
+      <ellipse cx="32" cy="48" rx="2.2" ry="3.4"/><ellipse cx="68" cy="48" rx="2.2" ry="3.4"/>
+      <ellipse cx="38" cy="70" rx="2.2" ry="3.4"/><ellipse cx="62" cy="70" rx="2.2" ry="3.4"/>
+      <ellipse cx="50" cy="80" rx="2.2" ry="3.4"/>
+    </g>
+    <use href="#g-face" x="50" y="54"/>
+  </symbol>
+
+  <symbol id="ing-carrot" viewBox="0 0 100 100">
+    <path d="M46 24 C40 12 32 8 27 10" fill="none" stroke="#59B356" stroke-width="6" stroke-linecap="round"/>
+    <path d="M50 23 C50 12 50 8 50 5" fill="none" stroke="#6BC466" stroke-width="6" stroke-linecap="round"/>
+    <path d="M54 24 C60 12 68 8 73 10" fill="none" stroke="#59B356" stroke-width="6" stroke-linecap="round"/>
+    <path d="M50 22 C62 22 68 32 66 46 L56 84 C54 92 46 92 44 84 L34 46 C32 32 38 22 50 22 Z"
+      fill="#F5872E" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 46 Q50 51 62 46" fill="none" stroke="#C9723C" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <path d="M41 62 Q50 66 59 62" fill="none" stroke="#C9723C" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <use href="#g-face" x="50" y="36"/>
+  </symbol>
+
+  <symbol id="ing-cheese" viewBox="0 0 100 100">
+    <path d="M12 74 L12 54 C34 36 64 26 88 44 L88 74 Z"
+      fill="#FFC93C" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="26" cy="63" r="6" fill="#E8A82E" stroke="#4A3B47" stroke-width="2.5"/>
+    <circle cx="76" cy="58" r="5" fill="#E8A82E" stroke="#4A3B47" stroke-width="2.5"/>
+    <circle cx="62" cy="70" r="3.5" fill="#E8A82E" stroke="#4A3B47" stroke-width="2.5"/>
+    <use href="#g-face" x="48" y="56"/>
+  </symbol>
+
+  <symbol id="ing-egg" viewBox="0 0 100 100">
+    <path d="M50 12 C70 12 80 36 80 56 C80 76 67 90 50 90 C33 90 20 76 20 56 C20 36 30 12 50 12 Z"
+      fill="#FFF7E0" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="34" cy="60" rx="5" ry="3.4" fill="#FFB3C1" opacity=".9"/>
+    <ellipse cx="66" cy="60" rx="5" ry="3.4" fill="#FFB3C1" opacity=".9"/>
+    <ellipse cx="36" cy="30" rx="5" ry="8" fill="#fff" opacity=".7"/>
+    <use href="#g-face" x="50" y="52"/>
+  </symbol>
+
+  <symbol id="ing-choco" viewBox="0 0 100 100">
+    <rect x="22" y="24" width="56" height="54" rx="7" fill="#8A5A3B" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M50 24 V78 M22 51 H78" stroke="#6B4226" stroke-width="4"/>
+    <rect x="27" y="29" width="18" height="17" rx="3" fill="#9C6B47"/>
+    <rect x="55" y="57" width="18" height="16" rx="3" fill="#9C6B47"/>
+    <circle cx="50" cy="50" r="14" fill="#8A5A3B"/>
+    <use href="#g-face" x="50" y="49"/>
+  </symbol>
+
+  <symbol id="ing-cookie" viewBox="0 0 100 100">
+    <circle cx="50" cy="54" r="34" fill="#D9A05B" stroke="#4A3B47" stroke-width="4"/>
+    <circle cx="33" cy="40" r="5" fill="#6B4226"/>
+    <circle cx="67" cy="42" r="4.5" fill="#6B4226"/>
+    <circle cx="36" cy="70" r="4.5" fill="#6B4226"/>
+    <circle cx="66" cy="68" r="5" fill="#6B4226"/>
+    <circle cx="50" cy="80" r="3.5" fill="#6B4226"/>
+    <use href="#g-face" x="50" y="53"/>
+  </symbol>
+
+  <symbol id="ing-icecream" viewBox="0 0 100 100">
+    <path d="M50 94 L34 56 H66 Z" fill="#E0A860" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 64 L59 58 M42 74 L56 70" stroke="#B97F3E" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M30 52 Q33 60 39 53 Q44 62 50 53 Q56 62 61 53 Q67 60 70 52 C74 34 62 20 50 22 C38 20 26 34 30 52 Z"
+      fill="#FBD9E8" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="50" cy="15" r="5.5" fill="#E23B4E" stroke="#4A3B47" stroke-width="3"/>
+    <use href="#g-face" x="50" y="38"/>
+  </symbol>
+
+  <symbol id="ing-sock" viewBox="0 0 100 100">
+    <path d="M38 12 H66 V46 C66 58 61 66 49 69 L44 70 C33 72 25 64 27 55 C29 47 35 45 40 44 L38 44 Z"
+      fill="#8FBF6B" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 22 H66" stroke="#6FA351" stroke-width="5"/>
+    <circle cx="34" cy="60" r="7" fill="#6FA351" opacity=".8"/>
+    <use href="#g-stink" x="76" y="34"/>
+    <use href="#g-stink" x="20" y="30"/>
+    <use href="#g-face" x="52" y="38"/>
+  </symbol>
+
+  <symbol id="ing-worm" viewBox="0 0 100 100">
+    <path d="M20 74 C28 82 44 78 50 66 C56 54 60 50 70 52" fill="none" stroke="#4A3B47" stroke-width="27" stroke-linecap="round"/>
+    <path d="M20 74 C28 82 44 78 50 66 C56 54 60 50 70 52" fill="none" stroke="#9CCF52" stroke-width="20" stroke-linecap="round"/>
+    <path d="M34 74 q2 -5 -1 -9 M46 62 q-4 -3 -9 -2" fill="none" stroke="#7FAF3E" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="72" cy="50" r="15" fill="#9CCF52" stroke="#4A3B47" stroke-width="4"/>
+    <ellipse cx="66" cy="42" rx="4" ry="6" fill="#fff" opacity=".5"/>
+    <use href="#g-face" x="72" y="49" transform="scale(.8)" transform-origin="72 49"/>
+  </symbol>
+
+  <symbol id="ing-rainbow" viewBox="0 0 100 100">
+    <path d="M12 70 A38 38 0 0 1 88 70" fill="none" stroke="#F25C54" stroke-width="8"/>
+    <path d="M20 70 A30 30 0 0 1 80 70" fill="none" stroke="#F5A623" stroke-width="8"/>
+    <path d="M28 70 A22 22 0 0 1 72 70" fill="none" stroke="#FFD94A" stroke-width="8"/>
+    <path d="M36 70 A14 14 0 0 1 64 70" fill="none" stroke="#59B356" stroke-width="8"/>
+    <path d="M44 70 A6 6 0 0 1 56 70" fill="none" stroke="#6B8BE8" stroke-width="8"/>
+    <g stroke="#4A3B47" stroke-width="3.5" fill="#fff">
+      <circle cx="14" cy="68" r="10"/><circle cx="24" cy="72" r="8"/>
+      <circle cx="86" cy="68" r="10"/><circle cx="76" cy="72" r="8"/>
+    </g>
+    <use href="#g-face" x="84" y="66" transform="scale(.62)" transform-origin="84 66"/>
+  </symbol>
+
+  <!-- ============ DISHES ============ -->
+  <symbol id="dish-bowl" viewBox="0 0 100 100">
+    <path d="M13 48 C13 74 30 90 50 90 C70 90 87 74 87 48 Z" fill="#FFF" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M20 66 Q50 76 80 66" fill="none" stroke="#9FD8E8" stroke-width="5" stroke-linecap="round"/>
+    <path d="M40 90 L38 96 H62 L60 90" fill="#FFF" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="48" rx="37" ry="10" fill="currentColor" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M40 32 q-4 -8 0 -15 M60 32 q4 -8 0 -15" fill="none" stroke="#B7B7C9" stroke-width="3.5" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+
+  <symbol id="dish-jar" viewBox="0 0 100 100">
+    <rect x="30" y="36" width="40" height="48" rx="9" fill="#E85D75" stroke="#4A3B47" stroke-width="4"/>
+    <rect x="26" y="26" width="48" height="13" rx="5" fill="#B7C4CC" stroke="#4A3B47" stroke-width="4"/>
+    <rect x="38" y="50" width="24" height="18" rx="4" fill="#FFF7E0" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="50" cy="59" r="4.5" fill="#F2545B"/>
+    <path d="M35 44 q0 14 0 30" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity=".5" fill="none"/>
+  </symbol>
+
+  <symbol id="dish-split" viewBox="0 0 100 100">
+    <path d="M12 56 C26 44 42 42 50 46 C42 53 24 58 12 56 Z" fill="#FFD94A" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M88 56 C74 44 58 42 50 46 C58 53 76 58 88 56 Z" fill="#FFD94A" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="31" cy="47" r="12" fill="#FBD9E8" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="41" r="12" fill="#FFF7E0" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="69" cy="47" r="12" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="25" r="5" fill="#E23B4E" stroke="#4A3B47" stroke-width="3"/>
+    <path d="M9 60 C13 80 87 80 91 60 C74 68 26 68 9 60 Z" fill="#9FD8E8" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="dish-sundae" viewBox="0 0 100 100">
+    <circle cx="42" cy="28" r="12" fill="#FBD9E8" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="59" cy="30" r="10" fill="#F8A8C8" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="14" r="5" fill="#E23B4E" stroke="#4A3B47" stroke-width="3"/>
+    <path d="M30 32 H70 L63 64 C61 75 39 75 37 64 Z" fill="#D6F0F7" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round" opacity=".92"/>
+    <rect x="46" y="74" width="8" height="9" fill="#D6F0F7" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="87" rx="16" ry="5" fill="#D6F0F7" stroke="#4A3B47" stroke-width="3.5"/>
+  </symbol>
+
+  <symbol id="dish-cone" viewBox="0 0 100 100">
+    <path d="M50 94 L34 54 H66 Z" fill="#E0A860" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 63 L59 57 M42 74 L56 70" stroke="#B97F3E" stroke-width="2.5" stroke-linecap="round"/>
+    <g fill="currentColor" stroke="#4A3B47" stroke-width="4">
+      <ellipse cx="50" cy="49" rx="18" ry="9"/>
+      <ellipse cx="50" cy="39" rx="14" ry="8"/>
+      <ellipse cx="50" cy="30" rx="10" ry="7"/>
+      <circle cx="50" cy="21" r="5"/>
+    </g>
+  </symbol>
+
+  <symbol id="dish-icesand" viewBox="0 0 100 100">
+    <rect x="24" y="34" width="52" height="14" rx="7" fill="#D9A05B" stroke="#4A3B47" stroke-width="4"/>
+    <rect x="27" y="47" width="46" height="11" rx="4" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <rect x="24" y="57" width="52" height="14" rx="7" fill="#D9A05B" stroke="#4A3B47" stroke-width="4"/>
+    <g fill="#6B4226">
+      <circle cx="36" cy="41" r="2.4"/><circle cx="52" cy="40" r="2.4"/><circle cx="66" cy="42" r="2.4"/>
+      <circle cx="38" cy="64" r="2.4"/><circle cx="55" cy="65" r="2.4"/><circle cx="66" cy="63" r="2.4"/>
+    </g>
+  </symbol>
+
+  <symbol id="dish-pie" viewBox="0 0 100 100">
+    <path d="M14 60 H86 L79 78 C64 86 36 86 21 78 Z" fill="#C9884E" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="58" rx="38" ry="14" fill="#E0A860" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M28 51 L43 69 M45 48 L61 69 M62 49 L75 64 M72 52 L57 69 M55 48 L38 68" stroke="#B97F3E" stroke-width="3" stroke-linecap="round"/>
+    <path d="M40 38 q-4 -8 0 -16 M60 38 q4 -8 0 -16" fill="none" stroke="#B7B7C9" stroke-width="3.5" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+
+  <symbol id="dish-cake" viewBox="0 0 100 100">
+    <rect x="26" y="44" width="48" height="32" fill="#FBD9E8" stroke="#4A3B47" stroke-width="4"/>
+    <rect x="28" y="57" width="44" height="7" fill="#FFF"/>
+    <path d="M24 46 Q28 36 36 44 Q42 34 50 44 Q58 34 66 44 Q72 37 76 46 L76 48 H24 Z" fill="#FFF" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="50" cy="31" r="7" fill="#F2545B" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M50 25 L46 19" stroke="#59B356" stroke-width="3.5" stroke-linecap="round"/>
+    <ellipse cx="50" cy="82" rx="36" ry="7" fill="#EDEDF5" stroke="#4A3B47" stroke-width="3.5"/>
+  </symbol>
+
+  <symbol id="dish-pops" viewBox="0 0 100 100">
+    <path d="M30 86 V58 M50 86 V52 M70 86 V58" stroke="#B97F3E" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="30" cy="48" r="12" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="42" r="12" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="70" cy="48" r="12" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M22 46 q8 5 16 0 M42 40 q8 5 16 0 M62 46 q8 5 16 0" fill="none" stroke="#FBD9E8" stroke-width="2.6" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="dish-donut" viewBox="0 0 100 100">
+    <circle cx="50" cy="54" r="31" fill="#E0A860" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M19 54 C19 32 81 32 81 54 Q74 61 66 54 Q59 63 51 55 Q43 63 35 55 Q27 61 19 54 Z"
+      fill="#F27EB4" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="50" cy="55" r="10" fill="#FFF3D6" stroke="#4A3B47" stroke-width="4"/>
+    <g stroke-width="3.5" stroke-linecap="round">
+      <path d="M34 42 l6 -2" stroke="#FFD94A"/><path d="M56 38 l6 2" stroke="#6BC466"/>
+      <path d="M66 48 l6 -2" stroke="#FFF"/><path d="M28 50 l6 1" stroke="#6B8BE8"/>
+    </g>
+  </symbol>
+
+  <symbol id="dish-omelette" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="66" rx="40" ry="13" fill="#EDEDF5" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M18 62 C18 42 82 42 82 62 Z" fill="#FFD94A" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M34 62 q2 8 8 8 M58 62 q1 7 6 7" fill="none" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="40" cy="52" r="2.4" fill="#59B356"/><circle cx="56" cy="50" r="2.4" fill="#59B356"/><circle cx="64" cy="55" r="2.4" fill="#59B356"/>
+  </symbol>
+
+  <symbol id="dish-pancakes" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="80" rx="40" ry="9" fill="#EDEDF5" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="68" rx="31" ry="9" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="59" rx="31" ry="9" fill="#D9975A" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="50" rx="31" ry="9" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M22 50 C22 43 78 43 78 50 Q71 56 63 50 Q57 57 49 51 Q41 57 33 50 Q27 55 22 50 Z"
+      fill="#B9702E" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="44" y="38" width="12" height="9" rx="2" fill="#FFEB99" stroke="#4A3B47" stroke-width="3"/>
+  </symbol>
+
+  <symbol id="dish-muffin" viewBox="0 0 100 100">
+    <path d="M32 56 L37 86 H63 L68 56 Z" fill="#E8956B" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M41 58 L44 84 M50 57 V85 M59 58 L56 84" stroke="#C9723C" stroke-width="2.6"/>
+    <circle cx="36" cy="50" r="11" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="64" cy="50" r="11" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="42" r="14" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M42 44 l5 3 l-5 2 Z M58 40 l5 3 l-5 2 Z M48 32 l5 3 l-5 2 Z" fill="#F5872E"/>
+  </symbol>
+
+  <symbol id="dish-spaghetti" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="70" rx="41" ry="13" fill="#EDEDF5" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M14 66 C14 44 86 44 86 66 C70 74 30 74 14 66 Z" fill="#FFE08A" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M24 60 q10 -8 20 0 q10 -8 20 0 M30 54 q8 -6 16 0" fill="none" stroke="#E8B84A" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="66" cy="46" r="8" fill="#9CCF52" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="63" cy="45" r="1.8" fill="#4A3B47"/><circle cx="69" cy="45" r="1.8" fill="#4A3B47"/>
+    <path d="M64 50 q2 2 4 0" fill="none" stroke="#4A3B47" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="dish-juice" viewBox="0 0 100 100">
+    <path d="M32 34 L38 22 H62 L68 34 Z" fill="#E8763C" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <rect x="32" y="34" width="36" height="48" rx="5" fill="#F5872E" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M58 22 L66 6" stroke="#4A3B47" stroke-width="7" stroke-linecap="round"/>
+    <path d="M58 22 L66 6" stroke="#FFF" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="50" cy="58" r="11" fill="#FFF7E0" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="50" cy="59" r="5" fill="#F25C54"/>
+  </symbol>
+
+  <symbol id="dish-smoothie" viewBox="0 0 100 100">
+    <path d="M34 34 H66 L62 82 C61 89 39 89 38 82 Z" fill="currentColor" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="34" rx="18" ry="6" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M55 30 L61 8" stroke="#4A3B47" stroke-width="8" stroke-linecap="round"/>
+    <path d="M55 30 L61 8" stroke="#E23B4E" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M40 44 q-1 16 0 30" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity=".45" fill="none"/>
+  </symbol>
+
+  <symbol id="dish-custard" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="80" rx="36" ry="9" fill="#EDEDF5" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M26 60 C26 46 74 46 74 60 L70 74 C58 81 42 81 30 74 Z" fill="#FFD94A" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="54" rx="24" ry="8" fill="#B9702E" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M32 58 q-1 6 3 8 M66 57 q2 6 -2 9" fill="none" stroke="#B9702E" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="dish-bday" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="82" rx="36" ry="8" fill="#EDEDF5" stroke="#4A3B47" stroke-width="3.5"/>
+    <rect x="26" y="50" width="48" height="30" rx="6" fill="#F8A8C8" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M24 52 C24 44 76 44 76 52 Q70 59 62 52 Q54 60 46 52 Q38 59 30 52 Q26 55 24 52 Z"
+      fill="#FFF" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <rect x="46" y="28" width="8" height="19" fill="#7B6BE8" stroke="#4A3B47" stroke-width="3"/>
+    <path d="M46 34 h8 M46 40 h8" stroke="#FFF" stroke-width="2.6"/>
+    <path d="M50 16 C45 23 45 28 50 28 C55 28 55 23 50 16 Z" fill="#F5A623" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="dish-pizza" viewBox="0 0 100 100">
+    <circle cx="50" cy="55" r="34" fill="#E0A860" stroke="#4A3B47" stroke-width="4"/>
+    <circle cx="50" cy="55" r="26" fill="#FFD94A" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="40" cy="46" r="5.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="61" cy="50" r="5.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="50" cy="66" r="5.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="35" cy="62" r="3" fill="#59B356"/><circle cx="64" cy="64" r="3" fill="#59B356"/><circle cx="52" cy="42" r="3" fill="#59B356"/>
+  </symbol>
+
+  <symbol id="dish-cookiemush" viewBox="0 0 100 100">
+    <circle cx="50" cy="55" r="31" fill="#D9A05B" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M50 26 L46 48 L58 62 L52 84" fill="none" stroke="#4A3B47" stroke-width="3" stroke-linecap="round" opacity=".65"/>
+    <circle cx="36" cy="44" r="4.5" fill="#6B4226"/><circle cx="64" cy="46" r="4" fill="#6B4226"/>
+    <circle cx="40" cy="68" r="4" fill="#6B4226"/><circle cx="63" cy="70" r="4.5" fill="#6B4226"/>
+    <circle cx="20" cy="86" r="5" fill="#D9A05B" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="80" cy="84" r="4" fill="#D9A05B" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="64" cy="90" r="3.5" fill="#D9A05B" stroke="#4A3B47" stroke-width="3"/>
+  </symbol>
+
+  <symbol id="dish-taco" viewBox="0 0 100 100">
+    <path d="M22 60 Q26 40 34 44 Q40 28 50 37 Q58 26 66 41 Q74 37 78 60 Z"
+      fill="#7CC46B" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="39" cy="39" r="3.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2"/>
+    <circle cx="53" cy="33" r="3.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2"/>
+    <circle cx="63" cy="35" r="7.5" fill="#9CCF52" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="60.5" cy="34" r="1.7" fill="#4A3B47"/><circle cx="65.5" cy="34" r="1.7" fill="#4A3B47"/>
+    <path d="M61.5 39 q2 2 4 0" fill="none" stroke="#4A3B47" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M16 72 A34 30 0 0 1 84 72 Z" fill="#F2C14E" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M24 68 A27 23 0 0 1 76 68" fill="none" stroke="#D9A035" stroke-width="2.6" opacity=".8"/>
+  </symbol>
+
+  <!-- ============ TOPPERS (aligned to dish-bowl, soup surface y=48) ============ -->
+  <symbol id="top-sock" viewBox="0 0 100 100">
+    <g transform="rotate(24 62 34)">
+      <path d="M54 12 H70 V34 C70 42 66 47 58 49 C51 51 46 46 47 40 C48 35 52 34 55 33 Z"
+        fill="#8FBF6B" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M54 19 H70" stroke="#6FA351" stroke-width="4"/>
+    </g>
+  </symbol>
+
+  <symbol id="top-worm" viewBox="0 0 100 100">
+    <path d="M22 50 C16 40 22 30 32 32" fill="none" stroke="#4A3B47" stroke-width="17" stroke-linecap="round"/>
+    <path d="M22 50 C16 40 22 30 32 32" fill="none" stroke="#9CCF52" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="34" cy="32" r="9" fill="#9CCF52" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="31" cy="30" r="1.9" fill="#4A3B47"/><circle cx="37" cy="30" r="1.9" fill="#4A3B47"/>
+    <path d="M32 36 q2 2 4 0" fill="none" stroke="#4A3B47" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="top-sparkles" viewBox="0 0 100 100">
+    <path d="M30 12 L33 21 L42 24 L33 27 L30 36 L27 27 L18 24 L27 21 Z" fill="#FFE066" stroke="#4A3B47" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M60 4 L62.4 11.5 L70 14 L62.4 16.5 L60 24 L57.6 16.5 L50 14 L57.6 11.5 Z" fill="#FFE066" stroke="#4A3B47" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M76 26 L78 32 L84 34 L78 36 L76 42 L74 36 L68 34 L74 32 Z" fill="#FFF" stroke="#4A3B47" stroke-width="2.4" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="top-question" viewBox="0 0 100 100">
+    <text x="50" y="42" text-anchor="middle" font-size="36" font-weight="800" fill="#4A3B47" font-family="inherit">?</text>
+  </symbol>
+
+  <symbol id="top-noodles" viewBox="0 0 100 100">
+    <path d="M28 48 q-7 10 -3 20 M48 47 q-4 12 2 22 M66 48 q7 9 3 19" fill="none" stroke="#FFE08A" stroke-width="5" stroke-linecap="round"/>
+    <path d="M60 8 L84 32 M70 5 L92 26" stroke="#B97F3E" stroke-width="4.5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="top-fruit" viewBox="0 0 100 100">
+    <circle cx="35" cy="46" r="6" fill="#F25C54" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="52" cy="43" r="5.5" fill="#FFD94A" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="66" cy="46" r="5.5" fill="#59B356" stroke="#4A3B47" stroke-width="2.6"/>
+  </symbol>
+
+  <symbol id="top-drips" viewBox="0 0 100 100">
+    <path d="M26 50 c-2 10 2 17 7 17 c5 0 7 -7 5 -17 Z" fill="currentColor" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M48 51 c-2 13 2 21 7 21 c5 0 7 -8 5 -21 Z" fill="currentColor" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M68 50 c-2 8 2 14 6 14 c4 0 6 -6 4 -14 Z" fill="currentColor" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="top-cream" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="40" rx="19" ry="8" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="31" rx="13" ry="7" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="21" r="6" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="12" r="4.5" fill="#E23B4E" stroke="#4A3B47" stroke-width="2.8"/>
+  </symbol>
+
+  <symbol id="top-stink" viewBox="0 0 100 100">
+    <use href="#g-stink" x="36" y="34"/>
+    <use href="#g-stink" x="64" y="36"/>
+  </symbol>
+
+  <!-- spoon for stir button -->
+  <symbol id="ui-spoon" viewBox="0 0 100 100">
+    <path d="M42 46 L28 84" stroke="#4A3B47" stroke-width="14" stroke-linecap="round"/>
+    <path d="M42 46 L28 84" stroke="#B7C4E0" stroke-width="8.5" stroke-linecap="round"/>
+    <ellipse cx="56" cy="30" rx="19" ry="24" fill="#D8DEF0" stroke="#4A3B47" stroke-width="4" transform="rotate(20 56 30)"/>
+    <ellipse cx="50" cy="22" rx="5" ry="8" fill="#fff" opacity=".7" transform="rotate(20 50 22)"/>
+  </symbol>
+</defs>
+</svg>
+
+<!-- ============ START / TITLE OVERLAY (B#2) ============ -->
+<div id="startOverlay">
+  <div id="startTitle">🍳 Beepo's Kitchen</div>
+  <div id="startBeepo"></div>
+  <button id="startBtn" aria-label="Play">
+    <svg viewBox="0 0 100 100"><path d="M30 18 L82 50 L30 82 Z" fill="#fff" stroke="#8A4B12" stroke-width="7" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<div id="topbar">
+  <div id="title">🍳 Beepo's Kitchen</div>
+  <button id="muteBtn" aria-label="Sound on or off">🔊</button>
+</div>
+
+<div id="stage">
+  <div id="floor"></div>
+  <div id="counter"></div>
+
+  <div id="beepo">
+    <div id="bubbleTalk">Feed the pot!</div>
+    <svg viewBox="0 0 140 175" width="130">
+      <defs>
+        <linearGradient id="beepoGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5FD6CD"/><stop offset="1" stop-color="#3EBFB4"/>
+        </linearGradient>
+      </defs>
+      <!-- feet -->
+      <rect x="38" y="158" width="26" height="14" rx="7" fill="#2FA69B" stroke="#4A3B47" stroke-width="4"/>
+      <rect x="76" y="158" width="26" height="14" rx="7" fill="#2FA69B" stroke="#4A3B47" stroke-width="4"/>
+      <!-- arms -->
+      <rect x="8" y="104" width="16" height="38" rx="8" fill="#3EBFB4" stroke="#4A3B47" stroke-width="4" transform="rotate(16 16 123)"/>
+      <rect x="116" y="104" width="16" height="38" rx="8" fill="#3EBFB4" stroke="#4A3B47" stroke-width="4" transform="rotate(-16 124 123)"/>
+      <!-- antenna -->
+      <path d="M70 62 V44" stroke="#2FA69B" stroke-width="5" stroke-linecap="round"/>
+      <circle class="antBall" cx="70" cy="38" r="8" fill="#FF6B6B" stroke="#4A3B47" stroke-width="4"/>
+      <!-- body -->
+      <rect x="18" y="62" width="104" height="102" rx="46" fill="url(#beepoGrad)" stroke="#4A3B47" stroke-width="5"/>
+      <path d="M30 142 C46 152 94 152 110 142" fill="none" stroke="#2FA69B" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+      <!-- belly button light -->
+      <circle cx="70" cy="140" r="7" fill="#FFE066" stroke="#4A3B47" stroke-width="3.5"/>
+      <!-- face panel -->
+      <rect x="34" y="86" width="72" height="46" rx="23" fill="#EAFFFB" stroke="#4A3B47" stroke-width="4"/>
+      <ellipse cx="42" cy="118" rx="5.5" ry="4" fill="#FF9E9E" opacity=".85"/>
+      <ellipse cx="98" cy="118" rx="5.5" ry="4" fill="#FF9E9E" opacity=".85"/>
+      <g class="fx f-normal">
+        <ellipse class="beye" cx="54" cy="104" rx="6.5" ry="8" fill="#1E3A4C"/>
+        <ellipse class="beye" cx="86" cy="104" rx="6.5" ry="8" fill="#1E3A4C"/>
+        <circle cx="56" cy="101" r="2" fill="#fff"/><circle cx="88" cy="101" r="2" fill="#fff"/>
+        <path d="M62 118 Q70 126 78 118" fill="none" stroke="#1E3A4C" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g class="fx f-yum">
+        <path d="M46 106 Q54 96 62 106" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M78 106 Q86 96 94 106" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M58 113 Q70 131 82 113 Z" fill="#A94B5E" stroke="#1E3A4C" stroke-width="3.5" stroke-linejoin="round"/>
+        <ellipse cx="70" cy="121" rx="6.5" ry="3.6" fill="#FF8FA3"/>
+      </g>
+      <g class="fx f-yuck">
+        <ellipse cx="70" cy="93" rx="19" ry="5" fill="#A8D989" opacity=".55"/>
+        <path d="M47 98 L58 104 L47 110" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M93 98 L82 104 L93 110" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M55 121 q5 -6 10 0 q5 6 10 0 q5 -6 10 0" fill="none" stroke="#1E3A4C" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g class="fx f-wow">
+        <path d="M54 94 L56.8 101.2 L64 104 L56.8 106.8 L54 114 L51.2 106.8 L44 104 L51.2 101.2 Z"
+          fill="#FFD34D" stroke="#1E3A4C" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M86 94 L88.8 101.2 L96 104 L88.8 106.8 L86 114 L83.2 106.8 L76 104 L83.2 101.2 Z"
+          fill="#FFD34D" stroke="#1E3A4C" stroke-width="3" stroke-linejoin="round"/>
+        <ellipse cx="70" cy="120" rx="6.5" ry="7.5" fill="#A94B5E" stroke="#1E3A4C" stroke-width="3.5"/>
+        <ellipse cx="70" cy="124" rx="3.8" ry="2.6" fill="#FF8FA3"/>
+      </g>
+      <g class="fx f-eat">
+        <path d="M46 106 Q54 96 62 106" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M78 106 Q86 96 94 106" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round"/>
+        <g class="chompM">
+          <ellipse cx="70" cy="119" rx="10" ry="9.5" fill="#A94B5E" stroke="#1E3A4C" stroke-width="3.5"/>
+          <ellipse cx="70" cy="124" rx="5.5" ry="3.2" fill="#FF8FA3"/>
+        </g>
+      </g>
+      <!-- chef hat -->
+      <g stroke="#4A3B47" stroke-width="4">
+        <circle cx="46" cy="46" r="14" fill="#FFF"/>
+        <circle cx="94" cy="46" r="14" fill="#FFF"/>
+        <circle cx="70" cy="38" r="17" fill="#FFF"/>
+        <path d="M40 52 H100 V64 H40 Z" fill="#FFF"/>
+      </g>
+      <path d="M40 64 H100" stroke="#D9D9E3" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <div id="stoveWrap">
+    <div id="potWrap">
+      <div class="steam" style="left:24px"></div>
+      <div class="steam" style="left:100px; animation-delay:1.6s"></div>
+      <svg viewBox="0 0 240 160" width="172" height="115">
+        <defs>
+          <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#5A6B8C"/><stop offset="1" stop-color="#414E68"/>
+          </linearGradient>
+        </defs>
+        <!-- handles -->
+        <path d="M22 48 C0 50 2 80 24 76" fill="none" stroke="#414E68" stroke-width="11" stroke-linecap="round"/>
+        <path d="M218 48 C240 50 238 80 216 76" fill="none" stroke="#414E68" stroke-width="11" stroke-linecap="round"/>
+        <!-- body -->
+        <path d="M22 36 L22 62 C22 116 62 146 120 146 C178 146 218 116 218 62 L218 36 Z"
+          fill="url(#potGrad)" stroke="#333E54" stroke-width="5"/>
+        <path d="M40 110 C60 128 100 136 120 136" fill="none" stroke="#6E80A3" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+        <!-- rim -->
+        <ellipse cx="120" cy="36" rx="100" ry="17" fill="#6E80A3" stroke="#333E54" stroke-width="5"/>
+        <!-- soup -->
+        <ellipse id="soupEllipse" cx="120" cy="38" rx="90" ry="13" stroke="#333E54" stroke-width="4"/>
+      </svg>
+      <div id="soupItems">
+        <div class="bubble" style="left:20%"></div>
+        <div class="bubble" style="left:50%; animation-delay:.9s"></div>
+        <div class="bubble" style="left:75%; animation-delay:1.6s"></div>
+      </div>
+    </div>
+    <div id="stove"></div>
+  </div>
+
+  <button id="stirBtn" aria-label="Stir the pot">
+    <svg id="stirRing" viewBox="0 0 100 100">
+      <circle class="ringBg" cx="50" cy="50" r="46"/>
+      <circle id="ringFill" cx="50" cy="50" r="46"/>
+    </svg>
+    <svg class="icon" viewBox="0 0 100 100"><use href="#ui-spoon"/></svg>
+  </button>
+</div>
+
+<div id="shelfWrap">
+  <div id="shelfTitle">Tap goodies to toss them in! 👇</div>
+  <div id="shelf"></div>
+</div>
+
+<div id="overlay">
+  <div id="dishName"></div>
+  <div id="reaction"></div>
+  <div id="plateWrap">
+    <div id="plate"></div>
+    <div id="dishBig"></div>
+    <div id="dishIngs"></div>
+    <div class="psteam" style="left:70px"></div>
+    <div class="psteam" style="left:160px; animation-delay:1.5s"></div>
+    <div id="revealBeepo"></div>
+    <div id="rBubble"></div>
+    <div id="feedHand">👆</div>
+    <div id="cloche">
+      <div id="hint">👆 Tap the lid!</div>
+      <svg viewBox="0 0 200 132" width="264">
+        <defs>
+          <linearGradient id="clocheGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EEF1F9"/><stop offset="1" stop-color="#AEB8CE"/>
+          </linearGradient>
+        </defs>
+        <rect x="96" y="24" width="8" height="10" fill="#C7CFDF" stroke="#4A3B47" stroke-width="3.5"/>
+        <circle cx="100" cy="19" r="9.5" fill="#EEF1F9" stroke="#4A3B47" stroke-width="4"/>
+        <path d="M22 104 A78 78 0 0 1 178 104 Z" fill="url(#clocheGrad)" stroke="#4A3B47" stroke-width="4.5" stroke-linejoin="round"/>
+        <path d="M44 66 A64 64 0 0 1 78 40" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".65"/>
+        <rect x="12" y="102" width="176" height="14" rx="7" fill="#C7CFDF" stroke="#4A3B47" stroke-width="4"/>
+      </svg>
+    </div>
+  </div>
+  <button id="againBtn">🍳 Cook again!</button>
+</div>
+
+<script src="dishes.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
