@@ -144,9 +144,59 @@ INGREDIENTS.forEach(item=>{
   shelf.appendChild(b);
 });
 
+/* mute persists across reloads (C#7) */
+try{ muted = localStorage.getItem('bk-muted')==='1'; }catch(e){}
+$('muteBtn').textContent = muted?'🔇':'🔊';
 $('muteBtn').addEventListener('click',()=>{
   muted=!muted; $('muteBtn').textContent = muted?'🔇':'🔊';
+  try{ localStorage.setItem('bk-muted', muted?'1':'0'); }catch(e){}
 });
+
+/* ================= guide hand + idle attract (B#5, C#1-2, C#6) =================
+   One reusable pointing hand. Every ~8s of no input it points at whatever the
+   next tap should be; any interaction hides it and restarts the clock. */
+const guideHand = document.createElement('div');
+guideHand.id='guideHand'; guideHand.textContent='👆';
+document.body.appendChild(guideHand);
+function pointAt(el, dx=0, dy=0){
+  const r=el.getBoundingClientRect();
+  if(!r.width) return;
+  guideHand.style.left=(r.left+r.width/2-27+dx)+'px';
+  guideHand.style.top=(r.top+r.height/2+2+dy)+'px';
+  guideHand.classList.add('show');
+}
+function hideHand(){ guideHand.classList.remove('show'); }
+
+let idleTimer, attractN=0;
+function armIdle(ms=8000){ clearTimeout(idleTimer); idleTimer=setTimeout(attract, ms); }
+function currentTarget(){
+  if(!$('startOverlay').classList.contains('gone')) return [$('startBtn'),0,14];
+  if(overlay.classList.contains('show')){
+    if(!lifted) return [cloche,0,40];
+    if(feeding) return null;                               /* feedHand owns this beat */
+    if(overlay.classList.contains('revealed')) return [$('againBtn'),0,10];
+    return null;
+  }
+  if(cooking) return null;
+  if(potItems.length && stirs<STIRS_NEEDED) return [stirBtn,0,16];
+  const kids=shelf.children;
+  return kids.length ? [kids[Math.floor(Math.random()*kids.length)],0,12] : null;
+}
+function attract(){
+  attractN++;
+  const t=currentTarget();
+  if(t) pointAt(t[0],t[1],t[2]);
+  /* Beepo joins in on the main stage */
+  if($('startOverlay').classList.contains('gone') && !overlay.classList.contains('show') && !cooking){
+    beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
+    if(!potItems.length) say(pick(['Feed the pot!','Pick a goodie!','Yummy time!']));
+    else if(stirs<STIRS_NEEDED) say('Stir stir!');
+    setExp(beepo, attractN%2 ? 'yum' : 'wow', 1400);
+  }
+  armIdle(8000);
+}
+document.addEventListener('pointerdown', ()=>{ hideHand(); armIdle(); }, {capture:true});
+armIdle();
 
 /* ================= Beepo expressions ================= */
 const revealBeepo = $('revealBeepo');
@@ -180,6 +230,7 @@ $('startOverlay').addEventListener('click',()=>{
   $('startOverlay').classList.add('gone');
   beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
   setTimeout(()=>say('Feed the pot! 🍎'), 700);
+  armIdle(1800);   /* first-run onboarding: hand points at the shelf right away */
 },{once:true});
 
 /* ================= add ingredient (B#0: overlapping flyers) ================= */
@@ -375,7 +426,7 @@ function findDish(){
 
 /* ================= reveal (under a cover!) ================= */
 const cloche=$('cloche'), hint=$('hint');
-let lifted=false, autoLift=null, pendingResult=null;
+let lifted=false, autoLift=null, anticTimer=null, pendingResult=null;
 
 function reveal(){
   const dish = findDish();
@@ -403,15 +454,27 @@ function reveal(){
   cloche.classList.remove('lift');
   hint.classList.remove('gone');
   setExp(revealBeepo, null);
+  hideHand();
   overlay.classList.add('show');
-  clearTimeout(autoLift);
+  clearTimeout(autoLift); clearTimeout(anticTimer);
+  /* anticipation beat (B#8): lean in with an "Ooh?" just before the auto-lift */
+  anticTimer = setTimeout(()=>{
+    if(lifted) return;
+    revealBeepo.classList.remove('lean'); void revealBeepo.offsetWidth;
+    revealBeepo.classList.add('lean');
+    sayR('Ooh?');
+    beep(a=>tone(a,'sine',280,760,0,.6,.1));
+  }, 3300);
   autoLift = setTimeout(liftCover, 4500);
 }
 
 function liftCover(){
   if(lifted) return;
   lifted = true;
-  clearTimeout(autoLift);
+  clearTimeout(autoLift); clearTimeout(anticTimer);
+  revealBeepo.classList.remove('lean');
+  rBubble.classList.remove('show');
+  hideHand();
   hint.classList.add('gone');
   sLift();
   overlay.classList.add('revealing');
@@ -426,7 +489,7 @@ function finishReveal(){
   if(verdict==='yucky'){
     setExp(revealBeepo,'yuck');
     sPeeyew();
-    [40,115,190].forEach((x,i)=>{
+    [20,70,120,170,215].forEach((x,i)=>{
       const s=document.createElement('div');
       s.className='stinkLine'; s.textContent='💚';
       s.style.left=x+'px'; s.style.top='20px'; s.style.animationDelay=(i*.6)+'s';
@@ -454,12 +517,37 @@ function schedule(fn, ms){ eatTimers.push(setTimeout(fn, ms)); }
 function clearEating(){ eatTimers.forEach(clearTimeout); eatTimers=[]; clearTimeout(idleFeedTimer); }
 function sayR(txt){ rBubble.textContent=txt; rBubble.classList.add('show'); }
 
+/* gross-out comedy (B#6): refuse → dramatic faint → giggly recovery.
+   Zero fail — it's the best silly outcome. */
 function refuseDish(){
   sayR('NO WAY!! 🙅');
   setExp(revealBeepo,'refuse');
   sNuhuh();
   plateWrap.classList.add('pushed');
+  spawnFlies(3);
   schedule(sNuhuh, 900);
+  schedule(()=>{                                   /* dramatic faint */
+    revealBeepo.classList.add('faint');
+    sayR('Bleh…!');
+    beep(a=>tone(a,'triangle',900,180,0,.7,.12));  /* slide-whistle down */
+  }, 2000);
+  schedule(()=>{                                   /* pop back up, all giggles */
+    revealBeepo.classList.remove('faint');
+    setExp(revealBeepo,'yum');                     /* joyBounce ×3 */
+    sBoing();
+    sayR('Hihi! Again?');
+  }, 3500);
+}
+function spawnFlies(n){
+  for(let i=0;i<n;i++){
+    const f=document.createElement('div');
+    f.className='fly'; f.textContent='🪰';
+    f.style.left=(112+i*14)+'px';
+    f.style.top=(92+i*16)+'px';
+    f.style.animationDelay=(i*-0.7)+'s';
+    f.style.animationDuration=(2+i*0.4)+'s';
+    plateWrap.appendChild(f);
+  }
 }
 
 function beginFeeding(tier){
@@ -532,12 +620,12 @@ $('againBtn').addEventListener('click',()=>{
   overlay.classList.remove('show','revealing','revealed','eating');
   cloche.classList.remove('lift');
   hint.classList.remove('gone');
-  revealBeepo.classList.remove('feeding','fast','bite');
+  revealBeepo.classList.remove('feeding','fast','bite','lean','faint');
   setExp(revealBeepo, null);
   rBubble.classList.remove('show');
   feedHand.classList.remove('show');
   plateWrap.classList.remove('pushed');
-  plateWrap.querySelectorAll('.crumb').forEach(x=>x.remove());
+  plateWrap.querySelectorAll('.crumb, .fly').forEach(x=>x.remove());
   dishBig.style.transform=''; dishBig.style.opacity='';
   potItems=[]; cooking=false; lifted=false;
   soupItems.querySelectorAll('.floatItem').forEach(x=>x.remove());
