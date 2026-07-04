@@ -59,9 +59,9 @@
   @keyframes steamUp { 0%{transform:translateY(10px) scale(.7); opacity:0;} 40%{opacity:.65;} 100%{transform:translateY(-28px) scale(1.25); opacity:0;} }
 
   /* stir button */
-  #stirBtn { position:absolute; right:3%; bottom:78px; width:92px; height:92px; border:none; border-radius:50%;
+  #stirBtn { position:absolute; right:3%; bottom:78px; width:108px; height:108px; border:none; border-radius:50%;
     background:radial-gradient(circle at 35% 30%, #FFD36B, #F5A623); z-index:8;
-    box-shadow:0 6px 0 #C77E12; display:none; animation:pulse 1.8s ease-in-out infinite; font-family:inherit; padding:14px; }
+    box-shadow:0 6px 0 #C77E12; display:none; animation:pulse 1.8s ease-in-out infinite; font-family:inherit; padding:17px; }
   #stirBtn:active { transform:translateY(4px); box-shadow:0 2px 0 #C77E12; }
   @keyframes pulse { 50%{ transform:scale(1.07);} }
 
@@ -205,11 +205,19 @@
   @keyframes boing { 30%{ transform:scale(1.16,.84);} 60%{ transform:scale(.92,1.08);} }
 
   /* ---- counting stir ring (B#3) ---- */
-  #stirRing { position:absolute; inset:3px; transform:rotate(-90deg); pointer-events:none; overflow:visible; }
-  #stirRing circle { fill:none; stroke-width:7; }
-  #stirRing .ringBg { stroke:#ffffff55; }
-  #ringFill { stroke:#8A4B12; stroke-dasharray:289 289; stroke-dashoffset:289; stroke-linecap:round;
-    transition:stroke-dashoffset .35s ease; }
+  #stirRing { position:absolute; inset:2px; transform:rotate(-90deg); pointer-events:none; overflow:visible; }
+  #stirRing .seg { fill:none; stroke:#ffffff77; stroke-width:10; stroke-linecap:round;
+    stroke-dasharray:80 209; transition:stroke .25s; transform-origin:50% 50%; }
+  #stirRing .seg.s2 { transform:rotate(120deg); }
+  #stirRing .seg.s3 { transform:rotate(240deg); }
+  #stirRing .seg.pop { animation:segPop .5s ease; }
+  @keyframes segPop { 45%{ stroke-width:16; } }
+  #stirBtn.shown { animation:stirPop .55s cubic-bezier(.3,1.6,.4,1), pulse 1.8s ease-in-out .55s infinite; }
+  @keyframes stirPop { 0%{ transform:scale(0) rotate(-40deg);} 65%{ transform:scale(1.18);} }
+  #stirBtn .spoon { animation:spoonStir 1.6s ease-in-out infinite; transform-origin:55% 58%; }
+  @keyframes spoonStir { 25%{ transform:rotate(-13deg) translateX(-2px);} 75%{ transform:rotate(12deg) translateX(2px);} }
+  #stirBtn .spoon.spin { animation:spoonSpin .55s cubic-bezier(.4,.2,.3,1); }
+  @keyframes spoonSpin { to{ transform:rotate(360deg);} }
   #stirBtn.nudge { animation:pulse .75s ease-in-out infinite; box-shadow:0 6px 0 #C77E12, 0 0 0 9px #FFD36B66; }
 
   /* ---- forgiving pot-full bounce (B#0 / C#4) ---- */

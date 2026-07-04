@@ -122,12 +122,14 @@ function playMotif(id){
 let potItems = [], stirs = 0, cooking = false;
 const $ = id => document.getElementById(id);
 const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
-      potWrap=$('potWrap'), stirBtn=$('stirBtn'), ringFill=$('ringFill'),
+      potWrap=$('potWrap'), stirBtn=$('stirBtn'),
       beepo=$('beepo'), bubbleTalk=$('bubbleTalk'), counter=$('counter'),
       overlay=$('overlay'), dishName=$('dishName'), reaction=$('reaction'),
       dishBig=$('dishBig'), dishIngs=$('dishIngs'), plateWrap=$('plateWrap'),
       feedHand=$('feedHand');
-const RING_LEN = 289; /* 2*pi*46, matches stroke-dasharray in styles.css */
+const stirSegs = Array.from(document.querySelectorAll('#stirRing .seg'));
+const spoon = document.querySelector('#stirBtn .spoon');
+const SEG_COLORS = ['#F25C54','#FFD93C','#59B356']; /* red → yellow → green, one per stir */
 
 function iconSVG(id, size, color){
   return `<svg class="icon" viewBox="0 0 100 100" width="${size}" height="${size}"${color?` style="color:${color}"`:''}><use href="#${id}"/></svg>`;
@@ -228,7 +230,7 @@ function bounceOff(item, to){
 }
 
 let uidCounter = 0;
-const SLOT_X = [4, 47, 90], SLOT_Y = [-8, 5, -8];
+const SLOT_X = [-3, 39, 81], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 52;
 function landInPot(item){
   const used = new Set(potItems.map(e=>e.slot));
   const free = [0,1,2].filter(s=>!used.has(s));
@@ -237,7 +239,7 @@ function landInPot(item){
   potItems.push(entry);
   sPlop();
   const f=document.createElement('div');
-  f.className='floatItem'; f.innerHTML=iconSVG(item.svg,38);
+  f.className='floatItem'; f.innerHTML=iconSVG(item.svg,FLOAT_SIZE);
   f.style.left=(SLOT_X[slot] + (Math.random()*4-2))+'px';
   f.style.top=(SLOT_Y[slot] + (Math.random()*4-2))+'px';
   f.style.animationDelay=(Math.random()*2)+'s';
@@ -256,7 +258,15 @@ function landInPot(item){
     setExp(beepo,'yum',1300);
   }
   updateCounter();
+  showStirBtn();
+}
+
+/* the stir button announces itself: bouncy pop-in, self-stirring spoon */
+function showStirBtn(){
+  if(stirBtn.style.display==='block') return;
   stirBtn.style.display='block';
+  stirBtn.classList.remove('shown'); void stirBtn.offsetWidth;
+  stirBtn.classList.add('shown');
 }
 
 function removeFromPot(uid, el){
@@ -288,9 +298,9 @@ function updateCounter(){
 
 function resetStir(){
   stirs=0;
-  ringFill.style.strokeDashoffset = RING_LEN;
+  stirSegs.forEach(s=>{ s.style.stroke=''; s.classList.remove('pop'); });
   stirBtn.style.display='none';
-  stirBtn.classList.remove('nudge');
+  stirBtn.classList.remove('nudge','shown');
 }
 
 /* ================= counting stir (B#3) ================= */
@@ -306,7 +316,14 @@ stirBtn.addEventListener('click',()=>{
   }
   sWhoosh();
   say(COUNT_WORDS[stirs-1], 900);
-  ringFill.style.strokeDashoffset = RING_LEN * (1 - stirs/STIRS_NEEDED);
+  /* one fat arc segment lights up per stir — counting a toddler can see */
+  const seg=stirSegs[stirs-1];
+  if(seg){
+    seg.style.stroke=SEG_COLORS[stirs-1];
+    seg.classList.remove('pop'); void seg.getBoundingClientRect(); seg.classList.add('pop');
+  }
+  spoon.classList.remove('spin'); void spoon.getBoundingClientRect(); spoon.classList.add('spin');
+  sparkleAt(stirBtn, 3);
   potWrap.classList.remove('stirring'); void potWrap.offsetWidth;
   potWrap.classList.add('stirring');
   soupItems.classList.remove('swirl'); void soupItems.offsetWidth;
@@ -314,8 +331,27 @@ stirBtn.addEventListener('click',()=>{
   if(stirs>=STIRS_NEEDED) cook();
 });
 
+/* magic-happens-here burst */
+function sparkleAt(el, n=3){
+  const r=el.getBoundingClientRect();
+  for(let i=0;i<n;i++){
+    const s=document.createElement('div');
+    s.className='flyer';
+    s.innerHTML=iconSVG('top-sparkles', 34+Math.random()*14);
+    s.style.left=(r.left+r.width/2-24+(Math.random()*56-28))+'px';
+    s.style.top=(r.top+r.height/2-24+(Math.random()*40-20))+'px';
+    document.body.appendChild(s);
+    s.animate([
+      {transform:'scale(.2)', opacity:0},
+      {transform:'scale(1.15) rotate(15deg)', opacity:1, offset:.35},
+      {transform:`translateY(-${26+Math.random()*22}px) scale(.5) rotate(40deg)`, opacity:0}
+    ],{duration:550+Math.random()*250, easing:'ease-out'}).onfinish=()=>s.remove();
+  }
+}
+
 function cook(){
   cooking=true;
+  sparkleAt(stirBtn, 6);
   stirBtn.style.display='none';
   sSizzle(); say('It’s cooking!!',1800);
   setTimeout(()=>{ sDing(); reveal(); }, 2000);
