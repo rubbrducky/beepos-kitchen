@@ -483,15 +483,31 @@ function findDish(){
   const ids=[...new Set(potItems.map(i=>i.id))].sort();
   const key=ids.join('+');
   const entry=DISH_CATALOG[key] || {n:'Mystery Mush', v:'yummy'};
-  let parts=DISH_LOOKS[key];
+  let parts=DISH_LOOKS[key], svg=null;
   if(parts){ parts=parts.map(p=>[...p]); }
-  else{
-    parts=[['dish-bowl', blendColors(ids.map(id=>ING_BY_ID[id].c))]];
-    if(ids.includes('worm')) parts.push(['top-worm']);
-    if(entry.v==='yucky') parts.push(['top-stink']);
-    if(entry.v==='magical') parts.push(['top-sparkles']);
-  }
-  return {name:entry.n, verdict:entry.v, parts, size:ids.length};
+  else svg=funBowlSVG(ids, entry.v);   /* B#13: fallback bowls are characters, not liquid */
+  return {name:entry.n, verdict:entry.v, parts, svg, size:ids.length};
+}
+
+/* B#13: generic combos get a LIVING bowl — the actual ingredients bob
+   half-dipped in the tinted soup, and the soup itself has a smiley face */
+function funBowlSVG(ids, verdict){
+  const blend=blendColors(ids.map(id=>ING_BY_ID[id].c));
+  const spots = ids.length===1 ? [[50,37,.36]]
+              : ids.length===2 ? [[36,39,.32],[64,40,.32]]
+              : [[29,41,.28],[50,36,.31],[71,41,.28]];
+  let s=`<use href="#dish-bowl" style="color:${blend}"/>`;
+  ids.forEach((id,i)=>{
+    const sp=spots[i]||spots[0];
+    s+=`<g transform="translate(${(sp[0]-50*sp[2]).toFixed(1)} ${(sp[1]-50*sp[2]).toFixed(1)}) scale(${sp[2]})"><use href="#${ING_BY_ID[id].svg}"/></g>`;
+  });
+  /* front lip of soup drawn OVER the ingredient bases = half-dipped look */
+  s+=`<path d="M13 48 A37 10 0 0 0 87 48 Z" fill="${blend}" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>`;
+  s+=`<circle cx="31" cy="52" r="2.4" fill="#fff" opacity=".5"/><circle cx="66" cy="53" r="2" fill="#fff" opacity=".45"/>`;
+  s+=`<use href="#g-face" transform="translate(50 50) scale(.8)"/>`;
+  if(verdict==='yucky') s+=`<use href="#top-stink"/>`;
+  if(verdict==='magical') s+=`<use href="#top-sparkles"/>`;
+  return s;
 }
 
 /* ================= reveal (under a cover!) ================= */
@@ -506,7 +522,7 @@ function reveal(){
 
   dishName.textContent = dish.name;
   dishBig.innerHTML = '<svg viewBox="0 0 100 100">'+
-    dish.parts.map(p=>`<use href="#${p[0]}"${p[1]?` style="color:${p[1]}"`:''}/>`).join('')+
+    (dish.svg || dish.parts.map(p=>`<use href="#${p[0]}"${p[1]?` style="color:${p[1]}"`:''}/>`).join(''))+
     '</svg>';
   dishIngs.innerHTML = potItems.map(i=>iconSVG(i.svg,34)).join('');
 
