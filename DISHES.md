@@ -76,7 +76,7 @@ Singles + all pairs are hand-named; triples use a themed name generator (easy to
 | 29 | Strawberry + Wiggly Worm | Wormy Berry Sludge | 🤢 Yucky | strawberry + green wiggly worm (slimy, funny-gross) |
 | 30 | Strawberry + Rainbow | Rainbow Berry Sparkle | 🤩 Magical | strawberry + rainbow sparkles (sparkly, glowing) |
 | 31 | Egg + Chocolate | Chocolate Birthday Cake | 😋 Yummy | soft egg + chocolate (yummy, glossy) |
-| 32 | Egg + Cookie | Cookie-Dough Custard | 😋 Yummy | soft egg + cookie (yummy, glossy) |
+| 32 | Egg + Cookie | Beepo Burger | 😋 Yummy | cute hamburger: sesame bun, patty, cheese, lettuce (yummy, glossy) |
 | 33 | Egg + Ice Cream | Frozen Custard Swirl | 😋 Yummy | soft egg + ice cream scoop (yummy, glossy) |
 | 34 | Egg + Wiggly Worm | Slimy Worm Scramble | 🤢 Yucky | soft egg + green wiggly worm (slimy, funny-gross) |
 | 35 | Egg + Rainbow | Rainbow Cloud Omelette | 🤩 Magical | soft egg + rainbow sparkles (sparkly, glowing) |
@@ -85,7 +85,7 @@ Singles + all pairs are hand-named; triples use a themed name generator (easy to
 | 38 | Chocolate + Wiggly Worm | Choco-Dipped Wigglers | 🤢 Yucky | chocolate + green wiggly worm (slimy, funny-gross) |
 | 39 | Chocolate + Rainbow | Magic Choco Rainbow Swirl | 🤩 Magical | chocolate + rainbow sparkles (sparkly, glowing) |
 | 40 | Cookie + Ice Cream | Ice-Cream Sandwich | 😋 Yummy | cookie + ice cream scoop (yummy, glossy) |
-| 41 | Cookie + Wiggly Worm | Wormy Cookie Crumble | 🤢 Yucky | cookie + green wiggly worm (slimy, funny-gross) |
+| 41 | Cookie + Wiggly Worm | Wiggly Worm Burger | 🤢 Yucky | hamburger with a cheeky worm poking out between the buns (funny-gross) |
 | 42 | Cookie + Rainbow | Rainbow Sprinkle Cookie | 🤩 Magical | cookie + rainbow sparkles (sparkly, glowing) |
 | 43 | Ice Cream + Wiggly Worm | Wormy Ice Scream | 🤢 Yucky | ice cream scoop + green wiggly worm (slimy, funny-gross) |
 | 44 | Ice Cream + Rainbow | Rainbow Sparkle Sundae | 🤩 Magical | ice cream scoop + rainbow sparkles (sparkly, glowing) |

@@ -42,6 +42,8 @@ const DISH_LOOKS = {
   'banana+berry':    [['dish-smoothie','#F8A8C8']],
   'apple+berry':     [['dish-bowl','#F2545B'],['top-cream']],
   'choco+egg':       [['dish-bday']],
+  'cookie+egg':      [['dish-burger']],
+  'cookie+worm':     [['dish-burger'],['top-worm']],
   'banana+worm':     [['dish-taco']],
   'apple+banana+berry': [['dish-bowl','#FFF1C9'],['top-fruit']],
   'apple':    [['dish-bowl','#F6B092']],
@@ -290,7 +292,7 @@ const EAT_END=['All gone!','So yummy!','More please?','Happy tummy!'];
 const VOR_END=['BUUURP!','WOWIE!','YUM-TASTIC!'];
 /* dish-specific one-liners, first keyword hit wins (B#9) */
 const DISH_LINES=[
-  ['Rainbow','So sparkly!'],['Worm','It wiggles!!'],['Cake','Party time!'],
+  ['Burger','BURGER TIME!!'],['Rainbow','So sparkly!'],['Worm','It wiggles!!'],['Cake','Party time!'],
   ['Smoothie','Slurrrp!'],['Sundae','Cherry on top!'],['Pancake','Flippy floppy!'],
   ['Cookie','Crunch crunch!'],['Choco','Mmm chocolate!'],['Jam','Sticky sweet!'],
   ['Soup','Slurpy soup!'],['Taco','Crunchy crunch!'],['Pie','Sweetie pie!'],
