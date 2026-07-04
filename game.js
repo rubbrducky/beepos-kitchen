@@ -239,7 +239,7 @@ function currentTarget(){
     return null;
   }
   if(cooking) return null;
-  if(potItems.length) return [potWrap,0,-4];
+  if(potItems.length) return null;                         /* auto-cook is coming */
   const kids=shelf.children;
   return kids.length ? [kids[Math.floor(Math.random()*kids.length)],0,12] : null;
 }
@@ -344,8 +344,6 @@ function bounceOff(item, to){
   potWrap.classList.remove('happy'); void potWrap.offsetWidth;
   potWrap.classList.add('happy');
   say(pick(FULL_LINES), 1400);
-  pointAt(potWrap, 0, -4);            /* the pot itself is the next tap */
-  setTimeout(hideHand, 1600);
   const b=document.createElement('div');
   b.className='flyer'; b.innerHTML=iconSVG(item.svg,52);
   b.style.left=(to.left+to.width/2-26)+'px';
@@ -390,23 +388,18 @@ function landInPot(item){
     say(Math.random()<0.4 ? item.n+'!' : pick(ADD_LINES));
     setExp(beepo,'yum',1300);
   }
-  cookFlame.classList.add('lit');    /* flame under the pot = "cook me!" */
-  potSpoon.classList.add('shown');   /* wiggling spoon in the pot = "stir me" */
-  potWrap.classList.add('ready');    /* pot glows like a button while stirrable */
-  armStirNudge(1600);                /* guide hand jumps to the pot if no stir soon */
+  cookFlame.classList.add('lit');    /* flame on = it's cooking, no tap needed */
+  potSpoon.classList.add('shown');
+  potWrap.classList.add('ready');
+  /* AUTO-COOK: fires by itself — soon when full, patient otherwise.
+     Every new ingredient resets the timer; a pot tap just cooks sooner. */
+  clearTimeout(cookTimer);
+  cookTimer=setTimeout(cookNow, potItems.length>=MAX_ITEMS ? 1300 : 4200);
 }
-
-/* dedicated stir cue — faster than the general 8s idle attract */
-let stirNudgeTimer;
-function armStirNudge(ms){
-  clearTimeout(stirNudgeTimer);
-  stirNudgeTimer=setTimeout(()=>{
-    if(!cooking && potItems.length) pointAt(potWrap, 0, 2);
-  }, ms);
-}
+let cookTimer;
 
 function resetStir(){
-  clearTimeout(stirNudgeTimer);
+  clearTimeout(cookTimer);
   potWrap.classList.remove('ready');
   potSpoon.classList.remove('shown','swirl');
   cookFlame.classList.remove('lit','flare');
@@ -427,6 +420,8 @@ potWrap.addEventListener('pointerdown', ()=>{
 });
 
 function cookNow(){
+  if(cooking) return;
+  clearTimeout(cookTimer);
   sWhoosh(); buzz(20);
   say(pick(['Cook cook!','Here we go!','Stir-a-whirl!']), 1000);
   potSpoon.classList.remove('swirl'); void potSpoon.offsetWidth;
@@ -472,7 +467,7 @@ function sparkleAt(el, n=3){
 
 function cook(){
   cooking=true;
-  clearTimeout(stirNudgeTimer);
+  clearTimeout(cookTimer);
   hideHand();
   potWrap.classList.remove('ready');
   cookFlame.classList.add('flare');   /* the flame does the cooking */
@@ -539,8 +534,8 @@ function reveal(){
     revealBeepo.classList.add('lean');
     sayR('Ooh?');
     beep(a=>tone(a,'sine',280,760,0,.6,.1));
-  }, 3300);
-  autoLift = setTimeout(liftCover, 4500);
+  }, 2800);
+  autoLift = setTimeout(liftCover, 4000);
 }
 
 function liftCover(){
@@ -619,6 +614,7 @@ function refuseDish(){
     sayR('Hihi! Again?');
     $('againBtn').classList.add('shown');   /* only after the whole gag */
   }, 3500);
+  schedule(()=>{ if(overlay.classList.contains('show')) $('againBtn').click(); }, 8200);
 }
 function spawnFlies(n){
   for(let i=0;i<n;i++){
@@ -671,6 +667,8 @@ function finishFeeding(){
     if(fast){ sBurp(); confettiBurst(12); } else sDing();
     $('againBtn').classList.add('shown');   /* only after the reaction */
   }, 600);
+  /* auto-restart: the arrow button just skips this wait */
+  schedule(()=>{ if(overlay.classList.contains('show')) $('againBtn').click(); }, 5200);
 }
 plateWrap.addEventListener('pointerdown', ()=>{ if(feeding) bite(); });
 
