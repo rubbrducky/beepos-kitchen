@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Beepo's Kitchen</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; }
+  html,body { height:100%; overflow:hidden; font-family:ui-rounded,'SF Pro Rounded','Arial Rounded MT Bold','Baloo 2',system-ui,sans-serif; }
+  body {
+    background: linear-gradient(#FFE9A8 0%, #FFD97A 55%, #FFC85C 100%);
+    display:flex; flex-direction:column;
+    touch-action:manipulation;
+  }
+  svg.icon { display:block; overflow:visible; }
+
+  /* ---------- top bar ---------- */
+  #topbar { display:flex; justify-content:flex-end; align-items:center; padding:10px 14px 0; }
+  #muteBtn, #musicBtn { font-size:22px; background:#fff8; border:none; border-radius:14px; width:40px; height:40px; box-shadow:0 3px 0 #d9a94e; opacity:.85; }
+  #muteBtn:active, #musicBtn:active { transform:translateY(2px); box-shadow:0 1px 0 #d9a94e; }
+
+  /* ---------- stage ---------- */
+  #stage { position:relative; height:32%; min-height:200px; display:flex; align-items:flex-end; justify-content:center; }
+  #floor { position:absolute; bottom:0; left:0; right:0; height:34px;
+    background: repeating-conic-gradient(#F7B34A 0% 25%, #FFDE9C 0% 50%) 0 0/34px 34px; opacity:.45; }
+
+  /* Beepo */
+  #beepo { position:absolute; left:2%; bottom:56px; width:112px; z-index:5; }
+  #beepo.hop { animation:hop .7s ease; }
+  @keyframes hop { 30%{transform:translateY(-16px) rotate(-4deg);} 60%{transform:translateY(0);} 80%{transform:translateY(-6px);} }
+  .beye { transform-box:fill-box; transform-origin:center; animation:blink 4.6s infinite; }
+  @keyframes blink { 0%,94%,100%{transform:scaleY(1);} 97%{transform:scaleY(.08);} }
+  .antBall { transform-box:fill-box; transform-origin:center; animation:bob 2.2s ease-in-out infinite; }
+  @keyframes bob { 50%{transform:translateY(-4px);} }
+  #bubbleTalk { position:absolute; top:-14px; left:82px; background:#fff; border-radius:16px; padding:8px 13px;
+    font-weight:800; font-size:16px; color:#8A4B12; opacity:0; transform:scale(.5); transition:all .35s; white-space:nowrap;
+    box-shadow:0 3px 0 #d9a94e77; z-index:9;}
+  #bubbleTalk.show { opacity:1; transform:scale(1); }
+  #bubbleTalk::after { content:''; position:absolute; bottom:-7px; left:14px; border:8px solid transparent; border-top-color:#fff; border-bottom:0; }
+
+  /* stove + pot */
+  #stoveWrap { position:relative; bottom:12px; width:204px; z-index:4; }
+  /* stove demoted to quiet counter-wood: the POT is the hero of the stage */
+  #stove { width:204px; height:48px; background:linear-gradient(#DCA55F,#C68544); border-radius:14px 14px 8px 8px;
+    box-shadow:0 5px 0 #9C6B35; position:relative; }
+  #stove::before { content:''; position:absolute; top:8px; left:16px; width:19px; height:19px; border-radius:50%;
+    background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 150px 0 0 0 #B98A4E; }
+  #potWrap { position:absolute; bottom:38px; left:50%; transform:translateX(-50%); width:204px; height:136px; }
+  #potWrap > svg { animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
+  /* stir-ready: the pot glows like a button until the third stir */
+  #potWrap.ready > svg { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
+  @keyframes potGlow { 50%{ filter:drop-shadow(0 0 16px #FFD94A) drop-shadow(0 0 4px #FFD94A); } }
+  @keyframes potBreathe { 50%{ transform:scale(1.02) translateY(-1px);} }
+  #potWrap.stirring { animation:rock .8s ease; }
+  @keyframes rock { 25%{transform:translateX(-50%) rotate(-4deg);} 75%{transform:translateX(-50%) rotate(4deg);} }
+  #potWrap.wobble { animation:wob .5s ease; }
+  @keyframes wob { 25%{transform:translateX(-54%);} 50%{transform:translateX(-46%);} 75%{transform:translateX(-52%);} }
+  #soupEllipse { fill:#F2B04A; transition: fill 1s; }
+  #soupItems { position:absolute; left:25px; top:10px; width:155px; height:53px; }
+  #soupItems.swirl .floatItem { animation:spin1 1s ease; }
+  @keyframes spin1 { 50%{ transform:translateX(26px) rotate(180deg) scale(.85);} 100%{transform:rotate(360deg);} }
+  .floatItem { position:absolute; animation:floaty 3s ease-in-out infinite; cursor:pointer; }
+  .floatItem:active { transform:scale(1.15); }
+  @keyframes floaty { 50%{ transform:translateY(-4px) rotate(10deg);} }
+  .bubble { position:absolute; bottom:8px; width:9px; height:9px; background:#ffffff77; border-radius:50%;
+    animation:rise 2.6s linear infinite; }
+  @keyframes rise { 0%{transform:translateY(0) scale(.5); opacity:0;} 30%{opacity:1;} 100%{transform:translateY(-26px) scale(1.2); opacity:0;} }
+  .steam { position:absolute; top:-32px; width:30px; height:19px; background:#fff; border-radius:50%;
+    box-shadow:-10px 6px 0 -5px #fff, 10px 6px 0 -5px #fff;
+    animation:steamUp 3.4s ease-in-out infinite; }
+  @keyframes steamUp { 0%{transform:translateY(10px) scale(.7); opacity:0;} 40%{opacity:.65;} 100%{transform:translateY(-28px) scale(1.25); opacity:0;} }
+
+  /* stir button */
+  @keyframes pulse { 50%{ transform:scale(1.07);} }
+
+
+  /* ---------- shelf ---------- */
+  #shelfWrap { flex:1; background:linear-gradient(#D89A5F,#C9884E); border-top:8px solid #B06F35;
+    border-radius:26px 26px 0 0; padding:10px 10px 14px; overflow-y:auto; box-shadow:0 -6px 14px #0002; }
+  #shelf { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:480px; margin:0 auto; }
+  .ing { background:linear-gradient(#FFF8E8,#FFEECB); border:none; border-radius:18px; padding:10px 4px;
+    box-shadow:0 4px 0 #A9743B; font-family:inherit; transition:opacity .3s;
+    display:flex; align-items:center; justify-content:center; }
+  .ing svg { width:80px; height:80px; }
+  .ing:active { transform:translateY(3px) scale(.96); box-shadow:0 1px 0 #A9743B; }
+  @media (max-height:730px) {
+    #stage { min-height:182px; }
+    .ing svg { width:62px; height:62px; }
+    #shelf { gap:8px; }
+  }
+
+  .flyer { position:fixed; z-index:50; pointer-events:none; width:64px; height:64px; }
+  .flyer svg { width:100%; height:100%; }
+
+  /* ---------- reveal overlay ---------- */
+  #overlay { position:fixed; inset:0; background:#5B3E8Cf2; z-index:100; display:none;
+    flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
+  #overlay.show { display:flex; animation:fadeIn .5s ease; }
+  @keyframes fadeIn { from{opacity:0;} }
+  #dishName { color:#fff; font-size:21px; font-weight:800; line-height:1.15; margin-bottom:4px; opacity:.95; text-shadow:0 3px 0 #0004;
+    max-width:440px; opacity:0; transform:scale(.5); transition:all .8s cubic-bezier(.2,1.5,.4,1); }
+  #reaction { font-size:15px; font-weight:800; margin-bottom:10px; padding:6px 14px; border-radius:16px; background:#fff;
+    opacity:0; transform:scale(.5); transition:all .8s .35s cubic-bezier(.2,1.5,.4,1); }
+  #overlay.revealed #dishName, #overlay.revealed #reaction { opacity:1; transform:scale(1); }
+  @keyframes popIn { from{ transform:scale(0);} }
+
+  /* ---- serving cover (cloche) ---- */
+  #cloche { position:absolute; left:50%; top:14px; width:300px; margin-left:-150px; z-index:7; cursor:pointer;
+    transition:transform 2.1s cubic-bezier(.5,.05,.3,1), opacity .5s 1.7s; }
+  #cloche svg { display:block; animation:clocheBob 2.4s ease-in-out infinite; }
+  @keyframes clocheBob { 50%{ transform:translateY(-8px) rotate(1.2deg);} }
+  #cloche.lift { transform:translateY(-380px) rotate(-11deg); opacity:0; pointer-events:none; }
+  #cloche.lift svg { animation:none; }
+  #hint { position:absolute; left:50%; transform:translateX(-50%); top:-46px; z-index:8; white-space:nowrap;
+    background:#fff; color:#8A4B12; font-weight:800; font-size:19px; padding:9px 18px; border-radius:18px;
+    box-shadow:0 4px 0 #0003; animation:hintPulse 1.4s ease-in-out infinite; transition:opacity .4s; }
+  @keyframes hintPulse { 50%{ transform:translateX(-50%) scale(1.09);} }
+  #hint.gone { opacity:0; pointer-events:none; }
+  #dishBig { opacity:0; transition:opacity .4s .5s; }
+  #overlay.revealing #dishBig { opacity:1; }
+  #dishIngs { opacity:0; transition:opacity .6s 1.4s; }
+  #overlay.revealed #dishIngs { opacity:1; }
+  .psteam { display:none; }
+  #overlay.revealed .psteam { display:block; position:absolute; top:30px; width:30px; height:19px; background:#fff;
+    border-radius:50%; box-shadow:-10px 6px 0 -5px #fff, 10px 6px 0 -5px #fff; animation:steamUp 3.2s ease-in-out infinite; }
+
+  /* ---- Beepo on the reveal screen ---- */
+  #revealBeepo { position:absolute; left:-62px; bottom:-6px; width:112px; z-index:5; }
+  #revealBeepo svg { width:100%; height:auto; }
+  #revealBeepo.exp-yum  { animation:joyBounce 1.6s ease .15s 3; }
+  #revealBeepo.exp-yuck { animation:shakeNo 1.3s ease .15s 3; }
+  #revealBeepo.exp-wow  { animation:wowJump 1.5s cubic-bezier(.3,1.3,.4,1) .15s 3; }
+  @keyframes joyBounce { 30%{ transform:translateY(-16px) rotate(-6deg);} 60%{ transform:translateY(0);} 80%{ transform:translateY(-7px);} }
+  @keyframes shakeNo { 20%{ transform:translateX(-10px) rotate(-5deg);} 50%{ transform:translateX(9px) rotate(5deg);} 80%{ transform:translateX(-5px);} }
+  @keyframes wowJump { 35%{ transform:translateY(-30px) scale(1.07);} 68%{ transform:translateY(0);} }
+
+  /* ---- Beepo facial expressions ---- */
+  .fx { opacity:0; transition:opacity .4s; transform-box:fill-box; transform-origin:center; }
+  .f-normal { opacity:1; }
+  .exp-yum .f-normal, .exp-yuck .f-normal, .exp-wow .f-normal,
+  .exp-eat .f-normal, .exp-refuse .f-normal { opacity:0; }
+  .exp-yum .f-yum, .exp-yuck .f-yuck, .exp-wow .f-wow,
+  .exp-eat .f-eat, .exp-refuse .f-yuck { opacity:1; animation:facePop .8s cubic-bezier(.2,1.6,.4,1); }
+  @keyframes facePop { 0%{ transform:scale(.3);} 55%{ transform:scale(1.16);} 100%{ transform:scale(1);} }
+
+  /* ---- eating & refusing ---- */
+  .chompM { transform-box:fill-box; transform-origin:center; }
+  .exp-eat .chompM { animation:chomp .68s ease-in-out infinite; }
+  .exp-eat.fast .chompM { animation-duration:.3s; }
+  @keyframes chomp { 50%{ transform:scaleY(.12);} }
+  #revealBeepo.exp-eat { animation:lunge .72s ease-in-out infinite; }
+  #revealBeepo.exp-eat.fast { animation-duration:.34s; }
+  @keyframes lunge { 40%{ transform:translate(18px,-4px) rotate(6deg);} }
+  #revealBeepo.exp-refuse { animation:refuseTurn 1.7s ease forwards; }
+  @keyframes refuseTurn {
+    18%{ transform:translateX(-10px) rotate(-7deg);}
+    40%{ transform:translateX(8px) rotate(6deg);}
+    62%{ transform:translateX(-6px) rotate(-4deg);}
+    100%{ transform:scaleX(-1) translateX(-12px);} }
+  #plateWrap.pushed { transform:translateX(34px) rotate(4deg); transition:transform .8s cubic-bezier(.3,1.4,.4,1); }
+  #overlay.eating #dishBig { animation:none; transition:opacity .4s .5s, transform .3s cubic-bezier(.4,1.4,.5,1); }
+  .crumb { position:absolute; width:9px; height:9px; border-radius:50%; z-index:8; pointer-events:none; }
+  #rBubble { position:absolute; left:-56px; bottom:134px; background:#fff; border-radius:15px; padding:8px 13px;
+    font-weight:800; font-size:16px; color:#8A4B12; opacity:0; transform:scale(.4); white-space:nowrap;
+    transition:all .45s cubic-bezier(.2,1.5,.4,1); z-index:9; box-shadow:0 3px 0 #0003; }
+  #rBubble.show { opacity:1; transform:scale(1); }
+  #rBubble::after { content:''; position:absolute; bottom:-7px; left:22px; border:8px solid transparent; border-top-color:#fff; border-bottom:0; }
+  #plateWrap { position:relative; width:300px; height:300px; animation:plateUp .9s cubic-bezier(.2,1.3,.4,1); }
+  @keyframes plateUp { from{ transform:translateY(320px) rotate(16deg);} }
+  #plate { position:absolute; inset:0; background:radial-gradient(circle at 50% 40%, #ffffff, #E8E8F0 70%, #C9C9D8);
+    border-radius:50%; box-shadow:0 10px 24px #0005, inset 0 0 0 14px #DCDCEA; }
+  #dishBig { position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); width:214px; height:214px;
+    animation:foodWig 2.6s ease-in-out infinite; }
+  #dishBig svg { width:100%; height:100%; }
+  @keyframes foodWig { 50%{ transform:translate(-50%,-52%) rotate(4deg);} }
+  #dishIngs { position:absolute; bottom:26px; left:0; right:0; display:flex; justify-content:center; gap:8px; }
+  #dishIngs svg { width:34px; height:34px; }
+  .stinkLine { position:absolute; font-size:36px; animation:stinkUp 2.4s ease-in-out infinite; opacity:.8; }
+  @keyframes stinkUp { 0%{ transform:translateY(10px);} 100%{ transform:translateY(-46px); opacity:0;} }
+  #againBtn { margin-top:26px; width:96px; height:96px; border:none; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #FFE18A, #FFC94D);
+    box-shadow:0 6px 0 #C77E12; opacity:0; transform:scale(0); pointer-events:none; }
+  #againBtn.shown { opacity:1; transform:none; pointer-events:auto;
+    animation:popIn .55s cubic-bezier(.3,1.6,.4,1), pulse 1.8s ease-in-out .6s infinite; }
+  #againBtn:active { transform:translateY(4px); box-shadow:0 2px 0 #C77E12; }
+
+  .confetti { position:fixed; top:-20px; width:13px; height:13px; z-index:120; pointer-events:none;
+    animation:fall linear forwards; }
+  @keyframes fall { to{ transform:translate(var(--dx,0px),110vh) rotate(720deg);} }
+
+
+  /* ============ Milestone 1 additions (Batch 1) ============ */
+
+  /* ---- start / title overlay (B#2) ---- */
+  #startOverlay { position:fixed; inset:0; z-index:200; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; gap:8px; background:linear-gradient(#FFE9A8 0%, #FFD97A 55%, #FFC85C 100%); transition:opacity .55s; }
+  #startOverlay.gone { opacity:0; pointer-events:none; }
+  #startTitle { font-size:42px; font-weight:800; color:#8A4B12; letter-spacing:.5px; text-shadow:0 3px 0 #fff7; }
+  #startBeepo { width:190px; }
+  #startBeepo svg { width:100%; height:auto; animation:bob 2.2s ease-in-out infinite; }
+  #startBtn { margin-top:18px; width:112px; height:112px; border:none; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #FFD36B, #F5A623); box-shadow:0 7px 0 #C77E12;
+    animation:pulse 1.6s ease-in-out infinite; display:flex; align-items:center; justify-content:center; }
+  #startBtn:active { transform:translateY(4px); box-shadow:0 2px 0 #C77E12; }
+  #startBtn svg { width:54px; height:54px; margin-left:6px; }
+
+  /* ---- ingredient boing (B#4) ---- */
+  .ing.boing { animation:boing .45s cubic-bezier(.3,1.8,.4,1); }
+  @keyframes boing { 30%{ transform:scale(1.16,.84);} 60%{ transform:scale(.92,1.08);} }
+
+  /* ---- tap-the-pot stirring (B#3, revised after playtest) ---- */
+  #potWrap { cursor:pointer; }
+  #potSpoon { position:absolute; right:-22px; top:-56px; width:100px; height:100px; z-index:6;
+    opacity:0; transform:scale(0) rotate(22deg); pointer-events:none; transform-origin:65% 85%;
+    transition:opacity .3s, transform .45s cubic-bezier(.3,1.6,.4,1); }
+  #potSpoon.shown { opacity:1; transform:scale(1) rotate(22deg); }
+  #potSpoon svg { width:100%; height:100%; }
+  #potSpoon.shown svg { animation:spoonBeckon 1.5s ease-in-out infinite; transform-origin:60% 80%; }
+  @keyframes spoonBeckon { 50%{ transform:rotate(-24deg) translateY(6px);} }
+  #potSpoon.swirl svg { animation:spoonSwirl .6s ease-in-out; }
+  @keyframes spoonSwirl { 30%{ transform:translate(-30px,6px) rotate(-38deg);} 65%{ transform:translate(8px,2px) rotate(10deg);} }
+
+  /* ---- forgiving pot-full bounce (B#0 / C#4) ---- */
+  #potWrap.happy { animation:happyWiggle .7s ease; }
+  @keyframes happyWiggle { 20%{ transform:translateX(-50%) rotate(-5deg) scale(1.04);}
+    45%{ transform:translateX(-50%) rotate(5deg) scale(1.05);} 70%{ transform:translateX(-50%) rotate(-2deg) scale(1.02);} }
+
+  /* ---- tap-to-feed (B#1) ---- */
+  @keyframes handBounce { 50%{ transform:translateY(-18px) scale(1.12);} }
+  #revealBeepo.feeding .f-normal { opacity:0; }
+  #revealBeepo.feeding .f-eat { opacity:1; }
+  #revealBeepo.feeding .chompM { animation:chomp .6s ease-in-out infinite; }
+  #revealBeepo.feeding.fast .chompM { animation-duration:.3s; }
+  #revealBeepo.bite { animation:lunge .45s ease; }
+  #plateWrap { cursor:pointer; }
+
+
+  /* ============ Batch 2: wordless guidance & comedy ============ */
+
+  /* guide hand (C#1-2, B#5) — emoji placeholder until Batch 4 SVG swap */
+  #guideHand { position:fixed; z-index:300; font-size:54px; pointer-events:none; opacity:0;
+    transition:opacity .3s; filter:drop-shadow(0 3px 4px #0006); }
+  #guideHand.show { opacity:1; animation:handBounce 1s ease-in-out infinite; }
+
+  /* wordless cloche cue: big hand instead of text bubble */
+  #hint { background:none; box-shadow:none; font-size:56px; padding:0; top:-66px;
+    filter:drop-shadow(0 3px 4px #0006); }
+
+  /* anticipation beat (B#8) */
+  #revealBeepo.lean { animation:leanIn .9s ease-in-out; }
+  @keyframes leanIn { 45%{ transform:translateX(18px) rotate(5deg);} 70%{ transform:translateX(14px) rotate(4deg);} }
+
+  /* gross-out upgrade (B#6) */
+  #revealBeepo.faint { animation:faintFall 1.1s cubic-bezier(.4,.1,.6,1) forwards; }
+  @keyframes faintFall {
+    0%{ transform:scaleX(-1) translateX(-12px); }
+    30%{ transform:scaleX(-1) translateX(-12px) translateY(4px) rotate(-12deg); }
+    100%{ transform:scaleX(-1) translateX(-12px) translateY(34px) rotate(-76deg); } }
+  .fly { position:absolute; font-size:22px; z-index:9; pointer-events:none;
+    animation:flyOrbit 2.2s linear infinite; }
+  @keyframes flyOrbit { 0%{ transform:rotate(0deg) translateX(48px) rotate(0deg);}
+    100%{ transform:rotate(360deg) translateX(48px) rotate(-360deg);} }
+
+
+  /* ============ Batch 3: music ============ */
+  #topBtns { display:flex; gap:8px; }
+  #musicBtn.off { opacity:.45; }
+
+
+  /* ============ Batch 4: juice & hardening ============ */
+  * { -webkit-touch-callout:none; }
+  body { padding-top:env(safe-area-inset-top); padding-left:env(safe-area-inset-left);
+    padding-right:env(safe-area-inset-right); padding-bottom:env(safe-area-inset-bottom); }
+  #startTitle { display:flex; align-items:center; gap:8px; }
+  #againBtn { display:flex; align-items:center; justify-content:center; }
+  #reaction { display:flex; align-items:center; gap:8px; }
+  #overlay.shake { animation:bigShake .4s ease; }
+  @keyframes bigShake { 20%{ transform:translate(-5px,3px);} 40%{ transform:translate(4px,-3px);}
+    60%{ transform:translate(-3px,2px);} 80%{ transform:translate(2px,2px);} }
+  .floatItem.land > svg { animation:landSquash .4s cubic-bezier(.3,1.6,.4,1); }
+  @keyframes landSquash { 30%{ transform:scale(1.25,.7);} 65%{ transform:scale(.9,1.1);} }
+
+
+  /* ---- one-tap cook: flame badge under the pot ---- */
+  #cookFlame { position:absolute; left:50%; bottom:-30px; width:64px; height:64px; margin-left:-32px;
+    opacity:0; transform:scale(0); transform-origin:50% 100%; pointer-events:none;
+    transition:opacity .3s, transform .4s cubic-bezier(.3,1.6,.4,1); }
+  #cookFlame.lit { opacity:1; transform:scale(1); }
+  #cookFlame svg { width:100%; height:100%; animation:flick .5s ease-in-out infinite alternate; transform-origin:50% 100%; }
+  @keyframes flick { from{ transform:scale(1) rotate(-2deg);} to{ transform:scaleY(1.14) scaleX(.94) rotate(2deg);} }
+  #cookFlame.flare { transform:scale(1.5); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,*::before,*::after { animation-duration:.01s !important; animation-iteration-count:1 !important; transition-duration:.01s !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SVG ART LIBRARY ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <!-- reusable cute face: centered on origin -->
+  <g id="g-face">
+    <circle cx="-9" cy="0" r="3.4" fill="#4A3B47"/>
+    <circle cx="9" cy="0" r="3.4" fill="#4A3B47"/>
+    <path d="M-6 7 Q0 13 6 7" fill="none" stroke="#4A3B47" stroke-width="3.4" stroke-linecap="round"/>
+  </g>
+  <g id="g-stink">
+    <path d="M0 0 q5 -8 0 -16 q-4 -6 1 -12" fill="none" stroke="#79A05B" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+  </g>
+
+  <!-- ============ INGREDIENTS ============ -->
+  <symbol id="ing-apple" viewBox="0 0 100 100">
+    <path d="M50 32 C34 18 14 30 15 54 C16 78 34 91 50 88 C66 91 84 78 85 54 C86 30 66 18 50 32 Z"
+      fill="#F25C54" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 30 C49 22 51 15 56 10" fill="none" stroke="#8A5A3B" stroke-width="5" stroke-linecap="round"/>
+    <path d="M56 17 C64 9 76 12 78 19 C71 26 59 25 56 17 Z" fill="#59B356" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <ellipse cx="31" cy="46" rx="6" ry="9" fill="#fff" opacity=".35"/>
+    <use href="#g-face" x="50" y="58"/>
+  </symbol>
+
+  <symbol id="ing-banana" viewBox="0 0 100 100">
+    <path d="M28 14 C12 44 30 84 72 92 C84 94 90 83 81 77 C55 68 44 46 43 20 C42 8 32 6 28 14 Z"
+      fill="#FFD94A" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="33" cy="11" r="4.5" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="83" cy="82" r="4.5" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3"/>
+    <path d="M22 38 C26 62 44 80 64 86" fill="none" stroke="#E8B84A" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <g transform="rotate(-38 44 58)"><use href="#g-face" x="44" y="58"/></g>
+  </symbol>
+
+  <symbol id="ing-berry" viewBox="0 0 100 100">
+    <path d="M50 28 C68 24 84 36 82 54 C80 74 62 89 50 91 C38 89 20 74 18 54 C16 36 32 24 50 28 Z"
+      fill="#F2545B" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 27 L40 14 L48 22 L50 9 L52 22 L60 14 Z" fill="#59B356" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <g fill="#FFE08A">
+      <ellipse cx="32" cy="48" rx="2.2" ry="3.4"/><ellipse cx="68" cy="48" rx="2.2" ry="3.4"/>
+      <ellipse cx="38" cy="70" rx="2.2" ry="3.4"/><ellipse cx="62" cy="70" rx="2.2" ry="3.4"/>
+      <ellipse cx="50" cy="80" rx="2.2" ry="3.4"/>
+    </g>
+    <use href="#g-face" x="50" y="54"/>
+  </symbol>
+
+  <symbol id="ing-carrot" viewBox="0 0 100 100">
+    <path d="M46 24 C40 12 32 8 27 10" fill="none" stroke="#59B356" stroke-width="6" stroke-linecap="round"/>
+    <path d="M50 23 C50 12 50 8 50 5" fill="none" stroke="#6BC466" stroke-width="6" stroke-linecap="round"/>
+    <path d="M54 24 C60 12 68 8 73 10" fill="none" stroke="#59B356" stroke-width="6" stroke-linecap="round"/>
+    <path d="M50 22 C62 22 68 32 66 46 L56 84 C54 92 46 92 44 84 L34 46 C32 32 38 22 50 22 Z"
+      fill="#F5872E" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 46 Q50 51 62 46" fill="none" stroke="#C9723C" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <path d="M41 62 Q50 66 59 62" fill="none" stroke="#C9723C" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <use href="#g-face" x="50" y="36"/>
+  </symbol>
+
+  <symbol id="ing-cheese" viewBox="0 0 100 100">
+    <path d="M12 74 L12 54 C34 36 64 26 88 44 L88 74 Z"
+      fill="#FFC93C" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="26" cy="63" r="6" fill="#E8A82E" stroke="#4A3B47" stroke-width="2.5"/>
+    <circle cx="76" cy="58" r="5" fill="#E8A82E" stroke="#4A3B47" stroke-width="2.5"/>
+    <circle cx="62" cy="70" r="3.5" fill="#E8A82E" stroke="#4A3B47" stroke-width="2.5"/>
+    <use href="#g-face" x="48" y="56"/>
+  </symbol>
+
+  <symbol id="ing-egg" viewBox="0 0 100 100">
+    <path d="M50 12 C70 12 80 36 80 56 C80 76 67 90 50 90 C33 90 20 76 20 56 C20 36 30 12 50 12 Z"
+      fill="#FFF7E0" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="34" cy="60" rx="5" ry="3.4" fill="#FFB3C1" opacity=".9"/>
+    <ellipse cx="66" cy="60" rx="5" ry="3.4" fill="#FFB3C1" opacity=".9"/>
+    <ellipse cx="36" cy="30" rx="5" ry="8" fill="#fff" opacity=".7"/>
+    <use href="#g-face" x="50" y="52"/>
+  </symbol>
+
+  <symbol id="ing-choco" viewBox="0 0 100 100">
+    <rect x="22" y="24" width="56" height="54" rx="7" fill="#8A5A3B" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M50 24 V78 M22 51 H78" stroke="#6B4226" stroke-width="4"/>
+    <rect x="27" y="29" width="18" height="17" rx="3" fill="#9C6B47"/>
+    <rect x="55" y="57" width="18" height="16" rx="3" fill="#9C6B47"/>
+    <circle cx="50" cy="50" r="14" fill="#8A5A3B"/>
+    <use href="#g-face" x="50" y="49"/>
+  </symbol>
+
+  <symbol id="ing-cookie" viewBox="0 0 100 100">
+    <circle cx="50" cy="54" r="34" fill="#D9A05B" stroke="#4A3B47" stroke-width="4"/>
+    <circle cx="33" cy="40" r="5" fill="#6B4226"/>
+    <circle cx="67" cy="42" r="4.5" fill="#6B4226"/>
+    <circle cx="36" cy="70" r="4.5" fill="#6B4226"/>
+    <circle cx="66" cy="68" r="5" fill="#6B4226"/>
+    <circle cx="50" cy="80" r="3.5" fill="#6B4226"/>
+    <use href="#g-face" x="50" y="53"/>
+  </symbol>
+
+  <symbol id="ing-icecream" viewBox="0 0 100 100">
+    <path d="M50 94 L34 56 H66 Z" fill="#E0A860" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 64 L59 58 M42 74 L56 70" stroke="#B97F3E" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M30 52 Q33 60 39 53 Q44 62 50 53 Q56 62 61 53 Q67 60 70 52 C74 34 62 20 50 22 C38 20 26 34 30 52 Z"
+      fill="#FBD9E8" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="50" cy="15" r="5.5" fill="#E23B4E" stroke="#4A3B47" stroke-width="3"/>
+    <use href="#g-face" x="50" y="38"/>
+  </symbol>
+
+  <symbol id="ing-sock" viewBox="0 0 100 100">
+    <path d="M38 12 H66 V46 C66 58 61 66 49 69 L44 70 C33 72 25 64 27 55 C29 47 35 45 40 44 L38 44 Z"
+      fill="#8FBF6B" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 22 H66" stroke="#6FA351" stroke-width="5"/>
+    <circle cx="34" cy="60" r="7" fill="#6FA351" opacity=".8"/>
+    <use href="#g-stink" x="76" y="34"/>
+    <use href="#g-stink" x="20" y="30"/>
+    <use href="#g-face" x="52" y="38"/>
+  </symbol>
+
+  <symbol id="ing-worm" viewBox="0 0 100 100">
+    <path d="M20 74 C28 82 44 78 50 66 C56 54 60 50 70 52" fill="none" stroke="#4A3B47" stroke-width="27" stroke-linecap="round"/>
+    <path d="M20 74 C28 82 44 78 50 66 C56 54 60 50 70 52" fill="none" stroke="#9CCF52" stroke-width="20" stroke-linecap="round"/>
+    <path d="M34 74 q2 -5 -1 -9 M46 62 q-4 -3 -9 -2" fill="none" stroke="#7FAF3E" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="72" cy="50" r="15" fill="#9CCF52" stroke="#4A3B47" stroke-width="4"/>
+    <ellipse cx="66" cy="42" rx="4" ry="6" fill="#fff" opacity=".5"/>
+    <use href="#g-face" x="72" y="49" transform="scale(.8)" transform-origin="72 49"/>
+  </symbol>
+
+  <symbol id="ing-rainbow" viewBox="0 0 100 100">
+    <path d="M12 70 A38 38 0 0 1 88 70" fill="none" stroke="#F25C54" stroke-width="8"/>
+    <path d="M20 70 A30 30 0 0 1 80 70" fill="none" stroke="#F5A623" stroke-width="8"/>
+    <path d="M28 70 A22 22 0 0 1 72 70" fill="none" stroke="#FFD94A" stroke-width="8"/>
+    <path d="M36 70 A14 14 0 0 1 64 70" fill="none" stroke="#59B356" stroke-width="8"/>
+    <path d="M44 70 A6 6 0 0 1 56 70" fill="none" stroke="#6B8BE8" stroke-width="8"/>
+    <g stroke="#4A3B47" stroke-width="3.5" fill="#fff">
+      <circle cx="14" cy="68" r="10"/><circle cx="24" cy="72" r="8"/>
+      <circle cx="86" cy="68" r="10"/><circle cx="76" cy="72" r="8"/>
+    </g>
+    <use href="#g-face" x="84" y="66" transform="scale(.62)" transform-origin="84 66"/>
+  </symbol>
+
+  <!-- ============ DISHES ============ -->
+  <symbol id="dish-bowl" viewBox="0 0 100 100">
+    <path d="M13 48 C13 74 30 90 50 90 C70 90 87 74 87 48 Z" fill="#FFF" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M20 66 Q50 76 80 66" fill="none" stroke="#9FD8E8" stroke-width="5" stroke-linecap="round"/>
+    <path d="M40 90 L38 96 H62 L60 90" fill="#FFF" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="48" rx="37" ry="10" fill="currentColor" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M40 32 q-4 -8 0 -15 M60 32 q4 -8 0 -15" fill="none" stroke="#B7B7C9" stroke-width="3.5" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+
+  <symbol id="dish-jar" viewBox="0 0 100 100">
+    <rect x="30" y="36" width="40" height="48" rx="9" fill="#E85D75" stroke="#4A3B47" stroke-width="4"/>
+    <rect x="26" y="26" width="48" height="13" rx="5" fill="#B7C4CC" stroke="#4A3B47" stroke-width="4"/>
+    <rect x="38" y="50" width="24" height="18" rx="4" fill="#FFF7E0" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="50" cy="59" r="4.5" fill="#F2545B"/>
+    <path d="M35 44 q0 14 0 30" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity=".5" fill="none"/>
+  </symbol>
+
+  <symbol id="dish-split" viewBox="0 0 100 100">
+    <path d="M12 56 C26 44 42 42 50 46 C42 53 24 58 12 56 Z" fill="#FFD94A" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M88 56 C74 44 58 42 50 46 C58 53 76 58 88 56 Z" fill="#FFD94A" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="31" cy="47" r="12" fill="#FBD9E8" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="41" r="12" fill="#FFF7E0" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="69" cy="47" r="12" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="25" r="5" fill="#E23B4E" stroke="#4A3B47" stroke-width="3"/>
+    <path d="M9 60 C13 80 87 80 91 60 C74 68 26 68 9 60 Z" fill="#9FD8E8" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="dish-sundae" viewBox="0 0 100 100">
+    <circle cx="42" cy="28" r="12" fill="#FBD9E8" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="59" cy="30" r="10" fill="#F8A8C8" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="14" r="5" fill="#E23B4E" stroke="#4A3B47" stroke-width="3"/>
+    <path d="M30 32 H70 L63 64 C61 75 39 75 37 64 Z" fill="#D6F0F7" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round" opacity=".92"/>
+    <rect x="46" y="74" width="8" height="9" fill="#D6F0F7" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="87" rx="16" ry="5" fill="#D6F0F7" stroke="#4A3B47" stroke-width="3.5"/>
+  </symbol>
+
+  <symbol id="dish-cone" viewBox="0 0 100 100">
+    <path d="M50 94 L34 54 H66 Z" fill="#E0A860" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 63 L59 57 M42 74 L56 70" stroke="#B97F3E" stroke-width="2.5" stroke-linecap="round"/>
+    <g fill="currentColor" stroke="#4A3B47" stroke-width="4">
+      <ellipse cx="50" cy="49" rx="18" ry="9"/>
+      <ellipse cx="50" cy="39" rx="14" ry="8"/>
+      <ellipse cx="50" cy="30" rx="10" ry="7"/>
+      <circle cx="50" cy="21" r="5"/>
+    </g>
+  </symbol>
+
+  <symbol id="dish-icesand" viewBox="0 0 100 100">
+    <rect x="24" y="34" width="52" height="14" rx="7" fill="#D9A05B" stroke="#4A3B47" stroke-width="4"/>
+    <rect x="27" y="47" width="46" height="11" rx="4" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <rect x="24" y="57" width="52" height="14" rx="7" fill="#D9A05B" stroke="#4A3B47" stroke-width="4"/>
+    <g fill="#6B4226">
+      <circle cx="36" cy="41" r="2.4"/><circle cx="52" cy="40" r="2.4"/><circle cx="66" cy="42" r="2.4"/>
+      <circle cx="38" cy="64" r="2.4"/><circle cx="55" cy="65" r="2.4"/><circle cx="66" cy="63" r="2.4"/>
+    </g>
+  </symbol>
+
+  <symbol id="dish-pie" viewBox="0 0 100 100">
+    <path d="M14 60 H86 L79 78 C64 86 36 86 21 78 Z" fill="#C9884E" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="58" rx="38" ry="14" fill="#E0A860" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M28 51 L43 69 M45 48 L61 69 M62 49 L75 64 M72 52 L57 69 M55 48 L38 68" stroke="#B97F3E" stroke-width="3" stroke-linecap="round"/>
+    <path d="M40 38 q-4 -8 0 -16 M60 38 q4 -8 0 -16" fill="none" stroke="#B7B7C9" stroke-width="3.5" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+
+  <symbol id="dish-cake" viewBox="0 0 100 100">
+    <rect x="26" y="44" width="48" height="32" fill="#FBD9E8" stroke="#4A3B47" stroke-width="4"/>
+    <rect x="28" y="57" width="44" height="7" fill="#FFF"/>
+    <path d="M24 46 Q28 36 36 44 Q42 34 50 44 Q58 34 66 44 Q72 37 76 46 L76 48 H24 Z" fill="#FFF" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="50" cy="31" r="7" fill="#F2545B" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M50 25 L46 19" stroke="#59B356" stroke-width="3.5" stroke-linecap="round"/>
+    <ellipse cx="50" cy="82" rx="36" ry="7" fill="#EDEDF5" stroke="#4A3B47" stroke-width="3.5"/>
+  </symbol>
+
+  <symbol id="dish-pops" viewBox="0 0 100 100">
+    <path d="M30 86 V58 M50 86 V52 M70 86 V58" stroke="#B97F3E" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="30" cy="48" r="12" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="42" r="12" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="70" cy="48" r="12" fill="#8A5A3B" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M22 46 q8 5 16 0 M42 40 q8 5 16 0 M62 46 q8 5 16 0" fill="none" stroke="#FBD9E8" stroke-width="2.6" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="dish-donut" viewBox="0 0 100 100">
+    <circle cx="50" cy="54" r="31" fill="#E0A860" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M19 54 C19 32 81 32 81 54 Q74 61 66 54 Q59 63 51 55 Q43 63 35 55 Q27 61 19 54 Z"
+      fill="#F27EB4" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="50" cy="55" r="10" fill="#FFF3D6" stroke="#4A3B47" stroke-width="4"/>
+    <g stroke-width="3.5" stroke-linecap="round">
+      <path d="M34 42 l6 -2" stroke="#FFD94A"/><path d="M56 38 l6 2" stroke="#6BC466"/>
+      <path d="M66 48 l6 -2" stroke="#FFF"/><path d="M28 50 l6 1" stroke="#6B8BE8"/>
+    </g>
+  </symbol>
+
+  <symbol id="dish-omelette" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="66" rx="40" ry="13" fill="#EDEDF5" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M18 62 C18 42 82 42 82 62 Z" fill="#FFD94A" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M34 62 q2 8 8 8 M58 62 q1 7 6 7" fill="none" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="40" cy="52" r="2.4" fill="#59B356"/><circle cx="56" cy="50" r="2.4" fill="#59B356"/><circle cx="64" cy="55" r="2.4" fill="#59B356"/>
+  </symbol>
+
+  <symbol id="dish-pancakes" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="80" rx="40" ry="9" fill="#EDEDF5" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="68" rx="31" ry="9" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="59" rx="31" ry="9" fill="#D9975A" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="50" rx="31" ry="9" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M22 50 C22 43 78 43 78 50 Q71 56 63 50 Q57 57 49 51 Q41 57 33 50 Q27 55 22 50 Z"
+      fill="#B9702E" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="44" y="38" width="12" height="9" rx="2" fill="#FFEB99" stroke="#4A3B47" stroke-width="3"/>
+  </symbol>
+
+  <symbol id="dish-muffin" viewBox="0 0 100 100">
+    <path d="M32 56 L37 86 H63 L68 56 Z" fill="#E8956B" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M41 58 L44 84 M50 57 V85 M59 58 L56 84" stroke="#C9723C" stroke-width="2.6"/>
+    <circle cx="36" cy="50" r="11" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="64" cy="50" r="11" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="42" r="14" fill="#E0A860" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M42 44 l5 3 l-5 2 Z M58 40 l5 3 l-5 2 Z M48 32 l5 3 l-5 2 Z" fill="#F5872E"/>
+  </symbol>
+
+  <symbol id="dish-spaghetti" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="70" rx="41" ry="13" fill="#EDEDF5" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M14 66 C14 44 86 44 86 66 C70 74 30 74 14 66 Z" fill="#FFE08A" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M24 60 q10 -8 20 0 q10 -8 20 0 M30 54 q8 -6 16 0" fill="none" stroke="#E8B84A" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="66" cy="46" r="8" fill="#9CCF52" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="63" cy="45" r="1.8" fill="#4A3B47"/><circle cx="69" cy="45" r="1.8" fill="#4A3B47"/>
+    <path d="M64 50 q2 2 4 0" fill="none" stroke="#4A3B47" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="dish-juice" viewBox="0 0 100 100">
+    <path d="M32 34 L38 22 H62 L68 34 Z" fill="#E8763C" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <rect x="32" y="34" width="36" height="48" rx="5" fill="#F5872E" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M58 22 L66 6" stroke="#4A3B47" stroke-width="7" stroke-linecap="round"/>
+    <path d="M58 22 L66 6" stroke="#FFF" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="50" cy="58" r="11" fill="#FFF7E0" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="50" cy="59" r="5" fill="#F25C54"/>
+  </symbol>
+
+  <symbol id="dish-smoothie" viewBox="0 0 100 100">
+    <path d="M34 34 H66 L62 82 C61 89 39 89 38 82 Z" fill="currentColor" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="34" rx="18" ry="6" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M55 30 L61 8" stroke="#4A3B47" stroke-width="8" stroke-linecap="round"/>
+    <path d="M55 30 L61 8" stroke="#E23B4E" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M40 44 q-1 16 0 30" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity=".45" fill="none"/>
+  </symbol>
+
+  <symbol id="dish-custard" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="80" rx="36" ry="9" fill="#EDEDF5" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M26 60 C26 46 74 46 74 60 L70 74 C58 81 42 81 30 74 Z" fill="#FFD94A" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="54" rx="24" ry="8" fill="#B9702E" stroke="#4A3B47" stroke-width="3.5"/>
+    <path d="M32 58 q-1 6 3 8 M66 57 q2 6 -2 9" fill="none" stroke="#B9702E" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="dish-bday" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="82" rx="36" ry="8" fill="#EDEDF5" stroke="#4A3B47" stroke-width="3.5"/>
+    <rect x="26" y="50" width="48" height="30" rx="6" fill="#F8A8C8" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M24 52 C24 44 76 44 76 52 Q70 59 62 52 Q54 60 46 52 Q38 59 30 52 Q26 55 24 52 Z"
+      fill="#FFF" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <rect x="46" y="28" width="8" height="19" fill="#7B6BE8" stroke="#4A3B47" stroke-width="3"/>
+    <path d="M46 34 h8 M46 40 h8" stroke="#FFF" stroke-width="2.6"/>
+    <path d="M50 16 C45 23 45 28 50 28 C55 28 55 23 50 16 Z" fill="#F5A623" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="dish-pizza" viewBox="0 0 100 100">
+    <circle cx="50" cy="55" r="34" fill="#E0A860" stroke="#4A3B47" stroke-width="4"/>
+    <circle cx="50" cy="55" r="26" fill="#FFD94A" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="40" cy="46" r="5.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="61" cy="50" r="5.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="50" cy="66" r="5.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="35" cy="62" r="3" fill="#59B356"/><circle cx="64" cy="64" r="3" fill="#59B356"/><circle cx="52" cy="42" r="3" fill="#59B356"/>
+  </symbol>
+
+  <symbol id="dish-cookiemush" viewBox="0 0 100 100">
+    <circle cx="50" cy="55" r="31" fill="#D9A05B" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M50 26 L46 48 L58 62 L52 84" fill="none" stroke="#4A3B47" stroke-width="3" stroke-linecap="round" opacity=".65"/>
+    <circle cx="36" cy="44" r="4.5" fill="#6B4226"/><circle cx="64" cy="46" r="4" fill="#6B4226"/>
+    <circle cx="40" cy="68" r="4" fill="#6B4226"/><circle cx="63" cy="70" r="4.5" fill="#6B4226"/>
+    <circle cx="20" cy="86" r="5" fill="#D9A05B" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="80" cy="84" r="4" fill="#D9A05B" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="64" cy="90" r="3.5" fill="#D9A05B" stroke="#4A3B47" stroke-width="3"/>
+  </symbol>
+
+  <symbol id="dish-taco" viewBox="0 0 100 100">
+    <path d="M22 60 Q26 40 34 44 Q40 28 50 37 Q58 26 66 41 Q74 37 78 60 Z"
+      fill="#7CC46B" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="39" cy="39" r="3.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2"/>
+    <circle cx="53" cy="33" r="3.5" fill="#F25C54" stroke="#4A3B47" stroke-width="2"/>
+    <circle cx="63" cy="35" r="7.5" fill="#9CCF52" stroke="#4A3B47" stroke-width="3"/>
+    <circle cx="60.5" cy="34" r="1.7" fill="#4A3B47"/><circle cx="65.5" cy="34" r="1.7" fill="#4A3B47"/>
+    <path d="M61.5 39 q2 2 4 0" fill="none" stroke="#4A3B47" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M16 72 A34 30 0 0 1 84 72 Z" fill="#F2C14E" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M24 68 A27 23 0 0 1 76 68" fill="none" stroke="#D9A035" stroke-width="2.6" opacity=".8"/>
+  </symbol>
+
+  <symbol id="dish-burger" viewBox="0 0 100 100">
+    <path d="M20 72 H80 C80 82 70 88 50 88 C30 88 20 82 20 72 Z" fill="#E0A860" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <rect x="16" y="60" width="68" height="13" rx="6.5" fill="#8A5A3B" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M22 58 H78 C78 62 74 67 68 62 C64 68 57 66 55 62 C50 68 43 66 41 62 C36 68 29 66 27 62 C24 64 22 62 22 58 Z" fill="#FFC93C" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M22 56 q7 -7 14 0 q7 -7 14 0 q7 -7 14 0 q7 -7 14 0" fill="none" stroke="#7CC46B" stroke-width="6" stroke-linecap="round"/>
+    <path d="M18 54 C18 28 82 28 82 54 Z" fill="#E8B269" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#FFF3D6">
+      <ellipse cx="36" cy="42" rx="3" ry="2" transform="rotate(-14 36 42)"/>
+      <ellipse cx="50" cy="37" rx="3" ry="2"/>
+      <ellipse cx="64" cy="42" rx="3" ry="2" transform="rotate(14 64 42)"/>
+      <ellipse cx="43" cy="47" rx="2.6" ry="1.8" transform="rotate(8 43 47)"/>
+      <ellipse cx="57" cy="47" rx="2.6" ry="1.8" transform="rotate(-8 57 47)"/>
+    </g>
+  </symbol>
+
+  <!-- ============ TOPPERS (aligned to dish-bowl, soup surface y=48) ============ -->
+  <symbol id="top-sock" viewBox="0 0 100 100">
+    <g transform="rotate(24 62 34)">
+      <path d="M54 12 H70 V34 C70 42 66 47 58 49 C51 51 46 46 47 40 C48 35 52 34 55 33 Z"
+        fill="#8FBF6B" stroke="#4A3B47" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M54 19 H70" stroke="#6FA351" stroke-width="4"/>
+    </g>
+  </symbol>
+
+  <symbol id="top-worm" viewBox="0 0 100 100">
+    <path d="M22 50 C16 40 22 30 32 32" fill="none" stroke="#4A3B47" stroke-width="17" stroke-linecap="round"/>
+    <path d="M22 50 C16 40 22 30 32 32" fill="none" stroke="#9CCF52" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="34" cy="32" r="9" fill="#9CCF52" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="31" cy="30" r="1.9" fill="#4A3B47"/><circle cx="37" cy="30" r="1.9" fill="#4A3B47"/>
+    <path d="M32 36 q2 2 4 0" fill="none" stroke="#4A3B47" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="top-sparkles" viewBox="0 0 100 100">
+    <path d="M30 12 L33 21 L42 24 L33 27 L30 36 L27 27 L18 24 L27 21 Z" fill="#FFE066" stroke="#4A3B47" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M60 4 L62.4 11.5 L70 14 L62.4 16.5 L60 24 L57.6 16.5 L50 14 L57.6 11.5 Z" fill="#FFE066" stroke="#4A3B47" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M76 26 L78 32 L84 34 L78 36 L76 42 L74 36 L68 34 L74 32 Z" fill="#FFF" stroke="#4A3B47" stroke-width="2.4" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="top-question" viewBox="0 0 100 100">
+    <text x="50" y="42" text-anchor="middle" font-size="36" font-weight="800" fill="#4A3B47" font-family="inherit">?</text>
+  </symbol>
+
+  <symbol id="top-noodles" viewBox="0 0 100 100">
+    <path d="M28 48 q-7 10 -3 20 M48 47 q-4 12 2 22 M66 48 q7 9 3 19" fill="none" stroke="#FFE08A" stroke-width="5" stroke-linecap="round"/>
+    <path d="M60 8 L84 32 M70 5 L92 26" stroke="#B97F3E" stroke-width="4.5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="top-fruit" viewBox="0 0 100 100">
+    <circle cx="35" cy="46" r="6" fill="#F25C54" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="52" cy="43" r="5.5" fill="#FFD94A" stroke="#4A3B47" stroke-width="2.6"/>
+    <circle cx="66" cy="46" r="5.5" fill="#59B356" stroke="#4A3B47" stroke-width="2.6"/>
+  </symbol>
+
+  <symbol id="top-drips" viewBox="0 0 100 100">
+    <path d="M26 50 c-2 10 2 17 7 17 c5 0 7 -7 5 -17 Z" fill="currentColor" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M48 51 c-2 13 2 21 7 21 c5 0 7 -8 5 -21 Z" fill="currentColor" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M68 50 c-2 8 2 14 6 14 c4 0 6 -6 4 -14 Z" fill="currentColor" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="top-cream" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="40" rx="19" ry="8" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <ellipse cx="50" cy="31" rx="13" ry="7" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="21" r="6" fill="#FFF" stroke="#4A3B47" stroke-width="3.5"/>
+    <circle cx="50" cy="12" r="4.5" fill="#E23B4E" stroke="#4A3B47" stroke-width="2.8"/>
+  </symbol>
+
+  <symbol id="top-stink" viewBox="0 0 100 100">
+    <use href="#g-stink" x="36" y="34"/>
+    <use href="#g-stink" x="64" y="36"/>
+  </symbol>
+
+  <!-- spoon for stir button -->
+  <symbol id="ui-spoon" viewBox="0 0 100 100">
+    <path d="M42 46 L28 84" stroke="#4A3B47" stroke-width="14" stroke-linecap="round"/>
+    <path d="M42 46 L28 84" stroke="#B7C4E0" stroke-width="8.5" stroke-linecap="round"/>
+    <ellipse cx="56" cy="30" rx="19" ry="24" fill="#D8DEF0" stroke="#4A3B47" stroke-width="4" transform="rotate(20 56 30)"/>
+    <ellipse cx="50" cy="22" rx="5" ry="8" fill="#fff" opacity=".7" transform="rotate(20 50 22)"/>
+  </symbol>
+  <symbol id="ui-flame" viewBox="0 0 100 100">
+    <path d="M50 8 C58 24 74 30 74 52 C74 72 64 84 50 84 C36 84 26 72 26 52 C26 40 32 32 36 24 C38 34 44 38 46 34 C48 28 46 18 50 8 Z"
+      fill="#F5872E" stroke="#4A3B47" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M50 36 C56 46 62 50 62 60 C62 70 56 76 50 76 C44 76 38 70 38 60 C38 52 44 46 50 36 Z" fill="#FFD94A"/>
+  </symbol>
+  <symbol id="ui-again" viewBox="0 0 100 100">
+    <path d="M50 16 A34 34 0 1 1 22 32" fill="none" stroke="#8A4B12" stroke-width="11" stroke-linecap="round"/>
+    <path d="M10 36 L34 36 L22 12 Z" fill="#8A4B12" stroke="#8A4B12" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ui-star" viewBox="0 0 100 100">
+    <path d="M50 8 L61 36 L92 38 L68 58 L76 89 L50 71 L24 89 L32 58 L8 38 L39 36 Z"
+      fill="currentColor" stroke="#4A3B47" stroke-width="5" stroke-linejoin="round"/>
+  </symbol>
+  <!-- ============ Batch 4: UI icons (emoji replacements, house style) ============ -->
+  <symbol id="ui-hand" viewBox="0 0 100 100">
+    <!-- index finger offset LEFT (a centered finger reads as a rude gesture) -->
+    <rect x="24" y="4" width="17" height="46" rx="8.5" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4.5"/>
+    <!-- folded-finger knuckles peeking over the fist -->
+    <circle cx="53" cy="46" r="8" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4"/>
+    <circle cx="66" cy="48" r="8" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4"/>
+    <circle cx="77" cy="52" r="7" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4"/>
+    <!-- fist -->
+    <path d="M24 50 C20 52 18 58 19 64 C17 80 31 93 50 93 C68 93 81 82 80 66 L80 56 C80 52 74 50 70 52 L44 52 Z"
+      fill="#FFE3B8" stroke="#4A3B47" stroke-width="4.5" stroke-linejoin="round"/>
+    <!-- thumb -->
+    <ellipse cx="27" cy="66" rx="8" ry="13" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4" transform="rotate(16 27 66)"/>
+    <!-- cuff -->
+    <rect x="30" y="85" width="40" height="12" rx="6" fill="#5FD6CD" stroke="#4A3B47" stroke-width="4"/>
+  </symbol>
+  <symbol id="ui-fly" viewBox="0 0 100 100">
+    <ellipse cx="52" cy="62" rx="17" ry="13" fill="#4A3B47"/>
+    <circle cx="34" cy="54" r="9" fill="#4A3B47"/>
+    <circle cx="31" cy="51" r="2.5" fill="#fff"/>
+    <ellipse cx="60" cy="38" rx="15" ry="8" fill="#CBEBF5" stroke="#4A3B47" stroke-width="3" transform="rotate(22 60 38)"/>
+    <ellipse cx="42" cy="32" rx="13" ry="7" fill="#CBEBF5" stroke="#4A3B47" stroke-width="3" transform="rotate(-16 42 32)"/>
+  </symbol>
+  <symbol id="ui-pan" viewBox="0 0 100 100">
+    <path d="M66 40 L92 30" stroke="#4A3B47" stroke-width="11" stroke-linecap="round"/>
+    <path d="M66 40 L92 30" stroke="#B7C4E0" stroke-width="6" stroke-linecap="round"/>
+    <ellipse cx="42" cy="58" rx="32" ry="21" fill="#5A6B8C" stroke="#4A3B47" stroke-width="5"/>
+    <ellipse cx="42" cy="52" rx="32" ry="17" fill="#8FA3C8" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M28 46 C22 52 28 60 40 60 C56 62 64 54 58 47 C52 41 34 40 28 46 Z" fill="#FFF7E0" stroke="#E8D8B0" stroke-width="3"/>
+    <circle cx="42" cy="52" r="7" fill="#FFC93C" stroke="#E8A82E" stroke-width="3"/>
+  </symbol>
+  <symbol id="ui-snd" viewBox="0 0 100 100">
+    <path d="M16 38 H32 L52 20 V80 L32 62 H16 Z" fill="#8A4B12" stroke="#8A4B12" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M62 36 Q72 50 62 64" fill="none" stroke="#8A4B12" stroke-width="6" stroke-linecap="round"/>
+    <path d="M72 26 Q88 50 72 74" fill="none" stroke="#8A4B12" stroke-width="6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="ui-snd-off" viewBox="0 0 100 100">
+    <path d="M16 38 H32 L52 20 V80 L32 62 H16 Z" fill="#8A4B12" stroke="#8A4B12" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M62 38 L84 62 M84 38 L62 62" stroke="#E2604C" stroke-width="8" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="ui-note" viewBox="0 0 100 100">
+    <path d="M40 24 L78 16" stroke="#8A4B12" stroke-width="8" stroke-linecap="round"/>
+    <path d="M40 24 V70 M78 16 V62" stroke="#8A4B12" stroke-width="7" stroke-linecap="round"/>
+    <ellipse cx="33" cy="72" rx="12" ry="9" fill="#8A4B12"/>
+    <ellipse cx="71" cy="64" rx="12" ry="9" fill="#8A4B12"/>
+  </symbol>
+  <symbol id="ui-face-yum" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="40" fill="#FFD94A" stroke="#4A3B47" stroke-width="5"/>
+    <path d="M28 40 Q35 32 42 40" fill="none" stroke="#4A3B47" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M58 40 Q65 32 72 40" fill="none" stroke="#4A3B47" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M32 56 Q50 76 68 56 Z" fill="#A94B5E" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="66" rx="9" ry="5" fill="#FF8FA3"/>
+  </symbol>
+  <symbol id="ui-face-wow" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="40" fill="#FFD94A" stroke="#4A3B47" stroke-width="5"/>
+    <path d="M33 26 L36 35 L45 38 L36 41 L33 50 L30 41 L21 38 L30 35 Z" fill="#F5A623" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M67 26 L70 35 L79 38 L70 41 L67 50 L64 41 L55 38 L64 35 Z" fill="#F5A623" stroke="#4A3B47" stroke-width="3" stroke-linejoin="round"/>
+    <ellipse cx="50" cy="66" rx="10" ry="12" fill="#A94B5E" stroke="#4A3B47" stroke-width="4"/>
+    <ellipse cx="50" cy="71" rx="5" ry="4" fill="#FF8FA3"/>
+  </symbol>
+  <symbol id="ui-face-yuck" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="40" fill="#B8E08C" stroke="#4A3B47" stroke-width="5"/>
+    <path d="M26 34 L40 42 L26 50" fill="none" stroke="#4A3B47" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M74 34 L60 42 L74 50" fill="none" stroke="#4A3B47" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M28 66 q6 -8 15 0 q6 8 15 0 q6 -8 14 0" fill="none" stroke="#4A3B47" stroke-width="4.5" stroke-linecap="round"/>
+  </symbol>
+</defs>
+</svg>
+
+<!-- ============ START / TITLE OVERLAY (B#2) ============ -->
+<div id="startOverlay">
+  <div id="startTitle"><svg class="icon" viewBox="0 0 100 100" width="38" height="38"><use href="#ui-pan"/></svg><span>Beepo's Kitchen</span></div>
+  <div id="startBeepo"></div>
+  <button id="startBtn" aria-label="Play">
+    <svg viewBox="0 0 100 100"><path d="M30 18 L82 50 L30 82 Z" fill="#fff" stroke="#8A4B12" stroke-width="7" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<div id="topbar">
+  <div id="topBtns">
+    <button id="musicBtn" aria-label="Music on or off"><svg class="icon" viewBox="0 0 100 100" width="24" height="24"><use href="#ui-note"/></svg></button>
+    <button id="muteBtn" aria-label="Sound on or off"><svg class="icon" viewBox="0 0 100 100" width="24" height="24"><use href="#ui-snd"/></svg></button>
+  </div>
+</div>
+
+<div id="stage">
+  <div id="floor"></div>
+
+  <div id="beepo">
+    <div id="bubbleTalk">Feed the pot!</div>
+    <svg viewBox="0 0 140 175" width="130">
+      <defs>
+        <linearGradient id="beepoGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5FD6CD"/><stop offset="1" stop-color="#3EBFB4"/>
+        </linearGradient>
+      </defs>
+      <!-- boxy tread feet -->
+      <rect x="34" y="156" width="30" height="16" rx="5" fill="#8FA3C8" stroke="#4A3B47" stroke-width="4"/>
+      <rect x="76" y="156" width="30" height="16" rx="5" fill="#8FA3C8" stroke="#4A3B47" stroke-width="4"/>
+      <path d="M43 160 v8 M50 160 v8 M57 160 v8 M85 160 v8 M92 160 v8 M99 160 v8" stroke="#5A6B8C" stroke-width="2.5" fill="none"/>
+      <!-- legs -->
+      <rect x="45" y="145" width="11" height="14" fill="#2FA69B" stroke="#4A3B47" stroke-width="3.5"/>
+      <rect x="84" y="145" width="11" height="14" fill="#2FA69B" stroke="#4A3B47" stroke-width="3.5"/>
+      <!-- segmented arms with gripper hands -->
+      <rect x="8" y="106" width="15" height="34" rx="7" fill="#3EBFB4" stroke="#4A3B47" stroke-width="4" transform="rotate(14 15 123)"/>
+      <rect x="117" y="106" width="15" height="34" rx="7" fill="#3EBFB4" stroke="#4A3B47" stroke-width="4" transform="rotate(-14 125 123)"/>
+      <circle cx="10" cy="142" r="8" fill="#B7C4E0" stroke="#4A3B47" stroke-width="3.5"/>
+      <circle cx="130" cy="142" r="8" fill="#B7C4E0" stroke="#4A3B47" stroke-width="3.5"/>
+      <!-- torso with chest light -->
+      <rect x="38" y="130" width="64" height="32" rx="11" fill="#2FA69B" stroke="#4A3B47" stroke-width="5"/>
+      <circle cx="70" cy="146" r="7.5" fill="#FFE066" stroke="#4A3B47" stroke-width="3.5"/>
+      <circle cx="51" cy="146" r="2.6" fill="#1E7F76"/>
+      <circle cx="89" cy="146" r="2.6" fill="#1E7F76"/>
+      <!-- head -->
+      <rect x="18" y="62" width="104" height="72" rx="18" fill="url(#beepoGrad)" stroke="#4A3B47" stroke-width="5"/>
+      <path d="M28 76 H112" stroke="#2FA69B" stroke-width="3" opacity=".6" fill="none"/>
+      <!-- ear bolts -->
+      <circle cx="14" cy="99" r="7.5" fill="#B7C4E0" stroke="#4A3B47" stroke-width="3.5"/>
+      <circle cx="126" cy="99" r="7.5" fill="#B7C4E0" stroke="#4A3B47" stroke-width="3.5"/>
+      <path d="M11 99 h6 M123 99 h6" stroke="#5A6B8C" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- face screen with corner screws -->
+      <rect x="32" y="84" width="76" height="50" rx="11" fill="#EAFFFB" stroke="#4A3B47" stroke-width="4"/>
+      <rect x="36.5" y="88.5" width="67" height="41" rx="8" fill="none" stroke="#BDEDE4" stroke-width="2"/>
+      <circle cx="38" cy="90" r="1.8" fill="#9FB6C4"/><circle cx="102" cy="90" r="1.8" fill="#9FB6C4"/>
+      <circle cx="38" cy="128" r="1.8" fill="#9FB6C4"/><circle cx="102" cy="128" r="1.8" fill="#9FB6C4"/>
+      <ellipse cx="42" cy="118" rx="5.5" ry="4" fill="#FF9E9E" opacity=".85"/>
+      <ellipse cx="98" cy="118" rx="5.5" ry="4" fill="#FF9E9E" opacity=".85"/>
+      <g class="fx f-normal">
+        <ellipse class="beye" cx="54" cy="104" rx="6.5" ry="8" fill="#1E3A4C"/>
+        <ellipse class="beye" cx="86" cy="104" rx="6.5" ry="8" fill="#1E3A4C"/>
+        <circle cx="56" cy="101" r="2" fill="#fff"/><circle cx="88" cy="101" r="2" fill="#fff"/>
+        <path d="M62 118 Q70 126 78 118" fill="none" stroke="#1E3A4C" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g class="fx f-yum">
+        <path d="M46 106 Q54 96 62 106" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M78 106 Q86 96 94 106" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M58 113 Q70 131 82 113 Z" fill="#A94B5E" stroke="#1E3A4C" stroke-width="3.5" stroke-linejoin="round"/>
+        <ellipse cx="70" cy="121" rx="6.5" ry="3.6" fill="#FF8FA3"/>
+      </g>
+      <g class="fx f-yuck">
+        <ellipse cx="70" cy="93" rx="19" ry="5" fill="#A8D989" opacity=".55"/>
+        <path d="M47 98 L58 104 L47 110" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M93 98 L82 104 L93 110" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M55 121 q5 -6 10 0 q5 6 10 0 q5 -6 10 0" fill="none" stroke="#1E3A4C" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g class="fx f-wow">
+        <path d="M54 94 L56.8 101.2 L64 104 L56.8 106.8 L54 114 L51.2 106.8 L44 104 L51.2 101.2 Z"
+          fill="#FFD34D" stroke="#1E3A4C" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M86 94 L88.8 101.2 L96 104 L88.8 106.8 L86 114 L83.2 106.8 L76 104 L83.2 101.2 Z"
+          fill="#FFD34D" stroke="#1E3A4C" stroke-width="3" stroke-linejoin="round"/>
+        <ellipse cx="70" cy="120" rx="6.5" ry="7.5" fill="#A94B5E" stroke="#1E3A4C" stroke-width="3.5"/>
+        <ellipse cx="70" cy="124" rx="3.8" ry="2.6" fill="#FF8FA3"/>
+      </g>
+      <g class="fx f-eat">
+        <path d="M46 106 Q54 96 62 106" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M78 106 Q86 96 94 106" fill="none" stroke="#1E3A4C" stroke-width="4.5" stroke-linecap="round"/>
+        <g class="chompM">
+          <ellipse cx="70" cy="119" rx="10" ry="9.5" fill="#A94B5E" stroke="#1E3A4C" stroke-width="3.5"/>
+          <ellipse cx="70" cy="124" rx="5.5" ry="3.2" fill="#FF8FA3"/>
+        </g>
+      </g>
+      <!-- chef hat -->
+      <g stroke="#4A3B47" stroke-width="4">
+        <circle cx="46" cy="46" r="14" fill="#FFF"/>
+        <circle cx="94" cy="46" r="14" fill="#FFF"/>
+        <circle cx="70" cy="38" r="17" fill="#FFF"/>
+        <path d="M40 52 H100 V64 H40 Z" fill="#FFF"/>
+      </g>
+      <path d="M40 64 H100" stroke="#D9D9E3" stroke-width="3"/>
+      <!-- antenna pokes through the hat (previously hidden under it!) -->
+      <path d="M70 30 V16" stroke="#2FA69B" stroke-width="5" stroke-linecap="round"/>
+      <circle class="antBall" cx="70" cy="12" r="7" fill="#FF6B6B" stroke="#4A3B47" stroke-width="4"/>
+    </svg>
+  </div>
+
+  <div id="stoveWrap">
+    <div id="potWrap">
+      <div id="cookFlame"><svg viewBox="0 0 100 100"><use href="#ui-flame"/></svg></div>
+      <div class="steam" style="left:24px"></div>
+      <div class="steam" style="left:100px; animation-delay:1.6s"></div>
+      <svg viewBox="0 0 240 160" width="204" height="136">
+        <defs>
+          <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#5A6B8C"/><stop offset="1" stop-color="#414E68"/>
+          </linearGradient>
+        </defs>
+        <!-- handles -->
+        <path d="M22 48 C0 50 2 80 24 76" fill="none" stroke="#414E68" stroke-width="11" stroke-linecap="round"/>
+        <path d="M218 48 C240 50 238 80 216 76" fill="none" stroke="#414E68" stroke-width="11" stroke-linecap="round"/>
+        <!-- body -->
+        <path d="M22 36 L22 62 C22 116 62 146 120 146 C178 146 218 116 218 62 L218 36 Z"
+          fill="url(#potGrad)" stroke="#333E54" stroke-width="5"/>
+        <path d="M40 110 C60 128 100 136 120 136" fill="none" stroke="#6E80A3" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+        <!-- rim -->
+        <ellipse cx="120" cy="36" rx="100" ry="17" fill="#6E80A3" stroke="#333E54" stroke-width="5"/>
+        <!-- soup -->
+        <ellipse id="soupEllipse" cx="120" cy="38" rx="90" ry="13" stroke="#333E54" stroke-width="4"/>
+      </svg>
+      <div id="soupItems">
+        <div class="bubble" style="left:20%"></div>
+        <div class="bubble" style="left:50%; animation-delay:.9s"></div>
+        <div class="bubble" style="left:75%; animation-delay:1.6s"></div>
+      </div>
+      <div id="potSpoon"><svg class="icon" viewBox="0 0 100 100"><use href="#ui-spoon"/></svg></div>
+
+    </div>
+    <div id="stove"></div>
+  </div>
+
+</div>
+
+<div id="shelfWrap">
+  <div id="shelf"></div>
+</div>
+
+<div id="overlay">
+  <div id="dishName"></div>
+  <div id="reaction"></div>
+  <div id="plateWrap">
+    <div id="plate"></div>
+    <div id="dishBig"></div>
+    <div id="dishIngs"></div>
+    <div class="psteam" style="left:70px"></div>
+    <div class="psteam" style="left:160px; animation-delay:1.5s"></div>
+    <div id="revealBeepo"></div>
+    <div id="rBubble"></div>
+    <div id="cloche">
+      <div id="hint"><svg class="icon" viewBox="0 0 100 100" width="58" height="58"><use href="#ui-hand"/></svg></div>
+      <svg viewBox="0 0 200 132" width="300">
+        <defs>
+          <linearGradient id="clocheGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EEF1F9"/><stop offset="1" stop-color="#AEB8CE"/>
+          </linearGradient>
+        </defs>
+        <rect x="96" y="24" width="8" height="10" fill="#C7CFDF" stroke="#4A3B47" stroke-width="3.5"/>
+        <circle cx="100" cy="19" r="9.5" fill="#EEF1F9" stroke="#4A3B47" stroke-width="4"/>
+        <path d="M22 104 A78 78 0 0 1 178 104 Z" fill="url(#clocheGrad)" stroke="#4A3B47" stroke-width="4.5" stroke-linejoin="round"/>
+        <path d="M44 66 A64 64 0 0 1 78 40" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".65"/>
+        <rect x="12" y="102" width="176" height="14" rx="7" fill="#C7CFDF" stroke="#4A3B47" stroke-width="4"/>
+      </svg>
+    </div>
+  </div>
+  <button id="againBtn" aria-label="Cook again"><svg class="icon" viewBox="0 0 100 100" width="54" height="54"><use href="#ui-again"/></svg></button>
+</div>
+
+<script>
+/* AUTO-GENERATED from dishes.json - do not edit by hand.
+   129 dishes; key = sorted ingredient ids joined by +. v: yummy|magical|yucky */
+const DISH_CATALOG = {
+  "apple": {n:"Apple Squish Sauce", v:"yummy"},
+  "banana": {n:"Mushy Banana Mash", v:"yummy"},
+  "berry": {n:"Strawberry Squish Jam", v:"yummy"},
+  "egg": {n:"Wobbly Egg Custard", v:"yummy"},
+  "choco": {n:"Choco Goo Pudding", v:"yummy"},
+  "cookie": {n:"Giant Cookie Mush", v:"yummy"},
+  "icecream": {n:"Melty Ice-Cream Mountain", v:"yummy"},
+  "worm": {n:"Wormy Wiggle Noodles", v:"yucky"},
+  "rainbow": {n:"Sparkle Rainbow Soup", v:"magical"},
+  "apple+banana": {n:"Sunny Fruit Smoothie", v:"yummy"},
+  "apple+berry": {n:"Berry-Apple Jelly", v:"yummy"},
+  "apple+egg": {n:"Apple Custard Cup", v:"yummy"},
+  "apple+choco": {n:"Choco-Dunked Apple", v:"yummy"},
+  "apple+cookie": {n:"Grandma's Apple Pie", v:"yummy"},
+  "apple+icecream": {n:"Apple Pie a la Mode", v:"yummy"},
+  "apple+worm": {n:"Wiggly Apple Wormhole", v:"yucky"},
+  "apple+rainbow": {n:"Rainbow Apple Fizz", v:"magical"},
+  "banana+berry": {n:"Pink Monkey Smoothie", v:"yummy"},
+  "banana+egg": {n:"Banana Pancakes", v:"yummy"},
+  "banana+choco": {n:"Choco-Banana Pops", v:"yummy"},
+  "banana+cookie": {n:"Banana Cookie Stack", v:"yummy"},
+  "banana+icecream": {n:"Banana Split", v:"yummy"},
+  "banana+worm": {n:"Wiggle-Waggle Banana Slime", v:"yucky"},
+  "banana+rainbow": {n:"Rainbow Banana Dream", v:"magical"},
+  "berry+egg": {n:"Strawberry Custard Cup", v:"yummy"},
+  "berry+choco": {n:"Strawberry-Choco Cake", v:"yummy"},
+  "berry+cookie": {n:"Strawberry Cookie Crumble", v:"yummy"},
+  "berry+icecream": {n:"Strawberry Sundae", v:"yummy"},
+  "berry+worm": {n:"Wormy Berry Sludge", v:"yucky"},
+  "berry+rainbow": {n:"Rainbow Berry Sparkle", v:"magical"},
+  "choco+egg": {n:"Chocolate Birthday Cake", v:"yummy"},
+  "cookie+egg": {n:"Beepo Burger", v:"yummy"},
+  "egg+icecream": {n:"Frozen Custard Swirl", v:"yummy"},
+  "egg+worm": {n:"Slimy Worm Scramble", v:"yucky"},
+  "egg+rainbow": {n:"Rainbow Cloud Omelette", v:"magical"},
+  "choco+cookie": {n:"Double-Choc Donut", v:"yummy"},
+  "choco+icecream": {n:"Choco Swirl Cone", v:"yummy"},
+  "choco+worm": {n:"Choco-Dipped Wigglers", v:"yucky"},
+  "choco+rainbow": {n:"Magic Choco Rainbow Swirl", v:"magical"},
+  "cookie+icecream": {n:"Ice-Cream Sandwich", v:"yummy"},
+  "cookie+worm": {n:"Wiggly Worm Burger", v:"yucky"},
+  "cookie+rainbow": {n:"Rainbow Sprinkle Cookie", v:"magical"},
+  "icecream+worm": {n:"Wormy Ice Scream", v:"yucky"},
+  "icecream+rainbow": {n:"Rainbow Sparkle Sundae", v:"magical"},
+  "rainbow+worm": {n:"Sparkly Rainbow Worm Goo", v:"yucky"},
+  "apple+banana+berry": {n:"Tutti-Frutti Salad", v:"yummy"},
+  "apple+banana+egg": {n:"Apple-Banana-Egg Yum-Bowl", v:"yummy"},
+  "apple+banana+choco": {n:"Apple-Banana-Chocolate Medley", v:"yummy"},
+  "apple+banana+cookie": {n:"Triple Treat: Apple, Banana & Cookie", v:"yummy"},
+  "apple+banana+icecream": {n:"Apple-Banana-Ice Cream Mash-Up", v:"yummy"},
+  "apple+banana+worm": {n:"Apple & Banana Worm Swamp Stew", v:"yucky"},
+  "apple+banana+rainbow": {n:"Magical Apple & Banana Shimmer", v:"magical"},
+  "apple+berry+egg": {n:"Apple-Strawberry-Egg Medley", v:"yummy"},
+  "apple+berry+choco": {n:"Triple Treat: Apple, Strawberry & Chocolate", v:"yummy"},
+  "apple+berry+cookie": {n:"Apple-Strawberry-Cookie Mash-Up", v:"yummy"},
+  "apple+berry+icecream": {n:"Chef's Apple-Strawberry-Ice Cream Surprise", v:"yummy"},
+  "apple+berry+worm": {n:"Squirmy Apple & Strawberry Mush", v:"yucky"},
+  "apple+berry+rainbow": {n:"Apple & Strawberry Rainbow Delight", v:"magical"},
+  "apple+choco+egg": {n:"Apple-Egg-Chocolate Mash-Up", v:"yummy"},
+  "apple+cookie+egg": {n:"Chef's Apple-Egg-Cookie Surprise", v:"yummy"},
+  "apple+egg+icecream": {n:"Apple-Egg-Ice Cream Yum-Bowl", v:"yummy"},
+  "apple+egg+worm": {n:"Wiggly Apple & Egg Sludge", v:"yucky"},
+  "apple+egg+rainbow": {n:"Enchanted Apple & Egg Twinkle Treat", v:"magical"},
+  "apple+choco+cookie": {n:"Apple-Chocolate-Cookie Yum-Bowl", v:"yummy"},
+  "apple+choco+icecream": {n:"Apple-Chocolate-Ice Cream Medley", v:"yummy"},
+  "apple+choco+worm": {n:"Wormy Apple & Chocolate Surprise", v:"yucky"},
+  "apple+choco+rainbow": {n:"Rainbow Apple & Chocolate Sparkle Dream", v:"magical"},
+  "apple+cookie+icecream": {n:"Apple Pie a la Mode Deluxe", v:"yummy"},
+  "apple+cookie+worm": {n:"Slimy Apple & Cookie Wriggle-Goo", v:"yucky"},
+  "apple+cookie+rainbow": {n:"Magical Apple & Cookie Shimmer", v:"magical"},
+  "apple+icecream+worm": {n:"Apple & Ice Cream Worm Swamp Stew", v:"yucky"},
+  "apple+icecream+rainbow": {n:"Apple & Ice Cream Rainbow Delight", v:"magical"},
+  "apple+rainbow+worm": {n:"Wiggly Apple Sludge", v:"yucky"},
+  "banana+berry+egg": {n:"Triple Treat: Banana, Strawberry & Egg", v:"yummy"},
+  "banana+berry+choco": {n:"Banana-Strawberry-Chocolate Mash-Up", v:"yummy"},
+  "banana+berry+cookie": {n:"Chef's Banana-Strawberry-Cookie Surprise", v:"yummy"},
+  "banana+berry+icecream": {n:"Double-Berry Banana Split", v:"yummy"},
+  "banana+berry+worm": {n:"Wiggly Banana & Strawberry Sludge", v:"yucky"},
+  "banana+berry+rainbow": {n:"Enchanted Banana & Strawberry Twinkle Treat", v:"magical"},
+  "banana+choco+egg": {n:"Choco-Banana Birthday Cake", v:"yummy"},
+  "banana+cookie+egg": {n:"Banana-Egg-Cookie Yum-Bowl", v:"yummy"},
+  "banana+egg+icecream": {n:"Banana-Egg-Ice Cream Medley", v:"yummy"},
+  "banana+egg+worm": {n:"Wormy Banana & Egg Surprise", v:"yucky"},
+  "banana+egg+rainbow": {n:"Rainbow Banana & Egg Sparkle Dream", v:"magical"},
+  "banana+choco+cookie": {n:"Banana-Chocolate-Cookie Medley", v:"yummy"},
+  "banana+choco+icecream": {n:"Choco-Banana Split Supreme", v:"yummy"},
+  "banana+choco+worm": {n:"Slimy Banana & Chocolate Wriggle-Goo", v:"yucky"},
+  "banana+choco+rainbow": {n:"Magical Banana & Chocolate Shimmer", v:"magical"},
+  "banana+cookie+icecream": {n:"Banana Cookie Sundae", v:"yummy"},
+  "banana+cookie+worm": {n:"Banana & Cookie Worm Swamp Stew", v:"yucky"},
+  "banana+cookie+rainbow": {n:"Banana & Cookie Rainbow Delight", v:"magical"},
+  "banana+icecream+worm": {n:"Squirmy Banana & Ice Cream Mush", v:"yucky"},
+  "banana+icecream+rainbow": {n:"Enchanted Banana & Ice Cream Twinkle Treat", v:"magical"},
+  "banana+rainbow+worm": {n:"Wormy Banana Surprise", v:"yucky"},
+  "berry+choco+egg": {n:"Strawberry-Egg-Chocolate Yum-Bowl", v:"yummy"},
+  "berry+cookie+egg": {n:"Strawberry-Egg-Cookie Medley", v:"yummy"},
+  "berry+egg+icecream": {n:"Triple Treat: Strawberry, Egg & Ice Cream", v:"yummy"},
+  "berry+egg+worm": {n:"Slimy Strawberry & Egg Wriggle-Goo", v:"yucky"},
+  "berry+egg+rainbow": {n:"Magical Strawberry & Egg Shimmer", v:"magical"},
+  "berry+choco+cookie": {n:"Triple Treat: Strawberry, Chocolate & Cookie", v:"yummy"},
+  "berry+choco+icecream": {n:"Strawberry-Choco Sundae", v:"yummy"},
+  "berry+choco+worm": {n:"Strawberry & Chocolate Worm Swamp Stew", v:"yucky"},
+  "berry+choco+rainbow": {n:"Strawberry & Chocolate Rainbow Delight", v:"magical"},
+  "berry+cookie+icecream": {n:"Strawberry Shortcake Sundae", v:"yummy"},
+  "berry+cookie+worm": {n:"Squirmy Strawberry & Cookie Mush", v:"yucky"},
+  "berry+cookie+rainbow": {n:"Enchanted Strawberry & Cookie Twinkle Treat", v:"magical"},
+  "berry+icecream+worm": {n:"Wiggly Strawberry & Ice Cream Sludge", v:"yucky"},
+  "berry+icecream+rainbow": {n:"Rainbow Strawberry & Ice Cream Sparkle Dream", v:"magical"},
+  "berry+rainbow+worm": {n:"Slimy Strawberry Wriggle-Goo", v:"yucky"},
+  "choco+cookie+egg": {n:"Chocolate-Chip Cookie Cake", v:"yummy"},
+  "choco+egg+icecream": {n:"Chef's Egg-Chocolate-Ice Cream Surprise", v:"yummy"},
+  "choco+egg+worm": {n:"Squirmy Egg & Chocolate Mush", v:"yucky"},
+  "choco+egg+rainbow": {n:"Enchanted Egg & Chocolate Twinkle Treat", v:"magical"},
+  "cookie+egg+icecream": {n:"Egg-Cookie-Ice Cream Yum-Bowl", v:"yummy"},
+  "cookie+egg+worm": {n:"Wiggly Egg & Cookie Sludge", v:"yucky"},
+  "cookie+egg+rainbow": {n:"Rainbow Egg & Cookie Sparkle Dream", v:"magical"},
+  "egg+icecream+worm": {n:"Wormy Egg & Ice Cream Surprise", v:"yucky"},
+  "egg+icecream+rainbow": {n:"Magical Egg & Ice Cream Shimmer", v:"magical"},
+  "egg+rainbow+worm": {n:"Egg Worm Swamp Stew", v:"yucky"},
+  "choco+cookie+icecream": {n:"Cookies-and-Cream Sundae", v:"yummy"},
+  "choco+cookie+worm": {n:"Wormy Chocolate & Cookie Surprise", v:"yucky"},
+  "choco+cookie+rainbow": {n:"Magical Chocolate & Cookie Shimmer", v:"magical"},
+  "choco+icecream+worm": {n:"Slimy Chocolate & Ice Cream Wriggle-Goo", v:"yucky"},
+  "choco+icecream+rainbow": {n:"Chocolate & Ice Cream Rainbow Delight", v:"magical"},
+  "choco+rainbow+worm": {n:"Squirmy Chocolate Mush", v:"yucky"},
+  "cookie+icecream+worm": {n:"Cookie & Ice Cream Worm Swamp Stew", v:"yucky"},
+  "cookie+icecream+rainbow": {n:"Enchanted Cookie & Ice Cream Twinkle Treat", v:"magical"},
+  "cookie+rainbow+worm": {n:"Wiggly Cookie Sludge", v:"yucky"},
+  "icecream+rainbow+worm": {n:"Wormy Ice Cream Surprise", v:"yucky"}
+};
+</script>
+<script>
+/* =====================================================================
+   Beepo's Kitchen — game.js
+   Milestone 1 / Batch 1: core interaction rework (PLAN.md §4, §8)
+   - overlapping flyers (no shelf lockout)          B#0
+   - 9 ingredients, MAX 3, 129-dish catalog         (dishes.js)
+   - tap-to-start title + Web Audio unlock          B#2
+   - tap-to-feed eating with idle auto-bite         B#1
+   - counting stir with progress ring               B#3
+   - ingredient boing + per-ingredient sound motif  B#4
+   ===================================================================== */
+
+/* ================= ingredients (9) ================= */
+const INGREDIENTS = [
+  {id:'apple',   svg:'ing-apple',   n:'Apple',       c:'#E84B4B'},
+  {id:'banana',  svg:'ing-banana',  n:'Banana',      c:'#F7D64A'},
+  {id:'berry',   svg:'ing-berry',   n:'Strawberry',  c:'#F04E6E'},
+  {id:'egg',     svg:'ing-egg',     n:'Egg',         c:'#FFF3D0'},
+  {id:'choco',   svg:'ing-choco',   n:'Chocolate',   c:'#8A5A3B'},
+  {id:'cookie',  svg:'ing-cookie',  n:'Cookie',      c:'#B57A3E'},
+  {id:'icecream',svg:'ing-icecream',n:'Ice Cream',   c:'#FBEFF2'},
+  {id:'worm',    svg:'ing-worm',    n:'Wiggly Worm', c:'#9CCF52', tag:'yucky'},
+  {id:'rainbow', svg:'ing-rainbow', n:'Rainbow',     c:'#B78BE8', tag:'magic'},
+];
+const ING_BY_ID = Object.fromEntries(INGREDIENTS.map(i=>[i.id,i]));
+
+const MAX_ITEMS = 3, BITES = 5;
+
+/* Bespoke SVG looks for combos that have them (key = sorted ids joined by +).
+   Every other combo gets a generated bowl tinted from its ingredients.
+   All of this is placeholder art until the reskin (PLAN.md §3.6). */
+const DISH_LOOKS = {
+  'banana+icecream': [['dish-split']],
+  'berry+icecream':  [['dish-sundae']],
+  'choco+icecream':  [['dish-cone','#8A5A3B']],
+  'cookie+icecream': [['dish-icesand']],
+  'apple+cookie':    [['dish-pie']],
+  'berry+choco':     [['dish-cake']],
+  'banana+choco':    [['dish-pops']],
+  'choco+cookie':    [['dish-donut']],
+  'banana+egg':      [['dish-pancakes']],
+  'apple+banana':    [['dish-smoothie','#FFD94A']],
+  'banana+berry':    [['dish-smoothie','#F8A8C8']],
+  'apple+berry':     [['dish-bowl','#F2545B'],['top-cream']],
+  'choco+egg':       [['dish-bday']],
+  'cookie+egg':      [['dish-burger']],
+  'cookie+worm':     [['dish-burger'],['top-worm']],
+  'banana+worm':     [['dish-taco']],
+  'apple+banana+berry': [['dish-bowl','#FFF1C9'],['top-fruit']],
+  'apple':    [['dish-bowl','#F6B092']],
+  'banana':   [['dish-bowl','#FFE08A']],
+  'berry':    [['dish-jar']],
+  'egg':      [['dish-custard']],
+  'choco':    [['dish-bowl','#8A5A3B'],['top-cream']],
+  'cookie':   [['dish-cookiemush']],
+  'icecream': [['dish-bowl','#FBD9E8'],['top-cream']],
+  'worm':     [['dish-bowl','#FFE08A'],['top-noodles'],['top-worm']],
+  'rainbow':  [['dish-bowl','#B78BE8'],['top-sparkles']],
+};
+
+/* ================= sound ================= */
+let muted = false, actx;
+function unlockAudio(){ try{
+  actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+  if(actx.state==='suspended') actx.resume();
+}catch(e){} }
+function beep(fn){ if(muted) return; try{
+  unlockAudio();
+  fn(actx);
+}catch(e){} }
+function tone(a, type, f1, f2, t0, dur, vol=0.18){
+  const o=a.createOscillator(), g=a.createGain();
+  o.type=type; o.frequency.setValueAtTime(f1, a.currentTime+t0);
+  o.frequency.exponentialRampToValueAtTime(Math.max(f2,1), a.currentTime+t0+dur);
+  g.gain.setValueAtTime(vol, a.currentTime+t0);
+  g.gain.exponentialRampToValueAtTime(0.001, a.currentTime+t0+dur);
+  o.connect(g); g.connect(a.destination);
+  o.start(a.currentTime+t0); o.stop(a.currentTime+t0+dur+0.05);
+}
+const sPop    = ()=>beep(a=>tone(a,'sine',300,760,0,.16,.2));
+const sPlop   = ()=>beep(a=>tone(a,'sine',500,160,0,.2,.2));
+const sWhoosh = ()=>beep(a=>{tone(a,'triangle',220,420,0,.25,.13); tone(a,'triangle',260,480,.08,.25,.11);});
+const sDing   = ()=>beep(a=>{tone(a,'sine',880,880,0,.35,.15); tone(a,'sine',1320,1320,.03,.4,.09);});
+const sChime  = ()=>beep(a=>{[659,880,1319].forEach((f,i)=>tone(a,'sine',f,f,i*.12,.4,.12));});
+const sTada   = ()=>beep(a=>{[523,659,784,1047].forEach((f,i)=>tone(a,'triangle',f,f,i*.14,.32,.15));});
+const sPeeyew = ()=>beep(a=>{tone(a,'sawtooth',300,150,0,.4,.09); tone(a,'sawtooth',220,90,.35,.55,.09);});
+const sSparkle= ()=>beep(a=>{[1047,1319,1568,2093].forEach((f,i)=>tone(a,'sine',f,f,i*.1,.25,.11));});
+const sBurp   = ()=>beep(a=>tone(a,'square',140,70,0,.3,.09));
+const sSizzle = ()=>beep(a=>{for(let i=0;i<8;i++)tone(a,'triangle',700+Math.random()*600,300,i*.09,.1,.05);});
+const sLift   = ()=>beep(a=>{tone(a,'sine',240,900,0,1.7,.09); tone(a,'triangle',480,1800,.25,1.5,.05);});
+const sChomp  = ()=>beep(a=>{tone(a,'square',170,70,0,.09,.11); tone(a,'triangle',420,180,.01,.07,.07);});
+const sGulp   = ()=>beep(a=>tone(a,'sine',420,110,0,.28,.16));
+const sNuhuh  = ()=>beep(a=>{tone(a,'triangle',330,320,0,.15,.15); tone(a,'triangle',262,250,.2,.2,.15);});
+const sPluck  = ()=>beep(a=>tone(a,'sine',250,720,0,.18,.18));
+const sBoing  = ()=>beep(a=>{tone(a,'sine',180,420,0,.14,.16); tone(a,'sine',420,240,.14,.16,.14);});
+
+/* haptic taps where supported (B#10) — no-op on iOS Safari, works wrapped/Android */
+function buzz(p){ try{ navigator.vibrate && navigator.vibrate(p); }catch(e){} }
+
+/* Per-ingredient motifs (B#4) — PLAN.md §4 table */
+const MOTIFS = {
+  apple:    a=>{tone(a,'sine',660,660,0,.12,.16); tone(a,'sine',880,880,.13,.2,.16);},
+  banana:   a=>tone(a,'sine',700,220,0,.3,.16),
+  berry:    a=>{[900,1100,1300].forEach((f,i)=>tone(a,'sine',f,f,i*.07,.12,.13));},
+  egg:      a=>{tone(a,'sine',520,470,0,.07,.16); tone(a,'sine',300,280,.08,.08,.1);},
+  choco:    a=>tone(a,'triangle',330,290,0,.35,.15),
+  cookie:   a=>{tone(a,'square',400,380,0,.06,.11); tone(a,'square',340,320,.1,.06,.11);},
+  icecream: a=>tone(a,'sine',500,1200,0,.28,.14),
+  worm:     a=>{tone(a,'triangle',300,430,0,.15,.14); tone(a,'triangle',430,260,.16,.2,.14);},
+  rainbow:  a=>{[523,659,784,1047].forEach((f,i)=>tone(a,'sine',f,f,i*.08,.2,.12));},
+};
+
+/* Voice hook (PLAN.md §6.1/§9): VO deferred — clips drop in later as a pure
+   asset add. Callers fall back to tones whenever no clip exists. */
+const VOICE_CLIPS = {}; /* e.g. VOICE_CLIPS['ing-apple'] = new Audio('assets/vo/apple.mp3') */
+function playVoice(id){
+  const c = VOICE_CLIPS[id];
+  if(!c || muted) return false;
+  try{ c.currentTime = 0; c.play(); }catch(e){ return false; }
+  return true;
+}
+function playMotif(id){
+  if(playVoice('ing-'+id)) return;
+  beep(a=>MOTIFS[id] && MOTIFS[id](a));
+}
+
+/* ================= procedural music loop (B#7) =================
+   No audio files: a gentle ~92bpm pentatonic wander over soft triangle bass.
+   Slightly randomized each bar so it never turns into an earworm. */
+let musicOn = true, musicTimer = null, musicGain = null, musicBar = 0;
+try{ musicOn = localStorage.getItem('bk-music')!=='0'; }catch(e){}
+
+const M_SCALE = [262, 294, 330, 392, 440, 523, 587, 659]; /* C-pentatonic-ish */
+const M_BASS  = [131, 98, 110, 147];                      /* C2 G1 A1 D2-ish walk */
+const M_BEAT  = 60/92;
+
+function mNote(f, t0, dur, type='sine', vol=.05){
+  const o=actx.createOscillator(), g=actx.createGain();
+  o.type=type; o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001, actx.currentTime+t0);
+  g.gain.linearRampToValueAtTime(vol, actx.currentTime+t0+.04);
+  g.gain.exponentialRampToValueAtTime(.001, actx.currentTime+t0+dur);
+  o.connect(g); g.connect(musicGain);
+  o.start(actx.currentTime+t0); o.stop(actx.currentTime+t0+dur+.05);
+}
+function playBar(){
+  if(muted || !musicOn) return;
+  const bass=M_BASS[musicBar%4];
+  mNote(bass, 0, M_BEAT*3.6, 'triangle', .045);
+  mNote(bass*1.5, M_BEAT*2, M_BEAT*1.7, 'triangle', .028);
+  for(let i=0;i<4;i++){
+    if(Math.random()<.75)
+      mNote(pick(M_SCALE), i*M_BEAT + (Math.random()<.3 ? M_BEAT/2 : 0), M_BEAT*.9, 'sine', .05);
+  }
+  if(musicBar%2===1) mNote(pick(M_SCALE)*2, M_BEAT*3, M_BEAT*.8, 'sine', .022);
+  musicBar++;
+}
+function startMusic(){
+  if(musicTimer || !musicOn || muted) return;
+  unlockAudio();
+  if(!actx) return;
+  if(actx.state!=='running'){                 /* resume is async: retry once ready */
+    try{ actx.resume().then(()=>setTimeout(startMusic,60)); }catch(e){}
+    return;
+  }
+  if(!musicGain){ musicGain=actx.createGain(); musicGain.gain.value=.55; musicGain.connect(actx.destination); }
+  playBar();
+  musicTimer=setInterval(playBar, M_BEAT*4*1000);
+}
+function stopMusic(){ clearInterval(musicTimer); musicTimer=null; }
+document.addEventListener('visibilitychange', ()=>{ document.hidden ? stopMusic() : startMusic(); });
+
+/* ================= state & elements ================= */
+let potItems = [], cooking = false;
+const $ = id => document.getElementById(id);
+const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
+      potWrap=$('potWrap'), potSpoon=$('potSpoon'), cookFlame=$('cookFlame'),
+      beepo=$('beepo'), bubbleTalk=$('bubbleTalk'),
+      overlay=$('overlay'), dishName=$('dishName'), reaction=$('reaction'),
+      dishBig=$('dishBig'), dishIngs=$('dishIngs'), plateWrap=$('plateWrap');
+
+function iconSVG(id, size, color){
+  return `<svg class="icon" viewBox="0 0 100 100" width="${size}" height="${size}"${color?` style="color:${color}"`:''}><use href="#${id}"/></svg>`;
+}
+
+/* build shelf */
+INGREDIENTS.forEach(item=>{
+  const b=document.createElement('button');
+  b.className='ing';
+  b.innerHTML=iconSVG(item.svg,80);           /* icon-only: the food IS the label */
+  b.setAttribute('aria-label', item.n);
+  /* pointerdown, not click: fires instantly for EVERY finger — iOS suppresses
+     synthesized clicks during multi-touch, which killed overlapping flyers */
+  b.addEventListener('pointerdown',()=>addIngredient(item,b));
+  shelf.appendChild(b);
+});
+
+/* mute persists across reloads (C#7) */
+try{ muted = localStorage.getItem('bk-muted')==='1'; }catch(e){}
+const sndIcon = ()=>{ $('muteBtn').innerHTML = iconSVG(muted?'ui-snd-off':'ui-snd',24); };
+sndIcon();
+$('muteBtn').addEventListener('click',()=>{
+  muted=!muted; sndIcon();
+  try{ localStorage.setItem('bk-muted', muted?'1':'0'); }catch(e){}
+  if(muted) stopMusic(); else startMusic();
+});
+
+/* music toggle (persisted) */
+$('musicBtn').classList.toggle('off', !musicOn);
+$('musicBtn').addEventListener('click',()=>{
+  musicOn=!musicOn;
+  $('musicBtn').classList.toggle('off', !musicOn);
+  try{ localStorage.setItem('bk-music', musicOn?'1':'0'); }catch(e){}
+  if(musicOn) startMusic(); else stopMusic();
+});
+
+/* ================= guide hand + idle attract (B#5, C#1-2, C#6) =================
+   One reusable pointing hand. Every ~8s of no input it points at whatever the
+   next tap should be; any interaction hides it and restarts the clock. */
+const guideHand = document.createElement('div');
+guideHand.id='guideHand'; guideHand.innerHTML=iconSVG('ui-hand',52);
+document.body.appendChild(guideHand);
+function pointAt(el, dx=0, dy=0){
+  const r=el.getBoundingClientRect();
+  if(!r.width) return;
+  guideHand.style.left=(r.left+r.width/2-27+dx)+'px';
+  guideHand.style.top=(r.top+r.height/2+2+dy)+'px';
+  guideHand.classList.add('show');
+}
+function hideHand(){ guideHand.classList.remove('show'); }
+
+let idleTimer, attractN=0;
+function armIdle(ms=8000){ clearTimeout(idleTimer); idleTimer=setTimeout(attract, ms); }
+function currentTarget(){
+  if(!$('startOverlay').classList.contains('gone')) return [$('startBtn'),0,14];
+  if(overlay.classList.contains('show')){
+    if(!lifted) return [cloche,0,40];
+    if(feeding) return null;                               /* eating runs itself */
+    if(overlay.classList.contains('revealed')) return [$('againBtn'),0,10];
+    return null;
+  }
+  if(cooking) return null;
+  if(potItems.length) return null;                         /* auto-cook is coming */
+  const kids=shelf.children;
+  return kids.length ? [kids[Math.floor(Math.random()*kids.length)],0,12] : null;
+}
+function attract(){
+  attractN++;
+  const t=currentTarget();
+  if(t) pointAt(t[0],t[1],t[2]);
+  /* Beepo joins in on the main stage */
+  if($('startOverlay').classList.contains('gone') && !overlay.classList.contains('show') && !cooking){
+    beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
+    if(!potItems.length) say(pick(['Feed the pot!','Pick a goodie!','Yummy time!']));
+    else say('Cook it!');
+    setExp(beepo, attractN%2 ? 'yum' : 'wow', 1400);
+  }
+  armIdle(8000);
+}
+document.addEventListener('pointerdown', ()=>{ hideHand(); armIdle(); }, {capture:true});
+armIdle();
+
+/* toddler-proofing: no pinch zoom, no long-press menus (iOS Safari) */
+document.addEventListener('gesturestart', e=>e.preventDefault());
+document.addEventListener('contextmenu', e=>e.preventDefault());
+
+/* ================= Beepo expressions ================= */
+const revealBeepo = $('revealBeepo');
+revealBeepo.appendChild(document.querySelector('#beepo svg').cloneNode(true));
+let expTimer;
+function setExp(el, exp, ms){
+  el.classList.remove('exp-yum','exp-yuck','exp-wow','exp-eat','exp-refuse','fast');
+  if(exp){ void el.offsetWidth; el.classList.add('exp-'+exp); }
+  if(el===beepo){
+    clearTimeout(expTimer);
+    if(ms) expTimer=setTimeout(()=>el.classList.remove('exp-'+exp), ms);
+  }
+}
+
+/* ================= talk ================= */
+let talkTimer;
+function say(txt, ms=2200){
+  bubbleTalk.textContent=txt; bubbleTalk.classList.add('show');
+  clearTimeout(talkTimer);
+  talkTimer=setTimeout(()=>bubbleTalk.classList.remove('show'), ms);
+}
+const ADD_LINES=['Ooooh!','Yum yum!','Into the pot!','More more!','Bloop!','Tasty!','Plip plop!','Good pick!','Hehe!','So fresh!'];
+const YUCKY_LINES=['Pee-yew!!','Wiggly!!','Eww hehe!','It tickles!','Squirmy!!','My nose!!'];
+const FULL_LINES=['Full pot!','Time to stir!','Stir it!','Ready ready!'];
+const EAT_START=['Nom nom nom…','Feed me!','Bite time!','Open wide!'];
+const VOR_START=['CHOMP CHOMP!!','GIMME GIMME!!','SO HUNGRY!!'];
+const EAT_END=['All gone!','So yummy!','More please?','Happy tummy!'];
+const VOR_END=['BUUURP!','WOWIE!','YUM-TASTIC!'];
+/* dish-specific one-liners, first keyword hit wins (B#9) */
+const DISH_LINES=[
+  ['Burger','BURGER TIME!!'],['Rainbow','So sparkly!'],['Worm','It wiggles!!'],['Cake','Party time!'],
+  ['Smoothie','Slurrrp!'],['Sundae','Cherry on top!'],['Pancake','Flippy floppy!'],
+  ['Cookie','Crunch crunch!'],['Choco','Mmm chocolate!'],['Jam','Sticky sweet!'],
+  ['Soup','Slurpy soup!'],['Taco','Crunchy crunch!'],['Pie','Sweetie pie!'],
+  ['Egg','Wibbly wobbly!'],['Banana','Go bananas!'],['Berry','Berry nice!'],
+];
+
+/* ================= start / title overlay (B#2) ================= */
+$('startBeepo').appendChild(document.querySelector('#beepo svg').cloneNode(true));
+$('startOverlay').addEventListener('click',()=>{
+  unlockAudio();           /* the one guaranteed user gesture — iOS audio unlock */
+  sChime();
+  setTimeout(startMusic, 900);   /* music fades in after the chime */
+  $('startOverlay').classList.add('gone');
+  beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
+  setTimeout(()=>say('Feed the pot!'), 700);
+  armIdle(1800);   /* first-run onboarding: hand points at the shelf right away */
+},{once:true});
+
+/* ================= add ingredient (B#0: overlapping flyers) ================= */
+function addIngredient(item, btn){
+  if(cooking) return;
+  /* every tap responds instantly: boing + motif, no shelf lockout */
+  btn.classList.remove('boing'); void btn.offsetWidth; btn.classList.add('boing');
+  playMotif(item.id); buzz(8);
+  const from=btn.getBoundingClientRect(), to=potWrap.getBoundingClientRect();
+  const fl=document.createElement('div');
+  fl.className='flyer'; fl.innerHTML=iconSVG(item.svg,64);
+  fl.style.left=(from.left+from.width/2-32)+'px';
+  fl.style.top=(from.top+4)+'px';
+  document.body.appendChild(fl);
+  const dx=(to.left+to.width/2-32)-(from.left+from.width/2-32);
+  const dy=(to.top+14)-(from.top+4);
+  fl.animate([
+    {transform:'translate(0,0) scale(1) rotate(0deg)'},
+    {transform:`translate(${dx*0.5}px, ${dy-120}px) scale(1.1) rotate(160deg)`, offset:.55},
+    {transform:`translate(${dx}px, ${dy}px) scale(.55) rotate(330deg)`}
+  ],{duration:450, easing:'cubic-bezier(.35,.5,.5,1)'}).onfinish=()=>{
+    fl.remove();
+    if(cooking) return;                       /* landed mid-cook: quietly vanish */
+    if(potItems.length>=MAX_ITEMS) bounceOff(item, to);
+    else landInPot(item);
+  };
+}
+
+/* pot-full is an invitation, never a "no" (C#4): the extra item bounces off
+   the rim, the pot wiggles happily, the stir button asks for attention */
+function bounceOff(item, to){
+  sBoing(); buzz([20,40,20]);
+  potWrap.classList.remove('happy'); void potWrap.offsetWidth;
+  potWrap.classList.add('happy');
+  say(pick(FULL_LINES), 1400);
+  const b=document.createElement('div');
+  b.className='flyer'; b.innerHTML=iconSVG(item.svg,52);
+  b.style.left=(to.left+to.width/2-26)+'px';
+  b.style.top=(to.top-6)+'px';
+  document.body.appendChild(b);
+  /* must read as REJECTED: squash on the rim, then arc clearly AWAY from the
+     pot and fall past the counter — never sink into the soup */
+  const dx=(Math.random()>.5?1:-1)*(110+Math.random()*70);
+  b.animate([
+    {transform:'translate(0,-4px) scale(.9,.45) rotate(0deg)', opacity:1},
+    {transform:`translate(${dx*.4}px,-84px) scale(.72) rotate(130deg)`, opacity:1, offset:.4},
+    {transform:`translate(${dx}px,150px) scale(.6) rotate(320deg)`, opacity:1, offset:.9},
+    {transform:`translate(${dx*1.08}px,200px) scale(.55) rotate(360deg)`, opacity:0}
+  ],{duration:680, easing:'cubic-bezier(.3,.4,.6,1)'}).onfinish=()=>b.remove();
+}
+
+let uidCounter = 0;
+const SLOT_X = [0, 49, 99], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 56;  /* tuned to the 204px pot */
+function landInPot(item){
+  const used = new Set(potItems.map(e=>e.slot));
+  const free = [0,1,2].filter(s=>!used.has(s));
+  const slot = free.length ? pick(free) : 0;
+  const entry = {...item, uid:++uidCounter, slot};
+  potItems.push(entry);
+  sPlop();
+  const f=document.createElement('div');
+  f.className='floatItem'; f.innerHTML=iconSVG(item.svg,FLOAT_SIZE);
+  f.style.left=(SLOT_X[slot] + (Math.random()*4-2))+'px';
+  f.style.top=(SLOT_Y[slot] + (Math.random()*4-2))+'px';
+  f.style.animationDelay=(Math.random()*2)+'s';
+  f.dataset.uid = entry.uid;
+  soupItems.appendChild(f);
+  f.classList.add('land'); buzz(12);
+  soupEl.style.fill = blendColors(potItems.map(i=>i.c));
+  potWrap.classList.remove('stirring'); void potWrap.offsetWidth;
+  potWrap.classList.add('stirring');
+  beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
+  if(item.tag==='yucky'){ say(pick(YUCKY_LINES)); sPeeyew(); setExp(beepo,'yuck',1700); }
+  else if(item.tag==='magic'){ say('Oooh magic!'); sSparkle(); setExp(beepo,'wow',1700); }
+  else {
+    /* early word learning: sometimes name the ingredient (B#4) */
+    say(Math.random()<0.4 ? item.n+'!' : pick(ADD_LINES));
+    setExp(beepo,'yum',1300);
+  }
+  cookFlame.classList.add('lit');    /* flame on = it's cooking, no tap needed */
+  potSpoon.classList.add('shown');
+  potWrap.classList.add('ready');
+  /* AUTO-COOK: fires by itself — soon when full, patient otherwise.
+     Every new ingredient resets the timer; a pot tap just cooks sooner. */
+  clearTimeout(cookTimer);
+  cookTimer=setTimeout(cookNow, potItems.length>=MAX_ITEMS ? 1300 : 4200);
+}
+let cookTimer;
+
+function resetStir(){
+  clearTimeout(cookTimer);
+  potWrap.classList.remove('ready');
+  potSpoon.classList.remove('shown','swirl');
+  cookFlame.classList.remove('lit','flare');
+}
+
+/* ================= one-tap cooking (B#3, playtest v3) ================= */
+/* the pot IS the cook control: tap it anywhere once ingredients are in */
+potWrap.addEventListener('pointerdown', ()=>{
+  if(cooking) return;
+  if(!potItems.length){                 /* empty pot: a friendly wobble, never a "no" */
+    potWrap.classList.remove('wobble'); void potWrap.offsetWidth;
+    potWrap.classList.add('wobble');
+    sPluck();
+    say(pick(['Feed the pot!','Pick a goodie!']));
+    return;
+  }
+  cookNow();
+});
+
+function cookNow(){
+  if(cooking) return;
+  clearTimeout(cookTimer);
+  sWhoosh(); buzz(20);
+  say(pick(['Cook cook!','Here we go!','Stir-a-whirl!']), 1000);
+  potSpoon.classList.remove('swirl'); void potSpoon.offsetWidth;
+  potSpoon.classList.add('swirl');
+  setTimeout(()=>potSpoon.classList.remove('swirl'), 650);
+  sparkleAt(potWrap, 3);
+  potWrap.classList.remove('stirring'); void potWrap.offsetWidth;
+  potWrap.classList.add('stirring');
+  soupItems.classList.remove('swirl'); void soupItems.offsetWidth;
+  soupItems.classList.add('swirl');
+  cook();
+}
+
+function puffSteam(n){
+  for(let i=0;i<n;i++){
+    const st=document.createElement('div');
+    st.className='steam';
+    st.style.left=(16+Math.random()*110)+'px';
+    st.style.animationDuration=(1.8+Math.random()*.8)+'s';
+    st.style.animationDelay=(i*.2)+'s';
+    potWrap.appendChild(st);
+    setTimeout(()=>st.remove(), 3200);
+  }
+}
+
+/* magic-happens-here burst */
+function sparkleAt(el, n=3){
+  const r=el.getBoundingClientRect();
+  for(let i=0;i<n;i++){
+    const s=document.createElement('div');
+    s.className='flyer';
+    s.innerHTML=iconSVG('top-sparkles', 34+Math.random()*14);
+    s.style.left=(r.left+r.width/2-24+(Math.random()*56-28))+'px';
+    s.style.top=(r.top+r.height/2-24+(Math.random()*40-20))+'px';
+    document.body.appendChild(s);
+    s.animate([
+      {transform:'scale(.2)', opacity:0},
+      {transform:'scale(1.15) rotate(15deg)', opacity:1, offset:.35},
+      {transform:`translateY(-${26+Math.random()*22}px) scale(.5) rotate(40deg)`, opacity:0}
+    ],{duration:550+Math.random()*250, easing:'ease-out'}).onfinish=()=>s.remove();
+  }
+}
+
+function cook(){
+  cooking=true;
+  clearTimeout(cookTimer);
+  hideHand();
+  potWrap.classList.remove('ready');
+  cookFlame.classList.add('flare');   /* the flame does the cooking */
+  sparkleAt(potWrap, 6);
+  puffSteam(3);
+  potSpoon.classList.remove('shown');
+  sSizzle(); say('It’s cooking!!',1800);
+  setTimeout(()=>{ sDing(); reveal(); }, 2000);
+}
+
+/* ================= find the dish (129-dish catalog) ================= */
+function findDish(){
+  const ids=[...new Set(potItems.map(i=>i.id))].sort();
+  const key=ids.join('+');
+  const entry=DISH_CATALOG[key] || {n:'Mystery Mush', v:'yummy'};
+  let parts=DISH_LOOKS[key], svg=null;
+  if(parts){ parts=parts.map(p=>[...p]); }
+  else svg=funBowlSVG(ids, entry.v);   /* B#13: fallback bowls are characters, not liquid */
+  return {name:entry.n, verdict:entry.v, parts, svg, size:ids.length};
+}
+
+/* B#13: generic combos get a LIVING bowl — the actual ingredients bob
+   half-dipped in the tinted soup, and the soup itself has a smiley face */
+function funBowlSVG(ids, verdict){
+  const blend=blendColors(ids.map(id=>ING_BY_ID[id].c));
+  const spots = ids.length===1 ? [[50,37,.36]]
+              : ids.length===2 ? [[36,39,.32],[64,40,.32]]
+              : [[29,41,.28],[50,36,.31],[71,41,.28]];
+  let s=`<use href="#dish-bowl" style="color:${blend}"/>`;
+  ids.forEach((id,i)=>{
+    const sp=spots[i]||spots[0];
+    s+=`<g transform="translate(${(sp[0]-50*sp[2]).toFixed(1)} ${(sp[1]-50*sp[2]).toFixed(1)}) scale(${sp[2]})"><use href="#${ING_BY_ID[id].svg}"/></g>`;
+  });
+  /* front lip of soup drawn OVER the ingredient bases = half-dipped look */
+  s+=`<path d="M13 48 A37 10 0 0 0 87 48 Z" fill="${blend}" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>`;
+  s+=`<circle cx="31" cy="52" r="2.4" fill="#fff" opacity=".5"/><circle cx="66" cy="53" r="2" fill="#fff" opacity=".45"/>`;
+  s+=`<use href="#g-face" transform="translate(50 50) scale(.8)"/>`;
+  if(verdict==='yucky') s+=`<use href="#top-stink"/>`;
+  if(verdict==='magical') s+=`<use href="#top-sparkles"/>`;
+  return s;
+}
+
+/* ================= reveal (under a cover!) ================= */
+const cloche=$('cloche'), hint=$('hint');
+let lifted=false, autoLift=null, anticTimer=null, pendingResult=null;
+
+function reveal(){
+  const dish = findDish();
+  const tier = dish.verdict==='yucky' ? 'refuse'
+             : (dish.verdict==='magical' || dish.size>=2) ? 'vor' : 'ok';
+  pendingResult = {verdict:dish.verdict, tier, name:dish.name};
+
+  dishName.textContent = dish.name;
+  dishBig.innerHTML = '<svg viewBox="0 0 100 100">'+
+    (dish.svg || dish.parts.map(p=>`<use href="#${p[0]}"${p[1]?` style="color:${p[1]}"`:''}/>`).join(''))+
+    '</svg>';
+  dishIngs.innerHTML = potItems.map(i=>iconSVG(i.svg,34)).join('');
+
+  let face, word, color;
+  if(dish.verdict==='yucky'){ face='ui-face-yuck'; word='PEE-YEW!! WIGGLY!'; color='#C6F08C'; }
+  else if(dish.verdict==='magical'){ face='ui-face-wow'; word='MAGICAL! WOW!'; color='#E7D6FF'; }
+  else { face='ui-face-yum'; word='YUMMY IN MY TUMMY!'; color='#FFE9A8'; }
+  reaction.innerHTML = iconSVG(face,22)+'<span>'+word+'</span>';
+  reaction.style.background = color;
+
+  /* reset to covered state */
+  lifted=false;
+  plateWrap.querySelectorAll('.stinkLine').forEach(x=>x.remove());
+  overlay.classList.remove('revealing','revealed');
+  cloche.classList.remove('lift');
+  hint.classList.remove('gone');
+  setExp(revealBeepo, null);
+  hideHand();
+  overlay.classList.add('show');
+  clearTimeout(autoLift); clearTimeout(anticTimer);
+  /* anticipation beat (B#8): lean in with an "Ooh?" just before the auto-lift */
+  anticTimer = setTimeout(()=>{
+    if(lifted) return;
+    revealBeepo.classList.remove('lean'); void revealBeepo.offsetWidth;
+    revealBeepo.classList.add('lean');
+    sayR('Ooh?');
+    beep(a=>tone(a,'sine',280,760,0,.6,.1));
+  }, 2800);
+  autoLift = setTimeout(liftCover, 4000);
+}
+
+function liftCover(){
+  if(lifted) return;
+  lifted = true;
+  clearTimeout(autoLift); clearTimeout(anticTimer);
+  revealBeepo.classList.remove('lean');
+  rBubble.classList.remove('show');
+  hideHand();
+  hint.classList.add('gone');
+  sLift(); buzz(20);
+  overlay.classList.add('revealing');
+  cloche.classList.add('lift');
+  setTimeout(finishReveal, 2100);
+}
+cloche.addEventListener('pointerdown', liftCover);
+
+function finishReveal(){
+  const {verdict, tier, name} = pendingResult || {verdict:'yummy', tier:'ok', name:''};
+  overlay.classList.add('revealed');
+  /* dish-specific one-liner (B#9) */
+  const dl = DISH_LINES.find(d=>name && name.includes(d[0]));
+  if(dl) sayR(dl[1]);
+  if(verdict==='yucky'){
+    setExp(revealBeepo,'yuck');
+    sPeeyew();
+    [24,80,136,192,248].forEach((x,i)=>{
+      const s=document.createElement('div');
+      s.className='stinkLine';
+      s.innerHTML='<svg width="30" height="42" viewBox="-9 -33 22 38"><use href="#g-stink"/></svg>';
+      s.style.left=x+'px'; s.style.top='20px'; s.style.animationDelay=(i*.6)+'s';
+      plateWrap.appendChild(s);
+    });
+    schedule(()=>refuseDish(), 1700);
+    return;
+  }
+  if(verdict==='magical'){
+    setExp(revealBeepo,'wow');
+    sSparkle(); setTimeout(sTada,500);
+    confettiBurst(40); buzz([30,50,30]);
+    overlay.classList.remove('shake'); void overlay.offsetWidth;
+    overlay.classList.add('shake');
+  } else {
+    setExp(revealBeepo,'yum');
+    sTada();
+    confettiBurst(20); buzz(25);
+  }
+  schedule(()=>beginFeeding(tier), 1300);
+}
+
+/* ================= tap-to-feed (B#1) ================= */
+const rBubble = $('rBubble');
+let eatTimers = [], feeding=false, bitesDone=0, idleFeedTimer;
+function schedule(fn, ms){ eatTimers.push(setTimeout(fn, ms)); }
+function clearEating(){ eatTimers.forEach(clearTimeout); eatTimers=[]; clearTimeout(idleFeedTimer); }
+function sayR(txt){ rBubble.textContent=txt; rBubble.classList.add('show'); }
+
+/* gross-out comedy (B#6): refuse → dramatic faint → giggly recovery.
+   Zero fail — it's the best silly outcome. */
+function refuseDish(){
+  sayR('NO WAY!!');
+  setExp(revealBeepo,'refuse');
+  sNuhuh(); buzz([40,60,40]);
+  plateWrap.classList.add('pushed');
+  spawnFlies(3);
+  schedule(sNuhuh, 900);
+  schedule(()=>{                                   /* dramatic faint */
+    revealBeepo.classList.add('faint');
+    sayR('Bleh…!');
+    beep(a=>tone(a,'triangle',900,180,0,.7,.12));  /* slide-whistle down */
+  }, 2000);
+  schedule(()=>{                                   /* pop back up, all giggles */
+    revealBeepo.classList.remove('faint');
+    setExp(revealBeepo,'yum');                     /* joyBounce ×3 */
+    sBoing();
+    sayR('Hihi! Again?');
+    $('againBtn').classList.add('shown');   /* only after the whole gag */
+  }, 3500);
+  schedule(()=>{ if(overlay.classList.contains('show')) $('againBtn').click(); }, 8200);
+}
+function spawnFlies(n){
+  for(let i=0;i<n;i++){
+    const f=document.createElement('div');
+    f.className='fly'; f.innerHTML=iconSVG('ui-fly',26);
+    f.style.left=(112+i*14)+'px';
+    f.style.top=(92+i*16)+'px';
+    f.style.animationDelay=(i*-0.7)+'s';
+    f.style.animationDuration=(2+i*0.4)+'s';
+    plateWrap.appendChild(f);
+  }
+}
+
+function beginFeeding(tier){
+  feeding=true; bitesDone=0;
+  overlay.classList.add('eating');
+  revealBeepo.classList.add('feeding');
+  if(tier==='vor') revealBeepo.classList.add('fast');
+  sayR(tier==='vor' ? pick(VOR_START) : pick(EAT_START));
+  armAutoBite(900);
+}
+/* eating runs by itself on a tasty rhythm; taps just add bonus bites */
+function armAutoBite(ms){
+  clearTimeout(idleFeedTimer);
+  idleFeedTimer=setTimeout(bite, ms);
+}
+function bite(){
+  if(!feeding) return;
+  bitesDone++;
+  sChomp(); buzz(10);
+  revealBeepo.classList.remove('bite'); void revealBeepo.offsetWidth;
+  revealBeepo.classList.add('bite');
+  dishBig.style.transform =
+    `translate(-50%,-50%) scale(${Math.max(1-bitesDone*0.19,0.05)}) rotate(${bitesDone%2?-5:5}deg)`;
+  crumbs(revealBeepo.classList.contains('fast')?4:2);
+  if(bitesDone>=BITES) finishFeeding();
+  else armAutoBite(revealBeepo.classList.contains('fast') ? 480 : 1050);
+}
+function finishFeeding(){
+  feeding=false;
+  clearTimeout(idleFeedTimer);
+  dishBig.style.transform = 'translate(-50%,-50%) scale(0)';
+  dishBig.style.opacity = '0';
+  sGulp();
+  schedule(()=>{
+    const fast = revealBeepo.classList.contains('fast');
+    revealBeepo.classList.remove('feeding','fast','bite');
+    setExp(revealBeepo,'yum');
+    sayR(fast ? pick(VOR_END) : pick(EAT_END));
+    if(fast){ sBurp(); confettiBurst(12); } else sDing();
+    $('againBtn').classList.add('shown');   /* only after the reaction */
+  }, 600);
+  /* auto-restart: the arrow button just skips this wait */
+  schedule(()=>{ if(overlay.classList.contains('show')) $('againBtn').click(); }, 5200);
+}
+plateWrap.addEventListener('pointerdown', ()=>{ if(feeding) bite(); });
+
+function crumbs(n){
+  const colors=['#E0A860','#F2B04A','#FBD9E8','#FFD94A','#F27EB4'];
+  for(let i=0;i<n;i++){
+    const c=document.createElement('div');
+    c.className='crumb';
+    c.style.background=pick(colors);
+    c.style.left=(130+Math.random()*44)+'px';
+    c.style.top=(122+Math.random()*26)+'px';
+    plateWrap.appendChild(c);
+    const dx=(Math.random()*120-60), dy=-(15+Math.random()*55);
+    c.animate([
+      {transform:'translate(0,0) scale(1)', opacity:1},
+      {transform:`translate(${dx}px,${dy}px) scale(.9)`, opacity:1, offset:.55},
+      {transform:`translate(${dx*1.2}px,${dy+62}px) scale(.5)`, opacity:0}
+    ],{duration:620+Math.random()*250, easing:'ease-out'}).onfinish=()=>c.remove();
+  }
+}
+
+/* ================= reset ================= */
+$('againBtn').addEventListener('click',()=>{
+  sPop(); buzz(8);
+  $('againBtn').classList.remove('shown');
+  clearTimeout(autoLift);
+  clearEating();
+  feeding=false; bitesDone=0;
+  overlay.classList.remove('show','revealing','revealed','eating');
+  cloche.classList.remove('lift');
+  hint.classList.remove('gone');
+  revealBeepo.classList.remove('feeding','fast','bite','lean','faint');
+  setExp(revealBeepo, null);
+  rBubble.classList.remove('show');
+  plateWrap.classList.remove('pushed');
+  plateWrap.querySelectorAll('.crumb, .fly').forEach(x=>x.remove());
+  dishBig.style.transform=''; dishBig.style.opacity='';
+  potItems=[]; cooking=false; lifted=false;
+  soupItems.querySelectorAll('.floatItem').forEach(x=>x.remove());
+  soupEl.style.fill='#F2B04A';
+  resetStir();
+  say('What’s next, chef?');
+});
+
+/* ================= helpers ================= */
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function blendColors(hexes){
+  let r=0,g=0,b=0;
+  hexes.forEach(h=>{ const n=parseInt(h.slice(1),16); r+=n>>16; g+=(n>>8)&255; b+=n&255; });
+  const L=hexes.length;
+  return `rgb(${Math.round(r/L)},${Math.round(g/L)},${Math.round(b/L)})`;
+}
+function confettiBurst(n){
+  const colors=['#FF6B6B','#FFD93C','#6BCB77','#4D96FF','#E96BC0','#FF9F45'];
+  const star='polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
+  for(let i=0;i<n;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    const size=9+Math.random()*8;
+    c.style.width=size+'px'; c.style.height=size+'px';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=pick(colors);
+    const shape=Math.random();
+    if(shape<.33) c.style.clipPath=star;
+    else c.style.borderRadius = shape<.66 ? '50%' : '3px';
+    c.style.setProperty('--dx', (Math.random()*160-80)+'px');
+    c.style.animationDuration=(2.2+Math.random()*1.8)+'s';
+    c.style.animationDelay=(Math.random()*.6)+'s';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+</script>
+</body>
+</html>
