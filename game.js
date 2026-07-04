@@ -189,7 +189,9 @@ INGREDIENTS.forEach(item=>{
   const b=document.createElement('button');
   b.className='ing';
   b.innerHTML=iconSVG(item.svg,74)+'<small>'+item.n+'</small>';
-  b.addEventListener('click',()=>addIngredient(item,b));
+  /* pointerdown, not click: fires instantly for EVERY finger — iOS suppresses
+     synthesized clicks during multi-touch, which killed overlapping flyers */
+  b.addEventListener('pointerdown',()=>addIngredient(item,b));
   shelf.appendChild(b);
 });
 
@@ -372,7 +374,7 @@ function landInPot(item){
   f.style.top=(SLOT_Y[slot] + (Math.random()*4-2))+'px';
   f.style.animationDelay=(Math.random()*2)+'s';
   f.dataset.uid = entry.uid;
-  f.addEventListener('click', ()=>removeFromPot(entry.uid, f));
+  f.addEventListener('pointerdown', ()=>removeFromPot(entry.uid, f));
   soupItems.appendChild(f);
   f.classList.add('land'); buzz(12);
   soupEl.style.fill = blendColors(potItems.map(i=>i.c));
@@ -435,7 +437,7 @@ function resetStir(){
 /* ================= counting stir (B#3) ================= */
 const COUNT_WORDS = ['One!','Two!','Three!'];
 const COUNT_TONES = [523, 659, 784];
-stirBtn.addEventListener('click',()=>{
+stirBtn.addEventListener('pointerdown',()=>{
   if(cooking||!potItems.length) return;
   stirs=Math.min(stirs+1, STIRS_NEEDED);
   stirBtn.classList.remove('nudge');
@@ -559,7 +561,7 @@ function liftCover(){
   cloche.classList.add('lift');
   setTimeout(finishReveal, 2100);
 }
-cloche.addEventListener('click', liftCover);
+cloche.addEventListener('pointerdown', liftCover);
 
 function finishReveal(){
   const {verdict, tier, name} = pendingResult || {verdict:'yummy', tier:'ok', name:''};
@@ -675,7 +677,7 @@ function finishFeeding(){
     if(fast){ sBurp(); confettiBurst(12); } else sDing();
   }, 600);
 }
-plateWrap.addEventListener('click', ()=>{ if(feeding) bite(); });
+plateWrap.addEventListener('pointerdown', ()=>{ if(feeding) bite(); });
 
 function crumbs(n){
   const colors=['#E0A860','#F2B04A','#FBD9E8','#FFD94A','#F27EB4'];
