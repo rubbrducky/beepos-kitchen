@@ -41,6 +41,9 @@
     background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 150px 0 0 0 #B98A4E; }
   #potWrap { position:absolute; bottom:38px; left:50%; transform:translateX(-50%); width:190px; height:127px; }
   #potWrap > svg { animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
+  /* stir-ready: the pot glows like a button until the third stir */
+  #potWrap.ready > svg { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
+  @keyframes potGlow { 50%{ filter:drop-shadow(0 0 16px #FFD94A) drop-shadow(0 0 4px #FFD94A); } }
   @keyframes potBreathe { 50%{ transform:scale(1.02) translateY(-1px);} }
   #potWrap.stirring { animation:rock .8s ease; }
   @keyframes rock { 25%{transform:translateX(-50%) rotate(-4deg);} 75%{transform:translateX(-50%) rotate(4deg);} }
@@ -204,13 +207,13 @@
 
   /* ---- tap-the-pot stirring (B#3, revised after playtest) ---- */
   #potWrap { cursor:pointer; }
-  #potSpoon { position:absolute; right:-16px; top:-40px; width:76px; height:76px; z-index:6;
+  #potSpoon { position:absolute; right:-20px; top:-52px; width:92px; height:92px; z-index:6;
     opacity:0; transform:scale(0) rotate(22deg); pointer-events:none; transform-origin:65% 85%;
     transition:opacity .3s, transform .45s cubic-bezier(.3,1.6,.4,1); }
   #potSpoon.shown { opacity:1; transform:scale(1) rotate(22deg); }
   #potSpoon svg { width:100%; height:100%; }
   #potSpoon.shown svg { animation:spoonBeckon 1.5s ease-in-out infinite; transform-origin:60% 80%; }
-  @keyframes spoonBeckon { 50%{ transform:rotate(-18deg) translateY(4px);} }
+  @keyframes spoonBeckon { 50%{ transform:rotate(-24deg) translateY(6px);} }
   #potSpoon.swirl svg { animation:spoonSwirl .6s ease-in-out; }
   @keyframes spoonSwirl { 30%{ transform:translate(-30px,6px) rotate(-38deg);} 65%{ transform:translate(8px,2px) rotate(10deg);} }
 

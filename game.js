@@ -387,6 +387,17 @@ function landInPot(item){
   }
   updateCounter();
   potSpoon.classList.add('shown');   /* wiggling spoon in the pot = "stir me" */
+  potWrap.classList.add('ready');    /* pot glows like a button while stirrable */
+  armStirNudge(1600);                /* guide hand jumps to the pot if no stir soon */
+}
+
+/* dedicated stir cue — faster than the general 8s idle attract */
+let stirNudgeTimer;
+function armStirNudge(ms){
+  clearTimeout(stirNudgeTimer);
+  stirNudgeTimer=setTimeout(()=>{
+    if(!cooking && potItems.length && stirs<STIRS_NEEDED) pointAt(potWrap, 0, 2);
+  }, ms);
 }
 
 function updateCounter(){
@@ -400,6 +411,8 @@ function updateCounter(){
 
 function resetStir(){
   stirs=0;
+  clearTimeout(stirNudgeTimer);
+  potWrap.classList.remove('ready');
   potSpoon.classList.remove('shown','swirl');
 }
 
@@ -438,6 +451,7 @@ function doStir(){
   soupItems.classList.remove('swirl'); void soupItems.offsetWidth;
   soupItems.classList.add('swirl');
   if(stirs>=STIRS_NEEDED) cook();
+  else armStirNudge(2600);   /* stalled mid-count? hand comes right back */
 }
 
 function puffSteam(n){
@@ -472,6 +486,9 @@ function sparkleAt(el, n=3){
 
 function cook(){
   cooking=true;
+  clearTimeout(stirNudgeTimer);
+  hideHand();
+  potWrap.classList.remove('ready');
   sparkleAt(potWrap, 6);
   puffSteam(3);
   potSpoon.classList.remove('shown');
