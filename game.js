@@ -174,7 +174,7 @@ let potItems = [], stirs = 0, cooking = false;
 const $ = id => document.getElementById(id);
 const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
       potWrap=$('potWrap'), potSpoon=$('potSpoon'),
-      beepo=$('beepo'), bubbleTalk=$('bubbleTalk'), counter=$('counter'),
+      beepo=$('beepo'), bubbleTalk=$('bubbleTalk'), stirStars=$('stirStars'),
       overlay=$('overlay'), dishName=$('dishName'), reaction=$('reaction'),
       dishBig=$('dishBig'), dishIngs=$('dishIngs'), plateWrap=$('plateWrap'),
       feedHand=$('feedHand');
@@ -351,12 +351,15 @@ function bounceOff(item, to){
   b.style.left=(to.left+to.width/2-26)+'px';
   b.style.top=(to.top-6)+'px';
   document.body.appendChild(b);
-  const dx=(Math.random()>.5?1:-1)*(70+Math.random()*50);
+  /* must read as REJECTED: squash on the rim, then arc clearly AWAY from the
+     pot and fall past the counter — never sink into the soup */
+  const dx=(Math.random()>.5?1:-1)*(110+Math.random()*70);
   b.animate([
-    {transform:'translate(0,0) scale(.6) rotate(0deg)', opacity:1},
-    {transform:`translate(${dx*.6}px,-80px) scale(.75) rotate(140deg)`, opacity:1, offset:.45},
-    {transform:`translate(${dx}px,60px) scale(.5) rotate(300deg)`, opacity:0}
-  ],{duration:620, easing:'cubic-bezier(.3,.4,.6,1)'}).onfinish=()=>b.remove();
+    {transform:'translate(0,-4px) scale(.9,.45) rotate(0deg)', opacity:1},
+    {transform:`translate(${dx*.4}px,-84px) scale(.72) rotate(130deg)`, opacity:1, offset:.4},
+    {transform:`translate(${dx}px,150px) scale(.6) rotate(320deg)`, opacity:1, offset:.9},
+    {transform:`translate(${dx*1.08}px,200px) scale(.55) rotate(360deg)`, opacity:0}
+  ],{duration:680, easing:'cubic-bezier(.3,.4,.6,1)'}).onfinish=()=>b.remove();
 }
 
 let uidCounter = 0;
@@ -387,7 +390,7 @@ function landInPot(item){
     say(Math.random()<0.4 ? item.n+'!' : pick(ADD_LINES));
     setExp(beepo,'yum',1300);
   }
-  updateCounter();
+  stirStars.classList.add('shown');  /* three empty star sockets = "3 stirs to go" */
   potSpoon.classList.add('shown');   /* wiggling spoon in the pot = "stir me" */
   potWrap.classList.add('ready');    /* pot glows like a button while stirrable */
   armStirNudge(1600);                /* guide hand jumps to the pot if no stir soon */
@@ -402,20 +405,13 @@ function armStirNudge(ms){
   }, ms);
 }
 
-function updateCounter(){
-  counter.innerHTML='';
-  for(let i=0;i<MAX_ITEMS;i++){
-    const d=document.createElement('div');
-    d.className='dot'+(i<potItems.length?' full':'');
-    counter.appendChild(d);
-  }
-}
-
 function resetStir(){
   stirs=0;
   clearTimeout(stirNudgeTimer);
   potWrap.classList.remove('ready');
   potSpoon.classList.remove('shown','swirl');
+  stirStars.classList.remove('shown');
+  stirStars.querySelectorAll('.sstar').forEach(s=>s.classList.remove('filled'));
 }
 
 /* ================= counting stir (B#3) ================= */
@@ -442,6 +438,10 @@ function doStir(){
   }
   sWhoosh(); buzz(15);
   say(COUNT_WORDS[stirs-1], 900);
+  /* a star socket SLAMS full + a giant numeral erupts from the soup */
+  const star=stirStars.children[stirs-1];
+  if(star){ star.classList.remove('filled'); void star.getBoundingClientRect(); star.classList.add('filled'); }
+  countPopFx(stirs);
   /* physical build-up a toddler can read: spoon swirl, sparkles, growing steam */
   potSpoon.classList.remove('swirl'); void potSpoon.offsetWidth;
   potSpoon.classList.add('swirl');
@@ -454,6 +454,19 @@ function doStir(){
   soupItems.classList.add('swirl');
   if(stirs>=STIRS_NEEDED) cook();
   else armStirNudge(2600);   /* stalled mid-count? hand comes right back */
+}
+
+function countPopFx(n){
+  const c=document.createElement('div');
+  c.className='countPop';
+  c.textContent=n;
+  c.style.color=['#F25C54','#FFD93C','#59B356'][n-1];
+  potWrap.appendChild(c);
+  c.animate([
+    {transform:'translateY(10px) scale(.4)', opacity:0},
+    {transform:'translateY(-30px) scale(1.3)', opacity:1, offset:.35},
+    {transform:'translateY(-74px) scale(1)', opacity:0}
+  ],{duration:1050, easing:'ease-out'}).onfinish=()=>c.remove();
 }
 
 function puffSteam(n){
@@ -534,7 +547,7 @@ function reveal(){
   if(dish.verdict==='yucky'){ face='ui-face-yuck'; word='PEE-YEW!! WIGGLY!'; color='#C6F08C'; }
   else if(dish.verdict==='magical'){ face='ui-face-wow'; word='MAGICAL! WOW!'; color='#E7D6FF'; }
   else { face='ui-face-yum'; word='YUMMY IN MY TUMMY!'; color='#FFE9A8'; }
-  reaction.innerHTML = iconSVG(face,30)+'<span>'+word+'</span>';
+  reaction.innerHTML = iconSVG(face,22)+'<span>'+word+'</span>';
   reaction.style.background = color;
 
   /* reset to covered state */
@@ -582,7 +595,7 @@ function finishReveal(){
   if(verdict==='yucky'){
     setExp(revealBeepo,'yuck');
     sPeeyew();
-    [20,70,120,170,215].forEach((x,i)=>{
+    [24,80,136,192,248].forEach((x,i)=>{
       const s=document.createElement('div');
       s.className='stinkLine';
       s.innerHTML='<svg width="30" height="42" viewBox="-9 -33 22 38"><use href="#g-stink"/></svg>';
@@ -632,6 +645,7 @@ function refuseDish(){
     setExp(revealBeepo,'yum');                     /* joyBounce ×3 */
     sBoing();
     sayR('Hihi! Again?');
+    $('againBtn').classList.add('shown');   /* only after the whole gag */
   }, 3500);
 }
 function spawnFlies(n){
@@ -685,6 +699,7 @@ function finishFeeding(){
     setExp(revealBeepo,'yum');
     sayR(fast ? pick(VOR_END) : pick(EAT_END));
     if(fast){ sBurp(); confettiBurst(12); } else sDing();
+    $('againBtn').classList.add('shown');   /* only after the reaction */
   }, 600);
 }
 plateWrap.addEventListener('pointerdown', ()=>{ if(feeding) bite(); });
@@ -695,8 +710,8 @@ function crumbs(n){
     const c=document.createElement('div');
     c.className='crumb';
     c.style.background=pick(colors);
-    c.style.left=(112+Math.random()*38)+'px';
-    c.style.top=(104+Math.random()*22)+'px';
+    c.style.left=(130+Math.random()*44)+'px';
+    c.style.top=(122+Math.random()*26)+'px';
     plateWrap.appendChild(c);
     const dx=(Math.random()*120-60), dy=-(15+Math.random()*55);
     c.animate([
@@ -710,6 +725,7 @@ function crumbs(n){
 /* ================= reset ================= */
 $('againBtn').addEventListener('click',()=>{
   sPop(); buzz(8);
+  $('againBtn').classList.remove('shown');
   clearTimeout(autoLift);
   clearEating();
   feeding=false; bitesDone=0;
@@ -727,7 +743,6 @@ $('againBtn').addEventListener('click',()=>{
   soupItems.querySelectorAll('.floatItem').forEach(x=>x.remove());
   soupEl.style.fill='#F2B04A';
   resetStir();
-  updateCounter();
   say('What’s next, chef?');
 });
 
@@ -759,5 +774,3 @@ function confettiBurst(n){
     setTimeout(()=>c.remove(),5000);
   }
 }
-
-updateCounter();

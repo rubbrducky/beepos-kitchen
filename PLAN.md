@@ -29,9 +29,17 @@ Net: treat Sonnet as the engineer/art-director who hands you a press-the-button 
 
 ---
 
+## 0. BUILD STATUS (2026-07-04)
+
+**Batches 0–4 (§8) are built and committed.** The playable Milestone-1 game is `index.html` + `game.js` + `styles.css` + `dishes.js`; the original one-file game lives on as `beepos-kitchen.legacy.html` (git history in the folder). Playtest revisions already folded in: **pointerdown input** (multi-touch overlapping flyers — iOS suppresses synthesized clicks during multi-touch), **tap-the-pot stirring** (no stir button; see B#3), pot-glow + fast hand-nudge stir cues, **visual hierarchy** (stove muted to counter-wood, pot enlarged + idle breathe), **robot-ier Beepo SVG** (segmented head/torso, screen face, tread feet, grippers, visible antenna), and **burger dishes** (cookie+egg = Beepo Burger w/ bespoke `dish-burger` symbol; cookie+worm = Wiggly Worm Burger). **Waiting on the Batch 5 device-test gate. The art track (§3) has not started.**
+
+---
+
 ## 1. What the game is today
 
-`beepos-kitchen.html` is a single, self-contained file (~1190 lines): inline SVG art, procedural Web Audio sound, CSS animations, zero dependencies, mobile-first (viewport locked, touch-optimized), with `prefers-reduced-motion` support. It is already charming and well-built — we are re-skinning and enriching it, not rescuing it.
+> **Note (2026-07-04):** this section describes the *original* game, now preserved as `beepos-kitchen.legacy.html`. It remains accurate as the design baseline, but the current build (§0) has replaced the stir button with pot-tapping, dropped tap-to-remove, and uses 9 ingredients / the 129-dish catalog.
+
+`beepos-kitchen.html` (now `beepos-kitchen.legacy.html`) is a single, self-contained file (~1190 lines): inline SVG art, procedural Web Audio sound, CSS animations, zero dependencies, mobile-first (viewport locked, touch-optimized), with `prefers-reduced-motion` support. It is already charming and well-built — we are re-skinning and enriching it, not rescuing it.
 
 **Core loop**
 
@@ -109,7 +117,7 @@ Rendered *content* becomes AI art. Tiny procedural **effects stay in code** (ste
 | **Beepo** | normal, blink, yum, yuck, wow, eat-open, eat-closed, wave, sleepy | ~9 frames | One character sheet, same seed+reference. Frames swap like the current `.fx` groups. |
 | **Ingredients** | the **9** selected (see `DISHES.md`) | 9 | Each a plump smiling character. Optional "squished" variant later. |
 | **Dishes** | one per combo (see `DISHES.md`) | **129** | 1–3 distinct ingredients per dish. Names + verdicts already written; batch-render from the per-dish `image_prompt` in `dishes.json` (§3.4). |
-| **Big UI** | pot, stove, cloche, plate, serving-dome shine, stir button, shelf face | ~7 | Illustrated to match. Pot interior must still allow the soup-color tint + floating items on top. |
+| **Big UI** | pot, stove/counter (keep it *muted* — pot is the hero, see §0), cloche, plate, serving-dome shine, pot spoon, guide hand | ~7 | Illustrated to match. Pot interior must still allow the soup-color tint + floating items on top. No stir button exists anymore (B#3). |
 | **Backgrounds** | cozy kitchen scene, title-screen art | 2 | Warm wood, sunny window, hanging utensils, soft depth. |
 | **Audio (optional stretch)** | gentle music loop | 1 | See Workstream B. |
 
@@ -129,7 +137,7 @@ Rendered *content* becomes AI art. Tiny procedural **effects stay in code** (ste
 > `realistic, photoreal, scary, creepy, dark, gritty, harsh shadows, text, watermark, signature, extra limbs, deformed, low quality, jpeg artifacts, cluttered background, clutter`
 
 **Beepo (canonical):**
-> `Beepo, a chubby friendly little robot chef, teal turquoise rounded body, tiny white chef hat, glowing red antenna ball on top, cream face panel, short stubby arms, big happy eyes, standing, full body` + master suffix.
+> `Beepo, a cute friendly little robot chef, big boxy rounded teal head with side bolts, face on an inset screen panel, small teal chest unit with a yellow indicator light, segmented stubby arms with round steel gripper hands, boxy tread feet, tiny white chef hat with a glowing red antenna ball poking through the top, big happy eyes, standing, full body` + master suffix. *(Updated 2026-07-04 to match the robot-ier SVG redesign — the ControlNet linerefs come from the new SVG, so prompt and silhouette agree.)*
 Then per frame, vary only the expression phrase: `big open happy smile, tongue out (yum)` / `disgusted green face, tongue out (yuck)` / `star-shaped sparkling eyes, mouth open in awe (wow)` / `eyes closed mouth wide open mid-bite (eating)` / `eyes closed peaceful (sleepy)` / `waving one arm, winking (wave)`. Keep seed + reference fixed.
 
 **Ingredient template** (fill `[X]` for each of the 9):
@@ -141,7 +149,7 @@ For the silly three lean into the comedy: `stinky old sock with a mischievous gr
 
 ### 3.5 The SVG→PNG line-reference exporter (utility to build first)
 
-Write a small script that loads `beepos-kitchen.html`, and for each `<symbol id="...">` renders it to a transparent PNG at ~1024². Two viable routes:
+Write a small script that loads `index.html` (the current build — its `<defs>` now also contain the `ui-*` icons and `dish-burger`), and for each `<symbol id="...">` renders it to a transparent PNG at ~1024². Two viable routes:
 - **Headless browser** (Playwright/Puppeteer): inject an `<svg><use href="#id"></svg>` at fixed size, screenshot the element with a transparent background. Most faithful.
 - **`sharp`/`resvg`/Inkscape CLI**: wrap each symbol's markup in a standalone SVG and rasterize.
 
@@ -191,7 +199,7 @@ Each item lists **behavior · animation · sound · code hook**. Art needed: **n
 10. **Global juice pass.** Squash/stretch on every pop, soft bounce easing throughout, a touch of screen-shake on big reveals, richer confetti, and `navigator.vibrate()` haptic taps where supported (toddler tablets often are). *CSS/JS only.*
 11. **Emoji → inline SVG.** Replace every UI emoji (🍳 title, 👆 hands, 💚 stink hearts, 🤢/🙊/🤩/😋 reaction faces, 🥄, 👩‍🍳) with small inline-SVG equivalents drawn in the house style. Emoji render differently on every platform and instantly read as "web page," not "app." No art pipeline needed — code-drawn like the existing effects.
 
-**Per-ingredient sound motifs (starting point for #4, all via `tone()`):** apple = bright two-note ding ↑; banana = playful downward slide; strawberry = light triple sparkle; carrot = crunchy blip; cheese = squishy low boing; egg = hollow pop; chocolate = warm mellow tone; cookie = crumbly double-tap; ice cream = cool glissando ↑; sock = raspberry (`sPeeyew`); worm = wobble bend; rainbow = happy arpeggio (`sSparkle`).
+**Per-ingredient sound motifs (built; the 9 selected only):** apple = bright two-note ding ↑; banana = playful downward slide; strawberry = light triple sparkle; egg = hollow pop; chocolate = warm mellow tone; cookie = crumbly double-tap; ice cream = cool glissando ↑; worm = wobble bend; rainbow = happy arpeggio (`sSparkle`).
 
 **Milestone 1 sign-off gate:** Gustav plays the build on a real phone/tablet; the loop is fully fun and legible with **no reading required**. Approve → animations/timings/sound are **locked** → the art overhaul proceeds as a pure reskin.
 
@@ -203,8 +211,8 @@ Friction reduction, all in service of Section 2. **These ship inside Milestone 1
 
 1. **Kill the reading dependency.** Convert every *instructional* text moment to audio + visual: the "tap goodies" shelf title → a bouncing hand/arrow; "Pot is full!" → see #3 below; "Tap the lid!" → a big animated pointing hand on the cloche. Keep dish names as on-screen flavor for parents only.
 2. **Onboarding via the title + first-run guiding hand** (Workstream B #2 and #5) instead of instructions.
-3. **Make the stir step legible** with the counting ring (B #4). Today a toddler taps once and gets no sense that two more are needed.
-4. **Forgiving "pot full."** Replace the rejecting burp/"Pot is full!" with an *inviting* cue — the pot gives a happy wiggle and the stir button pulses/points ("I'm ready — stir me!"). Never a "no."
+3. **Make the stir step legible** — implemented as tap-the-pot stirring with physical escalation (see B#3 revision).
+4. **Forgiving "pot full."** Replace the rejecting burp/"Pot is full!" with an *inviting* cue — built: the over-limit item bounces off the rim, the pot wiggles happily and glows, the guide hand points at the pot. Never a "no."
 5. **Bigger tap targets & spacing** across the shelf and controls; thumb-proof. Verify on a real phone/tablet, not just desktop.
 6. **Never-stall safeguards at every step** (extend the existing cloche auto-lift philosophy to any new interactive beat, e.g. auto-feed in B #1).
 7. **Accessibility:** keep `prefers-reduced-motion`; keep the mute toggle and **persist** it (localStorage) plus any music setting; ensure everything is reachable with large touch zones; avoid flashing.
@@ -226,6 +234,7 @@ New workstream (added 2026-07-04). Goal: publish as a **~$1 paid app** — prima
 
 - Wrap the finished static build in **Capacitor**. The game stays a plain web build — no framework changes; the same files keep working in a browser.
 - App icon + splash screen (SVG Beepo works fine; the art track can upgrade them later).
+- **Bundle a rounded display font** (Baloo 2, OFL license — download the woff2, `@font-face` it locally, keep zero-network). Until then the game uses the system rounded stack (SF Rounded on iOS); Comic Sans was removed from the stack 2026-07-04.
 - Configure the **native audio session** so the iOS mute/ring switch doesn't silence gameplay; verify the title-tap AudioContext unlock (§4 B#2) inside the wrapper.
 - Lock **portrait orientation**, respect **safe-area insets** (notch), suppress system edge-gestures where possible.
 - Offline is automatic (all assets local) — verify the app makes **zero network requests**; that's also a compliance claim (§6.3).
@@ -251,14 +260,15 @@ Moving from one file to a small static project (no server, still openable offlin
 
 ```
 beepos-kitchen/
-  index.html            # markup + boot
+  index.html            # markup + boot + SVG defs library
   game.js               # logic (extracted from the inline <script>)
   styles.css            # styles (extracted from <style>)
+  dishes.js             # generated 129-dish catalog (regenerate from dishes.json)
   /assets
     /beepo   normal.png blink.png yum.png yuck.png wow.png eat-open.png eat-closed.png wave.png sleepy.png
     /ing     apple.png banana.png … rainbow.png            (12)
     /dish    banana-split.png apple-pie.png …              (all 129 from DISHES.md)
-    /ui      pot.png stove.png cloche.png plate.png stir.png shelf.png
+    /ui      pot.png stove.png cloche.png plate.png spoon.png hand.png
     /bg      kitchen.png title.png
     /audio   music-loop.mp3            (optional)
   /art-src                # not shipped; the art pipeline

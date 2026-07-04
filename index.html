@@ -411,6 +411,10 @@
     <ellipse cx="56" cy="30" rx="19" ry="24" fill="#D8DEF0" stroke="#4A3B47" stroke-width="4" transform="rotate(20 56 30)"/>
     <ellipse cx="50" cy="22" rx="5" ry="8" fill="#fff" opacity=".7" transform="rotate(20 50 22)"/>
   </symbol>
+  <symbol id="ui-star" viewBox="0 0 100 100">
+    <path d="M50 8 L61 36 L92 38 L68 58 L76 89 L50 71 L24 89 L32 58 L8 38 L39 36 Z"
+      fill="currentColor" stroke="#4A3B47" stroke-width="5" stroke-linejoin="round"/>
+  </symbol>
   <!-- ============ Batch 4: UI icons (emoji replacements, house style) ============ -->
   <symbol id="ui-hand" viewBox="0 0 100 100">
     <rect x="41" y="6" width="18" height="44" rx="9" fill="#FFE3B8" stroke="#4A3B47" stroke-width="4.5"/>
@@ -482,7 +486,6 @@
 </div>
 
 <div id="topbar">
-  <div id="title"><svg class="icon" viewBox="0 0 100 100" width="26" height="26"><use href="#ui-pan"/></svg><span>Beepo's Kitchen</span></div>
   <div id="topBtns">
     <button id="musicBtn" aria-label="Music on or off"><svg class="icon" viewBox="0 0 100 100" width="24" height="24"><use href="#ui-note"/></svg></button>
     <button id="muteBtn" aria-label="Sound on or off"><svg class="icon" viewBox="0 0 100 100" width="24" height="24"><use href="#ui-snd"/></svg></button>
@@ -491,7 +494,6 @@
 
 <div id="stage">
   <div id="floor"></div>
-  <div id="counter"></div>
 
   <div id="beepo">
     <div id="bubbleTalk">Feed the pot!</div>
@@ -608,6 +610,11 @@
         <div class="bubble" style="left:75%; animation-delay:1.6s"></div>
       </div>
       <div id="potSpoon"><svg class="icon" viewBox="0 0 100 100"><use href="#ui-spoon"/></svg></div>
+      <div id="stirStars">
+        <svg class="sstar" viewBox="0 0 100 100"><use href="#ui-star"/></svg>
+        <svg class="sstar" viewBox="0 0 100 100"><use href="#ui-star"/></svg>
+        <svg class="sstar" viewBox="0 0 100 100"><use href="#ui-star"/></svg>
+      </div>
     </div>
     <div id="stove"></div>
   </div>
@@ -632,7 +639,7 @@
     <div id="feedHand"><svg class="icon" viewBox="0 0 100 100" width="54" height="54"><use href="#ui-hand"/></svg></div>
     <div id="cloche">
       <div id="hint"><svg class="icon" viewBox="0 0 100 100" width="58" height="58"><use href="#ui-hand"/></svg></div>
-      <svg viewBox="0 0 200 132" width="264">
+      <svg viewBox="0 0 200 132" width="300">
         <defs>
           <linearGradient id="clocheGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#EEF1F9"/><stop offset="1" stop-color="#AEB8CE"/>
