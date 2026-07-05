@@ -20,8 +20,6 @@ assert not re.search(r'(src|href)="https?://', h), 'external http reference foun
 os.makedirs('deploy', exist_ok=True)
 open('deploy/index.html', 'w', encoding='utf-8').write(h)
 dst = os.path.join('deploy', 'assets')
-if os.path.isdir(dst):
-    shutil.rmtree(dst)
-shutil.copytree('assets', dst)
-n = sum(len(f) for _, _, f in os.walk(dst) for f in [f])
+shutil.rmtree(dst, ignore_errors=True)             # best-effort clean (OneDrive can lock files mid-sync)
+shutil.copytree('assets', dst, dirs_exist_ok=True) # overwrite in place — no hard delete required
 print(f'deploy/index.html: {len(h)} bytes (code inlined) + deploy/assets/ copied')
