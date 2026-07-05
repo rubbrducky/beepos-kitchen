@@ -69,6 +69,15 @@ UI_ASSETS = {
     "ingredient_board": "a cute empty wooden menu board with rounded corners and a warm painted frame, blank flat surface, no text and no writing, ready to hold little food pictures, one object centered",
 }
 
+# Shared vessel sprites (HANDOFF sec 5.2) — rendered once; food sprites sit inside them.
+VESSELS = {
+    "bowl":  "a cute empty round soup bowl, glossy ceramic with a soft rim, gentle front three-quarter angle, empty interior, one object centered",
+    "plate": "a cute empty shallow round dinner plate, gentle front three-quarter angle, glossy ceramic, empty, one object centered",
+    "glass": "a cute empty tall clear drinking glass, glossy, rounded, empty, one object centered",
+    "jar":   "a cute empty small glass jar, glossy, rounded, empty, one object centered",
+    "stick": "two cute plain wooden popsicle sticks side by side, glossy, rounded ends, one object centered",
+}
+
 # ---- helpers --------------------------------------------------------------
 def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
@@ -77,10 +86,19 @@ def stable_seed(key):
     return zlib.crc32(key.encode("utf-8")) & 0x7fffffff
 
 def clean_dish_prompt(p):
-    # Drop the literal instruction placeholder; the real suffix is appended below.
-    p = p.replace("(apply PLAN sec 3.4 master style suffix + negative)", "").strip()
-    p = re.sub(r"\s{2,}", " ", p).replace(" ,", ",").replace(" .", ".")
-    return p
+    # Drop the literal placeholder; MASTER suffix supplies the style.
+    p = p.replace("(apply PLAN sec 3.4 master style suffix + negative)", "")
+    # Strip the redundant style boilerplate — also removes 'sticker style' (die-cut white border).
+    p = re.sub(r'Kawaii toddler picture-book sticker style.*$', '', p, flags=re.I)
+    # FOOD-ONLY (HANDOFF sec 5): strip vessel language so the food sits inside a
+    # separately-rendered shared vessel (B#14 four-layer split — Beepo never eats the bowl).
+    p = re.sub(r'^\s*a small (plate or bowl|bowl|plate|cup|glass)\s+(containing|of)\s+', '', p, flags=re.I)
+    p = re.sub(r'\bserved (in|on) a (small )?(plate or bowl|bowl|plate|cup|glass)\b', '', p, flags=re.I)
+    p = re.sub(r'\b(in|on) a (small )?(plate or bowl|bowl|plate|cup|glass)\b', '', p, flags=re.I)
+    p = re.sub(r"\s{2,}", " ", p).replace(" ,", ",").replace(" .", ".").strip(" ,.")
+    # Front-load the food-only framing (Flux honours positive framing better than "no X").
+    return ("a single isolated portion of just the food, floating on a pure white background, "
+            "nothing underneath it, no plate no bowl no dish, " + p + ", centered food cut-out")
 
 def full_prompt(body):
     return f"{body.rstrip('. ')}. {MASTER}"
@@ -135,11 +153,19 @@ def build_jobs(mode, dish_arg):
         for k, body in UI_ASSETS.items():
             jobs.append((f"ui:{k}", f"beepo_food/ui_{k}", full_prompt(body)))
 
+    def add_vessels():
+        for k, body in VESSELS.items():
+            jobs.append((f"vessel:{k}", f"beepo_food/vessel_{k}", full_prompt(body)))
+
     all_dishes = sorted(dishes)
     if mode == "ingredients":
         add_ingredients()
     elif mode == "ui":
         add_ui()
+    elif mode == "vessels":
+        add_vessels()
+    elif mode == "regen":             # food-only re-render: 129 dishes (no vessels) + vessel library
+        add_dishes(all_dishes); add_vessels()
     elif mode == "pilot":
         add_ingredients(); add_dishes(PILOT_DISHES)
     elif mode == "full":              # the whole catalog: 9 ingredients + 129 dishes
@@ -156,7 +182,7 @@ def build_jobs(mode, dish_arg):
 # ---- run ------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", default="all", choices=["ingredients", "ui", "pilot", "full", "all", "dishes"])
+    ap.add_argument("--mode", default="all", choices=["ingredients", "ui", "vessels", "pilot", "full", "all", "regen", "dishes"])
     ap.add_argument("--dishes", default="all", help="'all' or comma list of dish numbers (mode=dishes)")
     ap.add_argument("--dry-run", action="store_true", help="print prompts, POST nothing")
     args = ap.parse_args()

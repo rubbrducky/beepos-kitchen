@@ -28,7 +28,8 @@ def cut(path):
 files = sorted(
     glob.glob(os.path.join(SRC, "ing_*.png")) +
     glob.glob(os.path.join(SRC, "dish_*.png")) +
-    glob.glob(os.path.join(SRC, "ui_*.png"))
+    glob.glob(os.path.join(SRC, "ui_*.png")) +
+    glob.glob(os.path.join(SRC, "vessel_*.png"))
 )
 print(f"cutting {len(files)} images -> {DST}")
 for i, f in enumerate(files, 1):

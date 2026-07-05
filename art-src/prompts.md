@@ -31,11 +31,14 @@ Dish prompts come from `../dishes.json` (`image_prompt`) — but they only *refe
 - `masters/{ing,dish,ui}/` — on-white originals (PLAN §3.3 masters).
 - `sheets/`, `manifest.json` — review artifacts.
 
-## ⚠️ v0 caveat — dishes are vessel-baked (must regenerate food-only)
-Per **HANDOFF-2026-07-05.md §5**, dish renders should be **food-only** (`"food only, no bowl, no
-plate, isolated"`) with vessels as a shared ~6-sprite library, because the B#14 four-layer split
-means the bowl is never eaten. These v0 dishes have the bowl/plate baked in — lovely as a draft,
-but re-render food-only before real integration. Ingredients (standalone) and UI are unaffected.
+## Food-only dishes + shared vessels (v1, 2026-07-05)
+Per **HANDOFF-2026-07-05.md §5**, dishes are now rendered **food-only** — `clean_dish_prompt` strips
+vessel language and front-loads *"a single isolated portion… no plate no bowl no dish"* — so the food
+sits inside the game's separately-drawn vessel (B#14 four-layer split; the bowl is never eaten). A
+shared vessel library (bowl/plate/glass/jar/stick, `--mode vessels`) lives in `assets/vessel/`.
+**Known limitation:** Flux can't perfectly suppress a plate on soupy dishes, so ~a dozen still show a
+small vessel; the proper fix is ControlNet-from-SVG registration (future). Ingredients + UI unaffected.
+Regenerate everything with `python gen_food.py --mode regen` (129 food-only dishes + 5 vessels).
 
 ## Follow-ups
 - WebP + downscale to the <4 MB asset budget (PLAN §3.3) — masters are heavy.
