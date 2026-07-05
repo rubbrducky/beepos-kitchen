@@ -70,12 +70,19 @@ UI_ASSETS = {
 }
 
 # Shared vessel sprites (HANDOFF sec 5.2) — rendered once; food sprites sit inside them.
+# Vessels use their OWN style (NOT the kawaii master suffix, whose "big sparkly eyes, rosy
+# cheeks" forced faces + fillings onto them). Empty, faceless, product-shot.
+VESSEL_STYLE = ("cute semi-3D render, plump rounded chunky shape, thick dark charcoal outline, "
+                "glossy highlights, soft warm lighting, pastel palette, completely empty with "
+                "nothing inside, no face, no eyes, no mouth, no food, no contents, clean simple "
+                "product illustration, centered single object, plain flat white background")
 VESSELS = {
-    "bowl":  "a cute empty round soup bowl, glossy ceramic with a soft rim, gentle front three-quarter angle, empty interior, one object centered",
-    "plate": "a cute empty shallow round dinner plate, gentle front three-quarter angle, glossy ceramic, empty, one object centered",
-    "glass": "a cute empty tall clear drinking glass, glossy, rounded, empty, one object centered",
-    "jar":   "a cute empty small glass jar, glossy, rounded, empty, one object centered",
-    "stick": "two cute plain wooden popsicle sticks side by side, glossy, rounded ends, one object centered",
+    "bowl":  "an empty rounded soup bowl, glossy pastel ceramic with a soft rim, gentle three-quarter front view, hollow empty interior",
+    "plate": "an empty shallow round dinner plate, glossy pastel ceramic, gentle three-quarter front view, nothing on it",
+    "glass": "an empty clear drinking glass, transparent, nothing inside, no liquid",
+    "jar":   "an empty clear glass jar with a lid, transparent, nothing inside, no contents",
+    # "stick": DROPPED — Flux stubbornly renders popsicles for any stick shape (2 re-rolls failed);
+    #          the pops dish keeps the existing SVG stick instead. Not worth an AI sprite.
 }
 
 # ---- helpers --------------------------------------------------------------
@@ -155,7 +162,8 @@ def build_jobs(mode, dish_arg):
 
     def add_vessels():
         for k, body in VESSELS.items():
-            jobs.append((f"vessel:{k}", f"beepo_food/vessel_{k}", full_prompt(body)))
+            vp = f"{body.rstrip('. ')}. {VESSEL_STYLE}"    # vessel style, NOT the kawaii master suffix
+            jobs.append((f"vessel:{k}", f"beepo_food/vessel_{k}", vp))
 
     all_dishes = sorted(dishes)
     if mode == "ingredients":
