@@ -186,7 +186,7 @@ function iconSVG(id, size, color){
   return `<svg class="icon" viewBox="0 0 100 100" width="${size}" height="${size}"${color?` style="color:${color}"`:''}><use href="#${id}"/></svg>`;
 }
 /* Raster reskin (§3.6): ingredients render as AI PNGs; UI icons + effects stay SVG. */
-function ingImg(id, size){ return `<img class="ingimg" src="assets/ing/${id}.png" width="${size}" height="${size}" alt="" draggable="false">`; }
+function ingImg(id, size){ return `<img class="ingimg" src="assets/ing/${id}.webp" width="${size}" height="${size}" alt="" draggable="false">`; }
 
 /* build shelf */
 INGREDIENTS.forEach(item=>{
