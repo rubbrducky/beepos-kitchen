@@ -52,8 +52,7 @@
   #soupItems { position:absolute; left:25px; top:10px; width:155px; height:53px; }
   #soupItems.swirl .floatItem { animation:spin1 1s ease; }
   @keyframes spin1 { 50%{ transform:translateX(26px) rotate(180deg) scale(.85);} 100%{transform:rotate(360deg);} }
-  .floatItem { position:absolute; animation:floaty 3s ease-in-out infinite; cursor:pointer; }
-  .floatItem:active { transform:scale(1.15); }
+  .floatItem { position:absolute; animation:floaty 3s ease-in-out infinite; }  /* H#10d: tap-to-remove affordance removed */
   @keyframes floaty { 50%{ transform:translateY(-4px) rotate(10deg);} }
   .bubble { position:absolute; bottom:8px; width:9px; height:9px; background:#ffffff77; border-radius:50%;
     animation:rise 2.6s linear infinite; }
@@ -166,8 +165,11 @@
     animation:foodWig 2.6s ease-in-out infinite; }
   #dishBig svg { width:100%; height:100%; }
   @keyframes foodWig { 50%{ transform:translate(-50%,-52%) rotate(4deg);} }
-  #dishIngs { position:absolute; bottom:26px; left:0; right:0; display:flex; justify-content:center; gap:8px; }
-  #dishIngs svg { width:34px; height:34px; }
+  #dishIngs { position:absolute; bottom:22px; left:0; right:0; display:flex; justify-content:center;
+    align-items:center; gap:5px; flex-wrap:wrap; padding:0 10px; }
+  #dishIngs .chip svg { width:34px; height:34px; }
+  #dishIngs .op svg { width:22px; height:22px; }
+  #dishIngs .dishchip svg { width:46px; height:46px; }
   .stinkLine { position:absolute; font-size:36px; animation:stinkUp 2.4s ease-in-out infinite; opacity:.8; }
   @keyframes stinkUp { 0%{ transform:translateY(10px);} 100%{ transform:translateY(-46px); opacity:0;} }
   #againBtn { margin-top:26px; width:96px; height:96px; border:none; border-radius:50%;
@@ -283,6 +285,80 @@
   @keyframes flick { from{ transform:scale(1) rotate(-2deg);} to{ transform:scaleY(1.14) scaleX(.94) rotate(2deg);} }
   #cookFlame.flare { transform:scale(1.5); }
 
+
+  /* ============ Batch 4.5: B#14 layered dish + B#15 equation strip ============ */
+  /* B#14: stacked dish layers — only .lyr-food is ever scaled/removed while eating */
+  #dishBig .lyr { position:absolute; inset:0; width:100%; height:100%; }
+  #dishBig .lyr-food { transform-origin:50% 82%; }
+  #dishBig.eat-whole .lyr-food { transform-origin:30% 66%; }   /* bespoke: shrink toward Beepo */
+  #overlay.eating #dishBig .lyr-food { transition:transform .32s cubic-bezier(.4,1.4,.5,1), opacity .3s; }
+  .lyr-food.wobble { animation:foodWobble .4s ease; }
+  @keyframes foodWobble { 30%{ transform:scale(1.08) rotate(-3deg);} 60%{ transform:scale(.96) rotate(3deg);} }
+  .lyr-vessel.clean { animation:vesselShine .8s ease-out; }
+  @keyframes vesselShine { 0%{ filter:none;} 35%{ filter:brightness(1.5) drop-shadow(0 0 9px #fff);} 100%{ filter:none;} }
+
+  /* B#15: recipe equation strip — chips stagger in after the reveal */
+  #dishIngs .req { display:inline-flex; align-items:center; justify-content:center; opacity:0; }
+  #overlay.revealed #dishIngs .req { opacity:1; animation:chipPop .5s cubic-bezier(.3,1.7,.4,1) both; }
+  @keyframes chipPop { 0%{ transform:scale(0);} 60%{ transform:scale(1.15);} 100%{ transform:scale(1);} }
+  #dishIngs .chip, #dishIngs .dishchip { background:#ffffff26; border-radius:12px; padding:2px; }
+  #overlay.revealed #dishIngs .chip.boing { animation:boing .45s cubic-bezier(.3,1.8,.4,1); }
+  #overlay.revealed #dishIngs .chip.wiggle { animation:chipWiggle .5s ease infinite; }
+  @keyframes chipWiggle { 25%{ transform:rotate(-12deg);} 75%{ transform:rotate(12deg);} }
+
+  /* ============ B#16: recipe book ============ */
+  #bookBtn { position:fixed; top:calc(env(safe-area-inset-top) + 12px); left:14px; z-index:80;
+    width:60px; height:60px; border:none; border-radius:18px; background:linear-gradient(#FFF3D6,#FFE1A6);
+    box-shadow:0 4px 0 #C99A2E; display:none; align-items:center; justify-content:center; }
+  #bookBtn.has { display:flex; }
+  #bookBtn:active { transform:translateY(3px); box-shadow:0 1px 0 #C99A2E; }
+  #bookBtn.boing { animation:boing .5s cubic-bezier(.3,1.8,.4,1); }
+  #bookBtn.badge::after { content:''; position:absolute; top:-4px; right:-4px; width:16px; height:16px;
+    border-radius:50%; background:#F04E6E; border:2px solid #fff; }
+  #newStamp { position:absolute; top:38px; right:22px; z-index:11; pointer-events:none; }
+
+  #bookOverlay { position:fixed; inset:0; z-index:150; display:none; flex-direction:column;
+    background:linear-gradient(#FFF3D6,#FBE1AE); }
+  #bookOverlay.show { display:flex; animation:fadeIn .35s ease; }
+  #bookHeader { display:flex; align-items:center; justify-content:center; gap:8px; padding:16px 16px 8px;
+    font-size:23px; font-weight:800; color:#8A4B12; }
+  #bookClose { position:absolute; top:12px; right:14px; width:52px; height:52px; border:none; border-radius:50%;
+    background:#fff9; box-shadow:0 3px 0 #d9a94e; display:flex; align-items:center; justify-content:center; }
+  #bookClose:active { transform:translateY(2px); box-shadow:0 1px 0 #d9a94e; }
+  #bookScroll { flex:1; overflow-y:auto; padding:8px 14px 28px; display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; align-content:start; }
+  .bk-card { background:#fff; border-radius:20px; box-shadow:0 5px 0 #E4C98A; padding:12px 8px 10px;
+    display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .bk-card.cardpop { animation:boing .5s cubic-bezier(.3,1.8,.4,1); }
+  .bk-card.teaser { background:#FFFDF6; border:3px dashed #E4C98A; box-shadow:none;
+    flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center; gap:3px; min-height:118px; }
+  .bk-dish { width:88px; height:88px; }
+  .bk-dish svg { width:100%; height:100%; }
+  .bk-strip { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:2px; margin-top:4px; }
+  .bk-strip .req { display:inline-flex; align-items:center; opacity:1; }
+  .bk-strip .chip svg { width:24px; height:24px; }
+  .bk-strip .op svg { width:15px; height:15px; }
+  .bk-strip .dishchip svg { width:32px; height:32px; }
+  .bk-name { font-weight:800; font-size:13px; color:#6A4A2A; line-height:1.12; margin-top:6px; }
+  .bk-date { font-size:10px; color:#B79A6E; margin-top:3px; }
+  .bk-chip, .bk-op, .bk-q { display:inline-flex; align-items:center; }
+  .bk-q { animation:pulse 1.4s ease-in-out infinite; }
+
+  /* H#9: landscape / short viewports — keep the replay button on-screen */
+  @media (max-height:560px) {
+    #plateWrap { width:212px; height:212px; }
+    #dishBig { width:150px; height:150px; }
+    #againBtn { width:76px; height:76px; margin-top:14px; }
+    #dishName { font-size:18px; }
+    #dishIngs { bottom:14px; }
+  }
+
+  /* H#8: curated reduced-motion — kill shakes / big travel / confetti, KEEP the wordless cue pulses
+     (potGlow, hintPulse, #againBtn + #startBtn pulse, guide-hand bounce, bob, blink, spoonBeckon, flick) */
   @media (prefers-reduced-motion: reduce) {
-    *,*::before,*::after { animation-duration:.01s !important; animation-iteration-count:1 !important; transition-duration:.01s !important; }
+    .confetti { display:none !important; }
+    .fly, .crumb, .steam, .bubble, .psteam,
+    #overlay.shake, .lyr-food.wobble, #dishBig, #plateWrap,
+    #beepo.hop, #revealBeepo.faint, #revealBeepo.exp-yum, #revealBeepo.exp-yuck,
+    #revealBeepo.exp-wow, #revealBeepo.exp-refuse, #revealBeepo.exp-eat, #revealBeepo.feeding { animation:none !important; }
   }

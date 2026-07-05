@@ -150,6 +150,16 @@
     <path d="M40 32 q-4 -8 0 -15 M60 32 q4 -8 0 -15" fill="none" stroke="#B7B7C9" stroke-width="3.5" stroke-linecap="round" opacity=".7"/>
   </symbol>
 
+  <!-- B#14: dish-bowl split into a never-eaten shell + a depletable soup surface -->
+  <symbol id="dish-bowl-shell" viewBox="0 0 100 100">
+    <path d="M13 48 C13 74 30 90 50 90 C70 90 87 74 87 48 Z" fill="#FFF" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M20 66 Q50 76 80 66" fill="none" stroke="#9FD8E8" stroke-width="5" stroke-linecap="round"/>
+    <path d="M40 90 L38 96 H62 L60 90" fill="#FFF" stroke="#4A3B47" stroke-width="4" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="dish-soup" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="48" rx="37" ry="10" fill="currentColor" stroke="#4A3B47" stroke-width="4"/>
+  </symbol>
+
   <symbol id="dish-jar" viewBox="0 0 100 100">
     <rect x="30" y="36" width="40" height="48" rx="9" fill="#E85D75" stroke="#4A3B47" stroke-width="4"/>
     <rect x="26" y="26" width="48" height="13" rx="5" fill="#B7C4CC" stroke="#4A3B47" stroke-width="4"/>
@@ -424,6 +434,28 @@
     <path d="M50 8 L61 36 L92 38 L68 58 L76 89 L50 71 L24 89 L32 58 L8 38 L39 36 Z"
       fill="currentColor" stroke="#4A3B47" stroke-width="5" stroke-linejoin="round"/>
   </symbol>
+  <!-- B#15: recipe-equation glyphs (code-drawn, house style) -->
+  <symbol id="ui-plus" viewBox="0 0 100 100">
+    <path d="M50 26 V74 M26 50 H74" fill="none" stroke="#4A3B47" stroke-width="13" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="ui-equals" viewBox="0 0 100 100">
+    <path d="M26 39 H74 M26 61 H74" fill="none" stroke="#4A3B47" stroke-width="13" stroke-linecap="round"/>
+  </symbol>
+  <!-- B#16: wordless "NEW!" discovery stamp -->
+  <symbol id="ui-stamp-new" viewBox="0 0 100 100">
+    <path d="M50 5 L60 19 L77 14 L74 32 L92 37 L80 50 L92 63 L74 68 L77 86 L60 81 L50 95 L40 81 L23 86 L26 68 L8 63 L20 50 L8 37 L26 32 L23 14 L40 19 Z"
+      fill="#FFD34D" stroke="#B8860B" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="50" cy="50" r="23" fill="#FFE894" stroke="#B8860B" stroke-width="2.5"/>
+    <text x="50" y="56" text-anchor="middle" font-size="16" font-weight="800" fill="#B8860B" font-family="inherit">NEW!</text>
+  </symbol>
+  <!-- B#16: recipe book button glyph -->
+  <symbol id="ui-book" viewBox="0 0 100 100">
+    <path d="M50 24 C40 16 22 16 14 20 V78 C22 74 40 74 50 82 C60 74 78 74 86 78 V20 C78 16 60 16 50 24 Z"
+      fill="#F2C14E" stroke="#4A3B47" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M50 24 V82" fill="none" stroke="#4A3B47" stroke-width="4"/>
+    <path d="M22 34 H40 M22 46 H40 M60 34 H78 M60 46 H78" stroke="#C99A2E" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M50 40 l4 8 l8 1 l-6 6 l2 8 l-8 -4 l-8 4 l2 -8 l-6 -6 l8 -1 Z" fill="#E8613C" stroke="#4A3B47" stroke-width="2.5" stroke-linejoin="round"/>
+  </symbol>
   <!-- ============ Batch 4: UI icons (emoji replacements, house style) ============ -->
   <symbol id="ui-hand" viewBox="0 0 100 100">
     <!-- index finger offset LEFT (a centered finger reads as a rude gesture) -->
@@ -508,6 +540,9 @@
     <button id="muteBtn" aria-label="Sound on or off"><svg class="icon" viewBox="0 0 100 100" width="24" height="24"><use href="#ui-snd"/></svg></button>
   </div>
 </div>
+
+<!-- B#16: recipe book button (top-left, kid-sized; hidden until first discovery) -->
+<button id="bookBtn" aria-label="Recipe book"><svg class="icon" viewBox="0 0 100 100" width="44" height="44"><use href="#ui-book"/></svg></button>
 
 <div id="stage">
   <div id="floor"></div>
@@ -667,6 +702,13 @@
     </div>
   </div>
   <button id="againBtn" aria-label="Cook again"><svg class="icon" viewBox="0 0 100 100" width="54" height="54"><use href="#ui-again"/></svg></button>
+</div>
+
+<!-- B#16: recipe book (scrapbook of discovered dishes) -->
+<div id="bookOverlay">
+  <div id="bookHeader"><svg class="icon" viewBox="0 0 100 100" width="30" height="30"><use href="#ui-book"/></svg><span>My Recipes</span></div>
+  <button id="bookClose" aria-label="Close"><svg viewBox="0 0 100 100" width="30" height="30"><path d="M26 26 L74 74 M74 26 L26 74" fill="none" stroke="#8A4B12" stroke-width="11" stroke-linecap="round"/></svg></button>
+  <div id="bookScroll"></div>
 </div>
 
 <script src="dishes.js"></script>
