@@ -362,3 +362,9 @@
     #beepo.hop, #revealBeepo.faint, #revealBeepo.exp-yum, #revealBeepo.exp-yuck,
     #revealBeepo.exp-wow, #revealBeepo.exp-refuse, #revealBeepo.exp-eat, #revealBeepo.feeding { animation:none !important; }
   }
+
+  /* ============ Raster reskin (§3.6): AI PNGs for ingredients + dishes ============ */
+  .ingimg, .dishimg { object-fit:contain; display:block; pointer-events:none; }
+  #dishBig img.lyr-food { width:100%; height:100%; object-fit:contain; }
+  .bk-dishimg { width:100%; height:100%; object-fit:contain; pointer-events:none; }
+  @media (max-height:730px) { .ing .ingimg { width:62px; height:62px; } }

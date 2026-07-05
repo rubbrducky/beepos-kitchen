@@ -1,18 +1,27 @@
 #!/usr/bin/env python3
-"""Build a self-contained single-file game at deploy/index.html (for Netlify Drop etc.).
-Inlines styles.css, dishes.js and game.js into index.html. Rerun after any change."""
-import os, re
-h = open('index.html').read()
-css = open('styles.css').read()
-dishes = open('dishes.js').read()
-game = open('game.js').read()
-for js in (dishes, game):
+"""Build deploy/: index.html with CSS + JS inlined, plus a copy of the assets/ folder.
+Since the raster reskin (§3.6) the game uses AI PNGs in assets/, so this is no longer a
+single self-contained file — it's index.html + assets/. Rerun after any change.
+(deploy/assets is gitignored; regenerate it here. Netlify Drop takes the deploy/ folder.)"""
+import os, re, shutil
+h      = open('index.html', encoding='utf-8').read()
+css    = open('styles.css', encoding='utf-8').read()
+dishes = open('dishes.js', encoding='utf-8').read()
+artmap = open('art-map.js', encoding='utf-8').read()
+game   = open('game.js', encoding='utf-8').read()
+for js in (dishes, artmap, game):
     assert '</script' not in js, 'script content would break inlining'
 h = h.replace('<link rel="stylesheet" href="styles.css">', '<style>\n'+css+'</style>')
 h = h.replace('<script src="dishes.js"></script>', '<script>\n'+dishes+'</script>')
+h = h.replace('<script src="art-map.js"></script>', '<script>\n'+artmap+'</script>')
 h = h.replace('<script src="game.js"></script>', '<script>\n'+game+'</script>')
-assert 'src="dishes.js"' not in h and 'src="game.js"' not in h and 'styles.css' not in h
-assert not re.search(r'(src|href)="https?://', h), 'external reference found'
+assert not any(s in h for s in ('src="dishes.js"', 'src="art-map.js"', 'src="game.js"', 'styles.css'))
+assert not re.search(r'(src|href)="https?://', h), 'external http reference found'
 os.makedirs('deploy', exist_ok=True)
-open('deploy/index.html','w').write(h)
-print('deploy/index.html written:', len(h), 'bytes, fully self-contained')
+open('deploy/index.html', 'w', encoding='utf-8').write(h)
+dst = os.path.join('deploy', 'assets')
+if os.path.isdir(dst):
+    shutil.rmtree(dst)
+shutil.copytree('assets', dst)
+n = sum(len(f) for _, _, f in os.walk(dst) for f in [f])
+print(f'deploy/index.html: {len(h)} bytes (code inlined) + deploy/assets/ copied')

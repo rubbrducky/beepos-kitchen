@@ -185,12 +185,14 @@ const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
 function iconSVG(id, size, color){
   return `<svg class="icon" viewBox="0 0 100 100" width="${size}" height="${size}"${color?` style="color:${color}"`:''}><use href="#${id}"/></svg>`;
 }
+/* Raster reskin (§3.6): ingredients render as AI PNGs; UI icons + effects stay SVG. */
+function ingImg(id, size){ return `<img class="ingimg" src="assets/ing/${id}.png" width="${size}" height="${size}" alt="" draggable="false">`; }
 
 /* build shelf */
 INGREDIENTS.forEach(item=>{
   const b=document.createElement('button');
   b.className='ing';
-  b.innerHTML=iconSVG(item.svg,80);           /* icon-only: the food IS the label */
+  b.innerHTML=ingImg(item.id,80);             /* icon-only: the food IS the label */
   b.setAttribute('aria-label', item.n);
   /* pointerdown, not click: fires instantly for EVERY finger — iOS suppresses
      synthesized clicks during multi-touch, which killed overlapping flyers */
@@ -327,7 +329,7 @@ function addIngredient(item, btn){
   if(cooking) return;                            /* H#5: feedback given; just don't spawn a flyer mid-cook */
   const from=btn.getBoundingClientRect(), to=potWrap.getBoundingClientRect();
   const fl=document.createElement('div');
-  fl.className='flyer'; fl.innerHTML=iconSVG(item.svg,64);
+  fl.className='flyer'; fl.innerHTML=ingImg(item.id,64);
   fl.style.left=(from.left+from.width/2-32)+'px';
   fl.style.top=(from.top+4)+'px';
   document.body.appendChild(fl);
@@ -353,7 +355,7 @@ function bounceOff(item, to){
   potWrap.classList.add('happy');
   say(pick(FULL_LINES), 1400);
   const b=document.createElement('div');
-  b.className='flyer'; b.innerHTML=iconSVG(item.svg,52);
+  b.className='flyer'; b.innerHTML=ingImg(item.id,52);
   b.style.left=(to.left+to.width/2-26)+'px';
   b.style.top=(to.top-6)+'px';
   document.body.appendChild(b);
@@ -378,7 +380,7 @@ function landInPot(item){
   potItems.push(entry);
   sPlop();
   const f=document.createElement('div');
-  f.className='floatItem'; f.innerHTML=iconSVG(item.svg,FLOAT_SIZE);
+  f.className='floatItem'; f.innerHTML=ingImg(item.id,FLOAT_SIZE);
   f.style.left=(SLOT_X[slot] + (Math.random()*4-2))+'px';
   f.style.top=(SLOT_Y[slot] + (Math.random()*4-2))+'px';
   f.style.animationDelay=(Math.random()*2)+'s';
@@ -502,7 +504,8 @@ function findDish(ids){
   } else {                                              /* generic living bowl */
     layers=funBowlLayers(ids, entry.v);
   }
-  return {name:entry.n, verdict:entry.v, key, ids, size:ids.length, eatWhole, layers};
+  return {name:entry.n, verdict:entry.v, key, ids, size:ids.length, eatWhole, layers,
+          art: (typeof DISH_ART!=='undefined' && DISH_ART[key]) || null};   /* raster reskin §3.6 */
 }
 
 /* ================= B#14: four-layer dish rendering =================
@@ -552,15 +555,17 @@ function bowlLookLayers(parts, verdict){
    [ing] + [ing] = [mini dish], built from the deduped/sorted key ids (never raw
    potItems), so it never teaches that quantity matters. Rides the #dishIngs slot
    during eating — zero added loop time. Chips stagger in and are tappable. */
-function recipeStripHTML(ids, layers, verdict){
+function recipeStripHTML(ids, layers, verdict, art){
   let out='', i=0;
   const cell=(inner,cls,attr='')=>`<span class="req ${cls}" style="animation-delay:${(1.2+(i++)*0.15).toFixed(2)}s" ${attr}>${inner}</span>`;
   ids.forEach((id,k)=>{
     if(k) out+=cell('<svg class="icon" viewBox="0 0 100 100" width="20" height="20"><use href="#ui-plus"/></svg>','op');
-    out+=cell(`<svg class="icon" viewBox="0 0 100 100" width="34" height="34"><use href="#${ING_BY_ID[id].svg}"/></svg>`,'chip',`data-id="${id}"`);
+    out+=cell(ingImg(id,34),'chip',`data-id="${id}"`);
   });
   out+=cell('<svg class="icon" viewBox="0 0 100 100" width="22" height="22"><use href="#ui-equals"/></svg>','op');
-  out+=cell(`<svg viewBox="0 0 100 100" width="46" height="46">${layers.vessel}${layers.food}${layers.fx}</svg>`,'dishchip '+verdict);
+  const mini = art ? `<img class="dishimg" src="assets/dish/${art}" width="46" height="46" alt="" draggable="false">`
+                   : `<svg viewBox="0 0 100 100" width="46" height="46">${layers.vessel}${layers.food}${layers.fx}</svg>`;
+  out+=cell(mini,'dishchip '+verdict);
   return out;
 }
 
@@ -577,13 +582,18 @@ function reveal(){
 
   dishName.textContent = dish.name;
   const L=dish.layers;
-  dishBig.className = dish.eatWhole ? 'eat-whole' : '';
-  dishBig.innerHTML =
-    `<svg class="lyr lyr-vessel" viewBox="0 0 100 100">${L.vessel}</svg>`+
-    `<svg class="lyr lyr-food" viewBox="0 0 100 100">${L.food}</svg>`+
-    `<svg class="lyr lyr-vfront" viewBox="0 0 100 100">${L.vfront}</svg>`+
-    `<svg class="lyr lyr-fx" viewBox="0 0 100 100">${L.fx}</svg>`;
-  dishIngs.innerHTML = recipeStripHTML(dish.ids, L, dish.verdict);   /* B#15 */
+  if(dish.art){                     /* raster reskin: AI food PNG shrinks; the #plate div is the persistent vessel */
+    dishBig.className='eat-whole raster';
+    dishBig.innerHTML=`<img class="lyr lyr-food" src="assets/dish/${dish.art}" alt="" draggable="false">`;
+  } else {
+    dishBig.className = dish.eatWhole ? 'eat-whole' : '';
+    dishBig.innerHTML =
+      `<svg class="lyr lyr-vessel" viewBox="0 0 100 100">${L.vessel}</svg>`+
+      `<svg class="lyr lyr-food" viewBox="0 0 100 100">${L.food}</svg>`+
+      `<svg class="lyr lyr-vfront" viewBox="0 0 100 100">${L.vfront}</svg>`+
+      `<svg class="lyr lyr-fx" viewBox="0 0 100 100">${L.fx}</svg>`;
+  }
+  dishIngs.innerHTML = recipeStripHTML(dish.ids, L, dish.verdict, dish.art);   /* B#15 */
 
   let face, word, color;
   if(dish.verdict==='yucky'){ face='ui-face-yuck'; word='PEE-YEW!! WIGGLY!'; color='#C6F08C'; }
@@ -762,7 +772,7 @@ function chunkFly(){
   if(!from.width) return;
   const mouth=revealBeepo.getBoundingClientRect();
   const fl=document.createElement('div');
-  fl.className='flyer'; fl.innerHTML=iconSVG(ING_BY_ID[id].svg,40);
+  fl.className='flyer'; fl.innerHTML=ingImg(id,40);
   fl.style.left=(from.left+from.width/2-20)+'px'; fl.style.top=(from.top+from.height/2-20)+'px';
   document.body.appendChild(fl);
   const dx=(mouth.left+mouth.width*0.6)-(from.left+from.width/2);
@@ -924,14 +934,16 @@ function bkCard(key, discovered){
   if(!discovered){
     let c='';
     ids.forEach((id,k)=>{ if(k) c+='<span class="bk-op"><svg class="icon" viewBox="0 0 100 100" width="15" height="15"><use href="#ui-plus"/></svg></span>';
-      c+=`<span class="bk-chip"><svg class="icon" viewBox="0 0 100 100" width="30" height="30"><use href="#${ING_BY_ID[id].svg}"/></svg></span>`; });
+      c+=`<span class="bk-chip">${ingImg(id,30)}</span>`; });
     c+='<span class="bk-op"><svg class="icon" viewBox="0 0 100 100" width="17" height="17"><use href="#ui-equals"/></svg></span>'
      +'<span class="bk-q"><svg viewBox="0 0 100 100" width="40" height="40"><use href="#top-question"/></svg></span>';
     return `<div class="bk-card teaser">${c}</div>`;
   }
   const date=new Date(bkData.d[key].t).toLocaleDateString();
-  return `<div class="bk-card ${dish.verdict}"><div class="bk-dish"><svg viewBox="0 0 100 100">${L.vessel}${L.food}${L.fx}</svg></div>`
-       +`<div class="bk-strip">${recipeStripHTML(ids,L,dish.verdict)}</div>`
+  const dishHTML = dish.art ? `<img class="bk-dishimg" src="assets/dish/${dish.art}" alt="" draggable="false">`
+                            : `<svg viewBox="0 0 100 100">${L.vessel}${L.food}${L.fx}</svg>`;
+  return `<div class="bk-card ${dish.verdict}"><div class="bk-dish">${dishHTML}</div>`
+       +`<div class="bk-strip">${recipeStripHTML(ids,L,dish.verdict,dish.art)}</div>`
        +`<div class="bk-name">${dish.name}</div><div class="bk-date">${date}</div></div>`;
 }
 

@@ -369,6 +369,12 @@
     #beepo.hop, #revealBeepo.faint, #revealBeepo.exp-yum, #revealBeepo.exp-yuck,
     #revealBeepo.exp-wow, #revealBeepo.exp-refuse, #revealBeepo.exp-eat, #revealBeepo.feeding { animation:none !important; }
   }
+
+  /* ============ Raster reskin (§3.6): AI PNGs for ingredients + dishes ============ */
+  .ingimg, .dishimg { object-fit:contain; display:block; pointer-events:none; }
+  #dishBig img.lyr-food { width:100%; height:100%; object-fit:contain; }
+  .bk-dishimg { width:100%; height:100%; object-fit:contain; pointer-events:none; }
+  @media (max-height:730px) { .ing .ingimg { width:62px; height:62px; } }
 </style>
 </head>
 <body>
@@ -1212,6 +1218,140 @@ const DISH_CATALOG = {
 };
 </script>
 <script>
+/* AUTO-GENERATED (from dishes.json): combo key -> assets/dish PNG. */
+const DISH_ART = {
+  "apple": "001-apple-squish-sauce.png",
+  "banana": "002-mushy-banana-mash.png",
+  "berry": "003-strawberry-squish-jam.png",
+  "egg": "004-wobbly-egg-custard.png",
+  "choco": "005-choco-goo-pudding.png",
+  "cookie": "006-giant-cookie-mush.png",
+  "icecream": "007-melty-ice-cream-mountain.png",
+  "worm": "008-wormy-wiggle-noodles.png",
+  "rainbow": "009-sparkle-rainbow-soup.png",
+  "apple+banana": "010-sunny-fruit-smoothie.png",
+  "apple+berry": "011-berry-apple-jelly.png",
+  "apple+egg": "012-apple-custard-cup.png",
+  "apple+choco": "013-choco-dunked-apple.png",
+  "apple+cookie": "014-grandma-s-apple-pie.png",
+  "apple+icecream": "015-apple-pie-a-la-mode.png",
+  "apple+worm": "016-wiggly-apple-wormhole.png",
+  "apple+rainbow": "017-rainbow-apple-fizz.png",
+  "banana+berry": "018-pink-monkey-smoothie.png",
+  "banana+egg": "019-banana-pancakes.png",
+  "banana+choco": "020-choco-banana-pops.png",
+  "banana+cookie": "021-banana-cookie-stack.png",
+  "banana+icecream": "022-banana-split.png",
+  "banana+worm": "023-wiggle-waggle-banana-slime.png",
+  "banana+rainbow": "024-rainbow-banana-dream.png",
+  "berry+egg": "025-strawberry-custard-cup.png",
+  "berry+choco": "026-strawberry-choco-cake.png",
+  "berry+cookie": "027-strawberry-cookie-crumble.png",
+  "berry+icecream": "028-strawberry-sundae.png",
+  "berry+worm": "029-wormy-berry-sludge.png",
+  "berry+rainbow": "030-rainbow-berry-sparkle.png",
+  "choco+egg": "031-chocolate-birthday-cake.png",
+  "cookie+egg": "032-beepo-burger.png",
+  "egg+icecream": "033-frozen-custard-swirl.png",
+  "egg+worm": "034-slimy-worm-scramble.png",
+  "egg+rainbow": "035-rainbow-cloud-omelette.png",
+  "choco+cookie": "036-double-choc-donut.png",
+  "choco+icecream": "037-choco-swirl-cone.png",
+  "choco+worm": "038-choco-dipped-wigglers.png",
+  "choco+rainbow": "039-magic-choco-rainbow-swirl.png",
+  "cookie+icecream": "040-ice-cream-sandwich.png",
+  "cookie+worm": "041-wiggly-worm-burger.png",
+  "cookie+rainbow": "042-rainbow-sprinkle-cookie.png",
+  "icecream+worm": "043-wormy-ice-scream.png",
+  "icecream+rainbow": "044-rainbow-sparkle-sundae.png",
+  "rainbow+worm": "045-sparkly-rainbow-worm-goo.png",
+  "apple+banana+berry": "046-tutti-frutti-salad.png",
+  "apple+banana+egg": "047-apple-banana-egg-yum-bowl.png",
+  "apple+banana+choco": "048-apple-banana-chocolate-medley.png",
+  "apple+banana+cookie": "049-triple-treat-apple-banana-cookie.png",
+  "apple+banana+icecream": "050-apple-banana-ice-cream-mash-up.png",
+  "apple+banana+worm": "051-apple-banana-worm-swamp-stew.png",
+  "apple+banana+rainbow": "052-magical-apple-banana-shimmer.png",
+  "apple+berry+egg": "053-apple-strawberry-egg-medley.png",
+  "apple+berry+choco": "054-triple-treat-apple-strawberry-chocolate.png",
+  "apple+berry+cookie": "055-apple-strawberry-cookie-mash-up.png",
+  "apple+berry+icecream": "056-chef-s-apple-strawberry-ice-cream-surprise.png",
+  "apple+berry+worm": "057-squirmy-apple-strawberry-mush.png",
+  "apple+berry+rainbow": "058-apple-strawberry-rainbow-delight.png",
+  "apple+choco+egg": "059-apple-egg-chocolate-mash-up.png",
+  "apple+cookie+egg": "060-chef-s-apple-egg-cookie-surprise.png",
+  "apple+egg+icecream": "061-apple-egg-ice-cream-yum-bowl.png",
+  "apple+egg+worm": "062-wiggly-apple-egg-sludge.png",
+  "apple+egg+rainbow": "063-enchanted-apple-egg-twinkle-treat.png",
+  "apple+choco+cookie": "064-apple-chocolate-cookie-yum-bowl.png",
+  "apple+choco+icecream": "065-apple-chocolate-ice-cream-medley.png",
+  "apple+choco+worm": "066-wormy-apple-chocolate-surprise.png",
+  "apple+choco+rainbow": "067-rainbow-apple-chocolate-sparkle-dream.png",
+  "apple+cookie+icecream": "068-apple-pie-a-la-mode-deluxe.png",
+  "apple+cookie+worm": "069-slimy-apple-cookie-wriggle-goo.png",
+  "apple+cookie+rainbow": "070-magical-apple-cookie-shimmer.png",
+  "apple+icecream+worm": "071-apple-ice-cream-worm-swamp-stew.png",
+  "apple+icecream+rainbow": "072-apple-ice-cream-rainbow-delight.png",
+  "apple+rainbow+worm": "073-wiggly-apple-sludge.png",
+  "banana+berry+egg": "074-triple-treat-banana-strawberry-egg.png",
+  "banana+berry+choco": "075-banana-strawberry-chocolate-mash-up.png",
+  "banana+berry+cookie": "076-chef-s-banana-strawberry-cookie-surprise.png",
+  "banana+berry+icecream": "077-double-berry-banana-split.png",
+  "banana+berry+worm": "078-wiggly-banana-strawberry-sludge.png",
+  "banana+berry+rainbow": "079-enchanted-banana-strawberry-twinkle-treat.png",
+  "banana+choco+egg": "080-choco-banana-birthday-cake.png",
+  "banana+cookie+egg": "081-banana-egg-cookie-yum-bowl.png",
+  "banana+egg+icecream": "082-banana-egg-ice-cream-medley.png",
+  "banana+egg+worm": "083-wormy-banana-egg-surprise.png",
+  "banana+egg+rainbow": "084-rainbow-banana-egg-sparkle-dream.png",
+  "banana+choco+cookie": "085-banana-chocolate-cookie-medley.png",
+  "banana+choco+icecream": "086-choco-banana-split-supreme.png",
+  "banana+choco+worm": "087-slimy-banana-chocolate-wriggle-goo.png",
+  "banana+choco+rainbow": "088-magical-banana-chocolate-shimmer.png",
+  "banana+cookie+icecream": "089-banana-cookie-sundae.png",
+  "banana+cookie+worm": "090-banana-cookie-worm-swamp-stew.png",
+  "banana+cookie+rainbow": "091-banana-cookie-rainbow-delight.png",
+  "banana+icecream+worm": "092-squirmy-banana-ice-cream-mush.png",
+  "banana+icecream+rainbow": "093-enchanted-banana-ice-cream-twinkle-treat.png",
+  "banana+rainbow+worm": "094-wormy-banana-surprise.png",
+  "berry+choco+egg": "095-strawberry-egg-chocolate-yum-bowl.png",
+  "berry+cookie+egg": "096-strawberry-egg-cookie-medley.png",
+  "berry+egg+icecream": "097-triple-treat-strawberry-egg-ice-cream.png",
+  "berry+egg+worm": "098-slimy-strawberry-egg-wriggle-goo.png",
+  "berry+egg+rainbow": "099-magical-strawberry-egg-shimmer.png",
+  "berry+choco+cookie": "100-triple-treat-strawberry-chocolate-cookie.png",
+  "berry+choco+icecream": "101-strawberry-choco-sundae.png",
+  "berry+choco+worm": "102-strawberry-chocolate-worm-swamp-stew.png",
+  "berry+choco+rainbow": "103-strawberry-chocolate-rainbow-delight.png",
+  "berry+cookie+icecream": "104-strawberry-shortcake-sundae.png",
+  "berry+cookie+worm": "105-squirmy-strawberry-cookie-mush.png",
+  "berry+cookie+rainbow": "106-enchanted-strawberry-cookie-twinkle-treat.png",
+  "berry+icecream+worm": "107-wiggly-strawberry-ice-cream-sludge.png",
+  "berry+icecream+rainbow": "108-rainbow-strawberry-ice-cream-sparkle-dream.png",
+  "berry+rainbow+worm": "109-slimy-strawberry-wriggle-goo.png",
+  "choco+cookie+egg": "110-chocolate-chip-cookie-cake.png",
+  "choco+egg+icecream": "111-chef-s-egg-chocolate-ice-cream-surprise.png",
+  "choco+egg+worm": "112-squirmy-egg-chocolate-mush.png",
+  "choco+egg+rainbow": "113-enchanted-egg-chocolate-twinkle-treat.png",
+  "cookie+egg+icecream": "114-egg-cookie-ice-cream-yum-bowl.png",
+  "cookie+egg+worm": "115-wiggly-egg-cookie-sludge.png",
+  "cookie+egg+rainbow": "116-rainbow-egg-cookie-sparkle-dream.png",
+  "egg+icecream+worm": "117-wormy-egg-ice-cream-surprise.png",
+  "egg+icecream+rainbow": "118-magical-egg-ice-cream-shimmer.png",
+  "egg+rainbow+worm": "119-egg-worm-swamp-stew.png",
+  "choco+cookie+icecream": "120-cookies-and-cream-sundae.png",
+  "choco+cookie+worm": "121-wormy-chocolate-cookie-surprise.png",
+  "choco+cookie+rainbow": "122-magical-chocolate-cookie-shimmer.png",
+  "choco+icecream+worm": "123-slimy-chocolate-ice-cream-wriggle-goo.png",
+  "choco+icecream+rainbow": "124-chocolate-ice-cream-rainbow-delight.png",
+  "choco+rainbow+worm": "125-squirmy-chocolate-mush.png",
+  "cookie+icecream+worm": "126-cookie-ice-cream-worm-swamp-stew.png",
+  "cookie+icecream+rainbow": "127-enchanted-cookie-ice-cream-twinkle-treat.png",
+  "cookie+rainbow+worm": "128-wiggly-cookie-sludge.png",
+  "icecream+rainbow+worm": "129-wormy-ice-cream-surprise.png",
+};
+</script>
+<script>
 /* =====================================================================
    Beepo's Kitchen — game.js
    Milestone 1 / Batch 1: core interaction rework (PLAN.md §4, §8)
@@ -1399,12 +1539,14 @@ const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
 function iconSVG(id, size, color){
   return `<svg class="icon" viewBox="0 0 100 100" width="${size}" height="${size}"${color?` style="color:${color}"`:''}><use href="#${id}"/></svg>`;
 }
+/* Raster reskin (§3.6): ingredients render as AI PNGs; UI icons + effects stay SVG. */
+function ingImg(id, size){ return `<img class="ingimg" src="assets/ing/${id}.png" width="${size}" height="${size}" alt="" draggable="false">`; }
 
 /* build shelf */
 INGREDIENTS.forEach(item=>{
   const b=document.createElement('button');
   b.className='ing';
-  b.innerHTML=iconSVG(item.svg,80);           /* icon-only: the food IS the label */
+  b.innerHTML=ingImg(item.id,80);             /* icon-only: the food IS the label */
   b.setAttribute('aria-label', item.n);
   /* pointerdown, not click: fires instantly for EVERY finger — iOS suppresses
      synthesized clicks during multi-touch, which killed overlapping flyers */
@@ -1541,7 +1683,7 @@ function addIngredient(item, btn){
   if(cooking) return;                            /* H#5: feedback given; just don't spawn a flyer mid-cook */
   const from=btn.getBoundingClientRect(), to=potWrap.getBoundingClientRect();
   const fl=document.createElement('div');
-  fl.className='flyer'; fl.innerHTML=iconSVG(item.svg,64);
+  fl.className='flyer'; fl.innerHTML=ingImg(item.id,64);
   fl.style.left=(from.left+from.width/2-32)+'px';
   fl.style.top=(from.top+4)+'px';
   document.body.appendChild(fl);
@@ -1567,7 +1709,7 @@ function bounceOff(item, to){
   potWrap.classList.add('happy');
   say(pick(FULL_LINES), 1400);
   const b=document.createElement('div');
-  b.className='flyer'; b.innerHTML=iconSVG(item.svg,52);
+  b.className='flyer'; b.innerHTML=ingImg(item.id,52);
   b.style.left=(to.left+to.width/2-26)+'px';
   b.style.top=(to.top-6)+'px';
   document.body.appendChild(b);
@@ -1592,7 +1734,7 @@ function landInPot(item){
   potItems.push(entry);
   sPlop();
   const f=document.createElement('div');
-  f.className='floatItem'; f.innerHTML=iconSVG(item.svg,FLOAT_SIZE);
+  f.className='floatItem'; f.innerHTML=ingImg(item.id,FLOAT_SIZE);
   f.style.left=(SLOT_X[slot] + (Math.random()*4-2))+'px';
   f.style.top=(SLOT_Y[slot] + (Math.random()*4-2))+'px';
   f.style.animationDelay=(Math.random()*2)+'s';
@@ -1716,7 +1858,8 @@ function findDish(ids){
   } else {                                              /* generic living bowl */
     layers=funBowlLayers(ids, entry.v);
   }
-  return {name:entry.n, verdict:entry.v, key, ids, size:ids.length, eatWhole, layers};
+  return {name:entry.n, verdict:entry.v, key, ids, size:ids.length, eatWhole, layers,
+          art: (typeof DISH_ART!=='undefined' && DISH_ART[key]) || null};   /* raster reskin §3.6 */
 }
 
 /* ================= B#14: four-layer dish rendering =================
@@ -1766,15 +1909,17 @@ function bowlLookLayers(parts, verdict){
    [ing] + [ing] = [mini dish], built from the deduped/sorted key ids (never raw
    potItems), so it never teaches that quantity matters. Rides the #dishIngs slot
    during eating — zero added loop time. Chips stagger in and are tappable. */
-function recipeStripHTML(ids, layers, verdict){
+function recipeStripHTML(ids, layers, verdict, art){
   let out='', i=0;
   const cell=(inner,cls,attr='')=>`<span class="req ${cls}" style="animation-delay:${(1.2+(i++)*0.15).toFixed(2)}s" ${attr}>${inner}</span>`;
   ids.forEach((id,k)=>{
     if(k) out+=cell('<svg class="icon" viewBox="0 0 100 100" width="20" height="20"><use href="#ui-plus"/></svg>','op');
-    out+=cell(`<svg class="icon" viewBox="0 0 100 100" width="34" height="34"><use href="#${ING_BY_ID[id].svg}"/></svg>`,'chip',`data-id="${id}"`);
+    out+=cell(ingImg(id,34),'chip',`data-id="${id}"`);
   });
   out+=cell('<svg class="icon" viewBox="0 0 100 100" width="22" height="22"><use href="#ui-equals"/></svg>','op');
-  out+=cell(`<svg viewBox="0 0 100 100" width="46" height="46">${layers.vessel}${layers.food}${layers.fx}</svg>`,'dishchip '+verdict);
+  const mini = art ? `<img class="dishimg" src="assets/dish/${art}" width="46" height="46" alt="" draggable="false">`
+                   : `<svg viewBox="0 0 100 100" width="46" height="46">${layers.vessel}${layers.food}${layers.fx}</svg>`;
+  out+=cell(mini,'dishchip '+verdict);
   return out;
 }
 
@@ -1791,13 +1936,18 @@ function reveal(){
 
   dishName.textContent = dish.name;
   const L=dish.layers;
-  dishBig.className = dish.eatWhole ? 'eat-whole' : '';
-  dishBig.innerHTML =
-    `<svg class="lyr lyr-vessel" viewBox="0 0 100 100">${L.vessel}</svg>`+
-    `<svg class="lyr lyr-food" viewBox="0 0 100 100">${L.food}</svg>`+
-    `<svg class="lyr lyr-vfront" viewBox="0 0 100 100">${L.vfront}</svg>`+
-    `<svg class="lyr lyr-fx" viewBox="0 0 100 100">${L.fx}</svg>`;
-  dishIngs.innerHTML = recipeStripHTML(dish.ids, L, dish.verdict);   /* B#15 */
+  if(dish.art){                     /* raster reskin: AI food PNG shrinks; the #plate div is the persistent vessel */
+    dishBig.className='eat-whole raster';
+    dishBig.innerHTML=`<img class="lyr lyr-food" src="assets/dish/${dish.art}" alt="" draggable="false">`;
+  } else {
+    dishBig.className = dish.eatWhole ? 'eat-whole' : '';
+    dishBig.innerHTML =
+      `<svg class="lyr lyr-vessel" viewBox="0 0 100 100">${L.vessel}</svg>`+
+      `<svg class="lyr lyr-food" viewBox="0 0 100 100">${L.food}</svg>`+
+      `<svg class="lyr lyr-vfront" viewBox="0 0 100 100">${L.vfront}</svg>`+
+      `<svg class="lyr lyr-fx" viewBox="0 0 100 100">${L.fx}</svg>`;
+  }
+  dishIngs.innerHTML = recipeStripHTML(dish.ids, L, dish.verdict, dish.art);   /* B#15 */
 
   let face, word, color;
   if(dish.verdict==='yucky'){ face='ui-face-yuck'; word='PEE-YEW!! WIGGLY!'; color='#C6F08C'; }
@@ -1976,7 +2126,7 @@ function chunkFly(){
   if(!from.width) return;
   const mouth=revealBeepo.getBoundingClientRect();
   const fl=document.createElement('div');
-  fl.className='flyer'; fl.innerHTML=iconSVG(ING_BY_ID[id].svg,40);
+  fl.className='flyer'; fl.innerHTML=ingImg(id,40);
   fl.style.left=(from.left+from.width/2-20)+'px'; fl.style.top=(from.top+from.height/2-20)+'px';
   document.body.appendChild(fl);
   const dx=(mouth.left+mouth.width*0.6)-(from.left+from.width/2);
@@ -2138,14 +2288,16 @@ function bkCard(key, discovered){
   if(!discovered){
     let c='';
     ids.forEach((id,k)=>{ if(k) c+='<span class="bk-op"><svg class="icon" viewBox="0 0 100 100" width="15" height="15"><use href="#ui-plus"/></svg></span>';
-      c+=`<span class="bk-chip"><svg class="icon" viewBox="0 0 100 100" width="30" height="30"><use href="#${ING_BY_ID[id].svg}"/></svg></span>`; });
+      c+=`<span class="bk-chip">${ingImg(id,30)}</span>`; });
     c+='<span class="bk-op"><svg class="icon" viewBox="0 0 100 100" width="17" height="17"><use href="#ui-equals"/></svg></span>'
      +'<span class="bk-q"><svg viewBox="0 0 100 100" width="40" height="40"><use href="#top-question"/></svg></span>';
     return `<div class="bk-card teaser">${c}</div>`;
   }
   const date=new Date(bkData.d[key].t).toLocaleDateString();
-  return `<div class="bk-card ${dish.verdict}"><div class="bk-dish"><svg viewBox="0 0 100 100">${L.vessel}${L.food}${L.fx}</svg></div>`
-       +`<div class="bk-strip">${recipeStripHTML(ids,L,dish.verdict)}</div>`
+  const dishHTML = dish.art ? `<img class="bk-dishimg" src="assets/dish/${dish.art}" alt="" draggable="false">`
+                            : `<svg viewBox="0 0 100 100">${L.vessel}${L.food}${L.fx}</svg>`;
+  return `<div class="bk-card ${dish.verdict}"><div class="bk-dish">${dishHTML}</div>`
+       +`<div class="bk-strip">${recipeStripHTML(ids,L,dish.verdict,dish.art)}</div>`
        +`<div class="bk-name">${dish.name}</div><div class="bk-date">${date}</div></div>`;
 }
 
