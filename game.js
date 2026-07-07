@@ -384,7 +384,7 @@ function splash(){
   for(let i=0;i<3;i++){
     const dr=document.createElement('div');
     dr.className='splashDrop'; dr.style.background=col;
-    dr.style.left=(86+Math.random()*44)+'px'; dr.style.top='30px';
+    dr.style.left=(106+Math.random()*54)+'px'; dr.style.top='36px';
     potWrap.appendChild(dr);
     const dx=Math.random()*64-32, dy=-(18+Math.random()*26);
     dr.animate([
@@ -396,7 +396,7 @@ function splash(){
   const r=document.createElement('div'); r.className='splashRing';
   potWrap.appendChild(r); setTimeout(()=>r.remove(), 520);
 }
-const SLOT_X = [0, 49, 99], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 56;  /* tuned to the 204px pot */
+const SLOT_X = [0, 61, 122], SLOT_Y = [-20, -11, -20], FLOAT_SIZE = 70;  /* tuned to the 252px pot */
 function landInPot(item){
   const used = new Set(potItems.map(e=>e.slot));
   const free = [0,1,2].filter(s=>!used.has(s));

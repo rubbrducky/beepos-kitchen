@@ -38,14 +38,14 @@
   #bubbleTalk.show { opacity:1; transform:scale(1); }
   #bubbleTalk::after { content:''; position:absolute; bottom:-7px; left:14px; border:8px solid transparent; border-top-color:#fff; border-bottom:0; }
 
-  /* stove + pot */
-  #stoveWrap { position:relative; bottom:12px; width:204px; z-index:4; }
+  /* stove + pot — counter shrunk, pot enlarged (the pot IS the hero) */
+  #stoveWrap { position:relative; bottom:12px; width:252px; z-index:4; }
   /* stove demoted to quiet counter-wood: the POT is the hero of the stage */
-  #stove { width:204px; height:48px; background:linear-gradient(#DCA55F,#C68544); border-radius:14px 14px 8px 8px;
-    box-shadow:0 5px 0 #9C6B35; position:relative; }
-  #stove::before { content:''; position:absolute; top:8px; left:16px; width:19px; height:19px; border-radius:50%;
-    background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 150px 0 0 0 #B98A4E; }
-  #potWrap { position:absolute; bottom:38px; left:50%; transform:translateX(-50%); width:204px; height:136px; }
+  #stove { width:186px; height:34px; margin:0 auto; background:linear-gradient(#DCA55F,#C68544); border-radius:12px 12px 7px 7px;
+    box-shadow:0 4px 0 #9C6B35; position:relative; }
+  #stove::before { content:''; position:absolute; top:7px; left:14px; width:16px; height:16px; border-radius:50%;
+    background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 140px 0 0 0 #B98A4E; }
+  #potWrap { position:absolute; bottom:26px; left:50%; transform:translateX(-50%); width:252px; height:168px; }
   #potWrap > svg { animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
   /* stir-ready: the pot glows like a button until the third stir */
   #potWrap.ready > svg { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
@@ -56,7 +56,7 @@
   #potWrap.wobble { animation:wob .5s ease; }
   @keyframes wob { 25%{transform:translateX(-54%);} 50%{transform:translateX(-46%);} 75%{transform:translateX(-52%);} }
   #soupEllipse { fill:#F2B04A; transition: fill 1s; }
-  #soupItems { position:absolute; left:25px; top:10px; width:155px; height:53px; }
+  #soupItems { position:absolute; left:31px; top:12px; width:191px; height:65px; }
   #soupItems.swirl .floatItem { animation:spin1 1s ease; }
   @keyframes spin1 { 50%{ transform:translateX(26px) rotate(180deg) scale(.85);} 100%{transform:rotate(360deg);} }
   .floatItem { position:absolute; animation:floaty 3s ease-in-out infinite; }  /* H#10d: tap-to-remove affordance removed */
@@ -379,7 +379,7 @@
   #beepo.watch .f-normal { transform: translate(5px,-3px); }
   /* #2 landing splash */
   .splashDrop { position:absolute; width:10px; height:10px; border-radius:50% 50% 60% 60%; z-index:5; pointer-events:none; }
-  .splashRing { position:absolute; left:50%; top:32px; width:30px; height:11px; margin-left:-15px;
+  .splashRing { position:absolute; left:50%; top:38px; width:30px; height:11px; margin-left:-15px;
     border:3px solid #ffffffaa; border-radius:50%; pointer-events:none; z-index:5; animation:ringOut .5s ease-out forwards; }
   @keyframes ringOut { to { transform:scale(2.6); opacity:0; } }
   /* #3 soup face (+ lip-lick before cooking) */
@@ -1044,7 +1044,7 @@
       <div id="cookFlame"><svg viewBox="0 0 100 100"><use href="#ui-flame"/></svg></div>
       <div class="steam" style="left:24px"></div>
       <div class="steam" style="left:100px; animation-delay:1.6s"></div>
-      <svg viewBox="0 0 240 160" width="204" height="136">
+      <svg viewBox="0 0 240 160" width="252" height="168">
         <defs>
           <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#5A6B8C"/><stop offset="1" stop-color="#414E68"/>
@@ -1778,7 +1778,7 @@ function splash(){
   for(let i=0;i<3;i++){
     const dr=document.createElement('div');
     dr.className='splashDrop'; dr.style.background=col;
-    dr.style.left=(86+Math.random()*44)+'px'; dr.style.top='30px';
+    dr.style.left=(106+Math.random()*54)+'px'; dr.style.top='36px';
     potWrap.appendChild(dr);
     const dx=Math.random()*64-32, dy=-(18+Math.random()*26);
     dr.animate([
@@ -1790,7 +1790,7 @@ function splash(){
   const r=document.createElement('div'); r.className='splashRing';
   potWrap.appendChild(r); setTimeout(()=>r.remove(), 520);
 }
-const SLOT_X = [0, 49, 99], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 56;  /* tuned to the 204px pot */
+const SLOT_X = [0, 61, 122], SLOT_Y = [-20, -11, -20], FLOAT_SIZE = 70;  /* tuned to the 252px pot */
 function landInPot(item){
   const used = new Set(potItems.map(e=>e.slot));
   const free = [0,1,2].filter(s=>!used.has(s));

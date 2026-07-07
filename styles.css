@@ -31,14 +31,14 @@
   #bubbleTalk.show { opacity:1; transform:scale(1); }
   #bubbleTalk::after { content:''; position:absolute; bottom:-7px; left:14px; border:8px solid transparent; border-top-color:#fff; border-bottom:0; }
 
-  /* stove + pot */
-  #stoveWrap { position:relative; bottom:12px; width:204px; z-index:4; }
+  /* stove + pot — counter shrunk, pot enlarged (the pot IS the hero) */
+  #stoveWrap { position:relative; bottom:12px; width:252px; z-index:4; }
   /* stove demoted to quiet counter-wood: the POT is the hero of the stage */
-  #stove { width:204px; height:48px; background:linear-gradient(#DCA55F,#C68544); border-radius:14px 14px 8px 8px;
-    box-shadow:0 5px 0 #9C6B35; position:relative; }
-  #stove::before { content:''; position:absolute; top:8px; left:16px; width:19px; height:19px; border-radius:50%;
-    background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 150px 0 0 0 #B98A4E; }
-  #potWrap { position:absolute; bottom:38px; left:50%; transform:translateX(-50%); width:204px; height:136px; }
+  #stove { width:186px; height:34px; margin:0 auto; background:linear-gradient(#DCA55F,#C68544); border-radius:12px 12px 7px 7px;
+    box-shadow:0 4px 0 #9C6B35; position:relative; }
+  #stove::before { content:''; position:absolute; top:7px; left:14px; width:16px; height:16px; border-radius:50%;
+    background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 140px 0 0 0 #B98A4E; }
+  #potWrap { position:absolute; bottom:26px; left:50%; transform:translateX(-50%); width:252px; height:168px; }
   #potWrap > svg { animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
   /* stir-ready: the pot glows like a button until the third stir */
   #potWrap.ready > svg { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
@@ -49,7 +49,7 @@
   #potWrap.wobble { animation:wob .5s ease; }
   @keyframes wob { 25%{transform:translateX(-54%);} 50%{transform:translateX(-46%);} 75%{transform:translateX(-52%);} }
   #soupEllipse { fill:#F2B04A; transition: fill 1s; }
-  #soupItems { position:absolute; left:25px; top:10px; width:155px; height:53px; }
+  #soupItems { position:absolute; left:31px; top:12px; width:191px; height:65px; }
   #soupItems.swirl .floatItem { animation:spin1 1s ease; }
   @keyframes spin1 { 50%{ transform:translateX(26px) rotate(180deg) scale(.85);} 100%{transform:rotate(360deg);} }
   .floatItem { position:absolute; animation:floaty 3s ease-in-out infinite; }  /* H#10d: tap-to-remove affordance removed */
@@ -372,7 +372,7 @@
   #beepo.watch .f-normal { transform: translate(5px,-3px); }
   /* #2 landing splash */
   .splashDrop { position:absolute; width:10px; height:10px; border-radius:50% 50% 60% 60%; z-index:5; pointer-events:none; }
-  .splashRing { position:absolute; left:50%; top:32px; width:30px; height:11px; margin-left:-15px;
+  .splashRing { position:absolute; left:50%; top:38px; width:30px; height:11px; margin-left:-15px;
     border:3px solid #ffffffaa; border-radius:50%; pointer-events:none; z-index:5; animation:ringOut .5s ease-out forwards; }
   @keyframes ringOut { to { transform:scale(2.6); opacity:0; } }
   /* #3 soup face (+ lip-lick before cooking) */
