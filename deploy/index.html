@@ -216,10 +216,10 @@
     opacity:0; transform:scale(0) rotate(22deg); pointer-events:none; transform-origin:65% 85%;
     transition:opacity .3s, transform .45s cubic-bezier(.3,1.6,.4,1); }
   #potSpoon.shown { opacity:1; transform:scale(1) rotate(22deg); }
-  #potSpoon svg { width:100%; height:100%; }
-  #potSpoon.shown svg { animation:spoonBeckon 1.5s ease-in-out infinite; transform-origin:60% 80%; }
+  #potSpoon svg, #potSpoon img { width:auto; height:100%; display:block; margin:0 auto; pointer-events:none; }
+  #potSpoon.shown svg, #potSpoon.shown img { animation:spoonBeckon 1.5s ease-in-out infinite; transform-origin:60% 80%; }
   @keyframes spoonBeckon { 50%{ transform:rotate(-24deg) translateY(6px);} }
-  #potSpoon.swirl svg { animation:spoonSwirl .6s ease-in-out; }
+  #potSpoon.swirl svg, #potSpoon.swirl img { animation:spoonSwirl .6s ease-in-out; }
   @keyframes spoonSwirl { 30%{ transform:translate(-30px,6px) rotate(-38deg);} 65%{ transform:translate(8px,2px) rotate(10deg);} }
 
   /* ---- forgiving pot-full bounce (B#0 / C#4) ---- */
@@ -1073,7 +1073,7 @@
         <div class="bubble" style="left:50%; animation-delay:.9s"></div>
         <div class="bubble" style="left:75%; animation-delay:1.6s"></div>
       </div>
-      <div id="potSpoon"><svg class="icon" viewBox="0 0 100 100"><use href="#ui-spoon"/></svg></div>
+      <div id="potSpoon"><img src="assets/ui/spoon.webp" alt="" draggable="false"></div>
 
     </div>
     <div id="stove"></div>
