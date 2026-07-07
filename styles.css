@@ -356,12 +356,48 @@
   /* H#8: curated reduced-motion — kill shakes / big travel / confetti, KEEP the wordless cue pulses
      (potGlow, hintPulse, #againBtn + #startBtn pulse, guide-hand bounce, bob, blink, spoonBeckon, flick) */
   @media (prefers-reduced-motion: reduce) {
-    .confetti { display:none !important; }
+    .confetti, .splashDrop, .splashRing, #wormCameo { display:none !important; }
     .fly, .crumb, .steam, .bubble, .psteam,
-    #overlay.shake, .lyr-food.wobble, #dishBig, #plateWrap,
+    #overlay.shake, .lyr-food.wobble, #dishBig, #plateWrap, #dishBig.chomped,
+    #cloche.rattle svg, #soupEllipse.shimmer, #soupFace.lick .tongue,
     #beepo.hop, #revealBeepo.faint, #revealBeepo.exp-yum, #revealBeepo.exp-yuck,
     #revealBeepo.exp-wow, #revealBeepo.exp-refuse, #revealBeepo.exp-eat, #revealBeepo.feeding { animation:none !important; }
   }
+
+  /* ============ Juice pass: 10 fun-enhancers (no new mechanics) ============ */
+  /* #1 Beepo watches the flying food: lean + face group shifts toward the pot */
+  #beepo svg { transition: transform .25s ease; }
+  #beepo.watch svg { transform: rotate(4deg) translateX(7px); }
+  #beepo .fx { transition: transform .25s ease; }
+  #beepo.watch .f-normal { transform: translate(5px,-3px); }
+  /* #2 landing splash */
+  .splashDrop { position:absolute; width:10px; height:10px; border-radius:50% 50% 60% 60%; z-index:5; pointer-events:none; }
+  .splashRing { position:absolute; left:50%; top:32px; width:30px; height:11px; margin-left:-15px;
+    border:3px solid #ffffffaa; border-radius:50%; pointer-events:none; z-index:5; animation:ringOut .5s ease-out forwards; }
+  @keyframes ringOut { to { transform:scale(2.6); opacity:0; } }
+  /* #3 soup face (+ lip-lick before cooking) */
+  #soupFace { opacity:0; transition:opacity .5s; }
+  #soupFace.on { opacity:1; }
+  #soupFace .tongue { opacity:0; transform-box:fill-box; transform-origin:50% 0; }
+  #soupFace.lick .tongue { opacity:1; animation:tongueWig .45s ease 3; }
+  @keyframes tongueWig { 50% { transform:translateY(2.5px) scaleY(1.2); } }
+  /* #5 cloche rattle tease (something inside is alive) */
+  #cloche.rattle svg { animation:rattle .55s ease; }
+  @keyframes rattle { 20%{ transform:translateX(-3px) rotate(-2deg);} 40%{ transform:translateX(3px) rotate(2deg);}
+    60%{ transform:translateX(-2px) rotate(-1deg);} 80%{ transform:translateX(2px) rotate(1deg);} }
+  /* #6 dish ta-da entrance + per-bite giggle-jiggle */
+  #overlay.revealing:not(.eating) #dishBig { animation:dishTada .65s cubic-bezier(.3,1.6,.4,1), foodWig 2.6s ease-in-out .65s infinite; }
+  @keyframes dishTada { 0%{ transform:translate(-50%,-50%) scale(.2) rotate(-8deg);}
+    60%{ transform:translate(-50%,-50%) scale(1.12) rotate(3deg);} 100%{ transform:translate(-50%,-50%) scale(1);} }
+  #overlay.eating #dishBig.chomped { animation:chompJig .35s ease; }
+  @keyframes chompJig { 30%{ transform:translate(-50%,-50%) rotate(-4deg) scale(1.04);} 65%{ transform:translate(-50%,-52%) rotate(3deg);} }
+  /* #7 belly grows per bite */
+  .torso { transform-box:fill-box; transform-origin:50% 95%; transition:transform .3s cubic-bezier(.3,1.5,.4,1); }
+  /* #9 worm cameo (rare peek from behind the counter) */
+  #wormCameo { position:absolute; right:-30px; bottom:4px; z-index:1; pointer-events:none; }
+  /* #10 rainbow soup shimmer */
+  #soupEllipse.shimmer { animation:hueShift 2.5s linear infinite; }
+  @keyframes hueShift { to { filter:hue-rotate(360deg); } }
 
   /* ============ Raster reskin (§3.6): AI PNGs for ingredients + dishes ============ */
   .ingimg, .dishimg { object-fit:contain; display:block; pointer-events:none; }

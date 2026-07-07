@@ -78,8 +78,11 @@ function tone(a, type, f1, f2, t0, dur, vol=0.18){
   o.connect(g); g.connect(masterComp||a.destination);   /* H#7 */
   o.start(a.currentTime+t0); o.stop(a.currentTime+t0+dur+0.05);
 }
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;   /* juice pass guard */
 const sPop    = ()=>beep(a=>tone(a,'sine',300,760,0,.16,.2));
 const sPlop   = ()=>beep(a=>tone(a,'sine',500,160,0,.2,.2));
+/* juice #2: plop pitch rises with each ingredient — filling the pot plays a melody */
+const sPlopN  = n=>beep(a=>tone(a,'sine',380+n*130,140+n*45,0,.2,.2));
 const sWhoosh = ()=>beep(a=>{tone(a,'triangle',220,420,0,.25,.13); tone(a,'triangle',260,480,.08,.25,.11);});
 const sDing   = ()=>beep(a=>{tone(a,'sine',880,880,0,.35,.15); tone(a,'sine',1320,1320,.03,.4,.09);});
 const sChime  = ()=>beep(a=>{[659,880,1319].forEach((f,i)=>tone(a,'sine',f,f,i*.12,.4,.12));});
@@ -327,6 +330,9 @@ function addIngredient(item, btn){
   btn.classList.remove('boing'); void btn.offsetWidth; btn.classList.add('boing');
   playMotif(item.id); buzz(8);
   if(cooking) return;                            /* H#5: feedback given; just don't spawn a flyer mid-cook */
+  /* juice #1: Beepo leans in and his face follows the flying food */
+  beepo.classList.add('watch');
+  clearTimeout(watchTimer); watchTimer=setTimeout(()=>beepo.classList.remove('watch'), 560);
   const from=btn.getBoundingClientRect(), to=potWrap.getBoundingClientRect();
   const fl=document.createElement('div');
   fl.className='flyer'; fl.innerHTML=ingImg(item.id,64);
@@ -370,7 +376,26 @@ function bounceOff(item, to){
   ],{duration:680, easing:'cubic-bezier(.3,.4,.6,1)'}).onfinish=()=>b.remove();
 }
 
-let uidCounter = 0;
+let uidCounter = 0, watchTimer;
+/* juice #2: droplet splash + ripple ring when food lands in the soup */
+function splash(){
+  if(REDUCED) return;
+  const col = soupEl.style.fill || '#F2B04A';
+  for(let i=0;i<3;i++){
+    const dr=document.createElement('div');
+    dr.className='splashDrop'; dr.style.background=col;
+    dr.style.left=(86+Math.random()*44)+'px'; dr.style.top='30px';
+    potWrap.appendChild(dr);
+    const dx=Math.random()*64-32, dy=-(18+Math.random()*26);
+    dr.animate([
+      {transform:'translate(0,0) scale(1)', opacity:1},
+      {transform:`translate(${dx}px,${dy}px) scale(.8)`, opacity:1, offset:.5},
+      {transform:`translate(${dx*1.3}px,10px) scale(.45)`, opacity:0}
+    ],{duration:470,easing:'ease-out'}).onfinish=()=>dr.remove();
+  }
+  const r=document.createElement('div'); r.className='splashRing';
+  potWrap.appendChild(r); setTimeout(()=>r.remove(), 520);
+}
 const SLOT_X = [0, 49, 99], SLOT_Y = [-16, -9, -16], FLOAT_SIZE = 56;  /* tuned to the 204px pot */
 function landInPot(item){
   const used = new Set(potItems.map(e=>e.slot));
@@ -378,7 +403,10 @@ function landInPot(item){
   const slot = free.length ? pick(free) : 0;
   const entry = {...item, uid:++uidCounter, slot};
   potItems.push(entry);
-  sPlop();
+  sPlopN(potItems.length);                                  /* juice #2: rising plop melody */
+  splash();
+  $('soupFace').classList.add('on');                        /* juice #3: the soup wakes up */
+  soupEl.classList.toggle('shimmer', !REDUCED && potItems.some(i=>i.id==='rainbow'));  /* juice #10 */
   const f=document.createElement('div');
   f.className='floatItem'; f.innerHTML=ingImg(item.id,FLOAT_SIZE);
   f.style.left=(SLOT_X[slot] + (Math.random()*4-2))+'px';
@@ -433,6 +461,7 @@ potWrap.addEventListener('pointerdown', ()=>{
 function cookNow(){
   if(cooking) return;
   clearTimeout(cookTimer);
+  $('soupFace').classList.add('lick');   /* juice #3: the soup licks its lips */
   sWhoosh(); buzz(20);
   say(pick(['Cook cook!','Here we go!','Stir-a-whirl!']), 1000);
   potSpoon.classList.remove('swirl'); void potSpoon.offsetWidth;
@@ -571,7 +600,7 @@ function recipeStripHTML(ids, layers, verdict, art){
 
 /* ================= reveal (under a cover!) ================= */
 const cloche=$('cloche'), hint=$('hint');
-let lifted=false, autoLift=null, anticTimer=null, pendingResult=null;
+let lifted=false, autoLift=null, anticTimer=null, rattleTimer=null, pendingResult=null;
 
 function reveal(){
   const dish = findDish();
@@ -611,7 +640,14 @@ function reveal(){
   setExp(revealBeepo, null);
   hideHand();
   overlay.classList.add('show');
-  clearTimeout(autoLift); clearTimeout(anticTimer);
+  clearTimeout(autoLift); clearTimeout(anticTimer); clearTimeout(rattleTimer);
+  /* juice #5: the cloche rattles like something inside is alive */
+  rattleTimer = setTimeout(()=>{
+    if(lifted || REDUCED) return;
+    cloche.classList.remove('rattle'); void cloche.offsetWidth; cloche.classList.add('rattle');
+    beep(a=>{ tone(a,'sine',175,140,0,.11,.12); tone(a,'sine',185,150,.17,.11,.12); });
+    setTimeout(()=>cloche.classList.remove('rattle'), 650);
+  }, 1500);
   /* anticipation beat (B#8): lean in with an "Ooh?" just before the auto-lift */
   anticTimer = setTimeout(()=>{
     if(lifted) return;
@@ -626,7 +662,8 @@ function reveal(){
 function liftCover(){
   if(lifted) return;
   lifted = true;
-  clearTimeout(autoLift); clearTimeout(anticTimer);
+  clearTimeout(autoLift); clearTimeout(anticTimer); clearTimeout(rattleTimer);
+  cloche.classList.remove('rattle');
   revealBeepo.classList.remove('lean');
   rBubble.classList.remove('show');
   hideHand();
@@ -746,6 +783,11 @@ function bite(){                          /* auto-rhythm bite: this is what adva
   revealBeepo.classList.add('bite');
   const food=dishBig.querySelector('.lyr-food');    /* B#14: only the FOOD depletes; vessel stays */
   if(food) food.style.transform=`scale(${Math.max(1-bitesDone*0.19,0.05)}) rotate(${bitesDone%2?-4:4}deg)`;
+  /* juice #6: the dish giggle-jiggles at each bite */
+  dishBig.classList.remove('chomped'); void dishBig.offsetWidth; dishBig.classList.add('chomped');
+  /* juice #7: Beepo's belly grows a step per bite (reset on cook-again) */
+  const belly=revealBeepo.querySelector('.torso');
+  if(belly) belly.style.transform=`scale(${1+bitesDone*0.055},${1+bitesDone*0.035})`;
   if(bitesDone%2===1) chunkFly();          /* discrete chunk flies to his mouth (bites 1,3,5) */
   crumbs(revealBeepo.classList.contains('fast')?4:2);
   if(bitesDone>=BITES) finishFeeding();
@@ -862,9 +904,41 @@ $('againBtn').addEventListener('click',()=>{
   potItems=[]; cooking=false; lifted=false;
   soupItems.querySelectorAll('.floatItem').forEach(x=>x.remove());
   soupEl.style.fill='#F2B04A';
+  soupEl.classList.remove('shimmer');                       /* juice #10 */
+  $('soupFace').classList.remove('on','lick');              /* juice #3 */
+  const belly=revealBeepo.querySelector('.torso'); if(belly) belly.style.transform='';  /* juice #7 */
+  dishBig.classList.remove('chomped');
+  clearTimeout(rattleTimer); cloche.classList.remove('rattle');
   resetStir();
   say('What’s next, chef?');
+  if(Math.random()<0.07) setTimeout(wormCameo, 1400);       /* juice #9: rare worm cameo */
 });
+
+/* juice #9: once in a while the worm peeks from behind the counter, giggles, ducks away */
+function wormCameo(){
+  if(REDUCED || cooking || $('wormCameo') || overlay.classList.contains('show')) return;
+  const w=document.createElement('div'); w.id='wormCameo';
+  w.innerHTML='<img src="assets/ing/worm.webp" width="60" height="60" alt="" draggable="false">';
+  $('stoveWrap').prepend(w);
+  beep(a=>{ [520,660,580].forEach((f,i)=>tone(a,'sine',f,f*1.12,i*.13,.13,.09)); });
+  w.animate([
+    {transform:'translateY(74px)', opacity:0},
+    {transform:'translateY(2px) rotate(-6deg)', opacity:1, offset:.28},
+    {transform:'translateY(4px) rotate(7deg)', offset:.5},
+    {transform:'translateY(2px) rotate(-5deg)', offset:.72},
+    {transform:'translateY(74px)', opacity:0}
+  ],{duration:2400, easing:'ease-in-out'}).onfinish=()=>w.remove();
+}
+
+/* juice #4: the shelf fidgets — a random ingredient boings every few seconds */
+setInterval(()=>{
+  if(REDUCED || document.hidden || cooking) return;
+  if(!$('startOverlay').classList.contains('gone')) return;
+  if(overlay.classList.contains('show') || bookOverlay.classList.contains('show')) return;
+  const kids=shelf.children; if(!kids.length) return;
+  const b=kids[Math.floor(Math.random()*kids.length)];
+  b.classList.remove('boing'); void b.offsetWidth; b.classList.add('boing');
+}, 6200);
 
 /* ================= helpers ================= */
 function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
@@ -883,10 +957,14 @@ function confettiBurst(n){
     const size=9+Math.random()*8;
     c.style.width=size+'px'; c.style.height=size+'px';
     c.style.left=Math.random()*100+'vw';
-    c.style.background=pick(colors);
-    const shape=Math.random();
-    if(shape<.33) c.style.clipPath=star;
-    else c.style.borderRadius = shape<.66 ? '50%' : '3px';
+    if(Math.random()<.3){                    /* juice #8: some confetti is tiny raining food */
+      c.innerHTML=`<img src="assets/ing/${pick(INGREDIENTS).id}.webp" width="19" height="19" alt="" draggable="false">`;
+    } else {
+      c.style.background=pick(colors);
+      const shape=Math.random();
+      if(shape<.33) c.style.clipPath=star;
+      else c.style.borderRadius = shape<.66 ? '50%' : '3px';
+    }
     c.style.setProperty('--dx', (Math.random()*160-80)+'px');
     c.style.animationDuration=(2.2+Math.random()*1.8)+'s';
     c.style.animationDelay=(Math.random()*.6)+'s';
