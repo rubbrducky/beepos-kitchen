@@ -1,37 +1,65 @@
 [
   {
-    "label": "vessel:bowl",
-    "prefix": "beepo_food/vessel_bowl",
+    "label": "ing:apple",
+    "prefix": "beepo_food/ing_apple",
     "files": [
-      "vessel_bowl_00001_.png"
+      "ing_apple_00002_.png"
     ]
   },
   {
-    "label": "vessel:glass",
-    "prefix": "beepo_food/vessel_glass",
+    "label": "ing:banana",
+    "prefix": "beepo_food/ing_banana",
     "files": [
-      "vessel_glass_00001_.png"
+      "ing_banana_00002_.png"
     ]
   },
   {
-    "label": "vessel:jar",
-    "prefix": "beepo_food/vessel_jar",
+    "label": "ing:berry",
+    "prefix": "beepo_food/ing_berry",
     "files": [
-      "vessel_jar_00001_.png"
+      "ing_berry_00001_.png"
     ]
   },
   {
-    "label": "vessel:plate",
-    "prefix": "beepo_food/vessel_plate",
+    "label": "ing:choco",
+    "prefix": "beepo_food/ing_choco",
     "files": [
-      "vessel_plate_00001_.png"
+      "ing_choco_00002_.png"
     ]
   },
   {
-    "label": "vessel:stick",
-    "prefix": "beepo_food/vessel_stick",
+    "label": "ing:cookie",
+    "prefix": "beepo_food/ing_cookie",
     "files": [
-      "vessel_stick_00001_.png"
+      "ing_cookie_00002_.png"
+    ]
+  },
+  {
+    "label": "ing:egg",
+    "prefix": "beepo_food/ing_egg",
+    "files": [
+      "ing_egg_00002_.png"
+    ]
+  },
+  {
+    "label": "ing:icecream",
+    "prefix": "beepo_food/ing_icecream",
+    "files": [
+      "ing_icecream_00002_.png"
+    ]
+  },
+  {
+    "label": "ing:rainbow",
+    "prefix": "beepo_food/ing_rainbow",
+    "files": [
+      "ing_rainbow_00002_.png"
+    ]
+  },
+  {
+    "label": "ing:worm",
+    "prefix": "beepo_food/ing_worm",
+    "files": [
+      "ing_worm_00002_.png"
     ]
   }
 ]
