@@ -50,7 +50,7 @@ PILOT_DISHES = [7, 8, 9, 22, 32, 41, 44, 46, 51, 52]
 ING_BODY = {
     "apple":    "a single cute red apple character with a happy smiling face, big shiny eyes, rosy cheeks, plump and glossy, one object centered",
     "banana":   "a single cute banana character with a happy smiling face, big shiny eyes, rosy cheeks, plump and glossy, one object centered",
-    "berry":    "a single cute strawberry character with a happy smiling face, big shiny eyes, rosy cheeks, plump and glossy, one object centered",
+    "berry":    "a single cute plump round blueberry character, deep blue with a tiny leafy star crown, happy smiling face, big shiny eyes, rosy cheeks, plump and glossy, one object centered",
     "egg":      "a single cute soft egg character with a happy smiling face, big shiny eyes, rosy cheeks, plump and glossy, one object centered",
     "choco":    "a single cute chocolate bar character with a happy smiling face, big shiny eyes, rosy cheeks, plump and glossy, one object centered",
     "cookie":   "a single cute chocolate-chip cookie character with a happy smiling face, big shiny eyes, rosy cheeks, plump and glossy, one object centered",
@@ -104,8 +104,9 @@ def clean_dish_prompt(p):
     p = re.sub(r'\b(in|on) a (small )?(plate or bowl|bowl|plate|cup|glass)\b', '', p, flags=re.I)
     p = re.sub(r"\s{2,}", " ", p).replace(" ,", ",").replace(" .", ".").strip(" ,.")
     # Front-load the food-only framing (Flux honours positive framing better than "no X").
-    return ("a single isolated portion of just the food, floating on a pure white background, "
-            "nothing underneath it, no plate no bowl no dish, " + p + ", centered food cut-out")
+    # v2: "food characters forming one dish" (not "single portion") — prompts are now scenes.
+    return ("cute food characters forming one little dish, floating on a pure white background, "
+            "nothing underneath them, no plate no bowl no dish, " + p + ", centered food cut-out")
 
 def full_prompt(body):
     return f"{body.rstrip('. ')}. {MASTER}"

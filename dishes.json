@@ -16,10 +16,10 @@
   },
   {
    "id": "berry",
-   "name": "Strawberry",
-   "emoji": "🍓",
+   "name": "Blueberry",
+   "emoji": "🫐",
    "role": "food",
-   "vis": "strawberry"
+   "vis": "plump blue blueberry"
   },
   {
    "id": "egg",
@@ -85,7 +85,7 @@
    "name": "Apple Squish Sauce",
    "verdict": "Yummy",
    "image_concept": "red apple (yummy, glossy)",
-   "image_prompt": "a small bowl containing red apple, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a happy glossy red apple character melting into a smooth shiny puddle of applesauce, proud grin, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 2,
@@ -97,7 +97,7 @@
    "name": "Mushy Banana Mash",
    "verdict": "Yummy",
    "image_concept": "banana (yummy, glossy)",
-   "image_prompt": "a small bowl containing banana, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a blissful banana character flopped backwards into a soft creamy banana-mash swirl, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 3,
@@ -106,10 +106,10 @@
     "berry"
    ],
    "ingredients": "Strawberry",
-   "name": "Strawberry Squish Jam",
+   "name": "Blueberry Squish Jam",
    "verdict": "Yummy",
-   "image_concept": "strawberry (yummy, glossy)",
-   "image_prompt": "a small bowl containing strawberry, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry (yummy, glossy)",
+   "image_prompt": "a plump blueberry character sitting in a glossy puddle of deep-blue jam, licking its lips, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 4,
@@ -121,7 +121,7 @@
    "name": "Wobbly Egg Custard",
    "verdict": "Yummy",
    "image_concept": "soft egg (yummy, glossy)",
-   "image_prompt": "a small bowl containing soft egg, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly golden egg-custard character caught mid-jiggle, swirl top leaning sideways, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 5,
@@ -133,7 +133,7 @@
    "name": "Choco Goo Pudding",
    "verdict": "Yummy",
    "image_concept": "chocolate (yummy, glossy)",
-   "image_prompt": "a small bowl containing chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a swirl of glossy melted chocolate pudding with a happy face, a chocolate-bar corner poking out like a fin, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 6,
@@ -145,7 +145,7 @@
    "name": "Giant Cookie Mush",
    "verdict": "Yummy",
    "image_concept": "cookie (yummy, glossy)",
-   "image_prompt": "a small bowl containing cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giant crumbly cookie character with a big bite taken out, grinning, crumbs bouncing around it, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 7,
@@ -157,7 +157,7 @@
    "name": "Melty Ice-Cream Mountain",
    "verdict": "Yummy",
    "image_concept": "ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small bowl containing ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a tall melty soft-serve mountain character with a drippy happy smile, one drip like a tear of joy, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 8,
@@ -169,7 +169,7 @@
    "name": "Wormy Wiggle Noodles",
    "verdict": "Yucky",
    "image_concept": "green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small bowl containing green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a pile of wiggly green noodle-worms, one cheeky worm popping up from the middle with a grin, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 9,
@@ -181,7 +181,7 @@
    "name": "Sparkle Rainbow Soup",
    "verdict": "Magical",
    "image_concept": "rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small bowl containing rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy swirled rainbow soup blob levitating tiny stars, serene sparkly face, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 10,
@@ -194,7 +194,7 @@
    "name": "Sunny Fruit Smoothie",
    "verdict": "Yummy",
    "image_concept": "red apple + banana (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, banana, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a swirling smoothie tornado of red and yellow with a happy apple character and banana character spinning inside it, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 11,
@@ -206,8 +206,8 @@
    "ingredients": "Apple + Strawberry",
    "name": "Berry-Apple Jelly",
    "verdict": "Yummy",
-   "image_concept": "red apple + strawberry (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, strawberry, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "red apple + blueberry (yummy, glossy)",
+   "image_prompt": "a wobbly translucent jelly dome with red and deep-blue layers, an apple character and blueberry character suspended inside mid-wave, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 12,
@@ -220,7 +220,7 @@
    "name": "Apple Custard Cup",
    "verdict": "Yummy",
    "image_concept": "red apple + soft egg (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, soft egg, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a jiggly golden custard swirl with a glossy red apple character sitting on top like a king on a throne, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 13,
@@ -233,7 +233,7 @@
    "name": "Choco-Dunked Apple",
    "verdict": "Yummy",
    "image_concept": "red apple + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character dunked waist-deep in melted chocolate, licking its cheek, thick chocolate drips, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 14,
@@ -246,7 +246,7 @@
    "name": "Grandma's Apple Pie",
    "verdict": "Yummy",
    "image_concept": "red apple + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a cozy little lattice apple pie with a rosy apple character relaxing in the middle like a bathtub, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 15,
@@ -259,7 +259,7 @@
    "name": "Apple Pie a la Mode",
    "verdict": "Yummy",
    "image_concept": "red apple + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a warm apple pie slice and a melting soft-serve swirl character leaning on each other like best friends, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 16,
@@ -272,7 +272,7 @@
    "name": "Wiggly Apple Wormhole",
    "verdict": "Yucky",
    "image_concept": "red apple + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing red apple, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple with a round window hole, a cheeky green worm popping out waving, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 17,
@@ -285,7 +285,7 @@
    "name": "Rainbow Apple Fizz",
    "verdict": "Magical",
    "image_concept": "red apple + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing red apple, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character surfing a small rainbow arc, fizzy sparkle bubbles splashing, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 18,
@@ -295,10 +295,10 @@
     "berry"
    ],
    "ingredients": "Banana + Strawberry",
-   "name": "Pink Monkey Smoothie",
+   "name": "Blue Monkey Smoothie",
    "verdict": "Yummy",
-   "image_concept": "banana + strawberry (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, strawberry, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "banana + blueberry (yummy, glossy)",
+   "image_prompt": "a swirling deep-blue smoothie tornado with a banana character and a blueberry character spinning happily inside, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 19,
@@ -311,7 +311,7 @@
    "name": "Banana Pancakes",
    "verdict": "Yummy",
    "image_concept": "banana + soft egg (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, soft egg, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a stack of fluffy golden pancakes with a banana character doing a victory pose on top, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 20,
@@ -324,7 +324,7 @@
    "name": "Choco-Banana Pops",
    "verdict": "Yummy",
    "image_concept": "banana + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "three chocolate-dipped banana pop characters standing in a row striking poses like a band, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 21,
@@ -337,7 +337,7 @@
    "name": "Banana Cookie Stack",
    "verdict": "Yummy",
    "image_concept": "banana + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a teetering stack of cookies with a banana character surfing on top, arms out for balance, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 22,
@@ -350,7 +350,7 @@
    "name": "Banana Split",
    "verdict": "Yummy",
    "image_concept": "banana + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a smiling banana boat cradling three scoops of ice cream like sleeping babies, cherry on top, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 23,
@@ -363,7 +363,7 @@
    "name": "Wiggle-Waggle Banana Slime",
    "verdict": "Yucky",
    "image_concept": "banana + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing banana, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a cheeky green worm water-sliding down a long banana curve into a splash of slime, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 24,
@@ -376,7 +376,7 @@
    "name": "Rainbow Banana Dream",
    "verdict": "Magical",
    "image_concept": "banana + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing banana, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a banana character asleep in a small rainbow arc hammock, dream sparkles floating up, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 25,
@@ -386,10 +386,10 @@
     "egg"
    ],
    "ingredients": "Strawberry + Egg",
-   "name": "Strawberry Custard Cup",
+   "name": "Blueberry Custard Cup",
    "verdict": "Yummy",
-   "image_concept": "strawberry + soft egg (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, soft egg, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + soft egg (yummy, glossy)",
+   "image_prompt": "a jiggly golden custard swirl with blueberry characters cannonballing into it, blue splashes mid-air, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 26,
@@ -399,10 +399,10 @@
     "choco"
    ],
    "ingredients": "Strawberry + Chocolate",
-   "name": "Strawberry-Choco Cake",
+   "name": "Blueberry-Choco Cake",
    "verdict": "Yummy",
-   "image_concept": "strawberry + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + chocolate (yummy, glossy)",
+   "image_prompt": "a tiny chocolate layer cake with plump blueberry characters peeking out between the layers, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 27,
@@ -412,10 +412,10 @@
     "cookie"
    ],
    "ingredients": "Strawberry + Cookie",
-   "name": "Strawberry Cookie Crumble",
+   "name": "Blueberry Cookie Crumble",
    "verdict": "Yummy",
-   "image_concept": "strawberry + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + cookie (yummy, glossy)",
+   "image_prompt": "a big crumbly cookie with blueberry characters bouncing on it like a trampoline, blue jam splats, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 28,
@@ -425,10 +425,10 @@
     "icecream"
    ],
    "ingredients": "Strawberry + Ice Cream",
-   "name": "Strawberry Sundae",
+   "name": "Blueberry Sundae",
    "verdict": "Yummy",
-   "image_concept": "strawberry + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + ice cream scoop (yummy, glossy)",
+   "image_prompt": "a soft-serve swirl character holding out its arms while blueberry characters rain gently down, blue syrup drips, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 29,
@@ -440,8 +440,8 @@
    "ingredients": "Strawberry + Wiggly Worm",
    "name": "Wormy Berry Sludge",
    "verdict": "Yucky",
-   "image_concept": "strawberry + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing strawberry, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + green wiggly worm (slimy, funny-gross)",
+   "image_prompt": "a cheeky green worm lounging in a puddle of deep-blue berry sludge like a hot tub, one arm on the edge, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 30,
@@ -453,8 +453,8 @@
    "ingredients": "Strawberry + Rainbow",
    "name": "Rainbow Berry Sparkle",
    "verdict": "Magical",
-   "image_concept": "strawberry + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing strawberry, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + rainbow sparkles (sparkly, glowing)",
+   "image_prompt": "a blueberry character sliding down a small rainbow arc into a splash of blue sparkle jam, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 31,
@@ -467,7 +467,7 @@
    "name": "Chocolate Birthday Cake",
    "verdict": "Yummy",
    "image_concept": "soft egg + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing soft egg, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a tiny chocolate birthday cake with one candle, a fried-egg character bursting out of the top like a surprise party, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 32,
@@ -480,7 +480,7 @@
    "name": "Beepo Burger",
    "verdict": "Yummy",
    "image_concept": "cute hamburger: golden sesame bun, patty, melty cheese, lettuce (yummy, glossy)",
-   "image_prompt": "a small cute hamburger on a plate, golden sesame-seed bun, brown patty, melty yellow cheese drips, ruffled green lettuce, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a small cute hamburger, golden sesame-seed bun, brown patty, melty yellow cheese drips, ruffled green lettuce, a fried egg peeking out, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 33,
@@ -493,7 +493,7 @@
    "name": "Frozen Custard Swirl",
    "verdict": "Yummy",
    "image_concept": "soft egg + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing soft egg, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a fried-egg character and a soft-serve swirl character twisted together into one creamy tornado, dizzy happy faces, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 34,
@@ -506,7 +506,7 @@
    "name": "Slimy Worm Scramble",
    "verdict": "Yucky",
    "image_concept": "soft egg + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing soft egg, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a cheeky green worm tangled in ribbons of fluffy scrambled egg like a scarf, grinning, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 35,
@@ -519,7 +519,7 @@
    "name": "Rainbow Cloud Omelette",
    "verdict": "Magical",
    "image_concept": "soft egg + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing soft egg, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a fluffy cloud-shaped omelette character napping on a small rainbow arc, golden yolk shining like a sun, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 36,
@@ -532,7 +532,7 @@
    "name": "Double-Choc Donut",
    "verdict": "Yummy",
    "image_concept": "chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing chocolate, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy chocolate-glazed donut character with thick dripping frosting, winking, rainbow sprinkles, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 37,
@@ -545,7 +545,7 @@
    "name": "Choco Swirl Cone",
    "verdict": "Yummy",
    "image_concept": "chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing chocolate, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a chocolate-and-cream twist soft-serve character striking a proud superhero pose, cape of chocolate drips, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 38,
@@ -558,7 +558,7 @@
    "name": "Choco-Dipped Wigglers",
    "verdict": "Yucky",
    "image_concept": "chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing chocolate, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "cheeky green worms dipped in a chocolate fondue swirl, one worm grinning with a chocolate mustache, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 39,
@@ -571,7 +571,7 @@
    "name": "Magic Choco Rainbow Swirl",
    "verdict": "Magical",
    "image_concept": "chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing chocolate, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a melted chocolate swirl with a small rainbow arc rising out of it like a fountain, sparkles, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 40,
@@ -584,7 +584,7 @@
    "name": "Ice-Cream Sandwich",
    "verdict": "Yummy",
    "image_concept": "cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing cookie, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "two cookie characters hugging a soft-serve filling between them, cream squishing out the sides, all three giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 41,
@@ -597,7 +597,7 @@
    "name": "Wiggly Worm Burger",
    "verdict": "Yucky",
    "image_concept": "hamburger with a cheeky green worm poking out between the buns (slimy, funny-gross)",
-   "image_prompt": "a small hamburger with a cheeky green cartoon worm poking out between the buns, golden sesame bun, funny gross-cute, glossy. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a small hamburger with a cheeky green cartoon worm poking out between the buns, golden sesame bun, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 42,
@@ -610,7 +610,7 @@
    "name": "Rainbow Sprinkle Cookie",
    "verdict": "Magical",
    "image_concept": "cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing cookie, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a big cookie character juggling rainbow sprinkles, a small rainbow arc overhead like a circus tent, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 43,
@@ -623,7 +623,7 @@
    "name": "Wormy Ice Scream",
    "verdict": "Yucky",
    "image_concept": "ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing ice cream scoop, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a soft-serve swirl character screaming comically, eyes wide, as a cheeky green worm pops out of the top of its swirl, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 44,
@@ -636,7 +636,7 @@
    "name": "Rainbow Sparkle Sundae",
    "verdict": "Magical",
    "image_concept": "ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing ice cream scoop, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a soft-serve sundae character proudly wearing a small rainbow arc as a hat, gentle sparkle rain, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 45,
@@ -649,7 +649,7 @@
    "name": "Sparkly Rainbow Worm Goo",
    "verdict": "Yucky",
    "image_concept": "green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing green wiggly worm, rainbow sparkles, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a cheeky green worm wearing a tiny rainbow arc as a superhero cape, flexing, sparkle trail, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 46,
@@ -662,8 +662,8 @@
    "ingredients": "Apple + Banana + Strawberry",
    "name": "Tutti-Frutti Salad",
    "verdict": "Yummy",
-   "image_concept": "red apple + banana + strawberry (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, banana, strawberry, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "red apple + banana + blueberry (yummy, glossy)",
+   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a plump round deep-blue blueberry character with a tiny leafy star crown stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 47,
@@ -677,7 +677,7 @@
    "name": "Apple-Banana-Egg Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + soft egg (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, banana, soft egg, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character and a jiggly fried-egg character with a golden yolk high-fiving over a curvy yellow banana character, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 48,
@@ -691,7 +691,7 @@
    "name": "Apple-Banana-Chocolate Medley",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, banana, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a curvy yellow banana character stacked on a melty dark-chocolate bar character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 49,
@@ -705,7 +705,7 @@
    "name": "Triple Treat: Apple, Banana & Cookie",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, banana, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a chocolate-chip cookie character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 50,
@@ -719,7 +719,7 @@
    "name": "Apple-Banana-Ice Cream Mash-Up",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, banana, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character and a curvy yellow banana character carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 51,
@@ -733,7 +733,7 @@
    "name": "Apple & Banana Worm Swamp Stew",
    "verdict": "Yucky",
    "image_concept": "red apple + banana + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing red apple, banana, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a glossy red apple character, a curvy yellow banana character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 52,
@@ -747,7 +747,7 @@
    "name": "Magical Apple & Banana Shimmer",
    "verdict": "Magical",
    "image_concept": "red apple + banana + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing red apple, banana, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 53,
@@ -758,10 +758,10 @@
     "egg"
    ],
    "ingredients": "Apple + Strawberry + Egg",
-   "name": "Apple-Strawberry-Egg Medley",
+   "name": "Apple-Blueberry-Egg Medley",
    "verdict": "Yummy",
-   "image_concept": "red apple + strawberry + soft egg (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, strawberry, soft egg, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "red apple + blueberry + soft egg (yummy, glossy)",
+   "image_prompt": "a glossy red apple character and a jiggly fried-egg character with a golden yolk high-fiving over a plump round deep-blue blueberry character with a tiny leafy star crown, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 54,
@@ -772,10 +772,10 @@
     "choco"
    ],
    "ingredients": "Apple + Strawberry + Chocolate",
-   "name": "Triple Treat: Apple, Strawberry & Chocolate",
+   "name": "Triple Treat: Apple, Blueberry & Chocolate",
    "verdict": "Yummy",
-   "image_concept": "red apple + strawberry + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, strawberry, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "red apple + blueberry + chocolate (yummy, glossy)",
+   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a melty dark-chocolate bar character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 55,
@@ -786,10 +786,10 @@
     "cookie"
    ],
    "ingredients": "Apple + Strawberry + Cookie",
-   "name": "Apple-Strawberry-Cookie Mash-Up",
+   "name": "Apple-Blueberry-Cookie Mash-Up",
    "verdict": "Yummy",
-   "image_concept": "red apple + strawberry + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, strawberry, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "red apple + blueberry + cookie (yummy, glossy)",
+   "image_prompt": "a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a chocolate-chip cookie character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 56,
@@ -800,10 +800,10 @@
     "icecream"
    ],
    "ingredients": "Apple + Strawberry + Ice Cream",
-   "name": "Chef's Apple-Strawberry-Ice Cream Surprise",
+   "name": "Chef's Apple-Blueberry-Ice Cream Surprise",
    "verdict": "Yummy",
-   "image_concept": "red apple + strawberry + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, strawberry, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "red apple + blueberry + ice cream scoop (yummy, glossy)",
+   "image_prompt": "a glossy red apple character and a plump round deep-blue blueberry character with a tiny leafy star crown carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 57,
@@ -814,10 +814,10 @@
     "worm"
    ],
    "ingredients": "Apple + Strawberry + Wiggly Worm",
-   "name": "Squirmy Apple & Strawberry Mush",
+   "name": "Squirmy Apple & Blueberry Mush",
    "verdict": "Yucky",
-   "image_concept": "red apple + strawberry + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing red apple, strawberry, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "red apple + blueberry + green wiggly worm (slimy, funny-gross)",
+   "image_prompt": "a giggling group-hug pile of a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 58,
@@ -828,10 +828,10 @@
     "rainbow"
    ],
    "ingredients": "Apple + Strawberry + Rainbow",
-   "name": "Apple & Strawberry Rainbow Delight",
+   "name": "Apple & Blueberry Rainbow Delight",
    "verdict": "Magical",
-   "image_concept": "red apple + strawberry + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing red apple, strawberry, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "red apple + blueberry + rainbow sparkles (sparkly, glowing)",
+   "image_prompt": "a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 59,
@@ -845,7 +845,7 @@
    "name": "Apple-Egg-Chocolate Mash-Up",
    "verdict": "Yummy",
    "image_concept": "red apple + soft egg + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, soft egg, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character and a melty dark-chocolate bar character high-fiving over a jiggly fried-egg character with a golden yolk, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 60,
@@ -859,7 +859,7 @@
    "name": "Chef's Apple-Egg-Cookie Surprise",
    "verdict": "Yummy",
    "image_concept": "red apple + soft egg + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, soft egg, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a jiggly fried-egg character with a golden yolk stacked on a chocolate-chip cookie character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 61,
@@ -873,7 +873,7 @@
    "name": "Apple-Egg-Ice Cream Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "red apple + soft egg + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, soft egg, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character, a jiggly fried-egg character with a golden yolk and a swirly soft-serve ice-cream character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 62,
@@ -887,7 +887,7 @@
    "name": "Wiggly Apple & Egg Sludge",
    "verdict": "Yucky",
    "image_concept": "red apple + soft egg + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing red apple, soft egg, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character and a jiggly fried-egg character with a golden yolk carrying a cheeky green wiggly worm overhead like a champion, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 63,
@@ -901,7 +901,7 @@
    "name": "Enchanted Apple & Egg Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "red apple + soft egg + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing red apple, soft egg, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a glossy red apple character, a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc, cheeks squished together, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 64,
@@ -915,7 +915,7 @@
    "name": "Apple-Chocolate-Cookie Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "red apple + chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, chocolate, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character, a melty dark-chocolate bar character and a chocolate-chip cookie character stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 65,
@@ -929,7 +929,7 @@
    "name": "Apple-Chocolate-Ice Cream Medley",
    "verdict": "Yummy",
    "image_concept": "red apple + chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, chocolate, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character and a swirly soft-serve ice-cream character high-fiving over a melty dark-chocolate bar character, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 66,
@@ -943,7 +943,7 @@
    "name": "Wormy Apple & Chocolate Surprise",
    "verdict": "Yucky",
    "image_concept": "red apple + chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing red apple, chocolate, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a melty dark-chocolate bar character stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 67,
@@ -957,7 +957,7 @@
    "name": "Rainbow Apple & Chocolate Sparkle Dream",
    "verdict": "Magical",
    "image_concept": "red apple + chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing red apple, chocolate, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character, a melty dark-chocolate bar character and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 68,
@@ -971,7 +971,7 @@
    "name": "Apple Pie a la Mode Deluxe",
    "verdict": "Yummy",
    "image_concept": "red apple + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing red apple, cookie, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character and a chocolate-chip cookie character carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 69,
@@ -985,7 +985,7 @@
    "name": "Slimy Apple & Cookie Wriggle-Goo",
    "verdict": "Yucky",
    "image_concept": "red apple + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing red apple, cookie, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a glossy red apple character, a chocolate-chip cookie character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 70,
@@ -999,7 +999,7 @@
    "name": "Magical Apple & Cookie Shimmer",
    "verdict": "Magical",
    "image_concept": "red apple + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing red apple, cookie, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character, a chocolate-chip cookie character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 71,
@@ -1013,7 +1013,7 @@
    "name": "Apple & Ice Cream Worm Swamp Stew",
    "verdict": "Yucky",
    "image_concept": "red apple + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing red apple, ice cream scoop, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character and a cheeky green wiggly worm high-fiving over a swirly soft-serve ice-cream character, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 72,
@@ -1027,7 +1027,7 @@
    "name": "Apple & Ice Cream Rainbow Delight",
    "verdict": "Magical",
    "image_concept": "red apple + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing red apple, ice cream scoop, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a swirly soft-serve ice-cream character stacked on a small glowing rainbow arc, all giggling, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 73,
@@ -1041,7 +1041,7 @@
    "name": "Wiggly Apple Sludge",
    "verdict": "Yucky",
    "image_concept": "red apple + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing red apple, green wiggly worm, rainbow sparkles, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a glossy red apple character, a cheeky green wiggly worm and a small glowing rainbow arc dancing in a happy conga line, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 74,
@@ -1052,10 +1052,10 @@
     "egg"
    ],
    "ingredients": "Banana + Strawberry + Egg",
-   "name": "Triple Treat: Banana, Strawberry & Egg",
+   "name": "Triple Treat: Banana, Blueberry & Egg",
    "verdict": "Yummy",
-   "image_concept": "banana + strawberry + soft egg (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, strawberry, soft egg, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "banana + blueberry + soft egg (yummy, glossy)",
+   "image_prompt": "a curvy yellow banana character and a plump round deep-blue blueberry character with a tiny leafy star crown carrying a jiggly fried-egg character with a golden yolk overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 75,
@@ -1066,10 +1066,10 @@
     "choco"
    ],
    "ingredients": "Banana + Strawberry + Chocolate",
-   "name": "Banana-Strawberry-Chocolate Mash-Up",
+   "name": "Banana-Blueberry-Chocolate Mash-Up",
    "verdict": "Yummy",
-   "image_concept": "banana + strawberry + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, strawberry, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "banana + blueberry + chocolate (yummy, glossy)",
+   "image_prompt": "a giggling group-hug pile of a curvy yellow banana character, a plump round deep-blue blueberry character with a tiny leafy star crown and a melty dark-chocolate bar character, cheeks squished together, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 76,
@@ -1080,10 +1080,10 @@
     "cookie"
    ],
    "ingredients": "Banana + Strawberry + Cookie",
-   "name": "Chef's Banana-Strawberry-Cookie Surprise",
+   "name": "Chef's Banana-Blueberry-Cookie Surprise",
    "verdict": "Yummy",
-   "image_concept": "banana + strawberry + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, strawberry, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "banana + blueberry + cookie (yummy, glossy)",
+   "image_prompt": "a curvy yellow banana character, a plump round deep-blue blueberry character with a tiny leafy star crown and a chocolate-chip cookie character stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 77,
@@ -1096,8 +1096,8 @@
    "ingredients": "Banana + Strawberry + Ice Cream",
    "name": "Double-Berry Banana Split",
    "verdict": "Yummy",
-   "image_concept": "banana + strawberry + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, strawberry, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "banana + blueberry + ice cream scoop (yummy, glossy)",
+   "image_prompt": "a curvy yellow banana character and a swirly soft-serve ice-cream character high-fiving over a plump round deep-blue blueberry character with a tiny leafy star crown, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 78,
@@ -1108,10 +1108,10 @@
     "worm"
    ],
    "ingredients": "Banana + Strawberry + Wiggly Worm",
-   "name": "Wiggly Banana & Strawberry Sludge",
+   "name": "Wiggly Banana & Blueberry Sludge",
    "verdict": "Yucky",
-   "image_concept": "banana + strawberry + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing banana, strawberry, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "banana + blueberry + green wiggly worm (slimy, funny-gross)",
+   "image_prompt": "a wobbly tower: a curvy yellow banana character stacked on a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 79,
@@ -1122,10 +1122,10 @@
     "rainbow"
    ],
    "ingredients": "Banana + Strawberry + Rainbow",
-   "name": "Enchanted Banana & Strawberry Twinkle Treat",
+   "name": "Enchanted Banana & Blueberry Twinkle Treat",
    "verdict": "Magical",
-   "image_concept": "banana + strawberry + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing banana, strawberry, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "banana + blueberry + rainbow sparkles (sparkly, glowing)",
+   "image_prompt": "a curvy yellow banana character, a plump round deep-blue blueberry character with a tiny leafy star crown and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 80,
@@ -1139,7 +1139,7 @@
    "name": "Choco-Banana Birthday Cake",
    "verdict": "Yummy",
    "image_concept": "banana + soft egg + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, soft egg, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character and a jiggly fried-egg character with a golden yolk carrying a melty dark-chocolate bar character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 81,
@@ -1153,7 +1153,7 @@
    "name": "Banana-Egg-Cookie Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "banana + soft egg + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, soft egg, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a curvy yellow banana character, a jiggly fried-egg character with a golden yolk and a chocolate-chip cookie character, cheeks squished together, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 82,
@@ -1167,7 +1167,7 @@
    "name": "Banana-Egg-Ice Cream Medley",
    "verdict": "Yummy",
    "image_concept": "banana + soft egg + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, soft egg, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character, a jiggly fried-egg character with a golden yolk and a swirly soft-serve ice-cream character stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 83,
@@ -1181,7 +1181,7 @@
    "name": "Wormy Banana & Egg Surprise",
    "verdict": "Yucky",
    "image_concept": "banana + soft egg + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing banana, soft egg, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character and a cheeky green wiggly worm high-fiving over a jiggly fried-egg character with a golden yolk, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 84,
@@ -1195,7 +1195,7 @@
    "name": "Rainbow Banana & Egg Sparkle Dream",
    "verdict": "Magical",
    "image_concept": "banana + soft egg + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing banana, soft egg, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a curvy yellow banana character stacked on a jiggly fried-egg character with a golden yolk stacked on a small glowing rainbow arc, all giggling, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 85,
@@ -1209,7 +1209,7 @@
    "name": "Banana-Chocolate-Cookie Medley",
    "verdict": "Yummy",
    "image_concept": "banana + chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, chocolate, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character, a melty dark-chocolate bar character and a chocolate-chip cookie character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 86,
@@ -1223,7 +1223,7 @@
    "name": "Choco-Banana Split Supreme",
    "verdict": "Yummy",
    "image_concept": "banana + chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, chocolate, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character and a melty dark-chocolate bar character carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 87,
@@ -1237,7 +1237,7 @@
    "name": "Slimy Banana & Chocolate Wriggle-Goo",
    "verdict": "Yucky",
    "image_concept": "banana + chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing banana, chocolate, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a curvy yellow banana character, a melty dark-chocolate bar character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 88,
@@ -1251,7 +1251,7 @@
    "name": "Magical Banana & Chocolate Shimmer",
    "verdict": "Magical",
    "image_concept": "banana + chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing banana, chocolate, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character, a melty dark-chocolate bar character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 89,
@@ -1265,7 +1265,7 @@
    "name": "Banana Cookie Sundae",
    "verdict": "Yummy",
    "image_concept": "banana + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing banana, cookie, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character and a swirly soft-serve ice-cream character high-fiving over a chocolate-chip cookie character, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 90,
@@ -1279,7 +1279,7 @@
    "name": "Banana & Cookie Worm Swamp Stew",
    "verdict": "Yucky",
    "image_concept": "banana + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing banana, cookie, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a curvy yellow banana character stacked on a chocolate-chip cookie character stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 91,
@@ -1293,7 +1293,7 @@
    "name": "Banana & Cookie Rainbow Delight",
    "verdict": "Magical",
    "image_concept": "banana + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing banana, cookie, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character, a chocolate-chip cookie character and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 92,
@@ -1307,7 +1307,7 @@
    "name": "Squirmy Banana & Ice Cream Mush",
    "verdict": "Yucky",
    "image_concept": "banana + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing banana, ice cream scoop, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character and a swirly soft-serve ice-cream character carrying a cheeky green wiggly worm overhead like a champion, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 93,
@@ -1321,7 +1321,7 @@
    "name": "Enchanted Banana & Ice Cream Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "banana + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing banana, ice cream scoop, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a curvy yellow banana character, a swirly soft-serve ice-cream character and a small glowing rainbow arc, cheeks squished together, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 94,
@@ -1335,7 +1335,7 @@
    "name": "Wormy Banana Surprise",
    "verdict": "Yucky",
    "image_concept": "banana + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing banana, green wiggly worm, rainbow sparkles, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a curvy yellow banana character, a cheeky green wiggly worm and a small glowing rainbow arc stacked like a snowman, the top one saluting, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 95,
@@ -1346,10 +1346,10 @@
     "choco"
    ],
    "ingredients": "Strawberry + Egg + Chocolate",
-   "name": "Strawberry-Egg-Chocolate Yum-Bowl",
+   "name": "Blueberry-Egg-Chocolate Yum-Bowl",
    "verdict": "Yummy",
-   "image_concept": "strawberry + soft egg + chocolate (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, soft egg, chocolate, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + soft egg + chocolate (yummy, glossy)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a melty dark-chocolate bar character high-fiving over a jiggly fried-egg character with a golden yolk, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 96,
@@ -1360,10 +1360,10 @@
     "cookie"
    ],
    "ingredients": "Strawberry + Egg + Cookie",
-   "name": "Strawberry-Egg-Cookie Medley",
+   "name": "Blueberry-Egg-Cookie Medley",
    "verdict": "Yummy",
-   "image_concept": "strawberry + soft egg + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, soft egg, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + soft egg + cookie (yummy, glossy)",
+   "image_prompt": "a wobbly tower: a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a jiggly fried-egg character with a golden yolk stacked on a chocolate-chip cookie character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 97,
@@ -1374,10 +1374,10 @@
     "icecream"
    ],
    "ingredients": "Strawberry + Egg + Ice Cream",
-   "name": "Triple Treat: Strawberry, Egg & Ice Cream",
+   "name": "Triple Treat: Blueberry, Egg & Ice Cream",
    "verdict": "Yummy",
-   "image_concept": "strawberry + soft egg + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, soft egg, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + soft egg + ice cream scoop (yummy, glossy)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a jiggly fried-egg character with a golden yolk and a swirly soft-serve ice-cream character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 98,
@@ -1388,10 +1388,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Egg + Wiggly Worm",
-   "name": "Slimy Strawberry & Egg Wriggle-Goo",
+   "name": "Slimy Blueberry & Egg Wriggle-Goo",
    "verdict": "Yucky",
-   "image_concept": "strawberry + soft egg + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing strawberry, soft egg, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + soft egg + green wiggly worm (slimy, funny-gross)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a jiggly fried-egg character with a golden yolk carrying a cheeky green wiggly worm overhead like a champion, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 99,
@@ -1402,10 +1402,10 @@
     "rainbow"
    ],
    "ingredients": "Strawberry + Egg + Rainbow",
-   "name": "Magical Strawberry & Egg Shimmer",
+   "name": "Magical Blueberry & Egg Shimmer",
    "verdict": "Magical",
-   "image_concept": "strawberry + soft egg + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing strawberry, soft egg, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + soft egg + rainbow sparkles (sparkly, glowing)",
+   "image_prompt": "a giggling group-hug pile of a plump round deep-blue blueberry character with a tiny leafy star crown, a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc, cheeks squished together, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 100,
@@ -1416,10 +1416,10 @@
     "cookie"
    ],
    "ingredients": "Strawberry + Chocolate + Cookie",
-   "name": "Triple Treat: Strawberry, Chocolate & Cookie",
+   "name": "Triple Treat: Blueberry, Chocolate & Cookie",
    "verdict": "Yummy",
-   "image_concept": "strawberry + chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, chocolate, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + chocolate + cookie (yummy, glossy)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a melty dark-chocolate bar character and a chocolate-chip cookie character stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 101,
@@ -1430,10 +1430,10 @@
     "icecream"
    ],
    "ingredients": "Strawberry + Chocolate + Ice Cream",
-   "name": "Strawberry-Choco Sundae",
+   "name": "Blueberry-Choco Sundae",
    "verdict": "Yummy",
-   "image_concept": "strawberry + chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, chocolate, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + chocolate + ice cream scoop (yummy, glossy)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a swirly soft-serve ice-cream character high-fiving over a melty dark-chocolate bar character, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 102,
@@ -1444,10 +1444,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Chocolate + Wiggly Worm",
-   "name": "Strawberry & Chocolate Worm Swamp Stew",
+   "name": "Blueberry & Chocolate Worm Swamp Stew",
    "verdict": "Yucky",
-   "image_concept": "strawberry + chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing strawberry, chocolate, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + chocolate + green wiggly worm (slimy, funny-gross)",
+   "image_prompt": "a wobbly tower: a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a melty dark-chocolate bar character stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 103,
@@ -1458,10 +1458,10 @@
     "rainbow"
    ],
    "ingredients": "Strawberry + Chocolate + Rainbow",
-   "name": "Strawberry & Chocolate Rainbow Delight",
+   "name": "Blueberry & Chocolate Rainbow Delight",
    "verdict": "Magical",
-   "image_concept": "strawberry + chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing strawberry, chocolate, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + chocolate + rainbow sparkles (sparkly, glowing)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a melty dark-chocolate bar character and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 104,
@@ -1472,10 +1472,10 @@
     "icecream"
    ],
    "ingredients": "Strawberry + Cookie + Ice Cream",
-   "name": "Strawberry Shortcake Sundae",
+   "name": "Blueberry Shortcake Sundae",
    "verdict": "Yummy",
-   "image_concept": "strawberry + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing strawberry, cookie, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + cookie + ice cream scoop (yummy, glossy)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a chocolate-chip cookie character carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 105,
@@ -1486,10 +1486,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Cookie + Wiggly Worm",
-   "name": "Squirmy Strawberry & Cookie Mush",
+   "name": "Squirmy Blueberry & Cookie Mush",
    "verdict": "Yucky",
-   "image_concept": "strawberry + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing strawberry, cookie, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + cookie + green wiggly worm (slimy, funny-gross)",
+   "image_prompt": "a giggling group-hug pile of a plump round deep-blue blueberry character with a tiny leafy star crown, a chocolate-chip cookie character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 106,
@@ -1500,10 +1500,10 @@
     "rainbow"
    ],
    "ingredients": "Strawberry + Cookie + Rainbow",
-   "name": "Enchanted Strawberry & Cookie Twinkle Treat",
+   "name": "Enchanted Blueberry & Cookie Twinkle Treat",
    "verdict": "Magical",
-   "image_concept": "strawberry + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing strawberry, cookie, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + cookie + rainbow sparkles (sparkly, glowing)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a chocolate-chip cookie character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 107,
@@ -1514,10 +1514,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Ice Cream + Wiggly Worm",
-   "name": "Wiggly Strawberry & Ice Cream Sludge",
+   "name": "Wiggly Blueberry & Ice Cream Sludge",
    "verdict": "Yucky",
-   "image_concept": "strawberry + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing strawberry, ice cream scoop, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + ice cream scoop + green wiggly worm (slimy, funny-gross)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a cheeky green wiggly worm high-fiving over a swirly soft-serve ice-cream character, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 108,
@@ -1528,10 +1528,10 @@
     "rainbow"
    ],
    "ingredients": "Strawberry + Ice Cream + Rainbow",
-   "name": "Rainbow Strawberry & Ice Cream Sparkle Dream",
+   "name": "Rainbow Blueberry & Ice Cream Sparkle Dream",
    "verdict": "Magical",
-   "image_concept": "strawberry + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing strawberry, ice cream scoop, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + ice cream scoop + rainbow sparkles (sparkly, glowing)",
+   "image_prompt": "a wobbly tower: a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a swirly soft-serve ice-cream character stacked on a small glowing rainbow arc, all giggling, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 109,
@@ -1542,10 +1542,10 @@
     "rainbow"
    ],
    "ingredients": "Strawberry + Wiggly Worm + Rainbow",
-   "name": "Slimy Strawberry Wriggle-Goo",
+   "name": "Slimy Blueberry Wriggle-Goo",
    "verdict": "Yucky",
-   "image_concept": "strawberry + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing strawberry, green wiggly worm, rainbow sparkles, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_concept": "blueberry + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a cheeky green wiggly worm and a small glowing rainbow arc dancing in a happy conga line, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 110,
@@ -1559,7 +1559,7 @@
    "name": "Chocolate-Chip Cookie Cake",
    "verdict": "Yummy",
    "image_concept": "soft egg + chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing soft egg, chocolate, cookie, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a jiggly fried-egg character with a golden yolk and a melty dark-chocolate bar character carrying a chocolate-chip cookie character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 111,
@@ -1573,7 +1573,7 @@
    "name": "Chef's Egg-Chocolate-Ice Cream Surprise",
    "verdict": "Yummy",
    "image_concept": "soft egg + chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing soft egg, chocolate, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a jiggly fried-egg character with a golden yolk, a melty dark-chocolate bar character and a swirly soft-serve ice-cream character, cheeks squished together, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 112,
@@ -1587,7 +1587,7 @@
    "name": "Squirmy Egg & Chocolate Mush",
    "verdict": "Yucky",
    "image_concept": "soft egg + chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing soft egg, chocolate, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a jiggly fried-egg character with a golden yolk, a melty dark-chocolate bar character and a cheeky green wiggly worm stacked like a snowman, the top one saluting, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 113,
@@ -1601,7 +1601,7 @@
    "name": "Enchanted Egg & Chocolate Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "soft egg + chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing soft egg, chocolate, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc high-fiving over a melty dark-chocolate bar character, who looks delighted, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 114,
@@ -1615,7 +1615,7 @@
    "name": "Egg-Cookie-Ice Cream Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "soft egg + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing soft egg, cookie, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a jiggly fried-egg character with a golden yolk stacked on a chocolate-chip cookie character stacked on a swirly soft-serve ice-cream character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 115,
@@ -1629,7 +1629,7 @@
    "name": "Wiggly Egg & Cookie Sludge",
    "verdict": "Yucky",
    "image_concept": "soft egg + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing soft egg, cookie, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a jiggly fried-egg character with a golden yolk, a chocolate-chip cookie character and a cheeky green wiggly worm dancing in a happy conga line, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 116,
@@ -1643,7 +1643,7 @@
    "name": "Rainbow Egg & Cookie Sparkle Dream",
    "verdict": "Magical",
    "image_concept": "soft egg + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing soft egg, cookie, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a jiggly fried-egg character with a golden yolk and a chocolate-chip cookie character carrying a small glowing rainbow arc overhead like a champion, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 117,
@@ -1657,7 +1657,7 @@
    "name": "Wormy Egg & Ice Cream Surprise",
    "verdict": "Yucky",
    "image_concept": "soft egg + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing soft egg, ice cream scoop, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a jiggly fried-egg character with a golden yolk, a swirly soft-serve ice-cream character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 118,
@@ -1671,7 +1671,7 @@
    "name": "Magical Egg & Ice Cream Shimmer",
    "verdict": "Magical",
    "image_concept": "soft egg + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing soft egg, ice cream scoop, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a jiggly fried-egg character with a golden yolk, a swirly soft-serve ice-cream character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 119,
@@ -1685,7 +1685,7 @@
    "name": "Egg Worm Swamp Stew",
    "verdict": "Yucky",
    "image_concept": "soft egg + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing soft egg, green wiggly worm, rainbow sparkles, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc high-fiving over a cheeky green wiggly worm, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 120,
@@ -1699,7 +1699,7 @@
    "name": "Cookies-and-Cream Sundae",
    "verdict": "Yummy",
    "image_concept": "chocolate + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a small plate or bowl containing chocolate, cookie, ice cream scoop, appetizing, glossy, cute smiling food, tiny wisp of steam. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a melty dark-chocolate bar character stacked on a chocolate-chip cookie character stacked on a swirly soft-serve ice-cream character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
   },
   {
    "n": 121,
@@ -1713,7 +1713,7 @@
    "name": "Wormy Chocolate & Cookie Surprise",
    "verdict": "Yucky",
    "image_concept": "chocolate + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing chocolate, cookie, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a melty dark-chocolate bar character, a chocolate-chip cookie character and a cheeky green wiggly worm dancing in a happy conga line, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 122,
@@ -1727,7 +1727,7 @@
    "name": "Magical Chocolate & Cookie Shimmer",
    "verdict": "Magical",
    "image_concept": "chocolate + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing chocolate, cookie, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a melty dark-chocolate bar character and a chocolate-chip cookie character carrying a small glowing rainbow arc overhead like a champion, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 123,
@@ -1741,7 +1741,7 @@
    "name": "Slimy Chocolate & Ice Cream Wriggle-Goo",
    "verdict": "Yucky",
    "image_concept": "chocolate + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing chocolate, ice cream scoop, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a melty dark-chocolate bar character, a swirly soft-serve ice-cream character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 124,
@@ -1755,7 +1755,7 @@
    "name": "Chocolate & Ice Cream Rainbow Delight",
    "verdict": "Magical",
    "image_concept": "chocolate + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing chocolate, ice cream scoop, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a melty dark-chocolate bar character, a swirly soft-serve ice-cream character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 125,
@@ -1769,7 +1769,7 @@
    "name": "Squirmy Chocolate Mush",
    "verdict": "Yucky",
    "image_concept": "chocolate + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing chocolate, green wiggly worm, rainbow sparkles, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a melty dark-chocolate bar character and a small glowing rainbow arc high-fiving over a cheeky green wiggly worm, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 126,
@@ -1783,7 +1783,7 @@
    "name": "Cookie & Ice Cream Worm Swamp Stew",
    "verdict": "Yucky",
    "image_concept": "cookie + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing cookie, ice cream scoop, green wiggly worm, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a wobbly tower: a chocolate-chip cookie character stacked on a swirly soft-serve ice-cream character stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 127,
@@ -1797,7 +1797,7 @@
    "name": "Enchanted Cookie & Ice Cream Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "cookie + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a small plate or bowl containing cookie, ice cream scoop, rainbow sparkles, glowing rainbow sparkles, magical shimmer, dreamy, extra cute. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a chocolate-chip cookie character, a swirly soft-serve ice-cream character and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 128,
@@ -1811,7 +1811,7 @@
    "name": "Wiggly Cookie Sludge",
    "verdict": "Yucky",
    "image_concept": "cookie + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing cookie, green wiggly worm, rainbow sparkles, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a chocolate-chip cookie character and a cheeky green wiggly worm carrying a small glowing rainbow arc overhead like a champion, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   },
   {
    "n": 129,
@@ -1825,7 +1825,7 @@
    "name": "Wormy Ice Cream Surprise",
    "verdict": "Yucky",
    "image_concept": "ice cream scoop + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a small plate or bowl containing ice cream scoop, green wiggly worm, rainbow sparkles, slimy and gross-but-adorable, little green stink swirls, funny yucky. Kawaii toddler picture-book sticker style (apply PLAN sec 3.4 master style suffix + negative), one serving centered, plain background."
+   "image_prompt": "a giggling group-hug pile of a swirly soft-serve ice-cream character, a cheeky green wiggly worm and a small glowing rainbow arc, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
   }
  ]
 }

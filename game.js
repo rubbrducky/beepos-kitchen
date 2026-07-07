@@ -13,7 +13,7 @@
 const INGREDIENTS = [
   {id:'apple',   svg:'ing-apple',   n:'Apple',       c:'#E84B4B'},
   {id:'banana',  svg:'ing-banana',  n:'Banana',      c:'#F7D64A'},
-  {id:'berry',   svg:'ing-berry',   n:'Strawberry',  c:'#F04E6E'},
+  {id:'berry',   svg:'ing-berry',   n:'Blueberry',   c:'#5B7FE8'},
   {id:'egg',     svg:'ing-egg',     n:'Egg',         c:'#FFF3D0'},
   {id:'choco',   svg:'ing-choco',   n:'Chocolate',   c:'#8A5A3B'},
   {id:'cookie',  svg:'ing-cookie',  n:'Cookie',      c:'#B57A3E'},
@@ -304,7 +304,7 @@ const DISH_LINES=[
   ['Smoothie','Slurrrp!'],['Sundae','Cherry on top!'],['Pancake','Flippy floppy!'],
   ['Cookie','Crunch crunch!'],['Choco','Mmm chocolate!'],['Jam','Sticky sweet!'],
   ['Soup','Slurpy soup!'],['Taco','Crunchy crunch!'],['Pie','Sweetie pie!'],
-  ['Egg','Wibbly wobbly!'],['Banana','Go bananas!'],['Berry','Berry nice!'],
+  ['Egg','Wibbly wobbly!'],['Banana','Go bananas!'],['Blueberry','Blue-tastic!'],['Berry','Berry nice!'],
 ];
 
 /* ================= start / title overlay (B#2) ================= */

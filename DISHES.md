@@ -10,7 +10,7 @@ Chosen from the original 12 for the richest, most recognizable toddler combos wh
 |---|---|---|---|
 | Apple | 🍎 | food | normal — **Yummy** |
 | Banana | 🍌 | food | normal — **Yummy** |
-| Strawberry | 🍓 | food | normal — **Yummy** |
+| Blueberry | 🫐 | food | normal — **Yummy** |
 | Egg | 🥚 | food | normal — **Yummy** |
 | Chocolate | 🍫 | food | normal — **Yummy** |
 | Cookie | 🍪 | food | normal — **Yummy** |
@@ -42,7 +42,7 @@ Singles + all pairs are hand-named; triples use a themed name generator (easy to
 |---|---|---|---|---|
 | 1 | Apple | Apple Squish Sauce | 😋 Yummy | red apple (yummy, glossy) |
 | 2 | Banana | Mushy Banana Mash | 😋 Yummy | banana (yummy, glossy) |
-| 3 | Strawberry | Strawberry Squish Jam | 😋 Yummy | strawberry (yummy, glossy) |
+| 3 | Blueberry | Blueberry Squish Jam | 😋 Yummy | blueberry (yummy, glossy) |
 | 4 | Egg | Wobbly Egg Custard | 😋 Yummy | soft egg (yummy, glossy) |
 | 5 | Chocolate | Choco Goo Pudding | 😋 Yummy | chocolate (yummy, glossy) |
 | 6 | Cookie | Giant Cookie Mush | 😋 Yummy | cookie (yummy, glossy) |
@@ -55,26 +55,26 @@ Singles + all pairs are hand-named; triples use a themed name generator (easy to
 | # | Ingredients | Dish name | Taste | Image concept |
 |---|---|---|---|---|
 | 10 | Apple + Banana | Sunny Fruit Smoothie | 😋 Yummy | red apple + banana (yummy, glossy) |
-| 11 | Apple + Strawberry | Berry-Apple Jelly | 😋 Yummy | red apple + strawberry (yummy, glossy) |
+| 11 | Apple + Blueberry | Berry-Apple Jelly | 😋 Yummy | red apple + blueberry (yummy, glossy) |
 | 12 | Apple + Egg | Apple Custard Cup | 😋 Yummy | red apple + soft egg (yummy, glossy) |
 | 13 | Apple + Chocolate | Choco-Dunked Apple | 😋 Yummy | red apple + chocolate (yummy, glossy) |
 | 14 | Apple + Cookie | Grandma's Apple Pie | 😋 Yummy | red apple + cookie (yummy, glossy) |
 | 15 | Apple + Ice Cream | Apple Pie a la Mode | 😋 Yummy | red apple + ice cream scoop (yummy, glossy) |
 | 16 | Apple + Wiggly Worm | Wiggly Apple Wormhole | 🤢 Yucky | red apple + green wiggly worm (slimy, funny-gross) |
 | 17 | Apple + Rainbow | Rainbow Apple Fizz | 🤩 Magical | red apple + rainbow sparkles (sparkly, glowing) |
-| 18 | Banana + Strawberry | Pink Monkey Smoothie | 😋 Yummy | banana + strawberry (yummy, glossy) |
+| 18 | Banana + Blueberry | Blue Monkey Smoothie | 😋 Yummy | banana + blueberry (yummy, glossy) |
 | 19 | Banana + Egg | Banana Pancakes | 😋 Yummy | banana + soft egg (yummy, glossy) |
 | 20 | Banana + Chocolate | Choco-Banana Pops | 😋 Yummy | banana + chocolate (yummy, glossy) |
 | 21 | Banana + Cookie | Banana Cookie Stack | 😋 Yummy | banana + cookie (yummy, glossy) |
 | 22 | Banana + Ice Cream | Banana Split | 😋 Yummy | banana + ice cream scoop (yummy, glossy) |
 | 23 | Banana + Wiggly Worm | Wiggle-Waggle Banana Slime | 🤢 Yucky | banana + green wiggly worm (slimy, funny-gross) |
 | 24 | Banana + Rainbow | Rainbow Banana Dream | 🤩 Magical | banana + rainbow sparkles (sparkly, glowing) |
-| 25 | Strawberry + Egg | Strawberry Custard Cup | 😋 Yummy | strawberry + soft egg (yummy, glossy) |
-| 26 | Strawberry + Chocolate | Strawberry-Choco Cake | 😋 Yummy | strawberry + chocolate (yummy, glossy) |
-| 27 | Strawberry + Cookie | Strawberry Cookie Crumble | 😋 Yummy | strawberry + cookie (yummy, glossy) |
-| 28 | Strawberry + Ice Cream | Strawberry Sundae | 😋 Yummy | strawberry + ice cream scoop (yummy, glossy) |
-| 29 | Strawberry + Wiggly Worm | Wormy Berry Sludge | 🤢 Yucky | strawberry + green wiggly worm (slimy, funny-gross) |
-| 30 | Strawberry + Rainbow | Rainbow Berry Sparkle | 🤩 Magical | strawberry + rainbow sparkles (sparkly, glowing) |
+| 25 | Blueberry + Egg | Blueberry Custard Cup | 😋 Yummy | blueberry + soft egg (yummy, glossy) |
+| 26 | Blueberry + Chocolate | Blueberry-Choco Cake | 😋 Yummy | blueberry + chocolate (yummy, glossy) |
+| 27 | Blueberry + Cookie | Blueberry Cookie Crumble | 😋 Yummy | blueberry + cookie (yummy, glossy) |
+| 28 | Blueberry + Ice Cream | Blueberry Sundae | 😋 Yummy | blueberry + ice cream scoop (yummy, glossy) |
+| 29 | Blueberry + Wiggly Worm | Wormy Berry Sludge | 🤢 Yucky | blueberry + green wiggly worm (slimy, funny-gross) |
+| 30 | Blueberry + Rainbow | Rainbow Berry Sparkle | 🤩 Magical | blueberry + rainbow sparkles (sparkly, glowing) |
 | 31 | Egg + Chocolate | Chocolate Birthday Cake | 😋 Yummy | soft egg + chocolate (yummy, glossy) |
 | 32 | Egg + Cookie | Beepo Burger | 😋 Yummy | cute hamburger: sesame bun, patty, cheese, lettuce (yummy, glossy) |
 | 33 | Egg + Ice Cream | Frozen Custard Swirl | 😋 Yummy | soft egg + ice cream scoop (yummy, glossy) |
@@ -95,19 +95,19 @@ Singles + all pairs are hand-named; triples use a themed name generator (easy to
 
 | # | Ingredients | Dish name | Taste | Image concept |
 |---|---|---|---|---|
-| 46 | Apple + Banana + Strawberry | Tutti-Frutti Salad | 😋 Yummy | red apple + banana + strawberry (yummy, glossy) |
+| 46 | Apple + Banana + Blueberry | Tutti-Frutti Salad | 😋 Yummy | red apple + banana + blueberry (yummy, glossy) |
 | 47 | Apple + Banana + Egg | Apple-Banana-Egg Yum-Bowl | 😋 Yummy | red apple + banana + soft egg (yummy, glossy) |
 | 48 | Apple + Banana + Chocolate | Apple-Banana-Chocolate Medley | 😋 Yummy | red apple + banana + chocolate (yummy, glossy) |
 | 49 | Apple + Banana + Cookie | Triple Treat: Apple, Banana & Cookie | 😋 Yummy | red apple + banana + cookie (yummy, glossy) |
 | 50 | Apple + Banana + Ice Cream | Apple-Banana-Ice Cream Mash-Up | 😋 Yummy | red apple + banana + ice cream scoop (yummy, glossy) |
 | 51 | Apple + Banana + Wiggly Worm | Apple & Banana Worm Swamp Stew | 🤢 Yucky | red apple + banana + green wiggly worm (slimy, funny-gross) |
 | 52 | Apple + Banana + Rainbow | Magical Apple & Banana Shimmer | 🤩 Magical | red apple + banana + rainbow sparkles (sparkly, glowing) |
-| 53 | Apple + Strawberry + Egg | Apple-Strawberry-Egg Medley | 😋 Yummy | red apple + strawberry + soft egg (yummy, glossy) |
-| 54 | Apple + Strawberry + Chocolate | Triple Treat: Apple, Strawberry & Chocolate | 😋 Yummy | red apple + strawberry + chocolate (yummy, glossy) |
-| 55 | Apple + Strawberry + Cookie | Apple-Strawberry-Cookie Mash-Up | 😋 Yummy | red apple + strawberry + cookie (yummy, glossy) |
-| 56 | Apple + Strawberry + Ice Cream | Chef's Apple-Strawberry-Ice Cream Surprise | 😋 Yummy | red apple + strawberry + ice cream scoop (yummy, glossy) |
-| 57 | Apple + Strawberry + Wiggly Worm | Squirmy Apple & Strawberry Mush | 🤢 Yucky | red apple + strawberry + green wiggly worm (slimy, funny-gross) |
-| 58 | Apple + Strawberry + Rainbow | Apple & Strawberry Rainbow Delight | 🤩 Magical | red apple + strawberry + rainbow sparkles (sparkly, glowing) |
+| 53 | Apple + Blueberry + Egg | Apple-Blueberry-Egg Medley | 😋 Yummy | red apple + blueberry + soft egg (yummy, glossy) |
+| 54 | Apple + Blueberry + Chocolate | Triple Treat: Apple, Blueberry & Chocolate | 😋 Yummy | red apple + blueberry + chocolate (yummy, glossy) |
+| 55 | Apple + Blueberry + Cookie | Apple-Blueberry-Cookie Mash-Up | 😋 Yummy | red apple + blueberry + cookie (yummy, glossy) |
+| 56 | Apple + Blueberry + Ice Cream | Chef's Apple-Blueberry-Ice Cream Surprise | 😋 Yummy | red apple + blueberry + ice cream scoop (yummy, glossy) |
+| 57 | Apple + Blueberry + Wiggly Worm | Squirmy Apple & Blueberry Mush | 🤢 Yucky | red apple + blueberry + green wiggly worm (slimy, funny-gross) |
+| 58 | Apple + Blueberry + Rainbow | Apple & Blueberry Rainbow Delight | 🤩 Magical | red apple + blueberry + rainbow sparkles (sparkly, glowing) |
 | 59 | Apple + Egg + Chocolate | Apple-Egg-Chocolate Mash-Up | 😋 Yummy | red apple + soft egg + chocolate (yummy, glossy) |
 | 60 | Apple + Egg + Cookie | Chef's Apple-Egg-Cookie Surprise | 😋 Yummy | red apple + soft egg + cookie (yummy, glossy) |
 | 61 | Apple + Egg + Ice Cream | Apple-Egg-Ice Cream Yum-Bowl | 😋 Yummy | red apple + soft egg + ice cream scoop (yummy, glossy) |
@@ -123,12 +123,12 @@ Singles + all pairs are hand-named; triples use a themed name generator (easy to
 | 71 | Apple + Ice Cream + Wiggly Worm | Apple & Ice Cream Worm Swamp Stew | 🤢 Yucky | red apple + ice cream scoop + green wiggly worm (slimy, funny-gross) |
 | 72 | Apple + Ice Cream + Rainbow | Apple & Ice Cream Rainbow Delight | 🤩 Magical | red apple + ice cream scoop + rainbow sparkles (sparkly, glowing) |
 | 73 | Apple + Wiggly Worm + Rainbow | Wiggly Apple Sludge | 🤢 Yucky | red apple + green wiggly worm + rainbow sparkles (slimy, funny-gross) |
-| 74 | Banana + Strawberry + Egg | Triple Treat: Banana, Strawberry & Egg | 😋 Yummy | banana + strawberry + soft egg (yummy, glossy) |
-| 75 | Banana + Strawberry + Chocolate | Banana-Strawberry-Chocolate Mash-Up | 😋 Yummy | banana + strawberry + chocolate (yummy, glossy) |
-| 76 | Banana + Strawberry + Cookie | Chef's Banana-Strawberry-Cookie Surprise | 😋 Yummy | banana + strawberry + cookie (yummy, glossy) |
-| 77 | Banana + Strawberry + Ice Cream | Double-Berry Banana Split | 😋 Yummy | banana + strawberry + ice cream scoop (yummy, glossy) |
-| 78 | Banana + Strawberry + Wiggly Worm | Wiggly Banana & Strawberry Sludge | 🤢 Yucky | banana + strawberry + green wiggly worm (slimy, funny-gross) |
-| 79 | Banana + Strawberry + Rainbow | Enchanted Banana & Strawberry Twinkle Treat | 🤩 Magical | banana + strawberry + rainbow sparkles (sparkly, glowing) |
+| 74 | Banana + Blueberry + Egg | Triple Treat: Banana, Blueberry & Egg | 😋 Yummy | banana + blueberry + soft egg (yummy, glossy) |
+| 75 | Banana + Blueberry + Chocolate | Banana-Blueberry-Chocolate Mash-Up | 😋 Yummy | banana + blueberry + chocolate (yummy, glossy) |
+| 76 | Banana + Blueberry + Cookie | Chef's Banana-Blueberry-Cookie Surprise | 😋 Yummy | banana + blueberry + cookie (yummy, glossy) |
+| 77 | Banana + Blueberry + Ice Cream | Double-Berry Banana Split | 😋 Yummy | banana + blueberry + ice cream scoop (yummy, glossy) |
+| 78 | Banana + Blueberry + Wiggly Worm | Wiggly Banana & Blueberry Sludge | 🤢 Yucky | banana + blueberry + green wiggly worm (slimy, funny-gross) |
+| 79 | Banana + Blueberry + Rainbow | Enchanted Banana & Blueberry Twinkle Treat | 🤩 Magical | banana + blueberry + rainbow sparkles (sparkly, glowing) |
 | 80 | Banana + Egg + Chocolate | Choco-Banana Birthday Cake | 😋 Yummy | banana + soft egg + chocolate (yummy, glossy) |
 | 81 | Banana + Egg + Cookie | Banana-Egg-Cookie Yum-Bowl | 😋 Yummy | banana + soft egg + cookie (yummy, glossy) |
 | 82 | Banana + Egg + Ice Cream | Banana-Egg-Ice Cream Medley | 😋 Yummy | banana + soft egg + ice cream scoop (yummy, glossy) |
@@ -144,21 +144,21 @@ Singles + all pairs are hand-named; triples use a themed name generator (easy to
 | 92 | Banana + Ice Cream + Wiggly Worm | Squirmy Banana & Ice Cream Mush | 🤢 Yucky | banana + ice cream scoop + green wiggly worm (slimy, funny-gross) |
 | 93 | Banana + Ice Cream + Rainbow | Enchanted Banana & Ice Cream Twinkle Treat | 🤩 Magical | banana + ice cream scoop + rainbow sparkles (sparkly, glowing) |
 | 94 | Banana + Wiggly Worm + Rainbow | Wormy Banana Surprise | 🤢 Yucky | banana + green wiggly worm + rainbow sparkles (slimy, funny-gross) |
-| 95 | Strawberry + Egg + Chocolate | Strawberry-Egg-Chocolate Yum-Bowl | 😋 Yummy | strawberry + soft egg + chocolate (yummy, glossy) |
-| 96 | Strawberry + Egg + Cookie | Strawberry-Egg-Cookie Medley | 😋 Yummy | strawberry + soft egg + cookie (yummy, glossy) |
-| 97 | Strawberry + Egg + Ice Cream | Triple Treat: Strawberry, Egg & Ice Cream | 😋 Yummy | strawberry + soft egg + ice cream scoop (yummy, glossy) |
-| 98 | Strawberry + Egg + Wiggly Worm | Slimy Strawberry & Egg Wriggle-Goo | 🤢 Yucky | strawberry + soft egg + green wiggly worm (slimy, funny-gross) |
-| 99 | Strawberry + Egg + Rainbow | Magical Strawberry & Egg Shimmer | 🤩 Magical | strawberry + soft egg + rainbow sparkles (sparkly, glowing) |
-| 100 | Strawberry + Chocolate + Cookie | Triple Treat: Strawberry, Chocolate & Cookie | 😋 Yummy | strawberry + chocolate + cookie (yummy, glossy) |
-| 101 | Strawberry + Chocolate + Ice Cream | Strawberry-Choco Sundae | 😋 Yummy | strawberry + chocolate + ice cream scoop (yummy, glossy) |
-| 102 | Strawberry + Chocolate + Wiggly Worm | Strawberry & Chocolate Worm Swamp Stew | 🤢 Yucky | strawberry + chocolate + green wiggly worm (slimy, funny-gross) |
-| 103 | Strawberry + Chocolate + Rainbow | Strawberry & Chocolate Rainbow Delight | 🤩 Magical | strawberry + chocolate + rainbow sparkles (sparkly, glowing) |
-| 104 | Strawberry + Cookie + Ice Cream | Strawberry Shortcake Sundae | 😋 Yummy | strawberry + cookie + ice cream scoop (yummy, glossy) |
-| 105 | Strawberry + Cookie + Wiggly Worm | Squirmy Strawberry & Cookie Mush | 🤢 Yucky | strawberry + cookie + green wiggly worm (slimy, funny-gross) |
-| 106 | Strawberry + Cookie + Rainbow | Enchanted Strawberry & Cookie Twinkle Treat | 🤩 Magical | strawberry + cookie + rainbow sparkles (sparkly, glowing) |
-| 107 | Strawberry + Ice Cream + Wiggly Worm | Wiggly Strawberry & Ice Cream Sludge | 🤢 Yucky | strawberry + ice cream scoop + green wiggly worm (slimy, funny-gross) |
-| 108 | Strawberry + Ice Cream + Rainbow | Rainbow Strawberry & Ice Cream Sparkle Dream | 🤩 Magical | strawberry + ice cream scoop + rainbow sparkles (sparkly, glowing) |
-| 109 | Strawberry + Wiggly Worm + Rainbow | Slimy Strawberry Wriggle-Goo | 🤢 Yucky | strawberry + green wiggly worm + rainbow sparkles (slimy, funny-gross) |
+| 95 | Blueberry + Egg + Chocolate | Blueberry-Egg-Chocolate Yum-Bowl | 😋 Yummy | blueberry + soft egg + chocolate (yummy, glossy) |
+| 96 | Blueberry + Egg + Cookie | Blueberry-Egg-Cookie Medley | 😋 Yummy | blueberry + soft egg + cookie (yummy, glossy) |
+| 97 | Blueberry + Egg + Ice Cream | Triple Treat: Blueberry, Egg & Ice Cream | 😋 Yummy | blueberry + soft egg + ice cream scoop (yummy, glossy) |
+| 98 | Blueberry + Egg + Wiggly Worm | Slimy Blueberry & Egg Wriggle-Goo | 🤢 Yucky | blueberry + soft egg + green wiggly worm (slimy, funny-gross) |
+| 99 | Blueberry + Egg + Rainbow | Magical Blueberry & Egg Shimmer | 🤩 Magical | blueberry + soft egg + rainbow sparkles (sparkly, glowing) |
+| 100 | Blueberry + Chocolate + Cookie | Triple Treat: Blueberry, Chocolate & Cookie | 😋 Yummy | blueberry + chocolate + cookie (yummy, glossy) |
+| 101 | Blueberry + Chocolate + Ice Cream | Blueberry-Choco Sundae | 😋 Yummy | blueberry + chocolate + ice cream scoop (yummy, glossy) |
+| 102 | Blueberry + Chocolate + Wiggly Worm | Blueberry & Chocolate Worm Swamp Stew | 🤢 Yucky | blueberry + chocolate + green wiggly worm (slimy, funny-gross) |
+| 103 | Blueberry + Chocolate + Rainbow | Blueberry & Chocolate Rainbow Delight | 🤩 Magical | blueberry + chocolate + rainbow sparkles (sparkly, glowing) |
+| 104 | Blueberry + Cookie + Ice Cream | Blueberry Shortcake Sundae | 😋 Yummy | blueberry + cookie + ice cream scoop (yummy, glossy) |
+| 105 | Blueberry + Cookie + Wiggly Worm | Squirmy Blueberry & Cookie Mush | 🤢 Yucky | blueberry + cookie + green wiggly worm (slimy, funny-gross) |
+| 106 | Blueberry + Cookie + Rainbow | Enchanted Blueberry & Cookie Twinkle Treat | 🤩 Magical | blueberry + cookie + rainbow sparkles (sparkly, glowing) |
+| 107 | Blueberry + Ice Cream + Wiggly Worm | Wiggly Blueberry & Ice Cream Sludge | 🤢 Yucky | blueberry + ice cream scoop + green wiggly worm (slimy, funny-gross) |
+| 108 | Blueberry + Ice Cream + Rainbow | Rainbow Blueberry & Ice Cream Sparkle Dream | 🤩 Magical | blueberry + ice cream scoop + rainbow sparkles (sparkly, glowing) |
+| 109 | Blueberry + Wiggly Worm + Rainbow | Slimy Blueberry Wriggle-Goo | 🤢 Yucky | blueberry + green wiggly worm + rainbow sparkles (slimy, funny-gross) |
 | 110 | Egg + Chocolate + Cookie | Chocolate-Chip Cookie Cake | 😋 Yummy | soft egg + chocolate + cookie (yummy, glossy) |
 | 111 | Egg + Chocolate + Ice Cream | Chef's Egg-Chocolate-Ice Cream Surprise | 😋 Yummy | soft egg + chocolate + ice cream scoop (yummy, glossy) |
 | 112 | Egg + Chocolate + Wiggly Worm | Squirmy Egg & Chocolate Mush | 🤢 Yucky | soft egg + chocolate + green wiggly worm (slimy, funny-gross) |
