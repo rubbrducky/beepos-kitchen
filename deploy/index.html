@@ -1448,14 +1448,40 @@ function beep(fn){ if(muted) return; try{
   unlockAudio();
   fn(actx);
 }catch(e){} }
+let PAN = 0;   /* transient stereo position for the next beep() — set, play, reset */
 function tone(a, type, f1, f2, t0, dur, vol=0.18){
   const o=a.createOscillator(), g=a.createGain();
   o.type=type; o.frequency.setValueAtTime(f1, a.currentTime+t0);
   o.frequency.exponentialRampToValueAtTime(Math.max(f2,1), a.currentTime+t0+dur);
   g.gain.setValueAtTime(vol, a.currentTime+t0);
   g.gain.exponentialRampToValueAtTime(0.001, a.currentTime+t0+dur);
-  o.connect(g); g.connect(masterComp||a.destination);   /* H#7 */
+  let dest = masterComp||a.destination;
+  if(PAN && a.createStereoPanner){ const p=a.createStereoPanner(); p.pan.value=PAN; p.connect(dest); dest=p; }
+  o.connect(g); g.connect(dest);   /* H#7 compressor + optional pan */
   o.start(a.currentTime+t0); o.stop(a.currentTime+t0+dur+0.05);
+}
+/* filtered-noise sizzle — sounds like an actual pan, not bleeps */
+function sizzleNoise(dur=1.5, vol=.055){
+  if(muted) return;
+  try{
+    unlockAudio(); if(!actx) return;
+    const n=Math.floor(actx.sampleRate*dur), buf=actx.createBuffer(1,n,actx.sampleRate), d=buf.getChannelData(0);
+    for(let i=0;i<n;i++) d[i]=(Math.random()*2-1)*(1-i/n);
+    const src=actx.createBufferSource(); src.buffer=buf;
+    const f=actx.createBiquadFilter(); f.type='bandpass'; f.frequency.value=5200; f.Q.value=.8;
+    const g=actx.createGain(); g.gain.value=vol;
+    src.connect(f); f.connect(g); g.connect(masterComp||actx.destination);
+    src.start();
+  }catch(e){}
+}
+/* duck the music under big stingers so they punch through, then ease back */
+function duckMusic(ms=1400){
+  if(!musicGain || !actx) return;
+  try{
+    const g=musicGain.gain, t=actx.currentTime;
+    g.cancelScheduledValues(t); g.setValueAtTime(.2, t);
+    g.linearRampToValueAtTime(.55, t+ms/1000);
+  }catch(e){}
 }
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;   /* juice pass guard */
 const sPop    = ()=>beep(a=>tone(a,'sine',300,760,0,.16,.2));
@@ -1476,6 +1502,10 @@ const sGulp   = ()=>beep(a=>tone(a,'sine',420,110,0,.28,.16));
 const sNuhuh  = ()=>beep(a=>{tone(a,'triangle',330,320,0,.15,.15); tone(a,'triangle',262,250,.2,.2,.15);});
 const sPluck  = ()=>beep(a=>tone(a,'sine',250,720,0,.18,.18));
 const sBoing  = ()=>beep(a=>{tone(a,'sine',180,420,0,.14,.16); tone(a,'sine',420,240,.14,.16,.14);});
+const sWahWah = ()=>beep(a=>{ tone(a,'sawtooth',233,225,0,.3,.06); tone(a,'sawtooth',220,212,.34,.3,.06); tone(a,'sawtooth',208,150,.68,.9,.07); });  /* sad trombone */
+const sGliss  = ()=>beep(a=>{[784,988,1175,1319,1568,1976].forEach((f,i)=>tone(a,'sine',f,f,i*.06,.3,.07));});  /* harp gliss */
+const sAhh    = ()=>beep(a=>{ tone(a,'sine',523,494,0,.35,.06); tone(a,'sine',392,349,.3,.5,.05); });           /* satisfied sigh */
+const sPage   = ()=>beep(a=>{ tone(a,'triangle',600,900,0,.12,.06); tone(a,'triangle',500,760,.06,.14,.06); }); /* page whoosh */
 
 /* haptic taps where supported (B#10) — no-op on iOS Safari, works wrapped/Android */
 function buzz(p){ try{ navigator.vibrate && navigator.vibrate(p); }catch(e){} }
@@ -1589,7 +1619,7 @@ sndIcon();
 $('muteBtn').addEventListener('click',()=>{
   muted=!muted; sndIcon();
   try{ localStorage.setItem('bk-muted', muted?'1':'0'); }catch(e){}
-  if(muted) stopMusic(); else startMusic();
+  if(muted) stopMusic(); else { sPop(); startMusic(); }   /* audible confirmation on unmute */
 });
 
 /* music toggle (persisted) */
@@ -1707,7 +1737,9 @@ function addIngredient(item, btn){
   if(Date.now()-overlayClosedAt < 400) return;   /* H#1: swallow the ghost tap right after reset */
   /* every tap responds instantly: boing + motif, no shelf lockout */
   btn.classList.remove('boing'); void btn.offsetWidth; btn.classList.add('boing');
-  playMotif(item.id); buzz(8);
+  PAN = (INGREDIENTS.indexOf(item)%3 - 1) * .35;   /* motif pans with the shelf column */
+  playMotif(item.id); PAN = 0;
+  buzz(8);
   if(cooking) return;                            /* H#5: feedback given; just don't spawn a flyer mid-cook */
   /* juice #1: Beepo leans in and his face follows the flying food */
   beepo.classList.add('watch');
@@ -1899,8 +1931,10 @@ function cook(){
   sparkleAt(potWrap, 6);
   puffSteam(5);
   potSpoon.classList.remove('shown');
-  sSizzle(); say('It’s cooking!!',2600);
-  setTimeout(()=>{ sSizzle(); sparkleAt(potWrap,4); puffSteam(3); }, 1500);
+  sizzleNoise(1.7); buzz([15,30,15,30,15]); say('It’s cooking!!',2600);
+  /* rising riff across the cook — resolves right at the ding */
+  beep(a=>{[262,330,392,523].forEach((f,i)=>tone(a,'sine',f,f,.35+i*.72,.5,.09));});
+  setTimeout(()=>{ sizzleNoise(1.5); sparkleAt(potWrap,4); puffSteam(3); }, 1500);
   setTimeout(()=>{ sDing(); reveal(); }, 3200);
 }
 
@@ -2025,6 +2059,7 @@ function reveal(){
     if(lifted || REDUCED) return;
     cloche.classList.remove('rattle'); void cloche.offsetWidth; cloche.classList.add('rattle');
     beep(a=>{ tone(a,'sine',175,140,0,.11,.12); tone(a,'sine',185,150,.17,.11,.12); });
+    buzz([10,60,10]);
     setTimeout(()=>cloche.classList.remove('rattle'), 650);
   }, 1500);
   /* anticipation beat (B#8): lean in with an "Ooh?" just before the auto-lift */
@@ -2081,9 +2116,10 @@ function finishReveal(){
     schedule(()=>refuseDish(), 1700);
     return;
   }
+  duckMusic(1600);   /* let the reveal stingers punch through the music */
   if(verdict==='magical'){
     setExp(revealBeepo,'wow');
-    sSparkle(); setTimeout(sTada,500);
+    sSparkle(); sGliss(); setTimeout(sTada,500);
     confettiBurst(40); buzz([30,50,30]);
     overlay.classList.remove('shake'); void overlay.offsetWidth;
     overlay.classList.add('shake');
@@ -2120,6 +2156,7 @@ function refuseDish(){
     sayR('Bleh…!');
     beep(a=>tone(a,'triangle',900,180,0,.7,.12));  /* slide-whistle down */
   }, 2000);
+  schedule(()=>{ duckMusic(1800); sWahWah(); }, 2750);  /* sad trombone lands the gag */
   schedule(()=>{                                   /* pop back up, all giggles */
     revealBeepo.classList.remove('faint');
     setExp(revealBeepo,'yum');                     /* joyBounce ×3 */
@@ -2157,7 +2194,10 @@ function armAutoBite(ms){
 function bite(){                          /* auto-rhythm bite: this is what advances the meal */
   if(!feeding) return;
   bitesDone++;
-  sChomp(); buzz(10);
+  /* chomp pitch steps up each bite — the meal is a tiny melody that finishes */
+  beep(a=>{ const b=170*Math.pow(1.16,bitesDone);
+    tone(a,'square',b,b*.45,0,.09,.11); tone(a,'triangle',b*2.4,b,.01,.07,.07); });
+  buzz(10);
   revealBeepo.classList.remove('bite'); void revealBeepo.offsetWidth;
   revealBeepo.classList.add('bite');
   const food=dishBig.querySelector('.lyr-food');    /* B#14: only the FOOD depletes; vessel stays */
@@ -2202,7 +2242,7 @@ function chunkFly(){
     {transform:'translate(0,0) scale(1)', opacity:1},
     {transform:`translate(${dx*.5}px,${dy*.5-18}px) scale(.8) rotate(120deg)`, opacity:1, offset:.6},
     {transform:`translate(${dx}px,${dy}px) scale(.2) rotate(210deg)`, opacity:0}
-  ],{duration:380, easing:'cubic-bezier(.4,.4,.6,1)'}).onfinish=()=>fl.remove();
+  ],{duration:380, easing:'cubic-bezier(.4,.4,.6,1)'}).onfinish=()=>{ fl.remove(); buzz(8); };  /* haptic on mouth contact */
 }
 function finishFeeding(){
   feeding=false;
@@ -2213,7 +2253,8 @@ function finishFeeding(){
     const vessel=dishBig.querySelector('.lyr-vessel');
     if(vessel) vessel.classList.add('clean');      /* licked-clean shine — the "all gone!" beat */
   }
-  sGulp();
+  sGulp(); buzz([10,20,35]);
+  schedule(sAhh, 380);                       /* satisfied sigh after the swallow */
   schedule(()=>{
     const fast = revealBeepo.classList.contains('fast');
     revealBeepo.classList.remove('feeding','fast','bite');
@@ -2236,7 +2277,9 @@ beepo.addEventListener('pointerdown', ()=>{
   beepo.classList.remove('hop'); void beepo.offsetWidth; beepo.classList.add('hop');
   setExp(beepo, Math.random()<.5?'yum':'wow', 1200);
   say(pick(['Hi hi!','Beep beep!','Hello!','Tee hee!']));
+  PAN=-.3;   /* Beepo stands stage-left */
   beep(a=>{ tone(a,'sine',520,780,0,.12,.14); tone(a,'sine',780,1040,.1,.14,.12); });
+  PAN=0;
 });
 /* B#15: equation-strip ingredient chips replay boing + motif on tap */
 dishIngs.addEventListener('pointerdown', e=>{
@@ -2415,7 +2458,7 @@ function armBookIdle(){ clearTimeout(bookIdleTimer); bookIdleTimer=setTimeout(cl
 function openBook(){
   if(overlay.classList.contains('show')) return;   /* only from the kitchen — cook loop stays unbreakable */
   renderBook(); bookOverlay.classList.add('show'); bookBtn.classList.remove('badge');
-  sPop(); armBookIdle();
+  sPage(); armBookIdle();
 }
 function closeBook(){ bookOverlay.classList.remove('show'); clearTimeout(bookIdleTimer); }
 bookBtn.addEventListener('click', openBook);
@@ -2435,6 +2478,7 @@ function slamStamp(){
   st.animate([{transform:'scale(1.7) rotate(-18deg)',opacity:0},
     {transform:'scale(.88) rotate(-9deg)',opacity:1,offset:.6},
     {transform:'scale(1) rotate(-9deg)',opacity:1}],{duration:420,easing:'cubic-bezier(.3,1.5,.4,1)',fill:'forwards'});
+  duckMusic(1200);
   beep(a=>{ tone(a,'sine',170,110,0,.16,.16); tone(a,'sine',1046,1046,.11,.3,.11); });   /* thunk + chime (NOT sTada) */
   buzz([25,40]);
 }
