@@ -634,7 +634,6 @@
 
   <div id="stoveWrap">
     <div id="potWrap">
-      <div id="cookFlame"><svg viewBox="0 0 100 100"><use href="#ui-flame"/></svg></div>
       <div class="steam" style="left:24px"></div>
       <div class="steam" style="left:100px; animation-delay:1.6s"></div>
       <!-- raster pot (§3.6): AI pot image + SVG overlay carrying ONLY the tintable
@@ -659,6 +658,8 @@
       <div id="potSpoon"><img src="assets/ui/spoon.webp" alt="" draggable="false"></div>
 
     </div>
+    <!-- burner flame belongs to the STOVE, not the pot — it must not rock/wiggle with it -->
+    <div id="cookFlame"><svg viewBox="0 0 100 100"><use href="#ui-flame"/></svg></div>
     <div id="stove"></div>
   </div>
 
@@ -680,19 +681,9 @@
     <div id="revealBeepo"></div>
     <div id="rBubble"></div>
     <div id="cloche">
-      <div id="hint"><svg class="icon" viewBox="0 0 100 100" width="58" height="58"><use href="#ui-hand"/></svg></div>
-      <svg viewBox="0 0 200 132" width="300">
-        <defs>
-          <linearGradient id="clocheGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#EEF1F9"/><stop offset="1" stop-color="#AEB8CE"/>
-          </linearGradient>
-        </defs>
-        <rect x="96" y="24" width="8" height="10" fill="#C7CFDF" stroke="#4A3B47" stroke-width="3.5"/>
-        <circle cx="100" cy="19" r="9.5" fill="#EEF1F9" stroke="#4A3B47" stroke-width="4"/>
-        <path d="M22 104 A78 78 0 0 1 178 104 Z" fill="url(#clocheGrad)" stroke="#4A3B47" stroke-width="4.5" stroke-linejoin="round"/>
-        <path d="M44 66 A64 64 0 0 1 78 40" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".65"/>
-        <rect x="12" y="102" width="176" height="14" rx="7" fill="#C7CFDF" stroke="#4A3B47" stroke-width="4"/>
-      </svg>
+      <!-- hint hand sits ABOVE the lid, so it points DOWN at it (rotated in CSS) -->
+      <div id="hint"><img src="assets/ui/hand.webp" height="62" style="transform:rotate(180deg)" alt="" draggable="false"></div>
+      <img id="clocheImg" src="assets/ui/cloche.webp" width="300" alt="" draggable="false">
     </div>
   </div>
   <button id="againBtn" aria-label="Cook again"><svg class="icon" viewBox="0 0 100 100" width="54" height="54"><use href="#ui-again"/></svg></button>

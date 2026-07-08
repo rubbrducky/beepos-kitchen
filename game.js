@@ -228,7 +228,7 @@ $('musicBtn').addEventListener('click',()=>{
    One reusable pointing hand. Every ~8s of no input it points at whatever the
    next tap should be; any interaction hides it and restarts the clock. */
 const guideHand = document.createElement('div');
-guideHand.id='guideHand'; guideHand.innerHTML=iconSVG('ui-hand',52);
+guideHand.id='guideHand'; guideHand.innerHTML='<img src="assets/ui/hand.webp" height="52" alt="" draggable="false">';
 document.body.appendChild(guideHand);
 function pointAt(el, dx=0, dy=0){
   const r=el.getBoundingClientRect();

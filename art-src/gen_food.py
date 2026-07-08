@@ -69,6 +69,8 @@ UI_ASSETS = {
     "spoon":            "a cute chunky wooden cooking spoon character with a tiny happy smiling face and rosy cheeks on the bowl of the spoon, warm honey wood, plump rounded handle, glossy, one object centered",
     "pot":              "a cute chunky cooking pot, soft steel blue-grey with a wide open top showing an empty interior, two round side handles, plump rounded shape, front three-quarter view, no shadow",
     "stove":            "a low wide cute toy kitchen stove, cream enamel with rounded corners, two small burner circles on top and two round pastel knobs on the front, simple, front view, no shadow (ship only the top crop above the oven door)",
+    "cloche":           "a cute rounded silver dome serving cloche lid with a round ball knob handle on top, glossy polished metal with soft warm reflections and a wide base rim, gentle front view, no shadow",
+    "hand":             "a cute plump cartoon white glove hand with a chubby index finger pointing straight up, soft rounded puffy glove, small teal cuff, no face, no shadow",
     "ingredient_board": "a cute empty wooden menu board with rounded corners and a warm painted frame, blank flat surface, no text and no writing, ready to hold little food pictures, one object centered",
 }
 
