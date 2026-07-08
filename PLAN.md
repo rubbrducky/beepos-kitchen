@@ -31,6 +31,16 @@ Net: treat Sonnet as the engineer/art-director who hands you a press-the-button 
 
 ## 0. BUILD STATUS (2026-07-04)
 
+> **UPDATE 2026-07-05 — the art track (§3) SHIPPED, plus Batch 4.5.** The AI reskin is wired into
+> the game: 9 ingredients (strawberry→**blueberry**), all 129 dishes (v2 "scene + gag" prompts,
+> food-only per HANDOFF §5), 4 shared vessels, and big UI (pot, stove top, cloche, spoon, glove
+> hand) — all as WebP (`assets/`, 6.3 MB; pipeline + prompts in `art-src/`, see `art-src/prompts.md`).
+> HANDOFF-2026-07-05 items built: **B#14** vessel/food eating split, **B#15** equation strip,
+> **B#16** recipe book, **H#1–H#10**. Extras: 10-item juice pass, sound/haptics pass (ducking,
+> noise sizzle, stingers, panning), cooking focus moment, decluttered reveal, kitchen re-layout.
+> **Deploy is now a folder** (`deploy/` = index.html + assets — run `python build-single.py`, then
+> drag the whole folder to Netlify). Still pending: Batch 5 device gate, Batches 6–7 (§6).
+
 **Batches 0–4 (§8) are built and committed.** The playable Milestone-1 game is `index.html` + `game.js` + `styles.css` + `dishes.js`; the original one-file game lives on as `beepos-kitchen.legacy.html` (git history in the folder). Playtest revisions already folded in: **pointerdown input** (multi-touch overlapping flyers — iOS suppresses synthesized clicks during multi-touch), **tap-the-pot stirring** (no stir button; see B#3), pot-glow + fast hand-nudge stir cues, **visual hierarchy** (stove muted to counter-wood, pot enlarged + idle breathe), **robot-ier Beepo SVG** (segmented head/torso, screen face, tread feet, grippers, visible antenna), and **burger dishes** (cookie+egg = Beepo Burger w/ bespoke `dish-burger` symbol; cookie+worm = Wiggly Worm Burger). **Waiting on the Batch 5 device-test gate. The art track (§3) has not started.**
 
 Later same-day playtest rounds: proper index-finger guide hand (first draft read as a rude gesture); icon-only shelf (80px food, labels removed); icon-only circular Cook-again button (replay arrow — last reading-gated step removed); reveal rebalanced (small text, 300px plate); bounce-off now clearly rejects over-limit ingredients; Comic Sans dropped for the system rounded stack; **single-tap cooking with a flame badge** (counting retired, B#3 v3); **automatic rhythm eating** (taps = bonus bites only, B#1 revision); **fully automatic loop** (auto-cook, faster auto-lift, auto-restart — B#3 v4): required taps are title + feeding only.
