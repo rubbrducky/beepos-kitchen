@@ -38,17 +38,18 @@
   #bubbleTalk.show { opacity:1; transform:scale(1); }
   #bubbleTalk::after { content:''; position:absolute; bottom:-7px; left:14px; border:8px solid transparent; border-top-color:#fff; border-bottom:0; }
 
-  /* stove + pot — counter shrunk, pot enlarged (the pot IS the hero) */
+  /* stove + pot — AI raster: toy-stove burner deck + steel-blue pot (§3.6) */
   #stoveWrap { position:relative; bottom:12px; width:252px; z-index:4; }
-  /* stove demoted to quiet counter-wood: the POT is the hero of the stage */
-  #stove { width:186px; height:34px; margin:0 auto; background:linear-gradient(#DCA55F,#C68544); border-radius:12px 12px 7px 7px;
-    box-shadow:0 4px 0 #9C6B35; position:relative; }
-  #stove::before { content:''; position:absolute; top:7px; left:14px; width:16px; height:16px; border-radius:50%;
-    background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 140px 0 0 0 #B98A4E; }
-  #potWrap { position:absolute; bottom:26px; left:50%; transform:translateX(-50%); width:252px; height:168px; }
-  #potWrap > svg { animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
-  /* stir-ready: the pot glows like a button until the third stir */
-  #potWrap.ready > svg { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
+  /* toy-stove top (backsplash + burners + knobs); quiet, the POT is the hero */
+  #stove { width:204px; height:91px; margin:0 auto;
+    background:url("assets/ui/stove.webp") center bottom/contain no-repeat; }
+  #potWrap { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); width:252px; height:168px; z-index:2; }
+  /* potBody = pot image + soup overlay, breathing as one object */
+  #potBody { position:absolute; inset:0; animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
+  #potImg { position:absolute; left:0; right:0; bottom:0; width:100%; }
+  #potBody > svg { position:absolute; left:0; top:0; }
+  /* stir-ready: the pot glows like a button */
+  #potWrap.ready #potBody { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
   @keyframes potGlow { 50%{ filter:drop-shadow(0 0 16px #FFD94A) drop-shadow(0 0 4px #FFD94A); } }
   @keyframes potBreathe { 50%{ transform:scale(1.02) translateY(-1px);} }
   #potWrap.stirring { animation:rock .8s ease; }
@@ -1044,30 +1045,20 @@
       <div id="cookFlame"><svg viewBox="0 0 100 100"><use href="#ui-flame"/></svg></div>
       <div class="steam" style="left:24px"></div>
       <div class="steam" style="left:100px; animation-delay:1.6s"></div>
-      <svg viewBox="0 0 240 160" width="252" height="168">
-        <defs>
-          <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#5A6B8C"/><stop offset="1" stop-color="#414E68"/>
-          </linearGradient>
-        </defs>
-        <!-- handles -->
-        <path d="M22 48 C0 50 2 80 24 76" fill="none" stroke="#414E68" stroke-width="11" stroke-linecap="round"/>
-        <path d="M218 48 C240 50 238 80 216 76" fill="none" stroke="#414E68" stroke-width="11" stroke-linecap="round"/>
-        <!-- body -->
-        <path d="M22 36 L22 62 C22 116 62 146 120 146 C178 146 218 116 218 62 L218 36 Z"
-          fill="url(#potGrad)" stroke="#333E54" stroke-width="5"/>
-        <path d="M40 110 C60 128 100 136 120 136" fill="none" stroke="#6E80A3" stroke-width="6" stroke-linecap="round" opacity=".5"/>
-        <!-- rim -->
-        <ellipse cx="120" cy="36" rx="100" ry="17" fill="#6E80A3" stroke="#333E54" stroke-width="5"/>
-        <!-- soup -->
-        <ellipse id="soupEllipse" cx="120" cy="38" rx="90" ry="13" stroke="#333E54" stroke-width="4"/>
-        <!-- juice pass: the soup gets a face once fed (house rule: everything has a face) -->
-        <g id="soupFace" transform="translate(120 38)">
-          <circle cx="-14" cy="-2" r="3.2" fill="#4A3B47"/><circle cx="14" cy="-2" r="3.2" fill="#4A3B47"/>
-          <path d="M-8 3 Q0 9 8 3" fill="none" stroke="#4A3B47" stroke-width="3" stroke-linecap="round"/>
-          <path class="tongue" d="M-5 4 Q0 13 5 4 Z" fill="#FF8FA3" stroke="#4A3B47" stroke-width="2"/>
-        </g>
-      </svg>
+      <!-- raster pot (§3.6): AI pot image + SVG overlay carrying ONLY the tintable
+           soup surface + soup face, positioned on the pot's measured opening -->
+      <div id="potBody">
+        <img id="potImg" src="assets/ui/pot.webp" alt="" draggable="false">
+        <svg viewBox="0 0 240 160" width="252" height="168">
+          <ellipse id="soupEllipse" cx="120" cy="40" rx="80" ry="24" stroke="#333E54" stroke-width="3"/>
+          <!-- juice pass: the soup gets a face once fed (house rule: everything has a face) -->
+          <g id="soupFace" transform="translate(120 44)">
+            <circle cx="-14" cy="-2" r="3.2" fill="#4A3B47"/><circle cx="14" cy="-2" r="3.2" fill="#4A3B47"/>
+            <path d="M-8 3 Q0 9 8 3" fill="none" stroke="#4A3B47" stroke-width="3" stroke-linecap="round"/>
+            <path class="tongue" d="M-5 4 Q0 13 5 4 Z" fill="#FF8FA3" stroke="#4A3B47" stroke-width="2"/>
+          </g>
+        </svg>
+      </div>
       <div id="soupItems">
         <div class="bubble" style="left:20%"></div>
         <div class="bubble" style="left:50%; animation-delay:.9s"></div>

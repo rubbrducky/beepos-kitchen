@@ -31,17 +31,18 @@
   #bubbleTalk.show { opacity:1; transform:scale(1); }
   #bubbleTalk::after { content:''; position:absolute; bottom:-7px; left:14px; border:8px solid transparent; border-top-color:#fff; border-bottom:0; }
 
-  /* stove + pot — counter shrunk, pot enlarged (the pot IS the hero) */
+  /* stove + pot — AI raster: toy-stove burner deck + steel-blue pot (§3.6) */
   #stoveWrap { position:relative; bottom:12px; width:252px; z-index:4; }
-  /* stove demoted to quiet counter-wood: the POT is the hero of the stage */
-  #stove { width:186px; height:34px; margin:0 auto; background:linear-gradient(#DCA55F,#C68544); border-radius:12px 12px 7px 7px;
-    box-shadow:0 4px 0 #9C6B35; position:relative; }
-  #stove::before { content:''; position:absolute; top:7px; left:14px; width:16px; height:16px; border-radius:50%;
-    background:#B98A4E; box-shadow:0 0 0 4px #A9743B inset, 140px 0 0 0 #B98A4E; }
-  #potWrap { position:absolute; bottom:26px; left:50%; transform:translateX(-50%); width:252px; height:168px; }
-  #potWrap > svg { animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
-  /* stir-ready: the pot glows like a button until the third stir */
-  #potWrap.ready > svg { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
+  /* toy-stove top (backsplash + burners + knobs); quiet, the POT is the hero */
+  #stove { width:204px; height:91px; margin:0 auto;
+    background:url("assets/ui/stove.webp") center bottom/contain no-repeat; }
+  #potWrap { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); width:252px; height:168px; z-index:2; }
+  /* potBody = pot image + soup overlay, breathing as one object */
+  #potBody { position:absolute; inset:0; animation:potBreathe 3.2s ease-in-out infinite; transform-origin:50% 90%; }
+  #potImg { position:absolute; left:0; right:0; bottom:0; width:100%; }
+  #potBody > svg { position:absolute; left:0; top:0; }
+  /* stir-ready: the pot glows like a button */
+  #potWrap.ready #potBody { animation:potBreathe 3.2s ease-in-out infinite, potGlow 1.5s ease-in-out infinite; }
   @keyframes potGlow { 50%{ filter:drop-shadow(0 0 16px #FFD94A) drop-shadow(0 0 4px #FFD94A); } }
   @keyframes potBreathe { 50%{ transform:scale(1.02) translateY(-1px);} }
   #potWrap.stirring { animation:rock .8s ease; }

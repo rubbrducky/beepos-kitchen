@@ -67,6 +67,8 @@ UI_ASSETS = {
     "book_icon":        "a small simple bold cute closed recipe book button icon, honey-brown cover with a golden fork-and-spoon emblem, clean and clear, one object centered",
     "recipe_card":      "a cute blank recipe card, rounded cream parchment with a soft scalloped border and a tiny white chef-hat emblem at the top, completely empty, no text and no writing, one object centered",
     "spoon":            "a cute chunky wooden cooking spoon character with a tiny happy smiling face and rosy cheeks on the bowl of the spoon, warm honey wood, plump rounded handle, glossy, one object centered",
+    "pot":              "a cute chunky cooking pot, soft steel blue-grey with a wide open top showing an empty interior, two round side handles, plump rounded shape, front three-quarter view, no shadow",
+    "stove":            "a low wide cute toy kitchen stove, cream enamel with rounded corners, two small burner circles on top and two round pastel knobs on the front, simple, front view, no shadow (ship only the top crop above the oven door)",
     "ingredient_board": "a cute empty wooden menu board with rounded corners and a warm painted frame, blank flat surface, no text and no writing, ready to hold little food pictures, one object centered",
 }
 

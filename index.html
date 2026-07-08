@@ -637,30 +637,20 @@
       <div id="cookFlame"><svg viewBox="0 0 100 100"><use href="#ui-flame"/></svg></div>
       <div class="steam" style="left:24px"></div>
       <div class="steam" style="left:100px; animation-delay:1.6s"></div>
-      <svg viewBox="0 0 240 160" width="252" height="168">
-        <defs>
-          <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#5A6B8C"/><stop offset="1" stop-color="#414E68"/>
-          </linearGradient>
-        </defs>
-        <!-- handles -->
-        <path d="M22 48 C0 50 2 80 24 76" fill="none" stroke="#414E68" stroke-width="11" stroke-linecap="round"/>
-        <path d="M218 48 C240 50 238 80 216 76" fill="none" stroke="#414E68" stroke-width="11" stroke-linecap="round"/>
-        <!-- body -->
-        <path d="M22 36 L22 62 C22 116 62 146 120 146 C178 146 218 116 218 62 L218 36 Z"
-          fill="url(#potGrad)" stroke="#333E54" stroke-width="5"/>
-        <path d="M40 110 C60 128 100 136 120 136" fill="none" stroke="#6E80A3" stroke-width="6" stroke-linecap="round" opacity=".5"/>
-        <!-- rim -->
-        <ellipse cx="120" cy="36" rx="100" ry="17" fill="#6E80A3" stroke="#333E54" stroke-width="5"/>
-        <!-- soup -->
-        <ellipse id="soupEllipse" cx="120" cy="38" rx="90" ry="13" stroke="#333E54" stroke-width="4"/>
-        <!-- juice pass: the soup gets a face once fed (house rule: everything has a face) -->
-        <g id="soupFace" transform="translate(120 38)">
-          <circle cx="-14" cy="-2" r="3.2" fill="#4A3B47"/><circle cx="14" cy="-2" r="3.2" fill="#4A3B47"/>
-          <path d="M-8 3 Q0 9 8 3" fill="none" stroke="#4A3B47" stroke-width="3" stroke-linecap="round"/>
-          <path class="tongue" d="M-5 4 Q0 13 5 4 Z" fill="#FF8FA3" stroke="#4A3B47" stroke-width="2"/>
-        </g>
-      </svg>
+      <!-- raster pot (§3.6): AI pot image + SVG overlay carrying ONLY the tintable
+           soup surface + soup face, positioned on the pot's measured opening -->
+      <div id="potBody">
+        <img id="potImg" src="assets/ui/pot.webp" alt="" draggable="false">
+        <svg viewBox="0 0 240 160" width="252" height="168">
+          <ellipse id="soupEllipse" cx="120" cy="40" rx="80" ry="24" stroke="#333E54" stroke-width="3"/>
+          <!-- juice pass: the soup gets a face once fed (house rule: everything has a face) -->
+          <g id="soupFace" transform="translate(120 44)">
+            <circle cx="-14" cy="-2" r="3.2" fill="#4A3B47"/><circle cx="14" cy="-2" r="3.2" fill="#4A3B47"/>
+            <path d="M-8 3 Q0 9 8 3" fill="none" stroke="#4A3B47" stroke-width="3" stroke-linecap="round"/>
+            <path class="tongue" d="M-5 4 Q0 13 5 4 Z" fill="#FF8FA3" stroke="#4A3B47" stroke-width="2"/>
+          </g>
+        </svg>
+      </div>
       <div id="soupItems">
         <div class="bubble" style="left:20%"></div>
         <div class="bubble" style="left:50%; animation-delay:.9s"></div>
