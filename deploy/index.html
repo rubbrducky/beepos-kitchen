@@ -97,11 +97,10 @@
     flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
   #overlay.show { display:flex; animation:fadeIn .5s ease; }
   @keyframes fadeIn { from{opacity:0;} }
-  #dishName { color:#fff; font-size:21px; font-weight:800; line-height:1.15; margin-bottom:4px; opacity:.95; text-shadow:0 3px 0 #0004;
-    max-width:440px; opacity:0; transform:scale(.5); transition:all .8s cubic-bezier(.2,1.5,.4,1); }
-  #reaction { font-size:15px; font-weight:800; margin-bottom:10px; padding:6px 14px; border-radius:16px; background:#fff;
-    opacity:0; transform:scale(.5); transition:all .8s .35s cubic-bezier(.2,1.5,.4,1); }
-  #overlay.revealed #dishName, #overlay.revealed #reaction { opacity:1; transform:scale(1); }
+  /* dish name: quiet parent-facing flavor text at the BOTTOM of the reveal */
+  #dishName { color:#fff; font-size:17px; font-weight:800; line-height:1.15; margin-top:18px; text-shadow:0 3px 0 #0004;
+    max-width:440px; opacity:0; transform:scale(.5); transition:all .8s .3s cubic-bezier(.2,1.5,.4,1); }
+  #overlay.revealed #dishName { opacity:.9; transform:scale(1); }
   @keyframes popIn { from{ transform:scale(0);} }
 
   /* ---- serving cover (cloche) ---- */
@@ -277,7 +276,6 @@
     padding-right:env(safe-area-inset-right); padding-bottom:env(safe-area-inset-bottom); }
   #startTitle { display:flex; align-items:center; gap:8px; }
   #againBtn { display:flex; align-items:center; justify-content:center; }
-  #reaction { display:flex; align-items:center; gap:8px; }
   #overlay.shake { animation:bigShake .4s ease; }
   @keyframes bigShake { 20%{ transform:translate(-5px,3px);} 40%{ transform:translate(4px,-3px);}
     60%{ transform:translate(-3px,2px);} 80%{ transform:translate(2px,2px);} }
@@ -292,7 +290,12 @@
   #cookFlame.lit { opacity:1; transform:scale(1); }
   #cookFlame svg { width:100%; height:100%; animation:flick .5s ease-in-out infinite alternate; transform-origin:50% 100%; }
   @keyframes flick { from{ transform:scale(1) rotate(-2deg);} to{ transform:scaleY(1.14) scaleX(.94) rotate(2deg);} }
-  #cookFlame.flare { transform:scale(1.5); }
+  /* cooking focus moment: big flame + warm pot glow, unchosen ingredients fade back */
+  #cookFlame.flare { transform:scale(2.1);
+    filter:drop-shadow(0 0 16px #FFB13B) drop-shadow(0 0 36px #FF8C00aa); }
+  #potBody.cookGlow { animation:potBreathe 3.2s ease-in-out infinite, cookGlow 1s ease-in-out infinite; }
+  @keyframes cookGlow { 50%{ filter:drop-shadow(0 0 22px #FFB13B) drop-shadow(0 4px 10px #FF8C0088); } }
+  .ing.dim { opacity:.22; }
 
 
   /* ============ Batch 4.5: B#14 layered dish + B#15 equation strip ============ */
@@ -1079,8 +1082,6 @@
 </div>
 
 <div id="overlay">
-  <div id="dishName"></div>
-  <div id="reaction"></div>
   <div id="plateWrap">
     <div id="plate"></div>
     <div id="dishBig"></div>
@@ -1096,6 +1097,7 @@
     </div>
   </div>
   <button id="againBtn" aria-label="Cook again"><svg class="icon" viewBox="0 0 100 100" width="54" height="54"><use href="#ui-again"/></svg></button>
+  <div id="dishName"></div><!-- parent-facing flavor text, small, at the bottom -->
 </div>
 
 <!-- B#16: recipe book (scrapbook of discovered dishes) -->
@@ -1559,7 +1561,7 @@ const $ = id => document.getElementById(id);
 const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
       potWrap=$('potWrap'), potSpoon=$('potSpoon'), cookFlame=$('cookFlame'),
       beepo=$('beepo'), bubbleTalk=$('bubbleTalk'),
-      overlay=$('overlay'), dishName=$('dishName'), reaction=$('reaction'),
+      overlay=$('overlay'), dishName=$('dishName'),
       dishBig=$('dishBig'), dishIngs=$('dishIngs'), plateWrap=$('plateWrap');
 
 function iconSVG(id, size, color){
@@ -1818,6 +1820,8 @@ function resetStir(){
   potWrap.classList.remove('ready');
   potSpoon.classList.remove('shown','swirl');
   cookFlame.classList.remove('lit','flare');
+  const potBody=$('potBody'); if(potBody) potBody.classList.remove('cookGlow');
+  [...shelf.children].forEach(b=>b.classList.remove('dim'));
 }
 
 /* ================= one-tap cooking (B#3, playtest v3) ================= */
@@ -1887,12 +1891,17 @@ function cook(){
   clearTimeout(cookTimer);
   hideHand();
   potWrap.classList.remove('ready');
+  /* the cooking FOCUS moment: unchosen shelf items fade, flame + glow take the stage */
+  [...shelf.children].forEach((b,i)=>
+    b.classList.toggle('dim', !potItems.some(p=>p.id===INGREDIENTS[i].id)));
   cookFlame.classList.add('flare');   /* the flame does the cooking */
+  const potBody=$('potBody'); if(potBody) potBody.classList.add('cookGlow');
   sparkleAt(potWrap, 6);
-  puffSteam(3);
+  puffSteam(5);
   potSpoon.classList.remove('shown');
-  sSizzle(); say('It’s cooking!!',1800);
-  setTimeout(()=>{ sDing(); reveal(); }, 2000);
+  sSizzle(); say('It’s cooking!!',2600);
+  setTimeout(()=>{ sSizzle(); sparkleAt(potWrap,4); puffSteam(3); }, 1500);
+  setTimeout(()=>{ sDing(); reveal(); }, 3200);
 }
 
 /* ================= find the dish (129-dish catalog) ================= */
@@ -2000,13 +2009,6 @@ function reveal(){
       `<svg class="lyr lyr-fx" viewBox="0 0 100 100">${L.fx}</svg>`;
   }
   dishIngs.innerHTML = recipeStripHTML(dish.ids, L, dish.verdict, dish.art);   /* B#15 */
-
-  let face, word, color;
-  if(dish.verdict==='yucky'){ face='ui-face-yuck'; word='PEE-YEW!! WIGGLY!'; color='#C6F08C'; }
-  else if(dish.verdict==='magical'){ face='ui-face-wow'; word='MAGICAL! WOW!'; color='#E7D6FF'; }
-  else { face='ui-face-yum'; word='YUMMY IN MY TUMMY!'; color='#FFE9A8'; }
-  reaction.innerHTML = iconSVG(face,22)+'<span>'+word+'</span>';
-  reaction.style.background = color;
 
   /* reset to covered state */
   lifted=false;

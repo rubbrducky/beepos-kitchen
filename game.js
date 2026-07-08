@@ -182,7 +182,7 @@ const $ = id => document.getElementById(id);
 const shelf=$('shelf'), soupItems=$('soupItems'), soupEl=$('soupEllipse'),
       potWrap=$('potWrap'), potSpoon=$('potSpoon'), cookFlame=$('cookFlame'),
       beepo=$('beepo'), bubbleTalk=$('bubbleTalk'),
-      overlay=$('overlay'), dishName=$('dishName'), reaction=$('reaction'),
+      overlay=$('overlay'), dishName=$('dishName'),
       dishBig=$('dishBig'), dishIngs=$('dishIngs'), plateWrap=$('plateWrap');
 
 function iconSVG(id, size, color){
@@ -441,6 +441,8 @@ function resetStir(){
   potWrap.classList.remove('ready');
   potSpoon.classList.remove('shown','swirl');
   cookFlame.classList.remove('lit','flare');
+  const potBody=$('potBody'); if(potBody) potBody.classList.remove('cookGlow');
+  [...shelf.children].forEach(b=>b.classList.remove('dim'));
 }
 
 /* ================= one-tap cooking (B#3, playtest v3) ================= */
@@ -510,12 +512,17 @@ function cook(){
   clearTimeout(cookTimer);
   hideHand();
   potWrap.classList.remove('ready');
+  /* the cooking FOCUS moment: unchosen shelf items fade, flame + glow take the stage */
+  [...shelf.children].forEach((b,i)=>
+    b.classList.toggle('dim', !potItems.some(p=>p.id===INGREDIENTS[i].id)));
   cookFlame.classList.add('flare');   /* the flame does the cooking */
+  const potBody=$('potBody'); if(potBody) potBody.classList.add('cookGlow');
   sparkleAt(potWrap, 6);
-  puffSteam(3);
+  puffSteam(5);
   potSpoon.classList.remove('shown');
-  sSizzle(); say('It’s cooking!!',1800);
-  setTimeout(()=>{ sDing(); reveal(); }, 2000);
+  sSizzle(); say('It’s cooking!!',2600);
+  setTimeout(()=>{ sSizzle(); sparkleAt(potWrap,4); puffSteam(3); }, 1500);
+  setTimeout(()=>{ sDing(); reveal(); }, 3200);
 }
 
 /* ================= find the dish (129-dish catalog) ================= */
@@ -623,13 +630,6 @@ function reveal(){
       `<svg class="lyr lyr-fx" viewBox="0 0 100 100">${L.fx}</svg>`;
   }
   dishIngs.innerHTML = recipeStripHTML(dish.ids, L, dish.verdict, dish.art);   /* B#15 */
-
-  let face, word, color;
-  if(dish.verdict==='yucky'){ face='ui-face-yuck'; word='PEE-YEW!! WIGGLY!'; color='#C6F08C'; }
-  else if(dish.verdict==='magical'){ face='ui-face-wow'; word='MAGICAL! WOW!'; color='#E7D6FF'; }
-  else { face='ui-face-yum'; word='YUMMY IN MY TUMMY!'; color='#FFE9A8'; }
-  reaction.innerHTML = iconSVG(face,22)+'<span>'+word+'</span>';
-  reaction.style.background = color;
 
   /* reset to covered state */
   lifted=false;
