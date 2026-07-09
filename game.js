@@ -18,7 +18,7 @@ const INGREDIENTS = [
   {id:'choco',   svg:'ing-choco',   n:'Chocolate',   c:'#8A5A3B'},
   {id:'cookie',  svg:'ing-cookie',  n:'Cookie',      c:'#B57A3E'},
   {id:'icecream',svg:'ing-icecream',n:'Ice Cream',   c:'#FBEFF2'},
-  {id:'worm',    svg:'ing-worm',    n:'Wiggly Worm', c:'#9CCF52', tag:'yucky'},
+  {id:'worm',    svg:'ing-sock',    n:'Stinky Sock', c:'#A7B06A', tag:'yucky'},
   {id:'rainbow', svg:'ing-rainbow', n:'Rainbow',     c:'#B78BE8', tag:'magic'},
 ];
 const ING_BY_ID = Object.fromEntries(INGREDIENTS.map(i=>[i.id,i]));
@@ -43,7 +43,7 @@ const DISH_LOOKS = {
   'apple+berry':     [['dish-bowl','#F2545B'],['top-cream']],
   'choco+egg':       [['dish-bday']],
   'cookie+egg':      [['dish-burger']],
-  'cookie+worm':     [['dish-burger'],['top-worm']],
+  'cookie+worm':     [['dish-burger'],['top-sock']],
   'banana+worm':     [['dish-taco']],
   'apple+banana+berry': [['dish-bowl','#FFF1C9'],['top-fruit']],
   'apple':    [['dish-bowl','#F6B092']],
@@ -53,7 +53,7 @@ const DISH_LOOKS = {
   'choco':    [['dish-bowl','#8A5A3B'],['top-cream']],
   'cookie':   [['dish-cookiemush']],
   'icecream': [['dish-bowl','#FBD9E8'],['top-cream']],
-  'worm':     [['dish-bowl','#FFE08A'],['top-noodles'],['top-worm']],
+  'worm':     [['dish-bowl','#FFE08A'],['top-noodles'],['top-sock']],
   'rainbow':  [['dish-bowl','#B78BE8'],['top-sparkles']],
 };
 
@@ -325,7 +325,7 @@ function say(txt, ms=2200){
   talkTimer=setTimeout(()=>bubbleTalk.classList.remove('show'), ms);
 }
 const ADD_LINES=['Ooooh!','Yum yum!','Into the pot!','More more!','Bloop!','Tasty!','Plip plop!','Good pick!','Hehe!','So fresh!'];
-const YUCKY_LINES=['Pee-yew!!','Wiggly!!','Eww hehe!','It tickles!','Squirmy!!','My nose!!'];
+const YUCKY_LINES=['Pee-yew!!','Stinky!!','Eww hehe!','So smelly!','My nose!!','Yucky sock!'];
 const FULL_LINES=['Full pot!','Time to stir!','Stir it!','Ready ready!'];
 const EAT_START=['Nom nom nom…','Feed me!','Bite time!','Open wide!'];
 const VOR_START=['CHOMP CHOMP!!','GIMME GIMME!!','SO HUNGRY!!'];
@@ -333,7 +333,7 @@ const EAT_END=['All gone!','So yummy!','More please?','Happy tummy!'];
 const VOR_END=['BUUURP!','WOWIE!','YUM-TASTIC!'];
 /* dish-specific one-liners, first keyword hit wins (B#9) */
 const DISH_LINES=[
-  ['Burger','BURGER TIME!!'],['Rainbow','So sparkly!'],['Worm','It wiggles!!'],['Cake','Party time!'],
+  ['Burger','BURGER TIME!!'],['Rainbow','So sparkly!'],['Sock','P.U. stinky!'],['Cake','Party time!'],
   ['Smoothie','Slurrrp!'],['Sundae','Cherry on top!'],['Pancake','Flippy floppy!'],
   ['Cookie','Crunch crunch!'],['Choco','Mmm chocolate!'],['Jam','Sticky sweet!'],
   ['Soup','Slurpy soup!'],['Taco','Crunchy crunch!'],['Pie','Sweetie pie!'],
@@ -954,10 +954,10 @@ $('againBtn').addEventListener('click',()=>{
   clearTimeout(rattleTimer); cloche.classList.remove('rattle');
   resetStir();
   say('What’s next, chef?');
-  if(Math.random()<0.07) setTimeout(wormCameo, 1400);       /* juice #9: rare worm cameo */
+  if(Math.random()<0.07) setTimeout(wormCameo, 1400);       /* juice #9: rare sock cameo */
 });
 
-/* juice #9: once in a while the worm peeks from behind the counter, giggles, ducks away */
+/* juice #9: once in a while the stinky sock peeks from behind the counter, giggles, ducks away */
 function wormCameo(){
   if(REDUCED || cooking || $('wormCameo') || overlay.classList.contains('show')) return;
   const w=document.createElement('div'); w.id='wormCameo';

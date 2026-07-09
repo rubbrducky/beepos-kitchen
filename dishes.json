@@ -51,10 +51,10 @@
   },
   {
    "id": "worm",
-   "name": "Wiggly Worm",
-   "emoji": "🪱",
+   "name": "Stinky Sock",
+   "emoji": "🧦",
    "role": "gross",
-   "vis": "green wiggly worm"
+   "vis": "grubby dirty tube sock"
   },
   {
    "id": "rainbow",
@@ -85,7 +85,7 @@
    "name": "Apple Squish Sauce",
    "verdict": "Yummy",
    "image_concept": "red apple (yummy, glossy)",
-   "image_prompt": "a happy glossy red apple character melting into a smooth shiny puddle of applesauce, proud grin, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a happy glossy red apple character melting into a smooth shiny puddle of applesauce, proud grin, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 2,
@@ -97,7 +97,7 @@
    "name": "Mushy Banana Mash",
    "verdict": "Yummy",
    "image_concept": "banana (yummy, glossy)",
-   "image_prompt": "a blissful banana character flopped backwards into a soft creamy banana-mash swirl, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a blissful banana character flopped backwards into a soft creamy banana-mash swirl, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 3,
@@ -109,7 +109,7 @@
    "name": "Blueberry Squish Jam",
    "verdict": "Yummy",
    "image_concept": "blueberry (yummy, glossy)",
-   "image_prompt": "a plump blueberry character sitting in a glossy puddle of deep-blue jam, licking its lips, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a plump blueberry character sitting in a glossy puddle of deep-blue jam, licking its lips, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 4,
@@ -121,7 +121,7 @@
    "name": "Wobbly Egg Custard",
    "verdict": "Yummy",
    "image_concept": "soft egg (yummy, glossy)",
-   "image_prompt": "a wobbly golden egg-custard character caught mid-jiggle, one single happy face, smooth glossy swirl leaning sideways, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a wobbly golden egg-custard character caught mid-jiggle, swirl top leaning sideways, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 5,
@@ -133,7 +133,7 @@
    "name": "Choco Goo Pudding",
    "verdict": "Yummy",
    "image_concept": "chocolate (yummy, glossy)",
-   "image_prompt": "a swirl of glossy melted chocolate pudding with a happy face, a chocolate-bar corner poking out like a fin, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a swirl of glossy melted chocolate pudding with a happy face, a chocolate-bar corner poking out like a fin, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 6,
@@ -145,7 +145,7 @@
    "name": "Giant Cookie Mush",
    "verdict": "Yummy",
    "image_concept": "cookie (yummy, glossy)",
-   "image_prompt": "a giant crumbly cookie character with a big bite taken out, grinning, crumbs bouncing around it, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a giant crumbly cookie character with a big bite taken out, grinning, crumbs bouncing around it, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 7,
@@ -157,7 +157,7 @@
    "name": "Melty Ice-Cream Mountain",
    "verdict": "Yummy",
    "image_concept": "ice cream scoop (yummy, glossy)",
-   "image_prompt": "a tall melty soft-serve mountain character with a drippy happy smile, one drip like a tear of joy, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a tall melty soft-serve mountain character with a drippy happy smile, one drip like a tear of joy, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 8,
@@ -166,10 +166,10 @@
     "worm"
    ],
    "ingredients": "Wiggly Worm",
-   "name": "Wormy Wiggle Noodles",
+   "name": "Stinky Sock Noodles",
    "verdict": "Yucky",
-   "image_concept": "green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a pile of wiggly green noodle-worms, one cheeky worm popping up from the middle with a grin, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a steaming bowl of grubby sock-noodles, one dirty cream tube sock with a red cuff popping up from the tangle grinning, wavy green stink lines, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 9,
@@ -194,7 +194,7 @@
    "name": "Sunny Fruit Smoothie",
    "verdict": "Yummy",
    "image_concept": "red apple + banana (yummy, glossy)",
-   "image_prompt": "a swirling smoothie tornado of red and yellow with a happy apple character and banana character spinning inside it, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a swirling smoothie tornado of red and yellow with a happy apple character and banana character spinning inside it, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 11,
@@ -207,7 +207,7 @@
    "name": "Berry-Apple Jelly",
    "verdict": "Yummy",
    "image_concept": "red apple + blueberry (yummy, glossy)",
-   "image_prompt": "a wobbly translucent jelly dome with red and deep-blue layers, an apple character and blueberry character suspended inside mid-wave, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a wobbly translucent jelly dome with red and deep-blue layers, an apple character and blueberry character suspended inside mid-wave, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 12,
@@ -220,7 +220,7 @@
    "name": "Apple Custard Cup",
    "verdict": "Yummy",
    "image_concept": "red apple + soft egg (yummy, glossy)",
-   "image_prompt": "a jiggly golden custard swirl with a glossy red apple character sitting on top like a king on a throne, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a jiggly golden custard swirl with a glossy red apple character sitting on top like a king on a throne, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 13,
@@ -233,7 +233,7 @@
    "name": "Choco-Dunked Apple",
    "verdict": "Yummy",
    "image_concept": "red apple + chocolate (yummy, glossy)",
-   "image_prompt": "a glossy red apple character dunked waist-deep in melted chocolate, licking its cheek, thick chocolate drips, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character dunked waist-deep in melted chocolate, licking its cheek, thick chocolate drips, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 14,
@@ -246,7 +246,7 @@
    "name": "Grandma's Apple Pie",
    "verdict": "Yummy",
    "image_concept": "red apple + cookie (yummy, glossy)",
-   "image_prompt": "a cozy little lattice apple pie with a rosy apple character relaxing in the middle like a bathtub, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a cozy little lattice apple pie with a rosy apple character relaxing in the middle like a bathtub, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 15,
@@ -259,7 +259,7 @@
    "name": "Apple Pie a la Mode",
    "verdict": "Yummy",
    "image_concept": "red apple + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a warm apple pie slice and a melting soft-serve swirl character leaning on each other like best friends, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a warm apple pie slice and a melting soft-serve swirl character leaning on each other like best friends, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 16,
@@ -269,10 +269,10 @@
     "worm"
    ],
    "ingredients": "Apple + Wiggly Worm",
-   "name": "Wiggly Apple Wormhole",
+   "name": "Apple Sock Surprise",
    "verdict": "Yucky",
-   "image_concept": "red apple + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a glossy red apple with a round window hole, a cheeky green worm popping out waving, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "red apple + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a glossy red apple with a round bite-hole, a cheeky dirty sock with a red cuff flopping out of the hole waving, green stink wisps, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 17,
@@ -298,7 +298,7 @@
    "name": "Blue Monkey Smoothie",
    "verdict": "Yummy",
    "image_concept": "banana + blueberry (yummy, glossy)",
-   "image_prompt": "a swirling deep-blue smoothie tornado with a banana character and a blueberry character spinning happily inside, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a swirling deep-blue smoothie tornado with a banana character and a blueberry character spinning happily inside, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 19,
@@ -311,7 +311,7 @@
    "name": "Banana Pancakes",
    "verdict": "Yummy",
    "image_concept": "banana + soft egg (yummy, glossy)",
-   "image_prompt": "a stack of fluffy golden pancakes with a banana character doing a victory pose on top, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a stack of fluffy golden pancakes with a banana character doing a victory pose on top, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 20,
@@ -324,7 +324,7 @@
    "name": "Choco-Banana Pops",
    "verdict": "Yummy",
    "image_concept": "banana + chocolate (yummy, glossy)",
-   "image_prompt": "three chocolate-dipped banana pop characters standing in a row striking poses like a band, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "three chocolate-dipped banana pop characters standing in a row striking poses like a band, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 21,
@@ -337,7 +337,7 @@
    "name": "Banana Cookie Stack",
    "verdict": "Yummy",
    "image_concept": "banana + cookie (yummy, glossy)",
-   "image_prompt": "a teetering stack of cookies with a banana character surfing on top, arms out for balance, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a teetering stack of cookies with a banana character surfing on top, arms out for balance, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 22,
@@ -350,7 +350,7 @@
    "name": "Banana Split",
    "verdict": "Yummy",
    "image_concept": "banana + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a smiling banana boat cradling three scoops of ice cream like sleeping babies, cherry on top, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a smiling banana boat cradling three scoops of ice cream like sleeping babies, cherry on top, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 23,
@@ -360,10 +360,10 @@
     "worm"
    ],
    "ingredients": "Banana + Wiggly Worm",
-   "name": "Wiggle-Waggle Banana Slime",
+   "name": "Stinky Banana Sock Slime",
    "verdict": "Yucky",
-   "image_concept": "banana + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a cheeky green worm water-sliding down a long banana curve into a splash of slime, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "banana + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a grubby red-cuffed sock sliding down a long banana curve into a splash of green slime, gleeful face, stink lines, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 24,
@@ -376,7 +376,7 @@
    "name": "Rainbow Banana Dream",
    "verdict": "Magical",
    "image_concept": "banana + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a slim banana curved like a crescent moon, sleeping face, a small glowing rainbow arc arched above it, tiny stars and dream sparkles floating, glowing with soft magical aurora light, dreamy shimmer"
+   "image_prompt": "a banana character asleep in a small rainbow arc hammock, dream sparkles floating up, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 25,
@@ -389,7 +389,7 @@
    "name": "Blueberry Custard Cup",
    "verdict": "Yummy",
    "image_concept": "blueberry + soft egg (yummy, glossy)",
-   "image_prompt": "a jiggly golden custard swirl with blueberry characters cannonballing into it, blue splashes mid-air, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a jiggly golden custard swirl with blueberry characters cannonballing into it, blue splashes mid-air, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 26,
@@ -402,7 +402,7 @@
    "name": "Blueberry-Choco Cake",
    "verdict": "Yummy",
    "image_concept": "blueberry + chocolate (yummy, glossy)",
-   "image_prompt": "a tiny chocolate layer cake with plump blueberry characters peeking out between the layers, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a tiny chocolate layer cake with plump blueberry characters peeking out between the layers, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 27,
@@ -415,7 +415,7 @@
    "name": "Blueberry Cookie Crumble",
    "verdict": "Yummy",
    "image_concept": "blueberry + cookie (yummy, glossy)",
-   "image_prompt": "a big crumbly cookie with blueberry characters bouncing on it like a trampoline, blue jam splats, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a big crumbly cookie with blueberry characters bouncing on it like a trampoline, blue jam splats, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 28,
@@ -428,7 +428,7 @@
    "name": "Blueberry Sundae",
    "verdict": "Yummy",
    "image_concept": "blueberry + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a soft-serve swirl character holding out its arms while blueberry characters rain gently down, blue syrup drips, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a soft-serve swirl character holding out its arms while blueberry characters rain gently down, blue syrup drips, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 29,
@@ -438,10 +438,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Wiggly Worm",
-   "name": "Wormy Berry Sludge",
+   "name": "Stinky Berry Sock Sludge",
    "verdict": "Yucky",
-   "image_concept": "blueberry + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a cheeky green worm lounging in a puddle of deep-blue berry sludge like a hot tub, one arm on the edge, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "blueberry + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a dirty cream sock with a red cuff lounging in a deep-blue blueberry-sludge hot tub, one end draped lazily over the rim, stink wisps, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 30,
@@ -467,7 +467,7 @@
    "name": "Chocolate Birthday Cake",
    "verdict": "Yummy",
    "image_concept": "soft egg + chocolate (yummy, glossy)",
-   "image_prompt": "a tiny chocolate birthday cake with one candle, a fried-egg character bursting out of the top like a surprise party, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a tiny chocolate birthday cake with one candle, a fried-egg character bursting out of the top like a surprise party, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 32,
@@ -480,7 +480,7 @@
    "name": "Beepo Burger",
    "verdict": "Yummy",
    "image_concept": "cute hamburger: golden sesame bun, patty, melty cheese, lettuce (yummy, glossy)",
-   "image_prompt": "a small cute hamburger, golden sesame-seed bun, brown patty, melty yellow cheese drips, ruffled green lettuce, a fried egg peeking out, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a small cute hamburger, golden sesame-seed bun, brown patty, melty yellow cheese drips, ruffled green lettuce, a fried egg peeking out, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 33,
@@ -493,7 +493,7 @@
    "name": "Frozen Custard Swirl",
    "verdict": "Yummy",
    "image_concept": "soft egg + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a fried-egg character and a soft-serve swirl character twisted together into one creamy tornado, dizzy happy faces, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a fried-egg character and a soft-serve swirl character twisted together into one creamy tornado, dizzy happy faces, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 34,
@@ -503,10 +503,10 @@
     "worm"
    ],
    "ingredients": "Egg + Wiggly Worm",
-   "name": "Slimy Worm Scramble",
+   "name": "Slimy Sock Scramble",
    "verdict": "Yucky",
-   "image_concept": "soft egg + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a cheeky green worm tangled in ribbons of fluffy scrambled egg like a scarf, grinning, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "soft egg + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a grubby sock tangled up in ribbons of fluffy scrambled egg like a cozy scarf, red toe poking out, cheeky grin, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 35,
@@ -532,7 +532,7 @@
    "name": "Double-Choc Donut",
    "verdict": "Yummy",
    "image_concept": "chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a glossy chocolate-glazed donut character with thick dripping frosting, winking, rainbow sprinkles, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy chocolate-glazed donut character with thick dripping frosting, winking, rainbow sprinkles, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 37,
@@ -545,7 +545,7 @@
    "name": "Choco Swirl Cone",
    "verdict": "Yummy",
    "image_concept": "chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a chocolate-and-cream twist soft-serve character striking a proud superhero pose, cape of chocolate drips, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a chocolate-and-cream twist soft-serve character striking a proud superhero pose, cape of chocolate drips, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 38,
@@ -555,10 +555,10 @@
     "worm"
    ],
    "ingredients": "Chocolate + Wiggly Worm",
-   "name": "Choco-Dipped Wigglers",
+   "name": "Choco-Dipped Socks",
    "verdict": "Yucky",
-   "image_concept": "chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "cheeky green worms dipped in a chocolate fondue swirl, one worm grinning with a chocolate mustache, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "chocolate + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a dirty tube sock dunked into a swirl of melted chocolate fondue, chocolate dripping off its red toe, sneaky grin, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 39,
@@ -584,7 +584,7 @@
    "name": "Ice-Cream Sandwich",
    "verdict": "Yummy",
    "image_concept": "cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "two cookie characters hugging a soft-serve filling between them, cream squishing out the sides, all three giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "two cookie characters hugging a soft-serve filling between them, cream squishing out the sides, all three giggling, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 41,
@@ -594,10 +594,10 @@
     "worm"
    ],
    "ingredients": "Cookie + Wiggly Worm",
-   "name": "Wiggly Worm Burger",
+   "name": "Smelly Sock Burger",
    "verdict": "Yucky",
-   "image_concept": "hamburger with a cheeky green worm poking out between the buns (slimy, funny-gross)",
-   "image_prompt": "a small hamburger with a cheeky green cartoon worm poking out between the buns, golden sesame bun, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "hamburger with a cheeky green sock poking out between the buns (slimy, funny-gross)",
+   "image_prompt": "a small hamburger with a cheeky dirty sock flopping out between the sesame buns instead of the patty, red cuff showing, green stink wisps, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 42,
@@ -620,10 +620,10 @@
     "worm"
    ],
    "ingredients": "Ice Cream + Wiggly Worm",
-   "name": "Wormy Ice Scream",
+   "name": "Stinky Sock Ice Scream",
    "verdict": "Yucky",
-   "image_concept": "ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a soft-serve swirl character screaming comically, eyes wide, as a cheeky green worm pops out of the top of its swirl, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "ice cream scoop + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a soft-serve swirl character screaming comically wide-eyed as a grubby red-cuffed sock pops out of the top of its swirl, stink lines, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 44,
@@ -646,10 +646,10 @@
     "rainbow"
    ],
    "ingredients": "Wiggly Worm + Rainbow",
-   "name": "Sparkly Rainbow Worm Goo",
+   "name": "Sparkly Rainbow Sock Goo",
    "verdict": "Yucky",
-   "image_concept": "green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a cheeky green worm wearing a tiny rainbow arc as a superhero cape, flexing, sparkle trail, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "green stinky sock + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a cheeky dirty sock wearing a tiny rainbow arc as a superhero cape, red cuff flapping, striking a flex pose, sparkle-and-stink trail, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 46,
@@ -663,7 +663,7 @@
    "name": "Tutti-Frutti Salad",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + blueberry (yummy, glossy)",
-   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a plump round deep-blue blueberry character with a tiny leafy star crown stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a bouncy fruit-salad party: an apple character, a banana character and a blueberry character doing a joyful jumping high-five, juice droplets and confetti flying, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 47,
@@ -677,7 +677,7 @@
    "name": "Apple-Banana-Egg Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + soft egg (yummy, glossy)",
-   "image_prompt": "a glossy red apple character and a jiggly fried-egg character with a golden yolk high-fiving over a curvy yellow banana character, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a jiggly fried-egg character with a golden yolk doing a synchronized swimming pose in a puddle of syrup, legs pointed up, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 48,
@@ -691,7 +691,7 @@
    "name": "Apple-Banana-Chocolate Medley",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + chocolate (yummy, glossy)",
-   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a curvy yellow banana character stacked on a melty dark-chocolate bar character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a melty dark-chocolate bar character in a giggling belly-laugh dogpile, little legs kicking in the air, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 49,
@@ -705,7 +705,7 @@
    "name": "Triple Treat: Apple, Banana & Cookie",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + cookie (yummy, glossy)",
-   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a chocolate-chip cookie character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a chocolate-chip cookie character blasting off on a fizzy soda-bottle rocket together, faces of pure joy, whoosh trails, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 50,
@@ -719,7 +719,7 @@
    "name": "Apple-Banana-Ice Cream Mash-Up",
    "verdict": "Yummy",
    "image_concept": "red apple + banana + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a glossy red apple character and a curvy yellow banana character carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a swirly soft-serve ice-cream character cannonball-diving into a big happy splash together, splash crown flying up, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 51,
@@ -730,10 +730,10 @@
     "worm"
    ],
    "ingredients": "Apple + Banana + Wiggly Worm",
-   "name": "Apple & Banana Worm Swamp Stew",
+   "name": "Apple & Banana Sock Swamp Stew",
    "verdict": "Yucky",
-   "image_concept": "red apple + banana + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a giggling group-hug pile of a glossy red apple character, a curvy yellow banana character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "red apple + banana + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a glossy red apple character and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines bouncing a curvy yellow banana character sky-high on a stretchy trampoline, a curvy yellow banana character whooping mid-air, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 52,
@@ -747,7 +747,7 @@
    "name": "Magical Apple & Banana Shimmer",
    "verdict": "Magical",
    "image_concept": "red apple + banana + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a glossy red apple character, a curvy yellow banana character and a small glowing rainbow arc bursting out of a party popper together, confetti and curly streamers everywhere, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 53,
@@ -761,7 +761,7 @@
    "name": "Apple-Blueberry-Egg Medley",
    "verdict": "Yummy",
    "image_concept": "red apple + blueberry + soft egg (yummy, glossy)",
-   "image_prompt": "a glossy red apple character and a jiggly fried-egg character with a golden yolk high-fiving over a plump round deep-blue blueberry character with a tiny leafy star crown, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a jiggly fried-egg character with a golden yolk clinking cups in a happy cheers toast, sparkly droplets flying, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 54,
@@ -775,7 +775,7 @@
    "name": "Triple Treat: Apple, Blueberry & Chocolate",
    "verdict": "Yummy",
    "image_concept": "red apple + blueberry + chocolate (yummy, glossy)",
-   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a melty dark-chocolate bar character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character and a melty dark-chocolate bar character bouncing a plump round deep-blue blueberry character with a tiny leafy star crown sky-high on a stretchy trampoline, a plump round deep-blue blueberry character with a tiny leafy star crown whooping mid-air, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 55,
@@ -789,7 +789,7 @@
    "name": "Apple-Blueberry-Cookie Mash-Up",
    "verdict": "Yummy",
    "image_concept": "red apple + blueberry + cookie (yummy, glossy)",
-   "image_prompt": "a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a chocolate-chip cookie character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a chocolate-chip cookie character blasting off on a fizzy soda-bottle rocket together, faces of pure joy, whoosh trails, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 56,
@@ -803,7 +803,7 @@
    "name": "Chef's Apple-Blueberry-Ice Cream Surprise",
    "verdict": "Yummy",
    "image_concept": "red apple + blueberry + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a glossy red apple character and a plump round deep-blue blueberry character with a tiny leafy star crown carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character conducting while a plump round deep-blue blueberry character with a tiny leafy star crown and a swirly soft-serve ice-cream character sing into spoons like a tiny band, music notes floating up, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 57,
@@ -814,10 +814,10 @@
     "worm"
    ],
    "ingredients": "Apple + Strawberry + Wiggly Worm",
-   "name": "Squirmy Apple & Blueberry Mush",
+   "name": "Soggy Apple & Blueberry Sock Mush",
    "verdict": "Yucky",
-   "image_concept": "red apple + blueberry + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a giggling group-hug pile of a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "red apple + blueberry + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines posing as a proud superhero trio, capes fluttering, a sparkle burst behind them, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 58,
@@ -831,7 +831,7 @@
    "name": "Apple & Blueberry Rainbow Delight",
    "verdict": "Magical",
    "image_concept": "red apple + blueberry + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a glossy red apple character, a plump round deep-blue blueberry character with a tiny leafy star crown and a small glowing rainbow arc doing a synchronized swimming pose in a puddle of syrup, legs pointed up, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 59,
@@ -845,7 +845,7 @@
    "name": "Apple-Egg-Chocolate Mash-Up",
    "verdict": "Yummy",
    "image_concept": "red apple + soft egg + chocolate (yummy, glossy)",
-   "image_prompt": "a glossy red apple character and a melty dark-chocolate bar character high-fiving over a jiggly fried-egg character with a golden yolk, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a jiggly fried-egg character with a golden yolk and a melty dark-chocolate bar character clinking cups in a happy cheers toast, sparkly droplets flying, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 60,
@@ -859,7 +859,7 @@
    "name": "Chef's Apple-Egg-Cookie Surprise",
    "verdict": "Yummy",
    "image_concept": "red apple + soft egg + cookie (yummy, glossy)",
-   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a jiggly fried-egg character with a golden yolk stacked on a chocolate-chip cookie character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a jiggly fried-egg character with a golden yolk and a chocolate-chip cookie character tumbling downhill piled on a rolling ice-cream scoop like a snowball, laughing, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 61,
@@ -873,7 +873,7 @@
    "name": "Apple-Egg-Ice Cream Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "red apple + soft egg + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a glossy red apple character, a jiggly fried-egg character with a golden yolk and a swirly soft-serve ice-cream character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a jiggly fried-egg character with a golden yolk and a swirly soft-serve ice-cream character in a giggling belly-laugh dogpile, little legs kicking in the air, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 62,
@@ -884,10 +884,10 @@
     "worm"
    ],
    "ingredients": "Apple + Egg + Wiggly Worm",
-   "name": "Wiggly Apple & Egg Sludge",
+   "name": "Smelly Apple & Egg Sock Sludge",
    "verdict": "Yucky",
-   "image_concept": "red apple + soft egg + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a glossy red apple character and a jiggly fried-egg character with a golden yolk carrying a cheeky green wiggly worm overhead like a champion, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "red apple + soft egg + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a glossy red apple character, a jiggly fried-egg character with a golden yolk and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines riding a curling whipped-cream wave like surfers, arms out, joyful, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 63,
@@ -901,7 +901,7 @@
    "name": "Enchanted Apple & Egg Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "red apple + soft egg + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a giggling group-hug pile of a glossy red apple character, a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc, cheeks squished together, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a glossy red apple character giving a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc a wobbly double piggyback, grinning, little motion lines, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 64,
@@ -915,7 +915,7 @@
    "name": "Apple-Chocolate-Cookie Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "red apple + chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a glossy red apple character, a melty dark-chocolate bar character and a chocolate-chip cookie character stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a melty dark-chocolate bar character and a chocolate-chip cookie character doing a synchronized swimming pose in a puddle of syrup, legs pointed up, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 65,
@@ -929,7 +929,7 @@
    "name": "Apple-Chocolate-Ice Cream Medley",
    "verdict": "Yummy",
    "image_concept": "red apple + chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a glossy red apple character and a swirly soft-serve ice-cream character high-fiving over a melty dark-chocolate bar character, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a glossy red apple character, a melty dark-chocolate bar character and a swirly soft-serve ice-cream character riding a curling whipped-cream wave like surfers, arms out, joyful, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 66,
@@ -940,10 +940,10 @@
     "worm"
    ],
    "ingredients": "Apple + Chocolate + Wiggly Worm",
-   "name": "Wormy Apple & Chocolate Surprise",
+   "name": "Stinky Apple & Chocolate Sock Surprise",
    "verdict": "Yucky",
-   "image_concept": "red apple + chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a melty dark-chocolate bar character stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "red apple + chocolate + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a glossy red apple character, a melty dark-chocolate bar character and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines riding a curling whipped-cream wave like surfers, arms out, joyful, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 67,
@@ -957,7 +957,7 @@
    "name": "Rainbow Apple & Chocolate Sparkle Dream",
    "verdict": "Magical",
    "image_concept": "red apple + chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a glossy red apple character, a melty dark-chocolate bar character and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a glossy red apple character, a melty dark-chocolate bar character and a small glowing rainbow arc in a giggling belly-laugh dogpile, little legs kicking in the air, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 68,
@@ -971,7 +971,7 @@
    "name": "Apple Pie a la Mode Deluxe",
    "verdict": "Yummy",
    "image_concept": "red apple + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a glossy red apple character and a chocolate-chip cookie character carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a warm apple-pie slice with a melting ice-cream scoop sliding off the top, an apple character and ice-cream character leaning together happily, cozy steam wisps, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 69,
@@ -982,10 +982,10 @@
     "worm"
    ],
    "ingredients": "Apple + Cookie + Wiggly Worm",
-   "name": "Slimy Apple & Cookie Wriggle-Goo",
+   "name": "Slimy Apple & Cookie Sock Goo",
    "verdict": "Yucky",
-   "image_concept": "red apple + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a giggling group-hug pile of a glossy red apple character, a chocolate-chip cookie character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "red apple + cookie + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a glossy red apple character and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines bouncing a chocolate-chip cookie character sky-high on a stretchy trampoline, a chocolate-chip cookie character whooping mid-air, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 70,
@@ -999,7 +999,7 @@
    "name": "Magical Apple & Cookie Shimmer",
    "verdict": "Magical",
    "image_concept": "red apple + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a glossy red apple character, a chocolate-chip cookie character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a glossy red apple character, a chocolate-chip cookie character and a small glowing rainbow arc cannonball-diving into a big happy splash together, splash crown flying up, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 71,
@@ -1010,10 +1010,10 @@
     "worm"
    ],
    "ingredients": "Apple + Ice Cream + Wiggly Worm",
-   "name": "Apple & Ice Cream Worm Swamp Stew",
+   "name": "Apple & Ice Cream Sock Swamp Stew",
    "verdict": "Yucky",
-   "image_concept": "red apple + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a glossy red apple character and a cheeky green wiggly worm high-fiving over a swirly soft-serve ice-cream character, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "red apple + ice cream scoop + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a glossy red apple character, a swirly soft-serve ice-cream character and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines blasting off on a fizzy soda-bottle rocket together, faces of pure joy, whoosh trails, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 72,
@@ -1027,7 +1027,7 @@
    "name": "Apple & Ice Cream Rainbow Delight",
    "verdict": "Magical",
    "image_concept": "red apple + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a wobbly tower: a glossy red apple character stacked on a swirly soft-serve ice-cream character stacked on a small glowing rainbow arc, all giggling, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a glossy red apple character, a swirly soft-serve ice-cream character and a small glowing rainbow arc squished into one cozy sandwich hug, cheeks smooshed, all three giggling, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 73,
@@ -1038,10 +1038,10 @@
     "rainbow"
    ],
    "ingredients": "Apple + Wiggly Worm + Rainbow",
-   "name": "Wiggly Apple Sludge",
+   "name": "Smelly Apple Sock Sludge",
    "verdict": "Yucky",
-   "image_concept": "red apple + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a glossy red apple character, a cheeky green wiggly worm and a small glowing rainbow arc dancing in a happy conga line, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "red apple + green stinky sock + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a glossy red apple character, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines and a small glowing rainbow arc cannonball-diving into a big happy splash together, splash crown flying up, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 74,
@@ -1055,7 +1055,7 @@
    "name": "Triple Treat: Banana, Blueberry & Egg",
    "verdict": "Yummy",
    "image_concept": "banana + blueberry + soft egg (yummy, glossy)",
-   "image_prompt": "a curvy yellow banana character and a plump round deep-blue blueberry character with a tiny leafy star crown carrying a jiggly fried-egg character with a golden yolk overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a curvy yellow banana character and a jiggly fried-egg character with a golden yolk bouncing a plump round deep-blue blueberry character with a tiny leafy star crown sky-high on a stretchy trampoline, a plump round deep-blue blueberry character with a tiny leafy star crown whooping mid-air, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 75,
@@ -1069,7 +1069,7 @@
    "name": "Banana-Blueberry-Chocolate Mash-Up",
    "verdict": "Yummy",
    "image_concept": "banana + blueberry + chocolate (yummy, glossy)",
-   "image_prompt": "a giggling group-hug pile of a curvy yellow banana character, a plump round deep-blue blueberry character with a tiny leafy star crown and a melty dark-chocolate bar character, cheeks squished together, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a curvy yellow banana character and a plump round deep-blue blueberry character with a tiny leafy star crown swinging a melty dark-chocolate bar character in a blanket like a trampoline, a melty dark-chocolate bar character bouncing up delighted, sparkles, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 76,
@@ -1083,7 +1083,7 @@
    "name": "Chef's Banana-Blueberry-Cookie Surprise",
    "verdict": "Yummy",
    "image_concept": "banana + blueberry + cookie (yummy, glossy)",
-   "image_prompt": "a curvy yellow banana character, a plump round deep-blue blueberry character with a tiny leafy star crown and a chocolate-chip cookie character stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a curvy yellow banana character and a plump round deep-blue blueberry character with a tiny leafy star crown launching a chocolate-chip cookie character off a spoon see-saw, a chocolate-chip cookie character flying up giggling in a sparkle arc, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 77,
@@ -1097,7 +1097,7 @@
    "name": "Double-Berry Banana Split",
    "verdict": "Yummy",
    "image_concept": "banana + blueberry + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a curvy yellow banana character and a swirly soft-serve ice-cream character high-fiving over a plump round deep-blue blueberry character with a tiny leafy star crown, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a classic banana-split boat: a smiling banana cradling three ice-cream scoops piled with blueberries, a cherry on top, rainbow drizzle and sparkles, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 78,
@@ -1108,10 +1108,10 @@
     "worm"
    ],
    "ingredients": "Banana + Strawberry + Wiggly Worm",
-   "name": "Wiggly Banana & Blueberry Sludge",
+   "name": "Smelly Banana & Blueberry Sock Sludge",
    "verdict": "Yucky",
-   "image_concept": "banana + blueberry + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a wobbly tower: a curvy yellow banana character stacked on a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "banana + blueberry + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a curvy yellow banana character, a plump round deep-blue blueberry character with a tiny leafy star crown and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines clinking cups in a happy cheers toast, sparkly droplets flying, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 79,
@@ -1125,7 +1125,7 @@
    "name": "Enchanted Banana & Blueberry Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "banana + blueberry + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a curvy yellow banana character, a plump round deep-blue blueberry character with a tiny leafy star crown and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a wobbly circus-acrobat tower of a curvy yellow banana character balancing a plump round deep-blue blueberry character with a tiny leafy star crown balancing a small glowing rainbow arc, tiny flags, arms out, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 80,
@@ -1139,7 +1139,7 @@
    "name": "Choco-Banana Birthday Cake",
    "verdict": "Yummy",
    "image_concept": "banana + soft egg + chocolate (yummy, glossy)",
-   "image_prompt": "a curvy yellow banana character and a jiggly fried-egg character with a golden yolk carrying a melty dark-chocolate bar character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a chocolate birthday cake with one lit candle and a banana character popping out of the top like a party surprise, confetti and streamers, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 81,
@@ -1153,7 +1153,7 @@
    "name": "Banana-Egg-Cookie Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "banana + soft egg + cookie (yummy, glossy)",
-   "image_prompt": "a giggling group-hug pile of a curvy yellow banana character, a jiggly fried-egg character with a golden yolk and a chocolate-chip cookie character, cheeks squished together, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a curvy yellow banana character and a jiggly fried-egg character with a golden yolk swinging a chocolate-chip cookie character in a blanket like a trampoline, a chocolate-chip cookie character bouncing up delighted, sparkles, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 82,
@@ -1167,7 +1167,7 @@
    "name": "Banana-Egg-Ice Cream Medley",
    "verdict": "Yummy",
    "image_concept": "banana + soft egg + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a curvy yellow banana character, a jiggly fried-egg character with a golden yolk and a swirly soft-serve ice-cream character stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a curvy yellow banana character and a swirly soft-serve ice-cream character bouncing a jiggly fried-egg character with a golden yolk sky-high on a stretchy trampoline, a jiggly fried-egg character with a golden yolk whooping mid-air, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 83,
@@ -1178,10 +1178,10 @@
     "worm"
    ],
    "ingredients": "Banana + Egg + Wiggly Worm",
-   "name": "Wormy Banana & Egg Surprise",
+   "name": "Stinky Banana & Egg Sock Surprise",
    "verdict": "Yucky",
-   "image_concept": "banana + soft egg + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a curvy yellow banana character and a cheeky green wiggly worm high-fiving over a jiggly fried-egg character with a golden yolk, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "banana + soft egg + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a curvy yellow banana character, a jiggly fried-egg character with a golden yolk and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines riding a curling whipped-cream wave like surfers, arms out, joyful, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 84,
@@ -1195,7 +1195,7 @@
    "name": "Rainbow Banana & Egg Sparkle Dream",
    "verdict": "Magical",
    "image_concept": "banana + soft egg + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a wobbly tower: a curvy yellow banana character stacked on a jiggly fried-egg character with a golden yolk stacked on a small glowing rainbow arc, all giggling, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a curvy yellow banana character, a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc squished into one cozy sandwich hug, cheeks smooshed, all three giggling, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 85,
@@ -1209,7 +1209,7 @@
    "name": "Banana-Chocolate-Cookie Medley",
    "verdict": "Yummy",
    "image_concept": "banana + chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a curvy yellow banana character, a melty dark-chocolate bar character and a chocolate-chip cookie character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a curvy yellow banana character and a melty dark-chocolate bar character swinging a chocolate-chip cookie character in a blanket like a trampoline, a chocolate-chip cookie character bouncing up delighted, sparkles, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 86,
@@ -1223,7 +1223,7 @@
    "name": "Choco-Banana Split Supreme",
    "verdict": "Yummy",
    "image_concept": "banana + chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a curvy yellow banana character and a melty dark-chocolate bar character carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a deluxe banana-split boat loaded with chocolate ice-cream scoops and thick chocolate drizzle, a banana character striking a proud pose, sparkles, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 87,
@@ -1234,10 +1234,10 @@
     "worm"
    ],
    "ingredients": "Banana + Chocolate + Wiggly Worm",
-   "name": "Slimy Banana & Chocolate Wriggle-Goo",
+   "name": "Slimy Banana & Chocolate Sock Goo",
    "verdict": "Yucky",
-   "image_concept": "banana + chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a giggling group-hug pile of a curvy yellow banana character, a melty dark-chocolate bar character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "banana + chocolate + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a wobbly circus-acrobat tower of a curvy yellow banana character balancing a melty dark-chocolate bar character balancing a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines, tiny flags, arms out, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 88,
@@ -1251,7 +1251,7 @@
    "name": "Magical Banana & Chocolate Shimmer",
    "verdict": "Magical",
    "image_concept": "banana + chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a curvy yellow banana character, a melty dark-chocolate bar character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a curvy yellow banana character, a melty dark-chocolate bar character and a small glowing rainbow arc posing as a proud superhero trio, capes fluttering, a sparkle burst behind them, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 89,
@@ -1265,7 +1265,7 @@
    "name": "Banana Cookie Sundae",
    "verdict": "Yummy",
    "image_concept": "banana + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a curvy yellow banana character and a swirly soft-serve ice-cream character high-fiving over a chocolate-chip cookie character, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a tall sundae glass stacked with banana slices, ice-cream scoops and cookie shards, a cherry on top, happy little faces peeking over the rim, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 90,
@@ -1276,10 +1276,10 @@
     "worm"
    ],
    "ingredients": "Banana + Cookie + Wiggly Worm",
-   "name": "Banana & Cookie Worm Swamp Stew",
+   "name": "Banana & Cookie Sock Swamp Stew",
    "verdict": "Yucky",
-   "image_concept": "banana + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a wobbly tower: a curvy yellow banana character stacked on a chocolate-chip cookie character stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "banana + cookie + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a curvy yellow banana character and a chocolate-chip cookie character swinging a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines in a blanket like a trampoline, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines bouncing up delighted, sparkles, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 91,
@@ -1293,7 +1293,7 @@
    "name": "Banana & Cookie Rainbow Delight",
    "verdict": "Magical",
    "image_concept": "banana + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a curvy yellow banana character, a chocolate-chip cookie character and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a curvy yellow banana character, a chocolate-chip cookie character and a small glowing rainbow arc in a giggling belly-laugh dogpile, little legs kicking in the air, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 92,
@@ -1304,10 +1304,10 @@
     "worm"
    ],
    "ingredients": "Banana + Ice Cream + Wiggly Worm",
-   "name": "Squirmy Banana & Ice Cream Mush",
+   "name": "Soggy Banana & Ice Cream Sock Mush",
    "verdict": "Yucky",
-   "image_concept": "banana + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a curvy yellow banana character and a swirly soft-serve ice-cream character carrying a cheeky green wiggly worm overhead like a champion, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "banana + ice cream scoop + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a curvy yellow banana character giving a swirly soft-serve ice-cream character and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines a wobbly double piggyback, grinning, little motion lines, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 93,
@@ -1321,7 +1321,7 @@
    "name": "Enchanted Banana & Ice Cream Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "banana + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a giggling group-hug pile of a curvy yellow banana character, a swirly soft-serve ice-cream character and a small glowing rainbow arc, cheeks squished together, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a curvy yellow banana character, a swirly soft-serve ice-cream character and a small glowing rainbow arc bursting out of a party popper together, confetti and curly streamers everywhere, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 94,
@@ -1332,10 +1332,10 @@
     "rainbow"
    ],
    "ingredients": "Banana + Wiggly Worm + Rainbow",
-   "name": "Wormy Banana Surprise",
+   "name": "Stinky Banana Sock Surprise",
    "verdict": "Yucky",
-   "image_concept": "banana + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a curvy yellow banana character, a cheeky green wiggly worm and a small glowing rainbow arc stacked like a snowman, the top one saluting, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "banana + green stinky sock + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a wobbly circus-acrobat tower of a curvy yellow banana character balancing a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines balancing a small glowing rainbow arc, tiny flags, arms out, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 95,
@@ -1349,7 +1349,7 @@
    "name": "Blueberry-Egg-Chocolate Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "blueberry + soft egg + chocolate (yummy, glossy)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a melty dark-chocolate bar character high-fiving over a jiggly fried-egg character with a golden yolk, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a jiggly fried-egg character with a golden yolk and a melty dark-chocolate bar character blasting off on a fizzy soda-bottle rocket together, faces of pure joy, whoosh trails, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 96,
@@ -1363,7 +1363,7 @@
    "name": "Blueberry-Egg-Cookie Medley",
    "verdict": "Yummy",
    "image_concept": "blueberry + soft egg + cookie (yummy, glossy)",
-   "image_prompt": "a wobbly tower: a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a jiggly fried-egg character with a golden yolk stacked on a chocolate-chip cookie character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a jiggly fried-egg character with a golden yolk and a chocolate-chip cookie character squished into one cozy sandwich hug, cheeks smooshed, all three giggling, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 97,
@@ -1377,7 +1377,7 @@
    "name": "Triple Treat: Blueberry, Egg & Ice Cream",
    "verdict": "Yummy",
    "image_concept": "blueberry + soft egg + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a jiggly fried-egg character with a golden yolk and a swirly soft-serve ice-cream character dancing in a happy conga line, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a jiggly fried-egg character with a golden yolk swinging a swirly soft-serve ice-cream character in a blanket like a trampoline, a swirly soft-serve ice-cream character bouncing up delighted, sparkles, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 98,
@@ -1388,10 +1388,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Egg + Wiggly Worm",
-   "name": "Slimy Blueberry & Egg Wriggle-Goo",
+   "name": "Slimy Blueberry & Egg Sock Goo",
    "verdict": "Yucky",
-   "image_concept": "blueberry + soft egg + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a jiggly fried-egg character with a golden yolk carrying a cheeky green wiggly worm overhead like a champion, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "blueberry + soft egg + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a jiggly fried-egg character with a golden yolk launching a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines off a spoon see-saw, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines flying up giggling in a sparkle arc, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 99,
@@ -1405,7 +1405,7 @@
    "name": "Magical Blueberry & Egg Shimmer",
    "verdict": "Magical",
    "image_concept": "blueberry + soft egg + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a giggling group-hug pile of a plump round deep-blue blueberry character with a tiny leafy star crown, a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc, cheeks squished together, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown giving a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc a wobbly double piggyback, grinning, little motion lines, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 100,
@@ -1419,7 +1419,7 @@
    "name": "Triple Treat: Blueberry, Chocolate & Cookie",
    "verdict": "Yummy",
    "image_concept": "blueberry + chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a melty dark-chocolate bar character and a chocolate-chip cookie character stacked like a snowman, the top one saluting, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a chocolate-chip cookie character bouncing a melty dark-chocolate bar character sky-high on a stretchy trampoline, a melty dark-chocolate bar character whooping mid-air, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 101,
@@ -1433,7 +1433,7 @@
    "name": "Blueberry-Choco Sundae",
    "verdict": "Yummy",
    "image_concept": "blueberry + chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a swirly soft-serve ice-cream character high-fiving over a melty dark-chocolate bar character, who looks delighted, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a sundae glass layered with chocolate sauce, blueberries and swirled ice cream, blueberry characters peeking over the rim, glossy chocolate drizzle, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 102,
@@ -1444,10 +1444,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Chocolate + Wiggly Worm",
-   "name": "Blueberry & Chocolate Worm Swamp Stew",
+   "name": "Blueberry & Chocolate Sock Swamp Stew",
    "verdict": "Yucky",
-   "image_concept": "blueberry + chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a wobbly tower: a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a melty dark-chocolate bar character stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "blueberry + chocolate + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a melty dark-chocolate bar character and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines bursting out of a party popper together, confetti and curly streamers everywhere, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 103,
@@ -1461,7 +1461,7 @@
    "name": "Blueberry & Chocolate Rainbow Delight",
    "verdict": "Magical",
    "image_concept": "blueberry + chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a melty dark-chocolate bar character and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a melty dark-chocolate bar character and a small glowing rainbow arc bursting out of a party popper together, confetti and curly streamers everywhere, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 104,
@@ -1475,7 +1475,7 @@
    "name": "Blueberry Shortcake Sundae",
    "verdict": "Yummy",
    "image_concept": "blueberry + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a chocolate-chip cookie character carrying a swirly soft-serve ice-cream character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a blueberry-shortcake sundae with layers of cookie crumble, blueberries and whipped cream, a blueberry character on top waving a tiny spoon like a flag, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 105,
@@ -1486,10 +1486,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Cookie + Wiggly Worm",
-   "name": "Squirmy Blueberry & Cookie Mush",
+   "name": "Soggy Blueberry & Cookie Sock Mush",
    "verdict": "Yucky",
-   "image_concept": "blueberry + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a giggling group-hug pile of a plump round deep-blue blueberry character with a tiny leafy star crown, a chocolate-chip cookie character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "blueberry + cookie + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines bouncing a chocolate-chip cookie character sky-high on a stretchy trampoline, a chocolate-chip cookie character whooping mid-air, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 106,
@@ -1503,7 +1503,7 @@
    "name": "Enchanted Blueberry & Cookie Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "blueberry + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a chocolate-chip cookie character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a chocolate-chip cookie character and a small glowing rainbow arc riding a curling whipped-cream wave like surfers, arms out, joyful, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 107,
@@ -1514,10 +1514,10 @@
     "worm"
    ],
    "ingredients": "Strawberry + Ice Cream + Wiggly Worm",
-   "name": "Wiggly Blueberry & Ice Cream Sludge",
+   "name": "Smelly Blueberry & Ice Cream Sock Sludge",
    "verdict": "Yucky",
-   "image_concept": "blueberry + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a cheeky green wiggly worm high-fiving over a swirly soft-serve ice-cream character, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "blueberry + ice cream scoop + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown and a swirly soft-serve ice-cream character swinging a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines in a blanket like a trampoline, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines bouncing up delighted, sparkles, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 108,
@@ -1531,7 +1531,7 @@
    "name": "Rainbow Blueberry & Ice Cream Sparkle Dream",
    "verdict": "Magical",
    "image_concept": "blueberry + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a wobbly tower: a plump round deep-blue blueberry character with a tiny leafy star crown stacked on a swirly soft-serve ice-cream character stacked on a small glowing rainbow arc, all giggling, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a swirly soft-serve ice-cream character and a small glowing rainbow arc clinking cups in a happy cheers toast, sparkly droplets flying, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 109,
@@ -1542,10 +1542,10 @@
     "rainbow"
    ],
    "ingredients": "Strawberry + Wiggly Worm + Rainbow",
-   "name": "Slimy Blueberry Wriggle-Goo",
+   "name": "Slimy Blueberry Sock Goo",
    "verdict": "Yucky",
-   "image_concept": "blueberry + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a cheeky green wiggly worm and a small glowing rainbow arc dancing in a happy conga line, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "blueberry + green stinky sock + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a plump round deep-blue blueberry character with a tiny leafy star crown, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines and a small glowing rainbow arc posing as a proud superhero trio, capes fluttering, a sparkle burst behind them, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 110,
@@ -1559,7 +1559,7 @@
    "name": "Chocolate-Chip Cookie Cake",
    "verdict": "Yummy",
    "image_concept": "soft egg + chocolate + cookie (yummy, glossy)",
-   "image_prompt": "a jiggly fried-egg character with a golden yolk and a melty dark-chocolate bar character carrying a chocolate-chip cookie character overhead like a champion, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a giant chocolate-chip cookie-cake with a slice lifting out in a gooey chocolate stretch, a cookie character cheering, crumbs bouncing everywhere, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 111,
@@ -1573,7 +1573,7 @@
    "name": "Chef's Egg-Chocolate-Ice Cream Surprise",
    "verdict": "Yummy",
    "image_concept": "soft egg + chocolate + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a giggling group-hug pile of a jiggly fried-egg character with a golden yolk, a melty dark-chocolate bar character and a swirly soft-serve ice-cream character, cheeks squished together, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a jiggly fried-egg character with a golden yolk, a melty dark-chocolate bar character and a swirly soft-serve ice-cream character squished into one cozy sandwich hug, cheeks smooshed, all three giggling, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 112,
@@ -1584,10 +1584,10 @@
     "worm"
    ],
    "ingredients": "Egg + Chocolate + Wiggly Worm",
-   "name": "Squirmy Egg & Chocolate Mush",
+   "name": "Soggy Egg & Chocolate Sock Mush",
    "verdict": "Yucky",
-   "image_concept": "soft egg + chocolate + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a jiggly fried-egg character with a golden yolk, a melty dark-chocolate bar character and a cheeky green wiggly worm stacked like a snowman, the top one saluting, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "soft egg + chocolate + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a jiggly fried-egg character with a golden yolk and a melty dark-chocolate bar character swinging a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines in a blanket like a trampoline, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines bouncing up delighted, sparkles, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 113,
@@ -1601,7 +1601,7 @@
    "name": "Enchanted Egg & Chocolate Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "soft egg + chocolate + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc high-fiving over a melty dark-chocolate bar character, who looks delighted, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a jiggly fried-egg character with a golden yolk, a melty dark-chocolate bar character and a small glowing rainbow arc posing as a proud superhero trio, capes fluttering, a sparkle burst behind them, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 114,
@@ -1615,7 +1615,7 @@
    "name": "Egg-Cookie-Ice Cream Yum-Bowl",
    "verdict": "Yummy",
    "image_concept": "soft egg + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a wobbly tower: a jiggly fried-egg character with a golden yolk stacked on a chocolate-chip cookie character stacked on a swirly soft-serve ice-cream character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a jiggly fried-egg character with a golden yolk, a chocolate-chip cookie character and a swirly soft-serve ice-cream character tumbling downhill piled on a rolling ice-cream scoop like a snowball, laughing, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 115,
@@ -1626,10 +1626,10 @@
     "worm"
    ],
    "ingredients": "Egg + Cookie + Wiggly Worm",
-   "name": "Wiggly Egg & Cookie Sludge",
+   "name": "Smelly Egg & Cookie Sock Sludge",
    "verdict": "Yucky",
-   "image_concept": "soft egg + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a jiggly fried-egg character with a golden yolk, a chocolate-chip cookie character and a cheeky green wiggly worm dancing in a happy conga line, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "soft egg + cookie + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a wobbly circus-acrobat tower of a jiggly fried-egg character with a golden yolk balancing a chocolate-chip cookie character balancing a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines, tiny flags, arms out, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 116,
@@ -1643,7 +1643,7 @@
    "name": "Rainbow Egg & Cookie Sparkle Dream",
    "verdict": "Magical",
    "image_concept": "soft egg + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a jiggly fried-egg character with a golden yolk and a chocolate-chip cookie character carrying a small glowing rainbow arc overhead like a champion, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a jiggly fried-egg character with a golden yolk, a chocolate-chip cookie character and a small glowing rainbow arc blasting off on a fizzy soda-bottle rocket together, faces of pure joy, whoosh trails, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 117,
@@ -1654,10 +1654,10 @@
     "worm"
    ],
    "ingredients": "Egg + Ice Cream + Wiggly Worm",
-   "name": "Wormy Egg & Ice Cream Surprise",
+   "name": "Stinky Egg & Ice Cream Sock Surprise",
    "verdict": "Yucky",
-   "image_concept": "soft egg + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a giggling group-hug pile of a jiggly fried-egg character with a golden yolk, a swirly soft-serve ice-cream character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "soft egg + ice cream scoop + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a jiggly fried-egg character with a golden yolk, a swirly soft-serve ice-cream character and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines cannonball-diving into a big happy splash together, splash crown flying up, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 118,
@@ -1671,7 +1671,7 @@
    "name": "Magical Egg & Ice Cream Shimmer",
    "verdict": "Magical",
    "image_concept": "soft egg + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a jiggly fried-egg character with a golden yolk, a swirly soft-serve ice-cream character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a jiggly fried-egg character with a golden yolk and a swirly soft-serve ice-cream character swinging a small glowing rainbow arc in a blanket like a trampoline, a small glowing rainbow arc bouncing up delighted, sparkles, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 119,
@@ -1682,10 +1682,10 @@
     "rainbow"
    ],
    "ingredients": "Egg + Wiggly Worm + Rainbow",
-   "name": "Egg Worm Swamp Stew",
+   "name": "Egg Sock Swamp Stew",
    "verdict": "Yucky",
-   "image_concept": "soft egg + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a jiggly fried-egg character with a golden yolk and a small glowing rainbow arc high-fiving over a cheeky green wiggly worm, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "soft egg + green stinky sock + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a wobbly circus-acrobat tower of a jiggly fried-egg character with a golden yolk balancing a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines balancing a small glowing rainbow arc, tiny flags, arms out, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 120,
@@ -1699,7 +1699,7 @@
    "name": "Cookies-and-Cream Sundae",
    "verdict": "Yummy",
    "image_concept": "chocolate + cookie + ice cream scoop (yummy, glossy)",
-   "image_prompt": "a wobbly tower: a melty dark-chocolate bar character stacked on a chocolate-chip cookie character stacked on a swirly soft-serve ice-cream character, all giggling, glossy and appetizing, one tiny heart-shaped steam wisp rising"
+   "image_prompt": "a cookies-and-cream sundae, swirled ice cream loaded with cookie chunks and chocolate drizzle, little cookie characters cannonballing in, joyful splashes, glossy and appetizing, bright cheerful colours, one tiny heart-shaped sparkle rising"
   },
   {
    "n": 121,
@@ -1710,10 +1710,10 @@
     "worm"
    ],
    "ingredients": "Chocolate + Cookie + Wiggly Worm",
-   "name": "Wormy Chocolate & Cookie Surprise",
+   "name": "Stinky Chocolate & Cookie Sock Surprise",
    "verdict": "Yucky",
-   "image_concept": "chocolate + cookie + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a melty dark-chocolate bar character, a chocolate-chip cookie character and a cheeky green wiggly worm dancing in a happy conga line, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "chocolate + cookie + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a melty dark-chocolate bar character and a chocolate-chip cookie character launching a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines off a spoon see-saw, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines flying up giggling in a sparkle arc, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 122,
@@ -1727,7 +1727,7 @@
    "name": "Magical Chocolate & Cookie Shimmer",
    "verdict": "Magical",
    "image_concept": "chocolate + cookie + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a melty dark-chocolate bar character and a chocolate-chip cookie character carrying a small glowing rainbow arc overhead like a champion, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a melty dark-chocolate bar character conducting while a chocolate-chip cookie character and a small glowing rainbow arc sing into spoons like a tiny band, music notes floating up, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 123,
@@ -1738,10 +1738,10 @@
     "worm"
    ],
    "ingredients": "Chocolate + Ice Cream + Wiggly Worm",
-   "name": "Slimy Chocolate & Ice Cream Wriggle-Goo",
+   "name": "Slimy Chocolate & Ice Cream Sock Goo",
    "verdict": "Yucky",
-   "image_concept": "chocolate + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a giggling group-hug pile of a melty dark-chocolate bar character, a swirly soft-serve ice-cream character and a cheeky green wiggly worm, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "chocolate + ice cream scoop + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a melty dark-chocolate bar character and a swirly soft-serve ice-cream character launching a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines off a spoon see-saw, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines flying up giggling in a sparkle arc, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 124,
@@ -1755,7 +1755,7 @@
    "name": "Chocolate & Ice Cream Rainbow Delight",
    "verdict": "Magical",
    "image_concept": "chocolate + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a melty dark-chocolate bar character, a swirly soft-serve ice-cream character and a small glowing rainbow arc stacked like a snowman, the top one saluting, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a melty dark-chocolate bar character conducting while a swirly soft-serve ice-cream character and a small glowing rainbow arc sing into spoons like a tiny band, music notes floating up, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 125,
@@ -1766,10 +1766,10 @@
     "rainbow"
    ],
    "ingredients": "Chocolate + Wiggly Worm + Rainbow",
-   "name": "Squirmy Chocolate Mush",
+   "name": "Soggy Chocolate Sock Mush",
    "verdict": "Yucky",
-   "image_concept": "chocolate + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a melty dark-chocolate bar character and a small glowing rainbow arc high-fiving over a cheeky green wiggly worm, who looks delighted, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "chocolate + green stinky sock + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a melty dark-chocolate bar character and a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines launching a small glowing rainbow arc off a spoon see-saw, a small glowing rainbow arc flying up giggling in a sparkle arc, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 126,
@@ -1780,10 +1780,10 @@
     "worm"
    ],
    "ingredients": "Cookie + Ice Cream + Wiggly Worm",
-   "name": "Cookie & Ice Cream Worm Swamp Stew",
+   "name": "Cookie & Ice Cream Sock Swamp Stew",
    "verdict": "Yucky",
-   "image_concept": "cookie + ice cream scoop + green wiggly worm (slimy, funny-gross)",
-   "image_prompt": "a wobbly tower: a chocolate-chip cookie character stacked on a swirly soft-serve ice-cream character stacked on a cheeky green wiggly worm, all giggling, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "cookie + ice cream scoop + green stinky sock (slimy, funny-gross)",
+   "image_prompt": "a wobbly circus-acrobat tower of a chocolate-chip cookie character balancing a swirly soft-serve ice-cream character balancing a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines, tiny flags, arms out, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 127,
@@ -1797,7 +1797,7 @@
    "name": "Enchanted Cookie & Ice Cream Twinkle Treat",
    "verdict": "Magical",
    "image_concept": "cookie + ice cream scoop + rainbow sparkles (sparkly, glowing)",
-   "image_prompt": "a chocolate-chip cookie character, a swirly soft-serve ice-cream character and a small glowing rainbow arc dancing in a happy conga line, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
+   "image_prompt": "a wobbly circus-acrobat tower of a chocolate-chip cookie character balancing a swirly soft-serve ice-cream character balancing a small glowing rainbow arc, tiny flags, arms out, glowing with soft magical aurora light, sparkles and tiny stars floating all around, dreamy shimmer"
   },
   {
    "n": 128,
@@ -1808,10 +1808,10 @@
     "rainbow"
    ],
    "ingredients": "Cookie + Wiggly Worm + Rainbow",
-   "name": "Wiggly Cookie Sludge",
+   "name": "Smelly Cookie Sock Sludge",
    "verdict": "Yucky",
-   "image_concept": "cookie + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a chocolate-chip cookie character and a cheeky green wiggly worm carrying a small glowing rainbow arc overhead like a champion, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "cookie + green stinky sock + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a chocolate-chip cookie character, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines and a small glowing rainbow arc clinking cups in a happy cheers toast, sparkly droplets flying, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   },
   {
    "n": 129,
@@ -1822,10 +1822,10 @@
     "rainbow"
    ],
    "ingredients": "Ice Cream + Wiggly Worm + Rainbow",
-   "name": "Wormy Ice Cream Surprise",
+   "name": "Stinky Ice Cream Sock Surprise",
    "verdict": "Yucky",
-   "image_concept": "ice cream scoop + green wiggly worm + rainbow sparkles (slimy, funny-gross)",
-   "image_prompt": "a giggling group-hug pile of a swirly soft-serve ice-cream character, a cheeky green wiggly worm and a small glowing rainbow arc, cheeks squished together, dripping with silly green slime, the worm giggling mischievously, gross-but-adorable, little green stink wisps"
+   "image_concept": "ice cream scoop + green stinky sock + rainbow sparkles (slimy, funny-gross)",
+   "image_prompt": "a swirly soft-serve ice-cream character, a grubby cartoon tube sock character with a ribbed red cuff and red toe, dirt-spotted cream body and wavy green stink lines and a small glowing rainbow arc cannonball-diving into a big happy splash together, splash crown flying up, everything drizzled in silly green slime, the grubby sock flopping about mischievously, gross-but-adorable, wavy green stink wisps"
   }
  ]
 }
