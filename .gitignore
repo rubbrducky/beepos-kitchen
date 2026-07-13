@@ -1,2 +1,4 @@
 .DS_Store
 deploy/assets/
+.old/
+sock_test/
